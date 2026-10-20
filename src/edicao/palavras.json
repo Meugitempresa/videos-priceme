@@ -1,0 +1,447 @@
+[
+ {
+  "texto": "Você",
+  "inicio": 0,
+  "fim": 0.4
+ },
+ {
+  "texto": "trabalha,",
+  "inicio": 0.4,
+  "fim": 1.04
+ },
+ {
+  "texto": "vende,",
+  "inicio": 1.04,
+  "fim": 1.52
+ },
+ {
+  "texto": "vê",
+  "inicio": 1.52,
+  "fim": 1.84
+ },
+ {
+  "texto": "o",
+  "inicio": 1.84,
+  "fim": 1.92
+ },
+ {
+  "texto": "dinheiro",
+  "inicio": 1.92,
+  "fim": 2.4
+ },
+ {
+  "texto": "entrar,",
+  "inicio": 2.4,
+  "fim": 2.8
+ },
+ {
+  "texto": "mas",
+  "inicio": 3.2,
+  "fim": 3.24
+ },
+ {
+  "texto": "sabe",
+  "inicio": 3.52,
+  "fim": 3.84
+ },
+ {
+  "texto": "quanto",
+  "inicio": 3.84,
+  "fim": 4.32
+ },
+ {
+  "texto": "realmente",
+  "inicio": 4.32,
+  "fim": 4.8
+ },
+ {
+  "texto": "fica?",
+  "inicio": 4.8,
+  "fim": 5.23
+ },
+ {
+  "texto": "A",
+  "inicio": 5.45,
+  "fim": 5.6
+ },
+ {
+  "texto": "PriceMe",
+  "inicio": 5.6,
+  "fim": 6.32
+ },
+ {
+  "texto": "te",
+  "inicio": 6.32,
+  "fim": 6.4
+ },
+ {
+  "texto": "ajuda",
+  "inicio": 6.4,
+  "fim": 6.72
+ },
+ {
+  "texto": "a",
+  "inicio": 6.72,
+  "fim": 6.88
+ },
+ {
+  "texto": "entender",
+  "inicio": 6.88,
+  "fim": 7.2
+ },
+ {
+  "texto": "de",
+  "inicio": 7.2,
+  "fim": 7.36
+ },
+ {
+  "texto": "verdade.",
+  "inicio": 7.36,
+  "fim": 8.08
+ },
+ {
+  "texto": "Na",
+  "inicio": 8.08,
+  "fim": 8.24
+ },
+ {
+  "texto": "PriceMe",
+  "inicio": 8.24,
+  "fim": 8.91
+ },
+ {
+  "texto": "você",
+  "inicio": 9.21,
+  "fim": 9.44
+ },
+ {
+  "texto": "lança",
+  "inicio": 9.44,
+  "fim": 9.92
+ },
+ {
+  "texto": "os",
+  "inicio": 9.92,
+  "fim": 10
+ },
+ {
+  "texto": "dados",
+  "inicio": 10,
+  "fim": 10.4
+ },
+ {
+  "texto": "de",
+  "inicio": 10.4,
+  "fim": 10.56
+ },
+ {
+  "texto": "despesas",
+  "inicio": 10.56,
+  "fim": 11.28
+ },
+ {
+  "texto": "e",
+  "inicio": 11.28,
+  "fim": 11.44
+ },
+ {
+  "texto": "receitas",
+  "inicio": 11.44,
+  "fim": 12.17
+ },
+ {
+  "texto": "e",
+  "inicio": 12.42,
+  "fim": 12.45
+ },
+ {
+  "texto": "ela",
+  "inicio": 12.64,
+  "fim": 12.96
+ },
+ {
+  "texto": "calcula",
+  "inicio": 12.96,
+  "fim": 13.52
+ },
+ {
+  "texto": "o",
+  "inicio": 13.52,
+  "fim": 13.68
+ },
+ {
+  "texto": "lucro",
+  "inicio": 13.68,
+  "fim": 14.08
+ },
+ {
+  "texto": "dos",
+  "inicio": 14.08,
+  "fim": 14.32
+ },
+ {
+  "texto": "seus",
+  "inicio": 14.32,
+  "fim": 14.56
+ },
+ {
+  "texto": "produtos",
+  "inicio": 14.56,
+  "fim": 15.2
+ },
+ {
+  "texto": "e",
+  "inicio": 15.2,
+  "fim": 15.36
+ },
+ {
+  "texto": "serviços",
+  "inicio": 15.36,
+  "fim": 16.24
+ },
+ {
+  "texto": "em",
+  "inicio": 16.24,
+  "fim": 16.48
+ },
+ {
+  "texto": "minutos.",
+  "inicio": 16.48,
+  "fim": 17.15
+ },
+ {
+  "texto": "Com",
+  "inicio": 17.55,
+  "fim": 17.66
+ },
+ {
+  "texto": "isso,",
+  "inicio": 17.66,
+  "fim": 18.06
+ },
+ {
+  "texto": "você",
+  "inicio": 18.06,
+  "fim": 18.38
+ },
+ {
+  "texto": "consegue",
+  "inicio": 18.38,
+  "fim": 18.95
+ },
+ {
+  "texto": "saber",
+  "inicio": 18.95,
+  "fim": 19.5
+ },
+ {
+  "texto": "até",
+  "inicio": 19.5,
+  "fim": 19.82
+ },
+ {
+  "texto": "centavos",
+  "inicio": 19.82,
+  "fim": 20.54
+ },
+ {
+  "texto": "de",
+  "inicio": 20.54,
+  "fim": 20.7
+ },
+ {
+  "texto": "qual",
+  "inicio": 20.7,
+  "fim": 21.02
+ },
+ {
+  "texto": "produto",
+  "inicio": 21.02,
+  "fim": 21.34
+ },
+ {
+  "texto": "é",
+  "inicio": 21.34,
+  "fim": 21.5
+ },
+ {
+  "texto": "mais",
+  "inicio": 21.5,
+  "fim": 21.74
+ },
+ {
+  "texto": "rentável",
+  "inicio": 21.74,
+  "fim": 22.53
+ },
+ {
+  "texto": "e",
+  "inicio": 22.68,
+  "fim": 22.78
+ },
+ {
+  "texto": "qual",
+  "inicio": 22.78,
+  "fim": 23.18
+ },
+ {
+  "texto": "produto",
+  "inicio": 23.18,
+  "fim": 23.74
+ },
+ {
+  "texto": "você",
+  "inicio": 23.74,
+  "fim": 24.06
+ },
+ {
+  "texto": "verdadeiramente",
+  "inicio": 24.06,
+  "fim": 24.94
+ },
+ {
+  "texto": "deve",
+  "inicio": 24.94,
+  "fim": 25.34
+ },
+ {
+  "texto": "investir.",
+  "inicio": 25.34,
+  "fim": 25.86
+ },
+ {
+  "texto": "Ou",
+  "inicio": 26.26,
+  "fim": 26.427
+ },
+ {
+  "texto": "seja,",
+  "inicio": 26.427,
+  "fim": 26.907
+ },
+ {
+  "texto": "você",
+  "inicio": 26.907,
+  "fim": 27.227
+ },
+ {
+  "texto": "trabalha",
+  "inicio": 27.227,
+  "fim": 27.707
+ },
+ {
+  "texto": "no",
+  "inicio": 27.707,
+  "fim": 27.867
+ },
+ {
+  "texto": "positivo",
+  "inicio": 27.867,
+  "fim": 28.667
+ },
+ {
+  "texto": "sempre.",
+  "inicio": 28.667,
+  "fim": 28.99
+ },
+ {
+  "texto": "Enfim,",
+  "inicio": 29.48,
+  "fim": 30.04
+ },
+ {
+  "texto": "seu",
+  "inicio": 30.22,
+  "fim": 30.507
+ },
+ {
+  "texto": "esforço",
+  "inicio": 30.507,
+  "fim": 31.227
+ },
+ {
+  "texto": "precisa",
+  "inicio": 31.227,
+  "fim": 31.787
+ },
+ {
+  "texto": "aparecer",
+  "inicio": 31.787,
+  "fim": 32.427
+ },
+ {
+  "texto": "no",
+  "inicio": 32.427,
+  "fim": 32.587
+ },
+ {
+  "texto": "lucro,",
+  "inicio": 32.587,
+  "fim": 32.99
+ },
+ {
+  "texto": "não",
+  "inicio": 33.62,
+  "fim": 33.787
+ },
+ {
+  "texto": "é",
+  "inicio": 33.787,
+  "fim": 33.947
+ },
+ {
+  "texto": "mesmo?",
+  "inicio": 33.947,
+  "fim": 34.36
+ },
+ {
+  "texto": "Acesse",
+  "inicio": 34.72,
+  "fim": 35.247
+ },
+ {
+  "texto": "priceme.com.br",
+  "inicio": 35.247,
+  "fim": 36.147
+ },
+ {
+  "texto": "e",
+  "inicio": 37.89,
+  "fim": 37.967
+ },
+ {
+  "texto": "descubra",
+  "inicio": 37.967,
+  "fim": 38.607
+ },
+ {
+  "texto": "o",
+  "inicio": 38.607,
+  "fim": 38.847
+ },
+ {
+  "texto": "que",
+  "inicio": 38.847,
+  "fim": 39.087
+ },
+ {
+  "texto": "está",
+  "inicio": 39.087,
+  "fim": 39.327
+ },
+ {
+  "texto": "ficando",
+  "inicio": 39.327,
+  "fim": 39.807
+ },
+ {
+  "texto": "para",
+  "inicio": 39.807,
+  "fim": 40.127
+ },
+ {
+  "texto": "você.",
+  "inicio": 40.127,
+  "fim": 40.34
+ }
+]

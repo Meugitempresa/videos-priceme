@@ -4,3 +4,5 @@ out/
 whisper.cpp/
 # Takes e imagens pessoais ficam fora do git até você pedir
 public/take*.mp4
+# Áudio tratado: gerado por scripts/tratar-audio.py a partir do take
+public/voz-tratada.wav

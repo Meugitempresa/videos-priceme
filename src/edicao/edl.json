@@ -1,0 +1,12 @@
+{
+  "fps": 30,
+  "origem": "public/take.mp4",
+  "comentario": "Trechos do take original mantidos, em quadros [inicio, fim). Os cortes ficam dentro de pausas, sem tocar em palavras.",
+  "trechos": [
+    { "inicio": 0, "fim": 519, "nota": "até 17,30 s: fim de 'minutos.'" },
+    { "inicio": 534, "fim": 795, "nota": "17,80–26,50 s: remove 0,5 s de pausa e o estalo em 17,51 s" },
+    { "inicio": 808, "fim": 1062, "nota": "26,93–35,40 s: remove 0,43 s de silêncio morto" },
+    { "inicio": 1071, "fim": 1280, "nota": "35,70 s até o fim: remove 0,3 s de pausa" }
+  ],
+  "blocosOriginais": [0, 8.0, 17.7, 26.733, 35.633, 42.667]
+}
