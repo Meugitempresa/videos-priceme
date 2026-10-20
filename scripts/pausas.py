@@ -10,7 +10,7 @@ while i < n:
     if db[i] < -45:
         j = i
         while j < n and db[j] < -45: j += 1
-        if j - i >= 15: pausas.append([i / 100, j / 100])
+        if j - i >= 12: pausas.append([i / 100, j / 100])
         i = j
     else: i += 1
 json.dump(pausas, open("src/edicao/pausas.json", "w"))

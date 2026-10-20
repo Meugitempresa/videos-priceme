@@ -24,11 +24,15 @@ for (const p of brutas) {
   if (ins) palavras.push({ w: ins.w, t: ins.t });
 }
 
-// tempo original (s) -> tempo editado (s)
+// tempo original (s) -> tempo editado (s); pausas inseridas empurram o que vem depois
 const paraEditado = (t) => {
   let acumulado = 0;
-  for (const { inicio, fim } of edl.trechos) {
-    const a = inicio / edl.fps, b = fim / edl.fps;
+  for (const item of edl.itens) {
+    if (item.tipo === "pausa") {
+      acumulado += item.quadros / edl.fps;
+      continue;
+    }
+    const a = item.inicio / edl.fps, b = item.fim / edl.fps;
     if (t < a) return acumulado;
     if (t < b) return acumulado + (t - a);
     acumulado += b - a;

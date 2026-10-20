@@ -3,11 +3,14 @@ import { fonte, marca } from "../marca";
 import { TOPO_APRESENTADORA } from "./Apresentadora";
 
 // Fundo da parte de cima: azul da marca com grade discreta e leve movimento contínuo
-export const Painel: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+// Em tela cheia (cheia = 1) o painel cobre a apresentadora e o conteúdo desce para o centro,
+// sem ampliar (mantém as margens laterais de 90 px).
+export const Painel: React.FC<{ children: React.ReactNode; cheia: number }> = ({ children, cheia }) => {
   const frame = useCurrentFrame();
   const deriva = interpolate(frame, [0, 1300], [0, -90]);
+  const altura = TOPO_APRESENTADORA + (1920 - TOPO_APRESENTADORA) * cheia;
   return (
-    <AbsoluteFill style={{ height: TOPO_APRESENTADORA, overflow: "hidden" }}>
+    <AbsoluteFill style={{ height: altura, overflow: "hidden" }}>
       <AbsoluteFill
         style={{ background: `linear-gradient(180deg, ${marca.azul} 0%, ${marca.azulEscuro} 70%, ${marca.azulNoite} 100%)` }}
       />
@@ -19,7 +22,15 @@ export const Painel: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           backgroundPosition: `${deriva}px ${deriva / 2}px`,
         }}
       />
-      {children}
+      <AbsoluteFill
+        style={{
+          height: TOPO_APRESENTADORA,
+          transform: `translateY(${280 * cheia}px)`,
+          transformOrigin: "540px 0px",
+        }}
+      >
+        {children}
+      </AbsoluteFill>
       <div
         style={{
           position: "absolute",

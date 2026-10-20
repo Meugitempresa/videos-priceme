@@ -2,13 +2,13 @@ import { Crown, Package, Search } from "lucide-react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { fonte, marca } from "../../marca";
 import { Cartao, Ilustracao } from "../Painel";
-import { chegada, entra, q, s } from "../tempo";
+import { chegada, entra, q } from "../tempo";
 
 // "Com isso, você consegue saber até centavos de qual produto é mais rentável"
 // Lupa sobre um valor oculto destaca os centavos; o valor vira três produtos e um ganha o selo.
 export const Cena6Centavos: React.FC = () => {
   const frame = useCurrentFrame();
-  const inicio = s(17.3) - 2;
+  const inicio = q("Com") - 4;
   const pValor = entra(frame, inicio, 12);
   const lupa = entra(frame, q("saber") - 4, 22);
   const cents = entra(frame, q("centavos") - 4, 10);

@@ -26,7 +26,10 @@ export const Legenda: React.FC = () => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const i = blocos.findIndex((b, k) => {
-    const fim = Math.max(b.at(-1)!.fim, Math.min(blocos[k + 1]?.[0].inicio ?? Infinity, b.at(-1)!.fim + 0.3));
+    // sai quando a fala do bloco termina; só emenda no próximo se ele começar logo em seguida
+    const fimFala = b.at(-1)!.fim;
+    const proximo = blocos[k + 1]?.[0].inicio ?? Infinity;
+    const fim = proximo - fimFala < 0.2 ? proximo - 0.05 : fimFala + 0.1;
     return t >= b[0].inicio - 0.05 && t < fim;
   });
   if (i < 0) return null;
@@ -55,8 +58,16 @@ export const Legenda: React.FC = () => {
       >
         {bloco.map((w) => {
           const ativa = t >= w.inicio - 0.03;
+          // a marca e o endereço mantêm a grafia oficial (PriceMe, priceme.com.br)
+          const marcaRegistrada = /priceme/i.test(w.texto);
           return (
-            <span key={w.inicio} style={{ color: ativa ? marca.ciano : marca.branco }}>
+            <span
+              key={w.inicio}
+              style={{
+                color: ativa ? marca.ciano : marca.branco,
+                textTransform: marcaRegistrada ? "none" : undefined,
+              }}
+            >
               {w.texto.replace(/[.,]$/, "")}
             </span>
           );

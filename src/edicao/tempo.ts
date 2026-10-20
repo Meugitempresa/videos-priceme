@@ -3,12 +3,10 @@ import edl from "./edl.json";
 import palavras from "./palavras.json";
 
 export const FPS = edl.fps;
-export const DURACAO = edl.trechos.reduce((s, t) => s + t.fim - t.inicio, 0);
-
-// Quadros (na linha do tempo editada) onde há emenda entre trechos do take
-export const EMENDAS = edl.trechos
-  .slice(0, -1)
-  .reduce<number[]>((acc, t) => [...acc, (acc.at(-1) ?? 0) + t.fim - t.inicio], []);
+export const DURACAO = edl.itens.reduce(
+  (n, it) => n + (it.tipo === "pausa" ? (it.quadros ?? 0) : (it.fim ?? 0) - (it.inicio ?? 0)),
+  0,
+);
 
 const limpa = (s: string) =>
   s.toLowerCase().replace(/[,?!]/g, "").replace(/\.$/, "");

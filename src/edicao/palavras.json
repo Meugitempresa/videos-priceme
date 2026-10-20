@@ -62,11 +62,11 @@
  {
   "texto": "A",
   "inicio": 5.45,
-  "fim": 5.6
+  "fim": 5.53
  },
  {
   "texto": "PriceMe",
-  "inicio": 5.6,
+  "inicio": 5.67,
   "fim": 6.32
  },
  {
@@ -97,351 +97,351 @@
  {
   "texto": "verdade.",
   "inicio": 7.36,
-  "fim": 8.08
+  "fim": 7.93
  },
  {
   "texto": "Na",
-  "inicio": 8.08,
-  "fim": 8.24
+  "inicio": 8.38,
+  "fim": 8.54
  },
  {
   "texto": "PriceMe",
-  "inicio": 8.24,
-  "fim": 8.91
+  "inicio": 8.54,
+  "fim": 9.21
  },
  {
   "texto": "você",
-  "inicio": 9.21,
-  "fim": 9.44
+  "inicio": 9.51,
+  "fim": 9.74
  },
  {
   "texto": "lança",
-  "inicio": 9.44,
-  "fim": 9.92
+  "inicio": 9.74,
+  "fim": 10.22
  },
  {
   "texto": "os",
-  "inicio": 9.92,
-  "fim": 10
+  "inicio": 10.22,
+  "fim": 10.3
  },
  {
   "texto": "dados",
-  "inicio": 10,
-  "fim": 10.4
+  "inicio": 10.3,
+  "fim": 10.7
  },
  {
   "texto": "de",
-  "inicio": 10.4,
-  "fim": 10.56
+  "inicio": 10.7,
+  "fim": 10.86
  },
  {
   "texto": "despesas",
-  "inicio": 10.56,
-  "fim": 11.28
+  "inicio": 10.86,
+  "fim": 11.58
  },
  {
   "texto": "e",
-  "inicio": 11.28,
-  "fim": 11.44
+  "inicio": 11.58,
+  "fim": 11.74
  },
  {
   "texto": "receitas",
-  "inicio": 11.44,
-  "fim": 12.17
+  "inicio": 11.74,
+  "fim": 12.47
  },
  {
   "texto": "e",
-  "inicio": 12.42,
-  "fim": 12.45
+  "inicio": 12.72,
+  "fim": 12.75
  },
  {
   "texto": "ela",
-  "inicio": 12.64,
-  "fim": 12.96
+  "inicio": 12.94,
+  "fim": 13.26
  },
  {
   "texto": "calcula",
-  "inicio": 12.96,
-  "fim": 13.52
+  "inicio": 13.26,
+  "fim": 13.82
  },
  {
   "texto": "o",
-  "inicio": 13.52,
-  "fim": 13.68
+  "inicio": 13.82,
+  "fim": 13.98
  },
  {
   "texto": "lucro",
-  "inicio": 13.68,
-  "fim": 14.08
+  "inicio": 13.98,
+  "fim": 14.38
  },
  {
   "texto": "dos",
-  "inicio": 14.08,
-  "fim": 14.32
+  "inicio": 14.38,
+  "fim": 14.62
  },
  {
   "texto": "seus",
-  "inicio": 14.32,
-  "fim": 14.56
+  "inicio": 14.62,
+  "fim": 14.86
  },
  {
   "texto": "produtos",
-  "inicio": 14.56,
-  "fim": 15.2
+  "inicio": 14.86,
+  "fim": 15.5
  },
  {
   "texto": "e",
-  "inicio": 15.2,
-  "fim": 15.36
+  "inicio": 15.5,
+  "fim": 15.66
  },
  {
   "texto": "serviços",
-  "inicio": 15.36,
-  "fim": 16.24
+  "inicio": 15.66,
+  "fim": 16.37
  },
  {
   "texto": "em",
-  "inicio": 16.24,
-  "fim": 16.48
+  "inicio": 16.54,
+  "fim": 16.78
  },
  {
   "texto": "minutos.",
-  "inicio": 16.48,
-  "fim": 17.15
+  "inicio": 16.78,
+  "fim": 17.45
  },
  {
   "texto": "Com",
-  "inicio": 17.55,
-  "fim": 17.66
+  "inicio": 18.05,
+  "fim": 18.16
  },
  {
   "texto": "isso,",
-  "inicio": 17.66,
-  "fim": 18.06
+  "inicio": 18.16,
+  "fim": 18.56
  },
  {
   "texto": "você",
-  "inicio": 18.06,
-  "fim": 18.38
+  "inicio": 18.56,
+  "fim": 18.88
  },
  {
   "texto": "consegue",
-  "inicio": 18.38,
-  "fim": 18.95
+  "inicio": 18.88,
+  "fim": 19.45
  },
  {
   "texto": "saber",
-  "inicio": 18.95,
-  "fim": 19.5
+  "inicio": 19.45,
+  "fim": 20
  },
  {
   "texto": "até",
-  "inicio": 19.5,
-  "fim": 19.82
+  "inicio": 20,
+  "fim": 20.32
  },
  {
   "texto": "centavos",
-  "inicio": 19.82,
-  "fim": 20.54
+  "inicio": 20.32,
+  "fim": 21.04
  },
  {
   "texto": "de",
-  "inicio": 20.54,
-  "fim": 20.7
+  "inicio": 21.04,
+  "fim": 21.2
  },
  {
   "texto": "qual",
-  "inicio": 20.7,
-  "fim": 21.02
+  "inicio": 21.2,
+  "fim": 21.52
  },
  {
   "texto": "produto",
-  "inicio": 21.02,
-  "fim": 21.34
+  "inicio": 21.52,
+  "fim": 21.84
  },
  {
   "texto": "é",
-  "inicio": 21.34,
-  "fim": 21.5
+  "inicio": 21.84,
+  "fim": 22
  },
  {
   "texto": "mais",
-  "inicio": 21.5,
-  "fim": 21.74
+  "inicio": 22,
+  "fim": 22.24
  },
  {
   "texto": "rentável",
-  "inicio": 21.74,
-  "fim": 22.53
+  "inicio": 22.24,
+  "fim": 22.89
  },
  {
   "texto": "e",
-  "inicio": 22.68,
-  "fim": 22.78
+  "inicio": 23.18,
+  "fim": 23.28
  },
  {
   "texto": "qual",
-  "inicio": 22.78,
-  "fim": 23.18
+  "inicio": 23.28,
+  "fim": 23.68
  },
  {
   "texto": "produto",
-  "inicio": 23.18,
-  "fim": 23.74
+  "inicio": 23.68,
+  "fim": 24.24
  },
  {
   "texto": "você",
-  "inicio": 23.74,
-  "fim": 24.06
+  "inicio": 24.24,
+  "fim": 24.56
  },
  {
   "texto": "verdadeiramente",
-  "inicio": 24.06,
-  "fim": 24.94
+  "inicio": 24.56,
+  "fim": 25.44
  },
  {
   "texto": "deve",
-  "inicio": 24.94,
-  "fim": 25.34
+  "inicio": 25.44,
+  "fim": 25.84
  },
  {
   "texto": "investir.",
-  "inicio": 25.34,
-  "fim": 25.86
+  "inicio": 25.84,
+  "fim": 26.36
  },
  {
   "texto": "Ou",
-  "inicio": 26.26,
-  "fim": 26.427
+  "inicio": 26.93,
+  "fim": 27.093
  },
  {
   "texto": "seja,",
-  "inicio": 26.427,
-  "fim": 26.907
+  "inicio": 27.093,
+  "fim": 27.573
  },
  {
   "texto": "você",
-  "inicio": 26.907,
-  "fim": 27.227
+  "inicio": 27.573,
+  "fim": 27.893
  },
  {
   "texto": "trabalha",
-  "inicio": 27.227,
-  "fim": 27.707
+  "inicio": 27.893,
+  "fim": 28.373
  },
  {
   "texto": "no",
-  "inicio": 27.707,
-  "fim": 27.867
+  "inicio": 28.373,
+  "fim": 28.533
  },
  {
   "texto": "positivo",
-  "inicio": 27.867,
-  "fim": 28.667
+  "inicio": 28.533,
+  "fim": 29.333
  },
  {
   "texto": "sempre.",
-  "inicio": 28.667,
-  "fim": 28.99
+  "inicio": 29.333,
+  "fim": 29.65
  },
  {
   "texto": "Enfim,",
-  "inicio": 29.48,
-  "fim": 30.04
+  "inicio": 30.15,
+  "fim": 30.71
  },
  {
   "texto": "seu",
-  "inicio": 30.22,
-  "fim": 30.507
+  "inicio": 30.88,
+  "fim": 31.173
  },
  {
   "texto": "esforço",
-  "inicio": 30.507,
-  "fim": 31.227
+  "inicio": 31.173,
+  "fim": 31.893
  },
  {
   "texto": "precisa",
-  "inicio": 31.227,
-  "fim": 31.787
+  "inicio": 31.893,
+  "fim": 32.453
  },
  {
   "texto": "aparecer",
-  "inicio": 31.787,
-  "fim": 32.427
+  "inicio": 32.453,
+  "fim": 33.093
  },
  {
   "texto": "no",
-  "inicio": 32.427,
-  "fim": 32.587
+  "inicio": 33.093,
+  "fim": 33.253
  },
  {
   "texto": "lucro,",
-  "inicio": 32.587,
-  "fim": 32.99
+  "inicio": 33.253,
+  "fim": 33.66
  },
  {
   "texto": "não",
-  "inicio": 33.62,
-  "fim": 33.787
+  "inicio": 34.29,
+  "fim": 34.453
  },
  {
   "texto": "é",
-  "inicio": 33.787,
-  "fim": 33.947
+  "inicio": 34.453,
+  "fim": 34.613
  },
  {
   "texto": "mesmo?",
-  "inicio": 33.947,
-  "fim": 34.36
+  "inicio": 34.613,
+  "fim": 35.03
  },
  {
   "texto": "Acesse",
-  "inicio": 34.72,
-  "fim": 35.247
+  "inicio": 35.55,
+  "fim": 36.08
  },
  {
   "texto": "priceme.com.br",
-  "inicio": 35.247,
-  "fim": 36.147
+  "inicio": 36.08,
+  "fim": 36.98
  },
  {
   "texto": "e",
-  "inicio": 37.89,
-  "fim": 37.967
+  "inicio": 38.73,
+  "fim": 38.8
  },
  {
   "texto": "descubra",
-  "inicio": 37.967,
-  "fim": 38.607
+  "inicio": 38.8,
+  "fim": 39.44
  },
  {
   "texto": "o",
-  "inicio": 38.607,
-  "fim": 38.847
+  "inicio": 39.44,
+  "fim": 39.68
  },
  {
   "texto": "que",
-  "inicio": 38.847,
-  "fim": 39.087
+  "inicio": 39.68,
+  "fim": 39.92
  },
  {
   "texto": "está",
-  "inicio": 39.087,
-  "fim": 39.327
+  "inicio": 39.92,
+  "fim": 40.16
  },
  {
   "texto": "ficando",
-  "inicio": 39.327,
-  "fim": 39.807
+  "inicio": 40.16,
+  "fim": 40.64
  },
  {
   "texto": "para",
-  "inicio": 39.807,
-  "fim": 40.127
+  "inicio": 40.64,
+  "fim": 40.96
  },
  {
   "texto": "você.",
-  "inicio": 40.127,
-  "fim": 40.34
+  "inicio": 40.96,
+  "fim": 41.17
  }
 ]

@@ -1,12 +1,21 @@
 {
   "fps": 30,
   "origem": "public/take.mp4",
-  "comentario": "Trechos do take original mantidos, em quadros [inicio, fim). Os cortes ficam dentro de pausas, sem tocar em palavras.",
-  "trechos": [
-    { "inicio": 0, "fim": 519, "nota": "até 17,30 s: fim de 'minutos.'" },
-    { "inicio": 534, "fim": 795, "nota": "17,80–26,50 s: remove 0,5 s de pausa e o estalo em 17,51 s" },
-    { "inicio": 808, "fim": 1062, "nota": "26,93–35,40 s: remove 0,43 s de silêncio morto" },
-    { "inicio": 1071, "fim": 1280, "nota": "35,70 s até o fim: remove 0,3 s de pausa" }
+  "comentario": "Linha do tempo editada. 'trecho' = quadros [inicio, fim) do take; 'pausa' = quadros de ambiente inseridos (a imagem fica coberta por tela cheia). Cada emenda tem a pausa ajustada à frase, preservando as respirações.",
+  "itens": [
+    { "tipo": "trecho", "inicio": 0, "fim": 240,
+      "nota": "até 8,00 s. 'verdade.' tinha só 0,17 s até 'Na' (frases coladas) e um buraco de silêncio digital" },
+    { "tipo": "pausa", "quadros": 9, "tomDe": 17.19, "tomAte": 17.43, "substituiInicioDoProximo": 0.047,
+      "nota": "+0,30 s de ambiente do próprio take: pausa de fim de frase fica com ~0,47 s" },
+    { "tipo": "trecho", "inicio": 240, "fim": 523,
+      "nota": "8,00–17,43 s. Corta antes do estalo de 17,51 s" },
+    { "tipo": "trecho", "inicio": 532, "fim": 798,
+      "nota": "17,73–26,60 s. Mantém a inspiração antes de 'Com isso'; pausa total ~0,64 s (mudança de assunto)" },
+    { "tipo": "trecho", "inicio": 806, "fim": 1066,
+      "nota": "26,87–35,53 s. Silêncio morto de 0,85 s vira pausa de fim de frase de ~0,56 s" },
+    { "tipo": "trecho", "inicio": 1070, "fim": 1280,
+      "nota": "35,67 s até o fim. Mantém a inspiração antes de 'Acesse'; pausa ~0,56 s" }
   ],
+  "cruzamento": 0.07,
   "blocosOriginais": [0, 8.0, 17.7, 26.733, 35.633, 42.667]
 }

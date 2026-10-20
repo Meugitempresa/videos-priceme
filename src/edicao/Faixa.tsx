@@ -9,12 +9,13 @@ const TITULOS: { de: number; linhas: string[] }[] = [
   { de: q("A"), linhas: ["ENTENDA *DE VERDADE*"] },
   { de: q("Na"), linhas: ["LANCE *RECEITAS*", "E *DESPESAS*"] },
   { de: q("e", 2), linhas: ["LUCRO POR PRODUTO", "E SERVIÇO *EM MINUTOS*"] },
-  { de: s(17.3), linhas: ["SAIBA *ATÉ OS CENTAVOS*"] },
-  { de: q("de", 3), linhas: ["QUAL PRODUTO É", "*MAIS RENTÁVEL*"] },
+  { de: q("Com"), linhas: ["PRECISÃO", "*ATÉ OS CENTAVOS*"] },
+  { de: q("de", 3), linhas: ["QUAL PRODUTO É", "*MAIS RENTÁVEL*?"] },
   { de: q("e", 4), linhas: ["SAIBA *ONDE INVESTIR*"] },
-  { de: s(26.0), linhas: ["TRABALHE", "*NO POSITIVO*"] },
+  { de: q("Ou"), linhas: ["ACOMPANHE SEUS", "*RESULTADOS*"] },
   { de: q("Enfim"), linhas: ["SEU ESFORÇO PRECISA", "APARECER NO *LUCRO*"] },
-  { de: s(34.47), linhas: ["DESCUBRA O QUE ESTÁ", "*FICANDO PARA VOCÊ*"] },
+  { de: q("Acesse"), linhas: ["ACESSE"] },
+  { de: q("e", 5), linhas: ["DESCUBRA O QUE ESTÁ", "*FICANDO PARA VOCÊ*"] },
 ];
 
 const Linha: React.FC<{ texto: string; frame: number; inicio: number; base: number }> = ({
