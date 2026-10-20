@@ -1,0 +1,23 @@
+{
+  "name": "videos-priceme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vídeos verticais da PriceMe com Remotion e a skill Bolo de Camadas (nicho finanças)",
+  "scripts": {
+    "studio": "remotion studio",
+    "render:teste": "remotion render src/index.ts TestePriceMe out/teste-priceme.mp4",
+    "still:teste": "remotion still src/index.ts TestePriceMe out/teste-priceme.png --frame=60"
+  },
+  "dependencies": {
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "@remotion/cli": "4.0.537",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.537"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.0",
+    "typescript": "5.9.3"
+  }
+}
