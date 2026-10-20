@@ -53,7 +53,9 @@ const saida = palavras.map((p, i) => {
   const proxima = inicios[i + 1] ?? inicios[i] + 0.8;
   // termina no começo da próxima palavra ou no início de uma pausa, o que vier antes
   const pausa = pausas.find(([a]) => a > inicios[i] && a < proxima);
-  const fim = Math.min(pausa ? pausa[0] : proxima, inicios[i] + 0.9);
+  // limite de 0,9 s por palavra, exceto o endereço, que é falado devagar ("priceme ponto com ponto br")
+  const limite = p.w.includes(".com") ? 3 : 0.9;
+  const fim = Math.min(pausa ? pausa[0] : proxima, inicios[i] + limite);
   return {
     texto: p.w,
     inicio: Number(inicios[i].toFixed(3)),
