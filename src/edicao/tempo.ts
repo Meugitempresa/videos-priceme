@@ -8,6 +8,10 @@ export const DURACAO = edl.itens.reduce(
   0,
 );
 
+// Tela final só com imagem (logo e endereço) para dar tempo de leitura, após o fim da fala
+export const TELA_FINAL = 45;
+export const DURACAO_TOTAL = DURACAO + TELA_FINAL;
+
 const limpa = (s: string) =>
   s.toLowerCase().replace(/[,?!]/g, "").replace(/\.$/, "");
 

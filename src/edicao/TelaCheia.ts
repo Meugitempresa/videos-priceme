@@ -1,5 +1,5 @@
 import { interpolate } from "remotion";
-import { easeInOut, q } from "./tempo";
+import { DURACAO_TOTAL, easeInOut, q } from "./tempo";
 
 // Momentos em que a ilustração ocupa a tela inteira. Cada um explica um trecho da fala e,
 // de quebra, cobre um salto de imagem da apresentadora (a voz continua sem interrupção).
@@ -11,6 +11,7 @@ export const JANELAS: { de: number; ate: number; motivo: string }[] = [
   { de: q("investir") - 4, ate: q("você", 5) - 2, motivo: "emenda 'investir. | Ou seja'" },
   { de: q("Enfim") - 4, ate: q("precisa") - 2, motivo: "salto de cabeça no fim de 'Enfim' (30,6 s)" },
   { de: q("mesmo") - 2, ate: q("e", 5) - 2, motivo: "emenda 'mesmo? | Acesse' e chamada para o site" },
+  { de: q("você", 6) + 12, ate: DURACAO_TOTAL + 20, motivo: "tela final com logo e endereço" },
 ];
 
 const TRANSICAO = 8;

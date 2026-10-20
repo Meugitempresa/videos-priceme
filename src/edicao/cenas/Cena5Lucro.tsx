@@ -87,7 +87,7 @@ export const Cena5Lucro: React.FC = () => {
   const okServ = entra(frame, q("serviços") + 8, 10);
   const relogio = entra(frame, q("em", 1) - 4, 12);
   const dim = 1 - 0.88 * relogio;
-  const entrada = entra(frame, inicio - 4, 12);
+  const entrada = 1; // as linhas já vêm da cena 4
   const yLucro = interpolate(sobe, [0, 1], [290, 200]);
   const giro = interpolate(frame, [q("em", 1) - 4, q("Com")], [0, 360], {
     extrapolateLeft: "clamp",

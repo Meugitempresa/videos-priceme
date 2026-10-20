@@ -5,8 +5,8 @@ import { easeInOut, q } from "./tempo";
 // Topo da área da apresentadora e deslocamento do take (rosto por volta de y 870–1420)
 export const TOPO_APRESENTADORA = 840;
 const DESLOCAMENTO = 600;
-// Take ampliado para 2160×3840 (lanczos, sem nitidez extra) para o render em 4K
-const TAKE = staticFile("take-4k.mp4");
+// Take original 1080×1920 (a entrega final é Full HD)
+const TAKE = staticFile("take.mp4");
 
 // Aproximações leves no rosto em palavras de ênfase: [palavra, ocorrência, quadros de duração]
 const ENFASES: [string, number, number][] = [

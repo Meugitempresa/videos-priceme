@@ -1,6 +1,6 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { fonte, marca } from "../marca";
-import { DURACAO, entra, q, s } from "./tempo";
+import { DURACAO_TOTAL, entra, q } from "./tempo";
 
 // Títulos de cada cena. Entre asteriscos: destaque em ciano.
 const TITULOS: { de: number; linhas: string[] }[] = [
@@ -14,7 +14,7 @@ const TITULOS: { de: number; linhas: string[] }[] = [
   { de: q("e", 4), linhas: ["SAIBA *ONDE INVESTIR*"] },
   { de: q("Ou"), linhas: ["ACOMPANHE SEUS", "*RESULTADOS*"] },
   { de: q("Enfim"), linhas: ["SEU ESFORÇO PRECISA", "APARECER NO *LUCRO*"] },
-  { de: q("Acesse"), linhas: ["ACESSE"] },
+  { de: q("Acesse"), linhas: ["ACESSE O *SITE*"] },
   { de: q("e", 5), linhas: ["DESCUBRA O QUE ESTÁ", "*FICANDO PARA VOCÊ*"] },
 ];
 
@@ -60,7 +60,7 @@ export const Faixa: React.FC = () => {
   const frame = useCurrentFrame();
   const i = TITULOS.findLastIndex((t) => frame >= t.de - 4);
   const titulo = TITULOS[i];
-  const fim = TITULOS[i + 1]?.de ?? DURACAO;
+  const fim = TITULOS[i + 1]?.de ?? DURACAO_TOTAL + 20;
   const inicio = titulo.de === 0 ? 0 : titulo.de - 4;
   const saida = 1 - entra(frame, fim - 8, 4);
   const caixa = inicio === 0 ? 1 : entra(frame, inicio, 8);
