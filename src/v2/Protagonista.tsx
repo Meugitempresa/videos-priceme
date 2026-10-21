@@ -67,8 +67,9 @@ export const ProtagonistaCheia: React.FC = () => {
 
 // Janelas: nas demonstrações (canto superior direito) e no encerramento (centro)
 const RETANGULOS = {
-  demo: { x: 640, y: 150, w: 300, h: 384, r: 28 },
-  final: { x: 400, y: 1060, w: 280, h: 280, r: 140 },
+  demo: { x: 640, y: 150, w: 300, h: 384, r: 28, area: 540, dy: 40 },
+  // retrato quadrado grande no encerramento, com a cabeça inteira no quadro
+  final: { x: 290, y: 1000, w: 500, h: 500, r: 24, area: 640, dy: 20 },
 };
 
 export const ProtagonistaJanela: React.FC = () => {
@@ -76,7 +77,7 @@ export const ProtagonistaJanela: React.FC = () => {
   const { v, onde } = janela(frame);
   if (v <= 0) return null;
   const R = RETANGULOS[onde];
-  const s = R.w / 540; // mostra uma área de 540 px de largura em volta do rosto
+  const s = R.w / R.area; // mostra uma área de `area` px de largura em volta do rosto
   return (
     <div
       style={{
@@ -100,7 +101,7 @@ export const ProtagonistaJanela: React.FC = () => {
           width: 1080,
           height: 1920,
           transformOrigin: "0 0",
-          transform: `translate(${R.w / 2 - ROSTO.x * s}px, ${R.h / 2 - (ROSTO.y + 40) * s}px) scale(${s})`,
+          transform: `translate(${R.w / 2 - ROSTO.x * s}px, ${R.h / 2 - (ROSTO.y + R.dy) * s}px) scale(${s})`,
         }}
       >
         <Take />
