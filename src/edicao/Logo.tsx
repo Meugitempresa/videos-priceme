@@ -3,8 +3,13 @@ import { marca } from "../marca";
 
 // Logo oficial sem alterações: o quadrado azul do arquivo se funde a um cartão do mesmo azul.
 // Só é recortado o fundo liso; o desenho mantém proporção, cores e nitidez (sem desfoque).
-export const Logo: React.FC<{ largura: number; style?: React.CSSProperties }> = ({ largura, style }) => {
-  const img = largura * 1.18; // a arte ocupa ~50 % do arquivo de 945 px
+export const Logo: React.FC<{ largura: number; style?: React.CSSProperties; semSombra?: boolean }> = ({
+  largura,
+  style,
+  semSombra,
+}) => {
+  // a arte ocupa ~50 % do arquivo de 945 px; a margem larga esconde a borda fina do próprio PNG
+  const img = largura * 1.45;
   const altura = largura * 0.53;
   return (
     <div
@@ -15,7 +20,7 @@ export const Logo: React.FC<{ largura: number; style?: React.CSSProperties }> = 
         overflow: "hidden",
         borderRadius: 28,
         background: marca.azul,
-        boxShadow: "0 18px 50px rgba(0,0,0,0.35)",
+        boxShadow: semSombra ? undefined : "0 18px 50px rgba(0,0,0,0.35)",
         ...style,
       }}
     >

@@ -17,7 +17,10 @@ Reels verticais 1080×1920 da PriceMe com Remotion e a skill `bolo-de-camadas` (
 - Preservar rosto, voz, timbre, entonação e todas as palavras originais. Sem música. Efeitos sonoros só se pedirem.
 - Não inventar números, resultados ou telas da plataforma; valores ficam ocultos (`R$ ••••`) e telas genéricas
   levam o rótulo "Ilustração". Nada que sugira lucro garantido.
-- Layout: painel com ilustração e faixa de título em cima (y 0–840), apresentadora embaixo, legenda em y ≈ 1415–1525.
+- Layout (v2, `src/v2`): apresentadora em tela cheia como base; demonstrações financeiras em fundo claro entram
+  por cima (com ela numa janela) e cobrem os saltos do take; um único encerramento com logo e priceme.com.br.
+  Legenda por frases completas em y ≈ 1310–1510. Tempos ancorados nas palavras (`q()` em `src/edicao/tempo.ts`).
+- Números só como simulação identificada (`src/v2/numeros.ts`, contas conferidas no código).
 - Mostrar a tabela de cenas e uma prévia antes de exportar a versão final.
 
 ## Fluxo
@@ -25,7 +28,8 @@ Reels verticais 1080×1920 da PriceMe com Remotion e a skill `bolo-de-camadas` (
 1. `public/take.mp4` (fora do git) → cortes de pausas em `src/edicao/edl.json`.
 2. `python scripts/tratar-audio.py public/take.mp4 src/edicao/edl.json public/voz-tratada.wav`
 3. `python scripts/pausas.py public/voz-tratada.wav` e `node scripts/gerar-palavras.mjs out/palavras-parakeet.json`
-4. `npx remotion render src/index.ts ReelPriceMe out/reel-priceme.mp4`
+4. Prévia: `npx remotion render src/index.ts ReelPriceMe out/previa-v2-540.mp4 --scale=0.5 --crf=20`
+5. Final: `npx remotion render src/index.ts ReelPriceMe out/reel-priceme-v2.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=320k`
 
 Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos do sherpa-onnx
 (Whisper medium e Parakeet v3) vêm das releases do GitHub e rodam localmente.
