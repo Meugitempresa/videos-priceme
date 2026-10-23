@@ -150,22 +150,46 @@ export const AlimentarSistema: React.FC = () => {
   );
 };
 
-// "Quem trabalha tanto merece enxergar o lucro." — retoma o resultado do mesmo exemplo
+// "Quem trabalha tanto merece enxergar o lucro." — retoma o resultado do mesmo exemplo:
+// cartão azul da marca, valor em ciano e um anel que mostra a fatia do preço (44,89%)
 export const EnxergarLucro: React.FC = () => {
   const frame = useCurrentFrame();
-  const p = janela(frame, q("enxergar") - 4, q("Obrigado", 2) - 2);
+  const ini = q("enxergar") - 4;
+  const p = janela(frame, ini, q("Agradeça") - 2);
   if (p <= 0) return null;
+  const anel = entra(frame, ini + 2, 16) * (produto.margemPct / 100);
+  const valor = entra(frame, ini + 3, 9);
+  const R = 62;
+  const C = 2 * Math.PI * R;
   return (
-    <Cartao p={p} top={1020} largura={700}>
-      <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-        <Eye size={54} color={marca.azul} strokeWidth={2.2} />
-        <div>
-          <div style={{ fontWeight: 700, fontSize: 24, color: apagado }}>Margem de contribuição por unidade (simulação)</div>
-          <div style={{ fontWeight: 900, fontSize: 52, color: marca.azul }}>
-            {brl(produto.margem)} <span style={{ fontSize: 30, color: tinta }}>· {pct(produto.margemPct)}</span>
-          </div>
+    <div
+      style={{
+        position: "absolute", left: 160, width: 720, top: 1000, padding: "22px 28px", borderRadius: 30,
+        background: marca.azul, fontFamily: fonte, display: "flex", alignItems: "center", gap: 26,
+        boxShadow: "0 16px 44px rgba(6,26,74,0.35)", border: "2px solid rgba(92,225,230,0.45)",
+        opacity: p, transform: `translateY(${(1 - p) * 26}px) scale(${0.97 + 0.03 * p})`,
+      }}
+    >
+      <div style={{ position: "relative", width: 150, height: 150, flexShrink: 0 }}>
+        <svg width={150} height={150} viewBox="0 0 150 150" style={{ transform: "rotate(-90deg)" }}>
+          <circle cx={75} cy={75} r={R} fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth={16} />
+          <circle
+            cx={75} cy={75} r={R} fill="none" stroke={marca.ciano} strokeWidth={16} strokeLinecap="round"
+            strokeDasharray={`${C * anel} ${C}`}
+          />
+        </svg>
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Eye size={54} color={marca.branco} strokeWidth={2.2} />
         </div>
       </div>
-    </Cartao>
+      <div style={{ opacity: valor, transform: `translateX(${(1 - valor) * 16}px)` }}>
+        <div style={{ fontWeight: 800, fontSize: 22, letterSpacing: 2, color: marca.ciano }}>SIMULAÇÃO</div>
+        <div style={{ fontWeight: 700, fontSize: 28, color: marca.branco, lineHeight: 1.2 }}>Margem de contribuição por unidade</div>
+        <div style={{ fontWeight: 900, fontSize: 60, color: marca.ciano, lineHeight: 1.1, fontVariantNumeric: "tabular-nums" }}>
+          {brl(produto.margem)}
+        </div>
+        <div style={{ fontWeight: 700, fontSize: 26, color: marca.branco }}>{pct(produto.margemPct)} do preço de venda</div>
+      </div>
+    </div>
   );
 };

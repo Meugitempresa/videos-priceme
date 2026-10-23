@@ -1,7 +1,7 @@
 import { AbsoluteFill, OffthreadVideo, staticFile } from "remotion";
 import "../fontes";
 import { AlimentarSistema, CalculoReverso, EnxergarLucro, EsforcoLucro } from "./Cartoes";
-import { FaixaFinal, TextoFinal } from "./Correcoes";
+import { TextoFinal } from "./Correcoes";
 import { Legenda } from "./Legenda";
 import "./numeros";
 
@@ -14,7 +14,6 @@ export const ReelPriceMe2: React.FC = () => (
     <CalculoReverso />
     <AlimentarSistema />
     <EnxergarLucro />
-    <FaixaFinal />
     <TextoFinal />
     <Legenda />
   </AbsoluteFill>
