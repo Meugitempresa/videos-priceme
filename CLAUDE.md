@@ -33,3 +33,14 @@ Reels verticais 1080×1920 da PriceMe com Remotion e a skill `bolo-de-camadas` (
 
 Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos do sherpa-onnx
 (Whisper medium e Parakeet v3) vêm das releases do GitHub e rodam localmente.
+
+## Reel 2 (diálogo Marcelo e Vera) — `src/reel2`
+
+- Base: `public/reel2/original.mp4` (fora do git), usado inteiro, sem cortes; o áudio é o original.
+- Legendas: `python scripts/reel2-legendas.py` gera `src/reel2/legendas.json` a partir de `src/reel2/fonte/`
+  (transcrição do Parakeet conferida com o Whisper + trechos de voz medidos no áudio).
+- Exemplo numérico hipotético em `src/reel2/numeros.ts` (contas conferidas em centavos).
+- Correções do original: faixa azul cobre a legenda gravada que não corresponde à fala (42,8–47,0 s);
+  na tela final só o bloco de texto é refeito ("iOS", concordância, frase final na área segura). A logo não é duplicada.
+- Prévia: `npx remotion render src/index.ts ReelPriceMe2 out/reel2-previa-540.mp4 --scale=0.5 --crf=20`
+- Final: `npx remotion render src/index.ts ReelPriceMe2 out/reel-priceme2-final.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=320k`

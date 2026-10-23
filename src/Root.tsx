@@ -1,5 +1,7 @@
 import { Composition } from "remotion";
 import { DURACAO_REEL, ReelPriceMe } from "./edicao/ReelPriceMe";
+import { DURACAO as DURACAO_REEL2 } from "./reel2/tempo";
+import { ReelPriceMe2 } from "./reel2/ReelPriceMe2";
 import { TestePriceMe } from "./TestePriceMe";
 
 export const RemotionRoot: React.FC = () => {
@@ -9,6 +11,14 @@ export const RemotionRoot: React.FC = () => {
         id="ReelPriceMe"
         component={ReelPriceMe}
         durationInFrames={DURACAO_REEL}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="ReelPriceMe2"
+        component={ReelPriceMe2}
+        durationInFrames={DURACAO_REEL2}
         fps={30}
         width={1080}
         height={1920}

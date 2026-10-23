@@ -6,3 +6,5 @@ whisper.cpp/
 public/take*.mp4
 # Áudio tratado: gerado por scripts/tratar-audio.py a partir do take
 public/voz-tratada.wav
+# Vídeo original do reel 2 (fora do git)
+public/reel2/*.mp4

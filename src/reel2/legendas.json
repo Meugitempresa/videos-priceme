@@ -1,0 +1,560 @@
+[
+ {
+  "inicio": 0.31,
+  "fim": 1.27,
+  "palavras": [
+   {
+    "texto": "Bom",
+    "t": 0.36
+   },
+   {
+    "texto": "dia.",
+    "t": 0.84
+   }
+  ]
+ },
+ {
+  "inicio": 1.27,
+  "fim": 2.23,
+  "palavras": [
+   {
+    "texto": "Bom",
+    "t": 1.32
+   },
+   {
+    "texto": "dia.",
+    "t": 1.72
+   }
+  ]
+ },
+ {
+  "inicio": 2.23,
+  "fim": 4.29,
+  "palavras": [
+   {
+    "texto": "A",
+    "t": 2.28
+   },
+   {
+    "texto": "Vera",
+    "t": 2.52
+   },
+   {
+    "texto": "já",
+    "t": 2.92
+   },
+   {
+    "texto": "está",
+    "t": 3.08
+   },
+   {
+    "texto": "esperando",
+    "t": 3.32
+   },
+   {
+    "texto": "o",
+    "t": 3.64
+   },
+   {
+    "texto": "senhor.",
+    "t": 3.72
+   }
+  ]
+ },
+ {
+  "inicio": 4.31,
+  "fim": 4.93,
+  "palavras": [
+   {
+    "texto": "Obrigado.",
+    "t": 4.36
+   }
+  ]
+ },
+ {
+  "inicio": 6.15,
+  "fim": 7.41,
+  "palavras": [
+   {
+    "texto": "Bom",
+    "t": 6.2
+   },
+   {
+    "texto": "dia,",
+    "t": 6.52
+   },
+   {
+    "texto": "Vera.",
+    "t": 6.84
+   }
+  ]
+ },
+ {
+  "inicio": 7.51,
+  "fim": 9.27,
+  "palavras": [
+   {
+    "texto": "Bom",
+    "t": 7.56
+   },
+   {
+    "texto": "dia,",
+    "t": 7.88
+   },
+   {
+    "texto": "senhor",
+    "t": 8.2
+   },
+   {
+    "texto": "Marcelo.",
+    "t": 8.52
+   }
+  ]
+ },
+ {
+  "inicio": 9.59,
+  "fim": 10.95,
+  "palavras": [
+   {
+    "texto": "Até",
+    "t": 9.64
+   },
+   {
+    "texto": "que",
+    "t": 10.04
+   },
+   {
+    "texto": "enfim,",
+    "t": 10.2
+   },
+   {
+    "texto": "hein?",
+    "t": 10.68
+   }
+  ]
+ },
+ {
+  "inicio": 10.95,
+  "fim": 12.31,
+  "palavras": [
+   {
+    "texto": "A",
+    "t": 11.0
+   },
+   {
+    "texto": "correria",
+    "t": 11.16
+   },
+   {
+    "texto": "tá",
+    "t": 11.72
+   },
+   {
+    "texto": "grande,",
+    "t": 11.88
+   }
+  ]
+ },
+ {
+  "inicio": 12.31,
+  "fim": 14.37,
+  "palavras": [
+   {
+    "texto": "mas",
+    "t": 12.36
+   },
+   {
+    "texto": "vim",
+    "t": 13.0
+   },
+   {
+    "texto": "falar",
+    "t": 13.4
+   },
+   {
+    "texto": "da",
+    "t": 13.64
+   },
+   {
+    "texto": "PriceMe.",
+    "t": 13.8
+   }
+  ]
+ },
+ {
+  "inicio": 14.63,
+  "fim": 17.86,
+  "palavras": [
+   {
+    "texto": "Que",
+    "t": 14.68
+   },
+   {
+    "texto": "bom,",
+    "t": 14.92
+   },
+   {
+    "texto": "seu",
+    "t": 15.24
+   },
+   {
+    "texto": "esforço",
+    "t": 15.48
+   },
+   {
+    "texto": "precisa",
+    "t": 15.96
+   },
+   {
+    "texto": "aparecer",
+    "t": 16.28
+   },
+   {
+    "texto": "no",
+    "t": 16.68
+   },
+   {
+    "texto": "lucro",
+    "t": 16.84
+   },
+   {
+    "texto": "também.",
+    "t": 17.24
+   }
+  ]
+ },
+ {
+  "inicio": 17.99,
+  "fim": 20.87,
+  "palavras": [
+   {
+    "texto": "Quero",
+    "t": 18.04
+   },
+   {
+    "texto": "fazer",
+    "t": 18.44
+   },
+   {
+    "texto": "o",
+    "t": 18.68
+   },
+   {
+    "texto": "cálculo",
+    "t": 18.84
+   },
+   {
+    "texto": "reverso",
+    "t": 19.24
+   },
+   {
+    "texto": "dos",
+    "t": 19.88
+   },
+   {
+    "texto": "meus",
+    "t": 20.2
+   },
+   {
+    "texto": "produtos",
+    "t": 20.44
+   }
+  ]
+ },
+ {
+  "inicio": 20.87,
+  "fim": 23.49,
+  "palavras": [
+   {
+    "texto": "e",
+    "t": 20.92
+   },
+   {
+    "texto": "saber",
+    "t": 21.16
+   },
+   {
+    "texto": "meu",
+    "t": 21.56
+   },
+   {
+    "texto": "lucro",
+    "t": 21.72
+   },
+   {
+    "texto": "exato,",
+    "t": 22.12
+   },
+   {
+    "texto": "em",
+    "t": 22.76
+   },
+   {
+    "texto": "centavos.",
+    "t": 22.92
+   }
+  ]
+ },
+ {
+  "inicio": 24.71,
+  "fim": 26.69,
+  "palavras": [
+   {
+    "texto": "Em",
+    "t": 24.76
+   },
+   {
+    "texto": "minutos",
+    "t": 25.0
+   },
+   {
+    "texto": "você",
+    "t": 25.56
+   },
+   {
+    "texto": "tem",
+    "t": 25.8
+   },
+   {
+    "texto": "a",
+    "t": 26.04
+   },
+   {
+    "texto": "resposta.",
+    "t": 26.12
+   }
+  ]
+ },
+ {
+  "inicio": 26.95,
+  "fim": 28.9,
+  "palavras": [
+   {
+    "texto": "É",
+    "t": 27.0
+   },
+   {
+    "texto": "só",
+    "t": 27.24
+   },
+   {
+    "texto": "alimentar",
+    "t": 27.56
+   },
+   {
+    "texto": "o",
+    "t": 28.12
+   },
+   {
+    "texto": "sistema.",
+    "t": 28.28
+   }
+  ]
+ },
+ {
+  "inicio": 29.51,
+  "fim": 32.13,
+  "palavras": [
+   {
+    "texto": "Mas…",
+    "t": 29.56
+   },
+   {
+    "texto": "isso",
+    "t": 30.68
+   },
+   {
+    "texto": "é",
+    "t": 31.0
+   },
+   {
+    "texto": "muito",
+    "t": 31.24
+   },
+   {
+    "texto": "caro?",
+    "t": 31.56
+   }
+  ]
+ },
+ {
+  "inicio": 32.55,
+  "fim": 33.99,
+  "palavras": [
+   {
+    "texto": "Quem",
+    "t": 32.6
+   },
+   {
+    "texto": "constrói",
+    "t": 33.0
+   },
+   {
+    "texto": "uma",
+    "t": 33.56
+   },
+   {
+    "texto": "empresa",
+    "t": 33.72
+   }
+  ]
+ },
+ {
+  "inicio": 33.99,
+  "fim": 35.94,
+  "palavras": [
+   {
+    "texto": "merece",
+    "t": 34.04
+   },
+   {
+    "texto": "colher",
+    "t": 34.52
+   },
+   {
+    "texto": "mais",
+    "t": 34.84
+   },
+   {
+    "texto": "do",
+    "t": 35.0
+   },
+   {
+    "texto": "que",
+    "t": 35.16
+   },
+   {
+    "texto": "cansaço.",
+    "t": 35.32
+   }
+  ]
+ },
+ {
+  "inicio": 36.87,
+  "fim": 38.34,
+  "palavras": [
+   {
+    "texto": "Já",
+    "t": 36.92
+   },
+   {
+    "texto": "estou",
+    "t": 37.32
+   },
+   {
+    "texto": "dentro.",
+    "t": 37.72
+   }
+  ]
+ },
+ {
+  "inicio": 39.11,
+  "fim": 40.71,
+  "palavras": [
+   {
+    "texto": "Bom,",
+    "t": 39.16
+   },
+   {
+    "texto": "vou",
+    "t": 39.64
+   },
+   {
+    "texto": "nessa,",
+    "t": 39.88
+   },
+   {
+    "texto": "Vera.",
+    "t": 40.28
+   }
+  ]
+ },
+ {
+  "inicio": 40.71,
+  "fim": 42.21,
+  "palavras": [
+   {
+    "texto": "Pode",
+    "t": 40.76
+   },
+   {
+    "texto": "ir",
+    "t": 41.08
+   },
+   {
+    "texto": "tranquilo,",
+    "t": 41.16
+   },
+   {
+    "texto": "Marcelo.",
+    "t": 41.64
+   }
+  ]
+ },
+ {
+  "inicio": 42.23,
+  "fim": 44.79,
+  "palavras": [
+   {
+    "texto": "Quem",
+    "t": 42.28
+   },
+   {
+    "texto": "trabalha",
+    "t": 42.6
+   },
+   {
+    "texto": "tanto",
+    "t": 43.0
+   },
+   {
+    "texto": "merece",
+    "t": 43.32
+   },
+   {
+    "texto": "enxergar",
+    "t": 43.8
+   },
+   {
+    "texto": "o",
+    "t": 44.28
+   },
+   {
+    "texto": "lucro.",
+    "t": 44.36
+   }
+  ]
+ },
+ {
+  "inicio": 44.79,
+  "fim": 45.75,
+  "palavras": [
+   {
+    "texto": "Obrigado,",
+    "t": 44.84
+   },
+   {
+    "texto": "Vera.",
+    "t": 45.32
+   }
+  ]
+ },
+ {
+  "inicio": 45.75,
+  "fim": 47.01,
+  "palavras": [
+   {
+    "texto": "Agradeça",
+    "t": 45.8
+   },
+   {
+    "texto": "a",
+    "t": 46.36
+   },
+   {
+    "texto": "PriceMe.",
+    "t": 46.44
+   }
+  ]
+ }
+]
