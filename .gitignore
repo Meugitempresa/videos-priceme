@@ -8,3 +8,6 @@ public/take*.mp4
 public/voz-tratada.wav
 # Vídeo original do reel 2 (fora do git)
 public/reel2/*.mp4
+# Pharma Online (fora do git)
+public/pharma/*.mp4
+public/pharma/*.wav

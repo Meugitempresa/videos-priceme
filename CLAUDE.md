@@ -44,3 +44,16 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
 - Correções do original: na tela final só o bloco de texto é refeito ("iOS", concordância, frase final na área segura). A logo não é duplicada.
 - Prévia: `npx remotion render src/index.ts ReelPriceMe2 out/reel2-previa-540.mp4 --scale=0.5 --crf=20`
 - Final: `npx remotion render src/index.ts ReelPriceMe2 out/reel-priceme2-final.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=320k`
+
+## Pharma Online (vídeo da farmácia) — `src/pharma`
+
+- Originais fora do git em `public/pharma/`: `original.mp4`, `locucao.mp3` (ElevenLabs, enviada pela cliente).
+  `tela-site.png` é a captura do site usada sem alterações na tela do celular.
+- 1) `python scripts/pharma-rastrear-tela.py public/pharma/original.mp4` → cantos da tela (quadros 310–403)
+  2) `python scripts/pharma-tela.py public/pharma/original.mp4 public/pharma/base.mp4` → tela substituída, dedos por cima
+  3) Separação (sherpa-onnx UVR-MDX-NET-Voc_FT, local) → `public/pharma/musica-original.wav` (música sem a voz antiga)
+  4) `python scripts/pharma-musica.py public/pharma/musica-original.wav public/pharma/musica-estendida.wav` (+2 compassos)
+  5) `sh scripts/pharma-mix.sh public/pharma/locucao.mp3 public/pharma/musica-estendida.wav public/pharma/mix.wav`
+  6) `python scripts/pharma-ritmo.py public/pharma/base.mp4 public/pharma/base-ritmo.mp4` (cenas nas âncoras de `src/pharma/ritmo.json`)
+  7) `npx remotion render src/index.ts PharmaOnline out/pharma-online-final.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=320k`
+- Textos de tela em `src/pharma/textos.ts` (mesmo conteúdo, Plus Jakarta Sans, painel de vidro branco sobre o texto antigo).
