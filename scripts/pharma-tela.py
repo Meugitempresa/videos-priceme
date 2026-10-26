@@ -18,8 +18,20 @@ ch, cw = cap.shape[:2]
 fundo = np.median(cap[-6:, 40:cw - 80].reshape(-1, 3), axis=0)  # faixa inferior da página
 q0 = np.array(dados["cantos"][0])
 asp = np.linalg.norm(q0[1] - q0[0]) / np.linalg.norm(q0[3] - q0[0])  # largura/altura da tela
-TH = int(round(cw / asp))
-tex = np.empty((TH, cw, 3), np.float32); tex[:] = fundo; tex[:ch] = cap
+# MODO: "largura" = captura inteira ajustada pela largura (sobra a cor de fundo embaixo);
+#       "altura" = preenche a altura e corta as laterais; "esticar" = preenche tudo esticando na vertical
+import os
+MODO = os.environ.get("MODO_TELA", "esticar")  # escolha da cliente: preencher a tela inteira
+if MODO == "largura":
+    TH = int(round(cw / asp))
+    tex = np.empty((TH, cw, 3), np.float32); tex[:] = fundo; tex[:ch] = cap
+elif MODO == "altura":
+    lw = int(round(ch * asp)); x0c = (cw - lw) // 2
+    tex = cap[:, x0c:x0c + lw].copy(); TH, cw = ch, lw
+else:
+    novo_h = int(round(cw / asp))
+    tex = np.asarray(Image.fromarray(cap.astype(np.uint8)).resize((cw, novo_h), Image.LANCZOS)).astype(np.float32)
+    TH = novo_h
 RAIO = 26 * cw / np.linalg.norm(q0[1] - q0[0])  # raio dos cantos do aparelho, em pixels da textura
 
 def homografia(src, dst):
