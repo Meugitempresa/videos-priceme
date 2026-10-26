@@ -47,8 +47,8 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
 
 ## Pharma Online (vídeo da farmácia) — `src/pharma`
 
-- Originais fora do git em `public/pharma/`: `original.mp4`, `locucao.mp3` (ElevenLabs, enviada pela cliente).
-  `tela-site.png` é a captura do site usada sem alterações na tela do celular.
+- Em `public/pharma/`: `original.mp4` (fora do git), `locucao.mp3` (ElevenLabs, enviada pela cliente) e
+  `tela-site.png` (captura do site, usada sem alterações na tela do celular).
 - 1) `python scripts/pharma-rastrear-tela.py public/pharma/original.mp4` → cantos da tela (quadros 310–403)
   2) `python scripts/pharma-tela.py public/pharma/original.mp4 public/pharma/base.mp4` → tela substituída, dedos por cima
   3) Separação (sherpa-onnx UVR-MDX-NET-Voc_FT, local) → `public/pharma/musica-original.wav` (música sem a voz antiga)
