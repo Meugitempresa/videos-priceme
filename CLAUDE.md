@@ -57,3 +57,14 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
   6) `python scripts/pharma-ritmo.py public/pharma/base.mp4 public/pharma/base-ritmo.mp4` (cenas nas âncoras de `src/pharma/ritmo.json`)
   7) `npx remotion render src/index.ts PharmaOnline out/pharma-online-final.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=320k`
 - Textos de tela em `src/pharma/textos.ts` (mesmo conteúdo, Plus Jakarta Sans, painel de vidro branco sobre o texto antigo).
+
+## Tutorial pHarmaOnline (Julia + gravação de tela) — `src/tutorial`
+
+- Em `public/tutorial/` (fora do git): `julia.mp4` (apresentadora), `tela.mp4` (gravação da plataforma, muda),
+  `voz.wav` (áudio da Julia normalizado: `ffmpeg -i julia.mp4 -vn -af "volume=6.6dB,alimiter=limit=0.84" voz.wav`).
+- Julia contínua, sem cortes; a gravação de tela é reeditada pelo mapa `src/tutorial/sincronia.ts`
+  (fala -> trecho de tela; tela curta fica parada no último quadro, tela longa acelera até ~1,3x).
+- Legendas: `python scripts/tutorial-legendas.py` gera `src/tutorial/legendas.json` (marca sempre "pHarmaOnline";
+  "farmacêuticas" falado foi escrito "farmacêutica" na legenda).
+- Layout: tela 78 % no alto; faixa inferior com a Julia (janela) e a legenda; nome "JULIA" só no início.
+- Final: `npx remotion render src/index.ts TutorialPharmaOnline out/tutorial-pharmaonline.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=256k`
