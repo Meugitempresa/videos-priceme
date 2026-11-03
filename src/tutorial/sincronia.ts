@@ -26,7 +26,7 @@ export const SINCRONIA: { fala: [number, number]; tela: [number, number]; etapa:
   { fala: [100.45, 102.35], tela: [86.0, 88.2], etapa: "Forma de entrega" },
   { fala: [102.35, 105.4], tela: [93.2, 97.0], etapa: "Caixas de autorização e termos" },
   { fala: [105.4, 107.95], tela: [97.0, 100.0], etapa: "Autorizar a manipulação" },
-  { fala: [107.95, 111.0], tela: [101.2, 104.3], etapa: "Autorizado: forma de pagamento" },
+  { fala: [107.95, 111.0], tela: [103.3, 104.3], etapa: "Autorizado: forma de pagamento (seção Pagamento)" },
   { fala: [111.0, 113.15], tela: [104.3, 107.0], etapa: "Pix" },
   { fala: [113.15, 119.6], tela: [109.0, 115.4], etapa: "Segunda triagem da farmacêutica" },
 ];
