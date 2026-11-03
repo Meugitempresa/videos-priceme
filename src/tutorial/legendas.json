@@ -1,0 +1,1890 @@
+[
+ {
+  "inicio": 0.03,
+  "fim": 1.96,
+  "texto": "Olá, bem-vindos à pHarmaOnline.",
+  "destaque": "pHarmaOnline",
+  "palavras": [
+   {
+    "w": "Olá,",
+    "t": 0.08
+   },
+   {
+    "w": "bem-vindos",
+    "t": 0.56
+   },
+   {
+    "w": "à",
+    "t": 1.04
+   },
+   {
+    "w": "pHarmaOnline.",
+    "t": 1.12
+   }
+  ]
+ },
+ {
+  "inicio": 1.95,
+  "fim": 4.68,
+  "texto": "Bora acompanhar o passo a passo do tutorial em vídeo",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "Bora",
+    "t": 2.0
+   },
+   {
+    "w": "acompanhar",
+    "t": 2.32
+   },
+   {
+    "w": "o",
+    "t": 2.8
+   },
+   {
+    "w": "passo",
+    "t": 2.88
+   },
+   {
+    "w": "a",
+    "t": 3.12
+   },
+   {
+    "w": "passo",
+    "t": 3.2
+   },
+   {
+    "w": "do",
+    "t": 3.44
+   },
+   {
+    "w": "tutorial",
+    "t": 3.6
+   },
+   {
+    "w": "em",
+    "t": 4.08
+   },
+   {
+    "w": "vídeo",
+    "t": 4.24
+   }
+  ]
+ },
+ {
+  "inicio": 4.67,
+  "fim": 6.04,
+  "texto": "para você mesmo conseguir fazer",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "para",
+    "t": 4.72
+   },
+   {
+    "w": "você",
+    "t": 4.88
+   },
+   {
+    "w": "mesmo",
+    "t": 5.2
+   },
+   {
+    "w": "conseguir",
+    "t": 5.44
+   },
+   {
+    "w": "fazer",
+    "t": 5.84
+   }
+  ]
+ },
+ {
+  "inicio": 6.03,
+  "fim": 7.96,
+  "texto": "o seu próprio orçamento e pedido?",
+  "destaque": "orçamento",
+  "palavras": [
+   {
+    "w": "o",
+    "t": 6.08
+   },
+   {
+    "w": "seu",
+    "t": 6.16
+   },
+   {
+    "w": "próprio",
+    "t": 6.32
+   },
+   {
+    "w": "orçamento",
+    "t": 6.56
+   },
+   {
+    "w": "e",
+    "t": 7.04
+   },
+   {
+    "w": "pedido?",
+    "t": 7.2
+   }
+  ]
+ },
+ {
+  "inicio": 7.95,
+  "fim": 9.4,
+  "texto": "Ao clicar em Criar Cadastro,",
+  "destaque": "Criar Cadastro",
+  "palavras": [
+   {
+    "w": "Ao",
+    "t": 8.0
+   },
+   {
+    "w": "clicar",
+    "t": 8.24
+   },
+   {
+    "w": "em",
+    "t": 8.64
+   },
+   {
+    "w": "Criar",
+    "t": 8.72
+   },
+   {
+    "w": "Cadastro,",
+    "t": 9.04
+   }
+  ]
+ },
+ {
+  "inicio": 9.39,
+  "fim": 10.68,
+  "texto": "o sistema exibe os campos para você",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "o",
+    "t": 9.44
+   },
+   {
+    "w": "sistema",
+    "t": 9.52
+   },
+   {
+    "w": "exibe",
+    "t": 9.76
+   },
+   {
+    "w": "os",
+    "t": 10.16
+   },
+   {
+    "w": "campos",
+    "t": 10.24
+   },
+   {
+    "w": "para",
+    "t": 10.48
+   },
+   {
+    "w": "você",
+    "t": 10.56
+   }
+  ]
+ },
+ {
+  "inicio": 10.67,
+  "fim": 12.36,
+  "texto": "preencher seus dados de forma rápida.",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "preencher",
+    "t": 10.72
+   },
+   {
+    "w": "seus",
+    "t": 11.2
+   },
+   {
+    "w": "dados",
+    "t": 11.36
+   },
+   {
+    "w": "de",
+    "t": 11.6
+   },
+   {
+    "w": "forma",
+    "t": 11.76
+   },
+   {
+    "w": "rápida.",
+    "t": 11.92
+   }
+  ]
+ },
+ {
+  "inicio": 12.35,
+  "fim": 13.72,
+  "texto": "Se você já possui cadastro,",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "Se",
+    "t": 12.4
+   },
+   {
+    "w": "você",
+    "t": 12.56
+   },
+   {
+    "w": "já",
+    "t": 12.72
+   },
+   {
+    "w": "possui",
+    "t": 12.88
+   },
+   {
+    "w": "cadastro,",
+    "t": 13.28
+   }
+  ]
+ },
+ {
+  "inicio": 13.71,
+  "fim": 15.88,
+  "texto": "a tela de entrar solicita seu e-mail e senha.",
+  "destaque": "e-mail e senha",
+  "palavras": [
+   {
+    "w": "a",
+    "t": 13.76
+   },
+   {
+    "w": "tela",
+    "t": 13.84
+   },
+   {
+    "w": "de",
+    "t": 14.08
+   },
+   {
+    "w": "entrar",
+    "t": 14.16
+   },
+   {
+    "w": "solicita",
+    "t": 14.48
+   },
+   {
+    "w": "seu",
+    "t": 14.96
+   },
+   {
+    "w": "e-mail",
+    "t": 15.12
+   },
+   {
+    "w": "e",
+    "t": 15.44
+   },
+   {
+    "w": "senha.",
+    "t": 15.52
+   }
+  ]
+ },
+ {
+  "inicio": 15.87,
+  "fim": 18.52,
+  "texto": "Bem, logo na abertura do vídeo você visualiza a mensagem.",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "Bem,",
+    "t": 15.92
+   },
+   {
+    "w": "logo",
+    "t": 16.16
+   },
+   {
+    "w": "na",
+    "t": 16.4
+   },
+   {
+    "w": "abertura",
+    "t": 16.56
+   },
+   {
+    "w": "do",
+    "t": 16.96
+   },
+   {
+    "w": "vídeo",
+    "t": 17.04
+   },
+   {
+    "w": "você",
+    "t": 17.28
+   },
+   {
+    "w": "visualiza",
+    "t": 17.44
+   },
+   {
+    "w": "a",
+    "t": 17.92
+   },
+   {
+    "w": "mensagem.",
+    "t": 18.0
+   }
+  ]
+ },
+ {
+  "inicio": 18.51,
+  "fim": 19.72,
+  "texto": "Sua fórmula manipulada,",
+  "destaque": "fórmula",
+  "palavras": [
+   {
+    "w": "Sua",
+    "t": 18.56
+   },
+   {
+    "w": "fórmula",
+    "t": 18.8
+   },
+   {
+    "w": "manipulada,",
+    "t": 19.2
+   }
+  ]
+ },
+ {
+  "inicio": 19.71,
+  "fim": 21.72,
+  "texto": "orçada em minutos, com os principais botões",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "orçada",
+    "t": 19.76
+   },
+   {
+    "w": "em",
+    "t": 20.24
+   },
+   {
+    "w": "minutos,",
+    "t": 20.32
+   },
+   {
+    "w": "com",
+    "t": 20.8
+   },
+   {
+    "w": "os",
+    "t": 20.96
+   },
+   {
+    "w": "principais",
+    "t": 21.04
+   },
+   {
+    "w": "botões",
+    "t": 21.36
+   }
+  ]
+ },
+ {
+  "inicio": 21.71,
+  "fim": 24.04,
+  "texto": "para fazer o orçamento ou acessar a sua conta.",
+  "destaque": "orçamento",
+  "palavras": [
+   {
+    "w": "para",
+    "t": 21.76
+   },
+   {
+    "w": "fazer",
+    "t": 21.92
+   },
+   {
+    "w": "o",
+    "t": 22.08
+   },
+   {
+    "w": "orçamento",
+    "t": 22.24
+   },
+   {
+    "w": "ou",
+    "t": 22.72
+   },
+   {
+    "w": "acessar",
+    "t": 22.88
+   },
+   {
+    "w": "a",
+    "t": 23.28
+   },
+   {
+    "w": "sua",
+    "t": 23.36
+   },
+   {
+    "w": "conta.",
+    "t": 23.6
+   }
+  ]
+ },
+ {
+  "inicio": 24.03,
+  "fim": 27.16,
+  "texto": "Ao entrar, a tela principal já te dá boas-vindas",
+  "destaque": "boas-vindas",
+  "palavras": [
+   {
+    "w": "Ao",
+    "t": 24.08
+   },
+   {
+    "w": "entrar,",
+    "t": 24.32
+   },
+   {
+    "w": "a",
+    "t": 24.8
+   },
+   {
+    "w": "tela",
+    "t": 24.96
+   },
+   {
+    "w": "principal",
+    "t": 25.28
+   },
+   {
+    "w": "já",
+    "t": 25.76
+   },
+   {
+    "w": "te",
+    "t": 25.92
+   },
+   {
+    "w": "dá",
+    "t": 26.08
+   },
+   {
+    "w": "boas-vindas",
+    "t": 26.32
+   }
+  ]
+ },
+ {
+  "inicio": 27.15,
+  "fim": 30.28,
+  "texto": "e mostra o botão central para iniciar o orçamento.",
+  "destaque": "orçamento",
+  "palavras": [
+   {
+    "w": "e",
+    "t": 27.2
+   },
+   {
+    "w": "mostra",
+    "t": 27.44
+   },
+   {
+    "w": "o",
+    "t": 27.84
+   },
+   {
+    "w": "botão",
+    "t": 27.92
+   },
+   {
+    "w": "central",
+    "t": 28.32
+   },
+   {
+    "w": "para",
+    "t": 28.8
+   },
+   {
+    "w": "iniciar",
+    "t": 29.04
+   },
+   {
+    "w": "o",
+    "t": 29.44
+   },
+   {
+    "w": "orçamento.",
+    "t": 29.6
+   }
+  ]
+ },
+ {
+  "inicio": 30.27,
+  "fim": 31.96,
+  "texto": "Na tela de novo orçamento,",
+  "destaque": "orçamento",
+  "palavras": [
+   {
+    "w": "Na",
+    "t": 30.32
+   },
+   {
+    "w": "tela",
+    "t": 30.48
+   },
+   {
+    "w": "de",
+    "t": 30.8
+   },
+   {
+    "w": "novo",
+    "t": 30.96
+   },
+   {
+    "w": "orçamento,",
+    "t": 31.28
+   }
+  ]
+ },
+ {
+  "inicio": 31.95,
+  "fim": 33.88,
+  "texto": "se você fizer pelo seu celular,",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "se",
+    "t": 32.0
+   },
+   {
+    "w": "você",
+    "t": 32.16
+   },
+   {
+    "w": "fizer",
+    "t": 32.4
+   },
+   {
+    "w": "pelo",
+    "t": 32.8
+   },
+   {
+    "w": "seu",
+    "t": 33.04
+   },
+   {
+    "w": "celular,",
+    "t": 33.2
+   }
+  ]
+ },
+ {
+  "inicio": 33.87,
+  "fim": 35.64,
+  "texto": "tire a foto e envie.",
+  "destaque": "foto",
+  "palavras": [
+   {
+    "w": "tire",
+    "t": 33.92
+   },
+   {
+    "w": "a",
+    "t": 34.4
+   },
+   {
+    "w": "foto",
+    "t": 34.48
+   },
+   {
+    "w": "e",
+    "t": 34.8
+   },
+   {
+    "w": "envie.",
+    "t": 34.96
+   }
+  ]
+ },
+ {
+  "inicio": 35.63,
+  "fim": 38.2,
+  "texto": "Se for pelo PC, anexe a receita.",
+  "destaque": "receita",
+  "palavras": [
+   {
+    "w": "Se",
+    "t": 35.68
+   },
+   {
+    "w": "for",
+    "t": 35.92
+   },
+   {
+    "w": "pelo",
+    "t": 36.08
+   },
+   {
+    "w": "PC,",
+    "t": 36.4
+   },
+   {
+    "w": "anexe",
+    "t": 36.96
+   },
+   {
+    "w": "a",
+    "t": 37.52
+   },
+   {
+    "w": "receita.",
+    "t": 37.6
+   }
+  ]
+ },
+ {
+  "inicio": 38.19,
+  "fim": 40.12,
+  "texto": "O vídeo demonstra a escolha de um arquivo",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "O",
+    "t": 38.24
+   },
+   {
+    "w": "vídeo",
+    "t": 38.32
+   },
+   {
+    "w": "demonstra",
+    "t": 38.64
+   },
+   {
+    "w": "a",
+    "t": 39.12
+   },
+   {
+    "w": "escolha",
+    "t": 39.2
+   },
+   {
+    "w": "de",
+    "t": 39.52
+   },
+   {
+    "w": "um",
+    "t": 39.6
+   },
+   {
+    "w": "arquivo",
+    "t": 39.76
+   }
+  ]
+ },
+ {
+  "inicio": 40.11,
+  "fim": 42.44,
+  "texto": "e logo depois o sistema exibe a imagem da receita,",
+  "destaque": "receita",
+  "palavras": [
+   {
+    "w": "e",
+    "t": 40.16
+   },
+   {
+    "w": "logo",
+    "t": 40.32
+   },
+   {
+    "w": "depois",
+    "t": 40.56
+   },
+   {
+    "w": "o",
+    "t": 40.88
+   },
+   {
+    "w": "sistema",
+    "t": 40.96
+   },
+   {
+    "w": "exibe",
+    "t": 41.2
+   },
+   {
+    "w": "a",
+    "t": 41.6
+   },
+   {
+    "w": "imagem",
+    "t": 41.68
+   },
+   {
+    "w": "da",
+    "t": 42.0
+   },
+   {
+    "w": "receita,",
+    "t": 42.08
+   }
+  ]
+ },
+ {
+  "inicio": 42.43,
+  "fim": 43.64,
+  "texto": "onde você clica no botão rosa",
+  "destaque": "botão rosa",
+  "palavras": [
+   {
+    "w": "onde",
+    "t": 42.48
+   },
+   {
+    "w": "você",
+    "t": 42.64
+   },
+   {
+    "w": "clica",
+    "t": 42.8
+   },
+   {
+    "w": "no",
+    "t": 43.04
+   },
+   {
+    "w": "botão",
+    "t": 43.12
+   },
+   {
+    "w": "rosa",
+    "t": 43.36
+   }
+  ]
+ },
+ {
+  "inicio": 43.63,
+  "fim": 44.92,
+  "texto": "para usar essa foto e validar.",
+  "destaque": "foto",
+  "palavras": [
+   {
+    "w": "para",
+    "t": 43.68
+   },
+   {
+    "w": "usar",
+    "t": 43.76
+   },
+   {
+    "w": "essa",
+    "t": 43.92
+   },
+   {
+    "w": "foto",
+    "t": 44.08
+   },
+   {
+    "w": "e",
+    "t": 44.32
+   },
+   {
+    "w": "validar.",
+    "t": 44.4
+   }
+  ]
+ },
+ {
+  "inicio": 44.91,
+  "fim": 46.04,
+  "texto": "Na aba da fórmula,",
+  "destaque": "fórmula",
+  "palavras": [
+   {
+    "w": "Na",
+    "t": 44.96
+   },
+   {
+    "w": "aba",
+    "t": 45.12
+   },
+   {
+    "w": "da",
+    "t": 45.52
+   },
+   {
+    "w": "fórmula,",
+    "t": 45.6
+   }
+  ]
+ },
+ {
+  "inicio": 46.03,
+  "fim": 48.84,
+  "texto": "você preenche item por item com bastante atenção.",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "você",
+    "t": 46.08
+   },
+   {
+    "w": "preenche",
+    "t": 46.24
+   },
+   {
+    "w": "item",
+    "t": 46.88
+   },
+   {
+    "w": "por",
+    "t": 47.2
+   },
+   {
+    "w": "item",
+    "t": 47.36
+   },
+   {
+    "w": "com",
+    "t": 47.68
+   },
+   {
+    "w": "bastante",
+    "t": 47.84
+   },
+   {
+    "w": "atenção.",
+    "t": 48.24
+   }
+  ]
+ },
+ {
+  "inicio": 48.83,
+  "fim": 50.66,
+  "texto": "Escolhe a forma farmacêutica.",
+  "destaque": "forma farmacêutica",
+  "palavras": [
+   {
+    "w": "Escolhe",
+    "t": 48.88
+   },
+   {
+    "w": "a",
+    "t": 49.36
+   },
+   {
+    "w": "forma",
+    "t": 49.44
+   },
+   {
+    "w": "farmacêutica.",
+    "t": 49.76
+   }
+  ]
+ },
+ {
+  "inicio": 50.75,
+  "fim": 52.76,
+  "texto": "Existem várias opções disponíveis.",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "Existem",
+    "t": 50.8
+   },
+   {
+    "w": "várias",
+    "t": 51.28
+   },
+   {
+    "w": "opções",
+    "t": 51.6
+   },
+   {
+    "w": "disponíveis.",
+    "t": 52.0
+   }
+  ]
+ },
+ {
+  "inicio": 52.75,
+  "fim": 54.76,
+  "texto": "Neste caso, vamos usar cápsulas.",
+  "destaque": "cápsulas",
+  "palavras": [
+   {
+    "w": "Neste",
+    "t": 52.8
+   },
+   {
+    "w": "caso,",
+    "t": 53.12
+   },
+   {
+    "w": "vamos",
+    "t": 53.44
+   },
+   {
+    "w": "usar",
+    "t": 53.76
+   },
+   {
+    "w": "cápsulas.",
+    "t": 54.0
+   }
+  ]
+ },
+ {
+  "inicio": 54.75,
+  "fim": 56.76,
+  "texto": "Depois escolhemos o tipo de cápsula,",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "Depois",
+    "t": 54.8
+   },
+   {
+    "w": "escolhemos",
+    "t": 55.28
+   },
+   {
+    "w": "o",
+    "t": 55.84
+   },
+   {
+    "w": "tipo",
+    "t": 56.0
+   },
+   {
+    "w": "de",
+    "t": 56.24
+   },
+   {
+    "w": "cápsula,",
+    "t": 56.32
+   }
+  ]
+ },
+ {
+  "inicio": 56.75,
+  "fim": 60.44,
+  "texto": "como a gelatinosa comum e definimos a quantidade desejada.",
+  "destaque": "gelatinosa comum",
+  "palavras": [
+   {
+    "w": "como",
+    "t": 56.8
+   },
+   {
+    "w": "a",
+    "t": 57.04
+   },
+   {
+    "w": "gelatinosa",
+    "t": 57.2
+   },
+   {
+    "w": "comum",
+    "t": 58.0
+   },
+   {
+    "w": "e",
+    "t": 58.4
+   },
+   {
+    "w": "definimos",
+    "t": 58.56
+   },
+   {
+    "w": "a",
+    "t": 59.04
+   },
+   {
+    "w": "quantidade",
+    "t": 59.12
+   },
+   {
+    "w": "desejada.",
+    "t": 59.68
+   }
+  ]
+ },
+ {
+  "inicio": 60.43,
+  "fim": 63.56,
+  "texto": "Agora, selecionamos o ativo digitando as primeiras letras",
+  "destaque": "ativo",
+  "palavras": [
+   {
+    "w": "Agora,",
+    "t": 60.48
+   },
+   {
+    "w": "selecionamos",
+    "t": 60.96
+   },
+   {
+    "w": "o",
+    "t": 61.68
+   },
+   {
+    "w": "ativo",
+    "t": 61.76
+   },
+   {
+    "w": "digitando",
+    "t": 62.24
+   },
+   {
+    "w": "as",
+    "t": 62.72
+   },
+   {
+    "w": "primeiras",
+    "t": 62.88
+   },
+   {
+    "w": "letras",
+    "t": 63.2
+   }
+  ]
+ },
+ {
+  "inicio": 63.55,
+  "fim": 66.12,
+  "texto": "e informamos a dosagem exata em miligramas,",
+  "destaque": "miligramas",
+  "palavras": [
+   {
+    "w": "e",
+    "t": 63.6
+   },
+   {
+    "w": "informamos",
+    "t": 63.84
+   },
+   {
+    "w": "a",
+    "t": 64.32
+   },
+   {
+    "w": "dosagem",
+    "t": 64.48
+   },
+   {
+    "w": "exata",
+    "t": 64.88
+   },
+   {
+    "w": "em",
+    "t": 65.2
+   },
+   {
+    "w": "miligramas,",
+    "t": 65.36
+   }
+  ]
+ },
+ {
+  "inicio": 66.11,
+  "fim": 68.9,
+  "texto": "de acordo com o que você está lendo na sua receita.",
+  "destaque": "receita",
+  "palavras": [
+   {
+    "w": "de",
+    "t": 66.16
+   },
+   {
+    "w": "acordo",
+    "t": 66.24
+   },
+   {
+    "w": "com",
+    "t": 66.56
+   },
+   {
+    "w": "o",
+    "t": 66.72
+   },
+   {
+    "w": "que",
+    "t": 66.8
+   },
+   {
+    "w": "você",
+    "t": 66.96
+   },
+   {
+    "w": "está",
+    "t": 67.12
+   },
+   {
+    "w": "lendo",
+    "t": 67.36
+   },
+   {
+    "w": "na",
+    "t": 67.68
+   },
+   {
+    "w": "sua",
+    "t": 67.76
+   },
+   {
+    "w": "receita.",
+    "t": 68.0
+   }
+  ]
+ },
+ {
+  "inicio": 68.91,
+  "fim": 71.32,
+  "texto": "Por fim, você clica em Concluir a fórmula",
+  "destaque": "Concluir a fórmula",
+  "palavras": [
+   {
+    "w": "Por",
+    "t": 68.96
+   },
+   {
+    "w": "fim,",
+    "t": 69.2
+   },
+   {
+    "w": "você",
+    "t": 69.52
+   },
+   {
+    "w": "clica",
+    "t": 69.76
+   },
+   {
+    "w": "em",
+    "t": 70.16
+   },
+   {
+    "w": "Concluir",
+    "t": 70.32
+   },
+   {
+    "w": "a",
+    "t": 70.88
+   },
+   {
+    "w": "fórmula",
+    "t": 70.96
+   }
+  ]
+ },
+ {
+  "inicio": 71.31,
+  "fim": 73.22,
+  "texto": "e depois em Ver o Resumo.",
+  "destaque": "Ver o Resumo",
+  "palavras": [
+   {
+    "w": "e",
+    "t": 71.36
+   },
+   {
+    "w": "depois",
+    "t": 71.52
+   },
+   {
+    "w": "em",
+    "t": 71.84
+   },
+   {
+    "w": "Ver",
+    "t": 72.0
+   },
+   {
+    "w": "o",
+    "t": 72.24
+   },
+   {
+    "w": "Resumo.",
+    "t": 72.32
+   }
+  ]
+ },
+ {
+  "inicio": 73.47,
+  "fim": 75.0,
+  "texto": "No resumo do orçamento,",
+  "destaque": "orçamento",
+  "palavras": [
+   {
+    "w": "No",
+    "t": 73.52
+   },
+   {
+    "w": "resumo",
+    "t": 73.76
+   },
+   {
+    "w": "do",
+    "t": 74.24
+   },
+   {
+    "w": "orçamento,",
+    "t": 74.4
+   }
+  ]
+ },
+ {
+  "inicio": 74.99,
+  "fim": 76.92,
+  "texto": "você visualiza os itens da fórmula",
+  "destaque": "fórmula",
+  "palavras": [
+   {
+    "w": "você",
+    "t": 75.04
+   },
+   {
+    "w": "visualiza",
+    "t": 75.28
+   },
+   {
+    "w": "os",
+    "t": 75.84
+   },
+   {
+    "w": "itens",
+    "t": 76.0
+   },
+   {
+    "w": "da",
+    "t": 76.32
+   },
+   {
+    "w": "fórmula",
+    "t": 76.4
+   }
+  ]
+ },
+ {
+  "inicio": 76.91,
+  "fim": 78.92,
+  "texto": "e escolhe o prazo de liberação.",
+  "destaque": "prazo de liberação",
+  "palavras": [
+   {
+    "w": "e",
+    "t": 76.96
+   },
+   {
+    "w": "escolhe",
+    "t": 77.12
+   },
+   {
+    "w": "o",
+    "t": 77.52
+   },
+   {
+    "w": "prazo",
+    "t": 77.6
+   },
+   {
+    "w": "de",
+    "t": 77.92
+   },
+   {
+    "w": "liberação.",
+    "t": 78.08
+   }
+  ]
+ },
+ {
+  "inicio": 78.91,
+  "fim": 81.56,
+  "texto": "Neste caso, vamos escolher o prazo normal.",
+  "destaque": "prazo normal",
+  "palavras": [
+   {
+    "w": "Neste",
+    "t": 78.96
+   },
+   {
+    "w": "caso,",
+    "t": 79.28
+   },
+   {
+    "w": "vamos",
+    "t": 79.68
+   },
+   {
+    "w": "escolher",
+    "t": 79.92
+   },
+   {
+    "w": "o",
+    "t": 80.4
+   },
+   {
+    "w": "prazo",
+    "t": 80.48
+   },
+   {
+    "w": "normal.",
+    "t": 80.8
+   }
+  ]
+ },
+ {
+  "inicio": 81.55,
+  "fim": 84.04,
+  "texto": "O sistema também exibe os seus dados cadastrados",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "O",
+    "t": 81.6
+   },
+   {
+    "w": "sistema",
+    "t": 81.84
+   },
+   {
+    "w": "também",
+    "t": 82.16
+   },
+   {
+    "w": "exibe",
+    "t": 82.4
+   },
+   {
+    "w": "os",
+    "t": 82.88
+   },
+   {
+    "w": "seus",
+    "t": 82.96
+   },
+   {
+    "w": "dados",
+    "t": 83.12
+   },
+   {
+    "w": "cadastrados",
+    "t": 83.36
+   }
+  ]
+ },
+ {
+  "inicio": 84.03,
+  "fim": 85.56,
+  "texto": "e o endereço de entrega.",
+  "destaque": "endereço de entrega",
+  "palavras": [
+   {
+    "w": "e",
+    "t": 84.08
+   },
+   {
+    "w": "o",
+    "t": 84.16
+   },
+   {
+    "w": "endereço",
+    "t": 84.32
+   },
+   {
+    "w": "de",
+    "t": 84.72
+   },
+   {
+    "w": "entrega.",
+    "t": 84.88
+   }
+  ]
+ },
+ {
+  "inicio": 85.55,
+  "fim": 88.98,
+  "texto": "Em seguida, você envia para a conferência e precificação.",
+  "destaque": "conferência e precificação",
+  "palavras": [
+   {
+    "w": "Em",
+    "t": 85.6
+   },
+   {
+    "w": "seguida,",
+    "t": 85.76
+   },
+   {
+    "w": "você",
+    "t": 86.32
+   },
+   {
+    "w": "envia",
+    "t": 86.64
+   },
+   {
+    "w": "para",
+    "t": 87.12
+   },
+   {
+    "w": "a",
+    "t": 87.28
+   },
+   {
+    "w": "conferência",
+    "t": 87.36
+   },
+   {
+    "w": "e",
+    "t": 87.92
+   },
+   {
+    "w": "precificação.",
+    "t": 88.08
+   }
+  ]
+ },
+ {
+  "inicio": 89.95,
+  "fim": 92.44,
+  "texto": "Após a conferência inicial da farmacêutica,",
+  "destaque": "conferência inicial",
+  "palavras": [
+   {
+    "w": "Após",
+    "t": 90.0
+   },
+   {
+    "w": "a",
+    "t": 90.48
+   },
+   {
+    "w": "conferência",
+    "t": 90.56
+   },
+   {
+    "w": "inicial",
+    "t": 91.04
+   },
+   {
+    "w": "da",
+    "t": 91.44
+   },
+   {
+    "w": "farmacêutica,",
+    "t": 91.6
+   }
+  ]
+ },
+ {
+  "inicio": 92.43,
+  "fim": 94.6,
+  "texto": "caso você deseje confirmar o orçamento,",
+  "destaque": "orçamento",
+  "palavras": [
+   {
+    "w": "caso",
+    "t": 92.48
+   },
+   {
+    "w": "você",
+    "t": 92.8
+   },
+   {
+    "w": "deseje",
+    "t": 93.04
+   },
+   {
+    "w": "confirmar",
+    "t": 93.44
+   },
+   {
+    "w": "o",
+    "t": 93.92
+   },
+   {
+    "w": "orçamento,",
+    "t": 94.0
+   }
+  ]
+ },
+ {
+  "inicio": 94.59,
+  "fim": 97.22,
+  "texto": "preencha a posologia, que é obrigatória.",
+  "destaque": "posologia",
+  "palavras": [
+   {
+    "w": "preencha",
+    "t": 94.64
+   },
+   {
+    "w": "a",
+    "t": 95.2
+   },
+   {
+    "w": "posologia,",
+    "t": 95.28
+   },
+   {
+    "w": "que",
+    "t": 96.0
+   },
+   {
+    "w": "é",
+    "t": 96.16
+   },
+   {
+    "w": "obrigatória.",
+    "t": 96.32
+   }
+  ]
+ },
+ {
+  "inicio": 97.55,
+  "fim": 100.6,
+  "texto": "Informe o modo de usar exatamente como está na receita.",
+  "destaque": "modo de usar",
+  "palavras": [
+   {
+    "w": "Informe",
+    "t": 97.6
+   },
+   {
+    "w": "o",
+    "t": 98.24
+   },
+   {
+    "w": "modo",
+    "t": 98.32
+   },
+   {
+    "w": "de",
+    "t": 98.48
+   },
+   {
+    "w": "usar",
+    "t": 98.64
+   },
+   {
+    "w": "exatamente",
+    "t": 98.96
+   },
+   {
+    "w": "como",
+    "t": 99.36
+   },
+   {
+    "w": "está",
+    "t": 99.6
+   },
+   {
+    "w": "na",
+    "t": 99.84
+   },
+   {
+    "w": "receita.",
+    "t": 100.0
+   }
+  ]
+ },
+ {
+  "inicio": 100.59,
+  "fim": 102.84,
+  "texto": "Depois, confira a forma de entrega e marque",
+  "destaque": "forma de entrega",
+  "palavras": [
+   {
+    "w": "Depois,",
+    "t": 100.64
+   },
+   {
+    "w": "confira",
+    "t": 101.12
+   },
+   {
+    "w": "a",
+    "t": 101.68
+   },
+   {
+    "w": "forma",
+    "t": 101.76
+   },
+   {
+    "w": "de",
+    "t": 102.0
+   },
+   {
+    "w": "entrega",
+    "t": 102.08
+   },
+   {
+    "w": "e",
+    "t": 102.48
+   },
+   {
+    "w": "marque",
+    "t": 102.56
+   }
+  ]
+ },
+ {
+  "inicio": 102.83,
+  "fim": 105.54,
+  "texto": "as caixas de autorização e os termos obrigatórios.",
+  "destaque": "caixas de autorização",
+  "palavras": [
+   {
+    "w": "as",
+    "t": 102.88
+   },
+   {
+    "w": "caixas",
+    "t": 102.96
+   },
+   {
+    "w": "de",
+    "t": 103.28
+   },
+   {
+    "w": "autorização",
+    "t": 103.44
+   },
+   {
+    "w": "e",
+    "t": 104.0
+   },
+   {
+    "w": "os",
+    "t": 104.08
+   },
+   {
+    "w": "termos",
+    "t": 104.24
+   },
+   {
+    "w": "obrigatórios.",
+    "t": 104.64
+   }
+  ]
+ },
+ {
+  "inicio": 105.55,
+  "fim": 108.12,
+  "texto": "Para então autorizar a manipulação da fórmula.",
+  "destaque": "autorizar a manipulação",
+  "palavras": [
+   {
+    "w": "Para",
+    "t": 105.6
+   },
+   {
+    "w": "então",
+    "t": 105.92
+   },
+   {
+    "w": "autorizar",
+    "t": 106.24
+   },
+   {
+    "w": "a",
+    "t": 106.8
+   },
+   {
+    "w": "manipulação",
+    "t": 106.88
+   },
+   {
+    "w": "da",
+    "t": 107.44
+   },
+   {
+    "w": "fórmula.",
+    "t": 107.6
+   }
+  ]
+ },
+ {
+  "inicio": 108.11,
+  "fim": 111.16,
+  "texto": "Depois de autorizado, você escolhe a forma de pagamento.",
+  "destaque": "forma de pagamento",
+  "palavras": [
+   {
+    "w": "Depois",
+    "t": 108.16
+   },
+   {
+    "w": "de",
+    "t": 108.48
+   },
+   {
+    "w": "autorizado,",
+    "t": 108.72
+   },
+   {
+    "w": "você",
+    "t": 109.44
+   },
+   {
+    "w": "escolhe",
+    "t": 109.68
+   },
+   {
+    "w": "a",
+    "t": 110.08
+   },
+   {
+    "w": "forma",
+    "t": 110.16
+   },
+   {
+    "w": "de",
+    "t": 110.4
+   },
+   {
+    "w": "pagamento.",
+    "t": 110.56
+   }
+  ]
+ },
+ {
+  "inicio": 111.15,
+  "fim": 113.32,
+  "texto": "Nesse caso, vamos optar pelo Pix.",
+  "destaque": "Pix",
+  "palavras": [
+   {
+    "w": "Nesse",
+    "t": 111.2
+   },
+   {
+    "w": "caso,",
+    "t": 111.52
+   },
+   {
+    "w": "vamos",
+    "t": 111.84
+   },
+   {
+    "w": "optar",
+    "t": 112.08
+   },
+   {
+    "w": "pelo",
+    "t": 112.4
+   },
+   {
+    "w": "Pix.",
+    "t": 112.64
+   }
+  ]
+ },
+ {
+  "inicio": 113.31,
+  "fim": 116.52,
+  "texto": "Após a confirmação, o pedido avança para a segunda triagem",
+  "destaque": "segunda triagem",
+  "palavras": [
+   {
+    "w": "Após",
+    "t": 113.36
+   },
+   {
+    "w": "a",
+    "t": 113.76
+   },
+   {
+    "w": "confirmação,",
+    "t": 113.84
+   },
+   {
+    "w": "o",
+    "t": 114.4
+   },
+   {
+    "w": "pedido",
+    "t": 114.56
+   },
+   {
+    "w": "avança",
+    "t": 114.96
+   },
+   {
+    "w": "para",
+    "t": 115.44
+   },
+   {
+    "w": "a",
+    "t": 115.6
+   },
+   {
+    "w": "segunda",
+    "t": 115.68
+   },
+   {
+    "w": "triagem",
+    "t": 116.0
+   }
+  ]
+ },
+ {
+  "inicio": 116.51,
+  "fim": 119.46,
+  "texto": "da farmacêutica antes de seguir para a produção.",
+  "destaque": "produção",
+  "palavras": [
+   {
+    "w": "da",
+    "t": 116.56
+   },
+   {
+    "w": "farmacêutica",
+    "t": 116.64
+   },
+   {
+    "w": "antes",
+    "t": 117.52
+   },
+   {
+    "w": "de",
+    "t": 117.76
+   },
+   {
+    "w": "seguir",
+    "t": 117.92
+   },
+   {
+    "w": "para",
+    "t": 118.24
+   },
+   {
+    "w": "a",
+    "t": 118.4
+   },
+   {
+    "w": "produção.",
+    "t": 118.56
+   }
+  ]
+ }
+]

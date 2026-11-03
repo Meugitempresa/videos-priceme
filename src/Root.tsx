@@ -3,6 +3,7 @@ import { DURACAO_REEL, ReelPriceMe } from "./edicao/ReelPriceMe";
 import { DURACAO as DURACAO_REEL2 } from "./reel2/tempo";
 import { ReelPriceMe2 } from "./reel2/ReelPriceMe2";
 import { DURACAO as DURACAO_PHARMA, PharmaOnline } from "./pharma/PharmaOnline";
+import { DURACAO_TUTORIAL, Tutorial } from "./tutorial/Tutorial";
 import { TestePriceMe } from "./TestePriceMe";
 
 export const RemotionRoot: React.FC = () => {
@@ -28,6 +29,14 @@ export const RemotionRoot: React.FC = () => {
         id="PharmaOnline"
         component={PharmaOnline}
         durationInFrames={DURACAO_PHARMA}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="TutorialPharmaOnline"
+        component={Tutorial}
+        durationInFrames={DURACAO_TUTORIAL}
         fps={30}
         width={1080}
         height={1920}

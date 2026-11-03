@@ -11,3 +11,5 @@ public/reel2/*.mp4
 # Pharma Online (fora do git)
 public/pharma/*.mp4
 public/pharma/*.wav
+public/tutorial/*.mp4
+public/tutorial/*.wav
