@@ -17,6 +17,7 @@ export type ConfigTutorial = {
   ultimoQuadroJulia?: number; // a partir daí a janela mostra o último quadro (encerramento)
   entrada?: number; // quadros de entrada suave a partir do azul da marca (0 = corte seco)
   saida?: [number, number]; // quadros [início, fim] do esmaecimento final para o azul da marca
+  semNome?: boolean; // sem a etiqueta "JULIA" sobre a janela da apresentadora
 };
 
 // Gravação de tela: elemento principal, inteira e proporcional (78 %), sem nada por cima
@@ -63,7 +64,7 @@ const Julia: React.FC<{ c: ConfigTutorial }> = ({ c }) => {
         border: "3px solid rgba(255,255,255,0.92)", boxShadow: "0 12px 32px rgba(0,0,0,0.35)", background: "#000" }}>
         {parada ? <Freeze frame={c.ultimoQuadroJulia!}>{video}</Freeze> : video}
       </div>
-      {nome > 0 ? (
+      {nome > 0 && !c.semNome ? (
         <div style={{ position: "absolute", left: JX + 14, top: JY + JH - 58, padding: "6px 16px", borderRadius: 999,
           background: COR.rosa, color: COR.branco, fontFamily: FONTE, fontWeight: 800, fontSize: 26, letterSpacing: 3,
           opacity: nome, boxShadow: "0 6px 16px rgba(0,0,0,0.3)" }}>

@@ -15,6 +15,7 @@ export const Tutorial2: React.FC = () => (
       ultimoQuadroJulia: 590,
       entrada: 8,
       saida: [588, 608],
+      semNome: true, // pedido da cliente: sem a palavra "JULIA" sobre a janela
     }}
   />
 );
