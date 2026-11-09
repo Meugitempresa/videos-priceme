@@ -68,3 +68,13 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
   "farmacêuticas" falado foi escrito "farmacêutica" na legenda).
 - Layout: tela 78 % no alto; faixa inferior com a Julia (janela) e a legenda; nome "JULIA" só no início.
 - Final: `npx remotion render src/index.ts TutorialPharmaOnline out/tutorial-pharmaonline.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=256k`
+
+## Tutorial pHarmaOnline — Parte 2 — `src/tutorial2`
+
+- Mesmo layout da Parte 1 (`TutorialLayout` em `src/tutorial/Tutorial.tsx`, parametrizado por `ConfigTutorial`).
+- Em `public/tutorial2/` (fora do git): `julia.mp4`, `tela.mp4`, `voz.wav` (`ffmpeg -i julia.mp4 -vn -af "alimiter=limit=0.84" voz.wav`, ~−13 LUFS como a Parte 1).
+- Mapa de sincronia em `src/tutorial2/sincronia.ts`; legendas: `python scripts/tutorial-legendas.py src/tutorial2`.
+- Etiqueta "TUTORIAL · pHarmaOnline · PARTE 2"; entrada suave e encerramento (esmaece para o azul da marca).
+- A Parte 1 final enviada pela cliente tem uma abertura com a Julia em tela cheia (0–8 s, feita por ela);
+  a Parte 2 não tem saudação, então usa o layout do início ao fim.
+- Final: `npx remotion render src/index.ts TutorialPharmaOnlineParte2 out/tutorial-pharmaonline-parte2.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=256k`

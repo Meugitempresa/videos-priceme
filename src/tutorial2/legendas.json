@@ -1,0 +1,294 @@
+[
+ {
+  "inicio": 0.27,
+  "fim": 3.24,
+  "texto": "Nesta etapa, a farmacêutica confere o seu orçamento",
+  "destaque": "orçamento",
+  "palavras": [
+   {
+    "w": "Nesta",
+    "t": 0.32
+   },
+   {
+    "w": "etapa,",
+    "t": 0.8
+   },
+   {
+    "w": "a",
+    "t": 1.2
+   },
+   {
+    "w": "farmacêutica",
+    "t": 1.36
+   },
+   {
+    "w": "confere",
+    "t": 2.08
+   },
+   {
+    "w": "o",
+    "t": 2.48
+   },
+   {
+    "w": "seu",
+    "t": 2.56
+   },
+   {
+    "w": "orçamento",
+    "t": 2.72
+   }
+  ]
+ },
+ {
+  "inicio": 3.23,
+  "fim": 5.32,
+  "texto": "e, em seguida, a sua linha do tempo",
+  "destaque": "linha do tempo",
+  "palavras": [
+   {
+    "w": "e,",
+    "t": 3.28
+   },
+   {
+    "w": "em",
+    "t": 3.52
+   },
+   {
+    "w": "seguida,",
+    "t": 3.68
+   },
+   {
+    "w": "a",
+    "t": 4.16
+   },
+   {
+    "w": "sua",
+    "t": 4.32
+   },
+   {
+    "w": "linha",
+    "t": 4.56
+   },
+   {
+    "w": "do",
+    "t": 4.88
+   },
+   {
+    "w": "tempo",
+    "t": 5.04
+   }
+  ]
+ },
+ {
+  "inicio": 5.31,
+  "fim": 7.72,
+  "texto": "é atualizada para entrar em produção.",
+  "destaque": "produção",
+  "palavras": [
+   {
+    "w": "é",
+    "t": 5.36
+   },
+   {
+    "w": "atualizada",
+    "t": 5.52
+   },
+   {
+    "w": "para",
+    "t": 6.24
+   },
+   {
+    "w": "entrar",
+    "t": 6.56
+   },
+   {
+    "w": "em",
+    "t": 6.88
+   },
+   {
+    "w": "produção.",
+    "t": 7.04
+   }
+  ]
+ },
+ {
+  "inicio": 7.71,
+  "fim": 9.48,
+  "texto": "Com a etapa produtiva concluída,",
+  "destaque": "etapa produtiva concluída",
+  "palavras": [
+   {
+    "w": "Com",
+    "t": 7.76
+   },
+   {
+    "w": "a",
+    "t": 7.92
+   },
+   {
+    "w": "etapa",
+    "t": 8.08
+   },
+   {
+    "w": "produtiva",
+    "t": 8.48
+   },
+   {
+    "w": "concluída,",
+    "t": 8.96
+   }
+  ]
+ },
+ {
+  "inicio": 9.47,
+  "fim": 12.36,
+  "texto": "seu pedido está disponível para a retirada ou delivery",
+  "destaque": "retirada ou delivery",
+  "palavras": [
+   {
+    "w": "seu",
+    "t": 9.52
+   },
+   {
+    "w": "pedido",
+    "t": 9.76
+   },
+   {
+    "w": "está",
+    "t": 10.16
+   },
+   {
+    "w": "disponível",
+    "t": 10.32
+   },
+   {
+    "w": "para",
+    "t": 10.8
+   },
+   {
+    "w": "a",
+    "t": 10.96
+   },
+   {
+    "w": "retirada",
+    "t": 11.12
+   },
+   {
+    "w": "ou",
+    "t": 11.6
+   },
+   {
+    "w": "delivery",
+    "t": 11.76
+   }
+  ]
+ },
+ {
+  "inicio": 12.35,
+  "fim": 15.22,
+  "texto": "e seu pedido estará finalizado com sucesso.",
+  "destaque": "finalizado com sucesso",
+  "palavras": [
+   {
+    "w": "e",
+    "t": 12.4
+   },
+   {
+    "w": "seu",
+    "t": 12.56
+   },
+   {
+    "w": "pedido",
+    "t": 12.8
+   },
+   {
+    "w": "estará",
+    "t": 13.12
+   },
+   {
+    "w": "finalizado",
+    "t": 13.44
+   },
+   {
+    "w": "com",
+    "t": 14.16
+   },
+   {
+    "w": "sucesso.",
+    "t": 14.32
+   }
+  ]
+ },
+ {
+  "inicio": 15.23,
+  "fim": 16.68,
+  "texto": "Se tiver qualquer dúvida,",
+  "destaque": null,
+  "palavras": [
+   {
+    "w": "Se",
+    "t": 15.28
+   },
+   {
+    "w": "tiver",
+    "t": 15.52
+   },
+   {
+    "w": "qualquer",
+    "t": 15.92
+   },
+   {
+    "w": "dúvida,",
+    "t": 16.24
+   }
+  ]
+ },
+ {
+  "inicio": 16.67,
+  "fim": 20.1,
+  "texto": "é só clicar no botão Fale conosco na tela inicial.",
+  "destaque": "Fale conosco",
+  "palavras": [
+   {
+    "w": "é",
+    "t": 16.72
+   },
+   {
+    "w": "só",
+    "t": 16.88
+   },
+   {
+    "w": "clicar",
+    "t": 17.12
+   },
+   {
+    "w": "no",
+    "t": 17.44
+   },
+   {
+    "w": "botão",
+    "t": 17.52
+   },
+   {
+    "w": "Fale",
+    "t": 17.92
+   },
+   {
+    "w": "conosco",
+    "t": 18.32
+   },
+   {
+    "w": "na",
+    "t": 18.8
+   },
+   {
+    "w": "tela",
+    "t": 18.88
+   },
+   {
+    "w": "inicial.",
+    "t": 19.2
+   }
+  ]
+ }
+]

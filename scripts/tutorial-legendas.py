@@ -1,9 +1,11 @@
 """Legendas do tutorial: transcrição da Julia (Parakeet, conferida com o Whisper), grafia corrigida,
 blocos curtos (até ~56 letras, quebra em pontuação) e destaque em rosa para um termo-chave por bloco.
-Uso: python scripts/tutorial-legendas.py"""
-import json, re
+Uso: python scripts/tutorial-legendas.py [pasta]   (padrão: src/tutorial; Parte 2: src/tutorial2)"""
+import json, re, sys
 
-p = json.load(open("src/tutorial/palavras-parakeet.json"))
+PASTA = sys.argv[1] if len(sys.argv) > 1 else "src/tutorial"
+
+p = json.load(open(f"{PASTA}/palavras-parakeet.json"))
 ATRASO = 0.08  # o Parakeet marca as palavras levemente antes da voz
 w = [{"w": x["w"], "t": round(x["t"] + ATRASO, 2)} for x in p]
 # marca e grafia
@@ -19,21 +21,26 @@ for k, x in enumerate(out):
     if x["w"] == "boas" and k + 1 < len(out) and out[k + 1]["w"] == "vindas":
         x["w"] = "boas-vindas"; out[k + 1]["w"] = ""
     x["w"] = x["w"].replace("PIX", "Pix").replace("farmacêuticas", "farmacêutica")
+    if x["w"].startswith("conosco") and k > 0 and out[k - 1]["w"] == "Fale": pass  # botão "Fale conosco", como na interface
 out = [x for x in out if x["w"]]
 txt = " ".join(x["w"] for x in out)
 
 # blocos: quebra em ponto/vírgula; blocos longos divididos perto do meio
 blocos, atual = [], []
 for x in out:
+    # "e," isolado abre a frase seguinte ("e, em seguida, ...") em vez de fechar o bloco anterior
+    if x["w"] == "e," and len(atual) > 3:
+        blocos.append(atual); atual = []
     atual.append(x)
-    if re.search(r"[.?!]$", x["w"]) or (re.search(r",$", x["w"]) and len(" ".join(y["w"] for y in atual)) > 22):
+    if re.search(r"[.?!]$", x["w"]) or (re.search(r",$", x["w"]) and x["w"] != "e," and len(" ".join(y["w"] for y in atual)) > 22):
         blocos.append(atual); atual = []
 if atual: blocos.append(atual)
 PROTEGIDOS = ["Criar Cadastro", "e-mail e senha", "Concluir a fórmula", "Ver o Resumo", "segunda triagem",
               "caixas de autorização", "termos obrigatórios", "forma de entrega", "forma de pagamento",
               "conferência e precificação", "gelatinosa comum", "prazo de liberação", "prazo normal", "boas-vindas",
               "tipo de cápsula", "forma farmacêutica", "novo orçamento", "botão rosa", "usar essa foto",
-              "dados cadastrados", "logo depois"]
+              "dados cadastrados", "logo depois", "linha do tempo", "etapa produtiva", "retirada ou delivery",
+              "finalizado com sucesso", "Fale conosco", "tela inicial", "é atualizada"]
 final = []
 def tam(b): return len(" ".join(y["w"] for y in b))
 CONECTIVOS = {"e", "para", "com", "onde", "como", "antes", "depois", "que", "de"}
@@ -63,7 +70,8 @@ CHAVE = ["pHarmaOnline", "Criar Cadastro", "e-mail e senha", "orçamento", "foto
          "fórmula", "forma farmacêutica", "cápsulas", "gelatinosa comum", "quantidade", "ativo", "miligramas",
          "Concluir a fórmula", "Ver o Resumo", "prazo normal", "prazo de liberação", "endereço de entrega",
          "conferência e precificação", "posologia", "modo de usar", "conferência inicial", "forma de entrega", "caixas de autorização",
-         "autorizar a manipulação", "forma de pagamento", "Pix", "segunda triagem", "produção", "boas-vindas"]
+         "autorizar a manipulação", "forma de pagamento", "Pix", "segunda triagem", "produção", "boas-vindas",
+         "linha do tempo", "etapa produtiva concluída", "retirada ou delivery", "finalizado com sucesso", "Fale conosco"]
 res = []
 for n, b in enumerate(final):
     texto = " ".join(y["w"] for y in b)
@@ -73,5 +81,5 @@ for n, b in enumerate(final):
     destaque = next((c for c in sorted(CHAVE, key=len, reverse=True) if c.lower() in texto.lower()), None)
     res.append({"inicio": round(ini, 2), "fim": round(fim, 2), "texto": texto, "destaque": destaque,
                 "palavras": [{"w": y["w"], "t": y["t"]} for y in b]})
-json.dump(res, open("src/tutorial/legendas.json", "w"), ensure_ascii=False, indent=1)
+json.dump(res, open(f"{PASTA}/legendas.json", "w"), ensure_ascii=False, indent=1)
 for r in res: print(f'{r["inicio"]:6.2f}-{r["fim"]:6.2f} [{r["destaque"] or "-"}] {r["texto"]}')
