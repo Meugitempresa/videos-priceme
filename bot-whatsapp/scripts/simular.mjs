@@ -32,6 +32,15 @@ const sessao = criarSessao(typebot, {
     ? { assunto: 'Fale conosco', whatsapp: '5511988887777' }
     : { remoteJid: '5511988887777@s.whatsapp.net', pushName: 'Cliente Teste' },
   fetch: fetchFalso,
+  log: (tipo, dados) => {
+    if (tipo !== 'email') return;
+    console.log('\n   ✉ [e-mail para o atendente] para: ' + dados.para.join(', ') + ' | responder para: ' + dados.responderPara);
+    console.log('     assunto: ' + dados.assunto);
+    const texto = String(dados.html ?? dados.texto ?? '').replace(/<br>/g, '\n').replace(/<\/(tr|p|div|li)>/g, '\n').replace(/<[^>]+>/g, ' ')
+      .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&')
+      .split('\n').map((l) => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
+    console.log(texto.map((l) => '     │ ' + l).join('\n'));
+  },
 });
 
 const mostrar = (mensagens) => {

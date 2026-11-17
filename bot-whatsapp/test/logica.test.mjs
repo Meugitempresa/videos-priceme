@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import fs from 'node:fs';
 import {
   normalizar, lerMenu, montarMenu, reconhecer, saudacaoPorHorario, linkFormulario,
-  montarResumo, corpoAtendente, corpoCliente, listaDeAnexos, dataHoraBrasilia,
+  montarResumo, montarResumoHtml, assuntoEmail, corpoAtendente, corpoCliente, listaDeAnexos, dataHoraBrasilia,
 } from '../src/logica.js';
 
 const menu = JSON.parse(fs.readFileSync(new URL('../config/menu.json', import.meta.url), 'utf8'));
@@ -175,4 +175,17 @@ test('corpo para a Evolution: texto livre ou modelo da Meta', () => {
   const cliente = JSON.parse(corpoCliente(5511988887777, '+5511912345678', 'Olá!'));
   assert.deepEqual(cliente, { number: '5511988887777', text: 'Olá!' });
   assert.equal(JSON.parse(corpoCliente(undefined, '+5511912345678', 'x')).number, '5511912345678');
+});
+
+test('e-mail para o atendente: assunto, dados escapados e anexos como links', () => {
+  assert.equal(assuntoEmail(dados), 'Novo atendimento: Fale conosco – Maria da Silva');
+  assert.equal(assuntoEmail({}), 'Novo atendimento: Fale conosco');
+  const html = montarResumoHtml({ ...dados, nome: 'Ana <b>&</b>', duvida: 'a\nb' }, quando);
+  assert.match(html, /Ana &lt;b&gt;&amp;&lt;\/b&gt;/);
+  assert.match(html, /a<br>b/);
+  assert.match(html, /<a href="https:\/\/s\.exemplo\/a\.png"/);
+  assert.match(html, /https:\/\/wa\.me\/5511988887777/);
+  assert.match(html, /Enviado em 17\/11\/2026 às 14:05/);
+  assert.match(html, /#2D4589/);
+  assert.match(montarResumoHtml({ ...dados, anexos: [] }, quando), /Anexos \(0\)<\/p>nenhum/);
 });

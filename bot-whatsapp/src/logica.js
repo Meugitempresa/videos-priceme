@@ -230,6 +230,48 @@ export function corpoAtendente(dados, numeroAtendente, template, idioma, agora) 
   });
 }
 
+/** Assunto do e-mail para o atendente. */
+export function assuntoEmail(dados) {
+  const nome = String(dados.nome ?? '').trim();
+  return 'Novo atendimento: ' + (String(dados.assunto ?? '').trim() || 'Fale conosco') + (nome ? ' – ' + nome : '');
+}
+
+/** E-mail (HTML) para o atendente com tudo o que o cliente preencheu, nas cores da marca. */
+export function montarResumoHtml(dados, agora) {
+  const esc = (x) => String(x ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  const v = (x) => esc(String(x ?? '').trim() || '(não informado)');
+  const anexos = listaDeAnexos(dados.anexos);
+  const whatsapp = numeroDoWhatsApp(dados.whatsapp);
+  const linha = (rotulo, valor) =>
+    '<tr><td style="padding:6px 12px 6px 0;color:#2D4589;font-weight:bold;white-space:nowrap;vertical-align:top">' +
+    rotulo + '</td><td style="padding:6px 0;color:#1F2A44">' + valor + '</td></tr>';
+  const email = String(dados.email ?? '').trim();
+  const linhas = [
+    linha('Nome', v(dados.nome)),
+    linha('Telefone', v(dados.telefone)),
+    linha('E-mail', email ? '<a href="mailto:' + esc(email) + '" style="color:#2D4589">' + esc(email) + '</a>' : v('')),
+  ];
+  if (whatsapp) linhas.push(linha('WhatsApp de origem', '<a href="https://wa.me/' + whatsapp + '" style="color:#2D4589">+' + whatsapp + '</a>'));
+  const listaAnexos = anexos.length
+    ? '<ol style="margin:0;padding-left:20px">' + anexos.map((a) =>
+      '<li><a href="' + esc(a) + '" style="color:#2D4589">' + esc(a) + '</a></li>').join('') + '</ol>'
+    : 'nenhum';
+  return '<div style="font-family:Montserrat,Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #E3E7F2;border-radius:10px;overflow:hidden">' +
+    '<div style="background:#2D4589;color:#FFFFFF;padding:18px 22px;font-size:18px;font-weight:bold">' +
+    'Novo atendimento: ' + v(dados.assunto) + '</div>' +
+    '<div style="height:4px;background:#F49AC1"></div>' +
+    '<div style="padding:18px 22px;font-size:15px;line-height:1.5">' +
+    '<table style="border-collapse:collapse">' + linhas.join('') + '</table>' +
+    '<p style="margin:18px 0 6px;color:#2D4589;font-weight:bold">Dúvida/mensagem</p>' +
+    '<div style="background:#F6F7FB;border-left:4px solid #F49AC1;padding:12px 14px;color:#1F2A44">' +
+    v(dados.duvida).replace(/\r?\n/g, '<br>') + '</div>' +
+    '<p style="margin:18px 0 6px;color:#2D4589;font-weight:bold">Anexos (' + anexos.length + ')</p>' + listaAnexos +
+    '<p style="margin:22px 0 0;color:#6B7280;font-size:13px">Enviado em ' + dataHoraBrasilia(agora) +
+    ' pelo formulário de atendimento. Para falar com o cliente, basta responder este e-mail.</p>' +
+    '</div></div>';
+}
+
 /** Corpo do POST à Evolution com o aviso para o cliente (vai para o WhatsApp de origem). */
 export function corpoCliente(whatsapp, telefoneDigitado, texto) {
   const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\D/g, '');

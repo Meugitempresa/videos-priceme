@@ -258,7 +258,7 @@ export function gerarFormulario({ textos, vars }) {
     entradaTexto('duvida', { isLong: true, labels: { placeholder: 'Escreva aqui a sua dúvida ou mensagem...', button: 'Enviar' } }),
     blocoTexto(b, 'p-anexos', t.pergunta_anexos),
     { id: b.id('blk:in:anexos'), type: 'file input', options: {
-      variableId: b.v('anexos'), isRequired: false, isMultipleAllowed: true,
+      variableId: b.v('anexos'), isRequired: false, isMultipleAllowed: true, visibility: 'Public',
       allowedFileTypes: { isEnabled: true, types: ['image/*'] },
       labels: { placeholder: 'Clique ou arraste as imagens aqui', button: 'Enviar imagens', clear: 'Limpar', skip: 'Não tenho imagens para enviar', success: { single: 'Imagem enviada', multiple: '{total} imagens enviadas' } },
     } },
@@ -284,15 +284,58 @@ export function gerarFormulario({ textos, vars }) {
       responseVariableMapping: [{ id: b.id('map:' + chave), variableId: b.v('status_' + chave), bodyPath: 'statusCode' }],
     },
   });
-  const gEnvio = grupo(b, 'envio', '📤 Enviar para o atendente e avisar o cliente', 900, 0, [
-    blocoValor(b, 'aviso_whatsapp', t.aviso_whatsapp.join('\n')),
-    blocoCodigo(b, 'url_atendente', "return String({{evolution_url}}).replace(/\\/+$/, '') + (String({{template_atendente}} ?? '').trim() ? '/message/sendTemplate/' : '/message/sendText/') + encodeURIComponent(String({{evolution_instancia}}));", 'Endereço da Evolution para o atendente', false),
-    blocoCodigo(b, 'url_cliente', "return String({{evolution_url}}).replace(/\\/+$/, '') + '/message/sendText/' + encodeURIComponent(String({{evolution_instancia}}));", 'Endereço da Evolution para o cliente', false),
-    blocoCodigo(b, 'corpo_atendente', 'return corpoAtendente(' + dadosJs + ', {{numero_atendente}}, {{template_atendente}}, {{template_idioma}}, new Date());', 'Mensagem única e organizada para o atendente'),
-    blocoCodigo(b, 'corpo_cliente', 'return corpoCliente({{whatsapp}}, {{telefone}}, {{aviso_whatsapp}});', 'Aviso para o cliente no WhatsApp'),
-    http('atendente', '{{url_atendente}}', '{{corpo_atendente}}'),
+  const condicaoSe = (chave, variavel, destino) => {
+    const bloco = { id: b.id('blk:se:' + chave), type: 'Condition', items: [] };
+    const itemId = b.id('cond:' + chave);
+    bloco.items.push({
+      id: itemId,
+      content: { logicalOperator: 'AND', comparisons: [{ id: b.id('cmp:' + chave), variableId: b.v(variavel), comparisonOperator: 'Is set' }] },
+      outgoingEdgeId: b.aresta('se:' + chave, { blockId: bloco.id, itemId }, destino.id),
+    });
+    return bloco;
+  };
+
+  // Ordem: prepara tudo -> e-mail ao atendente (se houver e-mail) -> WhatsApp ao atendente (se houver número)
+  // -> aviso ao cliente no WhatsApp -> mensagem final na tela.
+  const gCliente = grupo(b, 'cliente', '📲 Avisar o cliente no WhatsApp e encerrar', 1800, 0, [
     http('cliente', '{{url_cliente}}', '{{corpo_cliente}}'),
     blocoTexto(b, 'final', t.final),
+  ]);
+  const gZap = grupo(b, 'zap', '💬 Resumo ao atendente por WhatsApp (só com numero_atendente preenchido)', 1350, 300, [
+    http('atendente', '{{url_atendente}}', '{{corpo_atendente}}'),
+  ]);
+  ligar(b, gZap.blocks[0], 'zap>cliente', gCliente);
+  const seZap = condicaoSe('zap', 'numero_atendente', gZap);
+  seZap.outgoingEdgeId = b.aresta('senao:zap', { blockId: seZap.id }, gCliente.id);
+  const gChecaZap = grupo(b, 'checa-zap', '❔ Enviar também por WhatsApp?', 1350, 0, [seZap]);
+
+  const email = {
+    id: b.id('blk:email'),
+    type: 'Email',
+    options: {
+      credentialsId: 'default',
+      recipients: ['{{email_atendente}}'],
+      subject: '{{email_assunto}}',
+      body: '{{email_html}}',
+      isCustomBody: true,
+      isBodyCode: true,
+      replyTo: '{{email}}',
+    },
+  };
+  const gEmail = grupo(b, 'email', '📧 Resumo ao atendente por e-mail', 1350, -300, [email]);
+  ligar(b, email, 'email>checa-zap', gChecaZap);
+  const seEmail = condicaoSe('email', 'email_atendente', gEmail);
+  seEmail.outgoingEdgeId = b.aresta('senao:email', { blockId: seEmail.id }, gChecaZap.id);
+
+  const gEnvio = grupo(b, 'envio', '📤 Preparar o resumo e o aviso', 900, 0, [
+    blocoValor(b, 'aviso_whatsapp', t.aviso_whatsapp.join('\n')),
+    blocoCodigo(b, 'email_assunto', 'return assuntoEmail(' + dadosJs + ');', 'Assunto do e-mail ao atendente'),
+    blocoCodigo(b, 'email_html', 'return montarResumoHtml(' + dadosJs + ', new Date());', 'E-mail organizado para o atendente'),
+    blocoCodigo(b, 'url_atendente', "return String({{evolution_url}}).replace(/\\/+$/, '') + (String({{template_atendente}} ?? '').trim() ? '/message/sendTemplate/' : '/message/sendText/') + encodeURIComponent(String({{evolution_instancia}}));", 'Endereço da Evolution para o atendente', false),
+    blocoCodigo(b, 'url_cliente', "return String({{evolution_url}}).replace(/\\/+$/, '') + '/message/sendText/' + encodeURIComponent(String({{evolution_instancia}}));", 'Endereço da Evolution para o cliente', false),
+    blocoCodigo(b, 'corpo_atendente', 'return corpoAtendente(' + dadosJs + ', {{numero_atendente}}, {{template_atendente}}, {{template_idioma}}, new Date());', 'Mensagem única e organizada para o atendente (WhatsApp)'),
+    blocoCodigo(b, 'corpo_cliente', 'return corpoCliente({{whatsapp}}, {{telefone}}, {{aviso_whatsapp}});', 'Aviso para o cliente no WhatsApp'),
+    seEmail,
   ]);
   ligar(b, gForm.blocks.at(-1), 'form>envio', gEnvio);
 

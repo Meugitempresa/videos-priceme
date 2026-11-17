@@ -115,6 +115,15 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
     assert.match(final, /Pronto, Maria da Silva! Recebemos as suas informações/);
     assert.equal(s.terminou, true);
 
+    assert.equal(s.emails.length, 1);
+    const [email] = s.emails;
+    assert.deepEqual(email.para, ['atendimento@SEU-DOMINIO.com.br']);
+    assert.equal(email.responderPara, 'maria@exemplo.com');
+    assert.equal(email.assunto, 'Novo atendimento: Administrativo/Financeiro – Maria da Silva');
+    assert.match(email.html, /Maria da Silva/);
+    assert.match(email.html, /Preciso da segunda via do boleto\.<br>Venceu ontem &quot;hoje&quot;\./);
+    assert.match(email.html, /href="https:\/\/s3\.exemplo\/b\.png"/);
+
     assert.equal(recebidas.length, 2);
     const [atendente, cliente] = recebidas;
     assert.equal(atendente.url, '/message/sendText/pharmaonline');
@@ -152,6 +161,38 @@ test('formulário: sem anexos, sem assunto no link e com modelo da Meta para o a
     assert.deepEqual(atendente.corpo.components[0].parameters.map((p) => p.text),
       ['Fale conosco', 'João', '+5521998765432', 'joao@exemplo.com.br', 'Quero falar com vocês.', 'nenhum']);
     assert.equal(cliente.corpo.number, '5521998765432'); // sem WhatsApp no link: usa o telefone digitado
+  } finally {
+    srv.close();
+  }
+});
+
+test('formulário (configuração atual): resumo só por e-mail, sem número de atendente no WhatsApp', async () => {
+  const { srv, recebidas, url } = await servidorFalso();
+  try {
+    const s = criarSessao(formularioCom(url, { numero_atendente: '' }), { preenchidas: { assunto: 'Fale conosco', whatsapp: '5511988887777' } });
+    await s.iniciar();
+    for (const r of ['Ana', '31 99999-0000', 'ana@exemplo.com', 'Dúvida <script>alert(1)</script>']) await s.responder(r);
+    await s.responder('pular');
+    assert.equal(s.emails.length, 1);
+    assert.doesNotMatch(s.emails[0].html, /<script>/);
+    assert.match(s.emails[0].html, /&lt;script&gt;/);
+    assert.equal(recebidas.length, 1, 'só o aviso ao cliente vai pela Evolution');
+    assert.equal(recebidas[0].corpo.number, '5511988887777');
+    assert.equal(s.terminou, true);
+  } finally {
+    srv.close();
+  }
+});
+
+test('formulário: sem e-mail e sem número de atendente, ainda avisa o cliente e encerra', async () => {
+  const { srv, recebidas, url } = await servidorFalso();
+  try {
+    const s = criarSessao(formularioCom(url, { numero_atendente: '', email_atendente: '' }), { preenchidas: {} });
+    await s.iniciar();
+    for (const r of ['Ana', '31 99999-0000', 'ana@exemplo.com', 'Oi', 'pular']) await s.responder(r);
+    assert.equal(s.emails.length, 0);
+    assert.equal(recebidas.length, 1);
+    assert.equal(s.terminou, true);
   } finally {
     srv.close();
   }

@@ -12,13 +12,18 @@ Se a mensagem não tiver relação com o menu, ele explica em uma frase como esc
 | 1 | Orçamento pelo app | ✅ pronto (links provisórios) |
 | 2 | Orçamento pelo WhatsApp (ordem de pedido) | ⏳ próxima parte (responde "disponível em breve") |
 | 3 | Acessar o site | ✅ pronto (link provisório) |
-| 4 | Administrativo/Financeiro | ✅ pronto (formulário web) |
+| 4 | Administrativo/Financeiro | ✅ pronto (formulário web; resumo ao atendente por e-mail) |
 | 5 | Redes sociais | ✅ pronto (links provisórios @pharmaonlineplus) |
-| 6 | Fale conosco | ✅ pronto (formulário web) |
+| 6 | Fale conosco | ✅ pronto (formulário web; resumo ao atendente por e-mail) |
+
+**Como chega o formulário preenchido:** o atendente recebe **um e-mail organizado** com todos os dados
+(`docs/previa-email-atendente.png`). O botão "Responder" do e-mail já vai para o cliente. O cliente recebe no WhatsApp o aviso
+de que em breve entrarão em contato. O envio do resumo também por WhatsApp está pronto, mas desligado: ele exige cartão na
+conta da Meta (veja o passo 5 da instalação).
 
 **Dados pendentes (a cliente envia):**
 - links do app, do site e das redes sociais;
-- número do atendente que recebe os formulários;
+- e-mail que recebe os formulários (`email_atendente`);
 - domínios e servidor;
 - textos finais das mensagens.
 
@@ -68,7 +73,7 @@ npm run simular -- --roteiro "oi|1|asdf|0|5"
 npm run simular -- --formulario
 ```
 
-- `npm test` roda 23 testes: reconhecimento, renumeração e o fluxo completo, inclusive o envio à Evolution.
+- `npm test` roda 26 testes: reconhecimento, renumeração e o fluxo completo, inclusive o envio à Evolution.
 - O simulador executa o mesmo JSON que vai para o Typebot.
 - `npm run gerar` recria `typebot/*.json` depois de editar os arquivos em `config/`.
 
@@ -90,7 +95,8 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 2. **Typebot** (`https://DOMINIO_TYPEBOT`): entre com o e-mail do administrador e use **Criar → Importar arquivo** para
    importar os dois fluxos:
    - `typebot/formulario.json`: em "⚙️ Configuração (edite aqui)", preencha a chave da instância (`evolution_apikey`) e o
-     número do atendente. Publique com o ID público `pharma-formulario`.
+     e-mail do atendente (`email_atendente`). Deixe `numero_atendente` vazio. Publique com o ID público `pharma-formulario`.
+     O e-mail sai pelo SMTP configurado no `.env` do servidor (o mesmo usado no login do Typebot).
    - `typebot/atendimento.json`: preencha os links (`link_formulario` = `https://DOMINIO_VIEWER/pharma-formulario`).
      Publique com o ID público `pharma-atendimento`.
 3. **Cloud API da Meta**:
@@ -114,8 +120,10 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
      -d '{"enabled":true,"url":"https://DOMINIO_VIEWER","typebot":"pharma-atendimento","triggerType":"all","expire":0,"keywordFinish":"","delayMessage":1000,"unknownMessage":"Desculpe, não consigo ler áudios, imagens ou figurinhas. Por favor, digite o número da opção desejada ou 0 para ver o menu.","listeningFromMe":false,"stopBotFromMe":false,"keepOpen":false,"debounceTime":3}'
    ```
 
-5. **Modelo de mensagem para o atendente** (exigência da Meta: fora da janela de 24 h, só modelos aprovados são
-   entregues). Crie no Gerenciador do WhatsApp um modelo **Utilidade**, em pt_BR, chamado `novo_atendimento`, com o corpo:
+5. **(Opcional, exige cartão na conta da Meta) Resumo também por WhatsApp para o atendente.** Hoje ele vai só por e-mail.
+   Mensagens iniciadas pela empresa precisam de forma de pagamento e de modelo aprovado. Para ligar, preencha
+   `numero_atendente` no fluxo do formulário e crie no Gerenciador do WhatsApp um modelo **Utilidade**, em pt_BR, chamado
+   `novo_atendimento`, com o corpo:
 
    ```
    Novo atendimento recebido pelo formulário.
@@ -130,7 +138,7 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
    Depois que o modelo for aprovado, preencha `template_atendente = novo_atendimento` no fluxo do formulário. Enquanto
    o campo estiver vazio, o resumo segue como texto livre. Esse texto só é entregue se o número do atendente tiver
    falado com o número do bot nas últimas 24 h.
-   - O aviso ao cliente não precisa de modelo, porque ele acabou de falar com o bot.
+   - O aviso ao cliente não precisa de modelo nem de cartão, porque ele acabou de falar com o bot.
    - Todos os formulários também ficam salvos no painel do Typebot, em **Resultados**.
 
 ## Arquivos
@@ -147,3 +155,4 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 | `scripts/testar-typebot-real.mjs` | compara um Typebot publicado com o simulador |
 | `servidor/` | docker-compose (Evolution + Typebot + Postgres + Redis + MinIO + HTTPS) |
 | `docs/previa-formulario-*.png` | capturas do formulário rodando no Typebot, nas cores da marca |
+| `docs/previa-email-atendente.png` | e-mail que o atendente recebe (capturado do Typebot real) |

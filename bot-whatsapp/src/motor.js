@@ -42,6 +42,7 @@ export function criarSessao(typebot, { preenchidas = {}, fetch: fetchFn = global
   const grupos = new Map(typebot.groups.map((g) => [g.id, g]));
   const arestas = new Map(typebot.edges.map((e) => [e.id, e]));
   const http = [];
+  const emails = [];
   let pendente = null; // { grupo, indice, bloco }
   let terminou = false;
 
@@ -161,6 +162,20 @@ export function criarSessao(typebot, { preenchidas = {}, fetch: fetchFn = global
           atual = proximo();
           break;
         }
+        case 'Email': {
+          const o = bloco.options;
+          const email = {
+            para: (o.recipients ?? []).map((r) => trocarTexto(r)).filter(Boolean),
+            assunto: trocarTexto(o.subject),
+            html: o.isBodyCode ? trocarTexto(o.body) : undefined,
+            texto: o.isBodyCode ? undefined : trocarTexto(o.body),
+            responderPara: trocarTexto(o.replyTo),
+          };
+          emails.push(email);
+          log('email', email);
+          atual = proximo();
+          break;
+        }
         case 'text input':
         case 'email input':
         case 'phone number input':
@@ -207,6 +222,7 @@ export function criarSessao(typebot, { preenchidas = {}, fetch: fetchFn = global
       return Object.fromEntries([...valores.entries()].map(([id, v]) => [porId.get(id).name, v]));
     },
     get http() { return http; },
+    get emails() { return emails; },
     get terminou() { return terminou; },
     get aguardando() { return pendente?.bloco.type ?? null; },
     async iniciar() {
