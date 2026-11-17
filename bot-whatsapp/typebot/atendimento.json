@@ -1,0 +1,1555 @@
+{
+  "version": "6.1",
+  "id": "c1qrr3lta7h05afrgdpgahhw",
+  "name": "pHarmaOnline · Atendimento WhatsApp",
+  "events": [
+    {
+      "id": "c1bf2p21opjhbuujfvpfw1ux",
+      "type": "start",
+      "graphCoordinates": {
+        "x": -400,
+        "y": 0
+      },
+      "outgoingEdgeId": "c227z54h6y01tasddsa3hnx3"
+    }
+  ],
+  "groups": [
+    {
+      "id": "c1cnf166rq75flwa464sitta",
+      "title": "⚙️ Configuração (edite aqui)",
+      "graphCoordinates": {
+        "x": 0,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "c1tpoar3zmea7hgzvlb0f9wb",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v1sto7fc4cbcvekw8pp5v453",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://LINK-DOWNLOAD-DO-APP"
+          }
+        },
+        {
+          "id": "c78hq7l3ie9s4lsuow9p3tcc",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v1aon26imfkhogw1tqt2f0xc",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://LINK-PARA-ABRIR-O-APP"
+          }
+        },
+        {
+          "id": "cbeqourqr7syas4xt4bl44l2",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vlug36w68iu3bx5zf9w93avl",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://LINK-DO-SITE"
+          }
+        },
+        {
+          "id": "c1kheyu9jwmegkhydkn6iqkl",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vh4ezlmp0xevved1xdaut3wd",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://www.instagram.com/pharmaonlineplus"
+          }
+        },
+        {
+          "id": "cbhy0jfmgzy9hlc006i0msr4",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v1wbl6xqplpexwtt2a57eh7a",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://www.facebook.com/pharmaonlineplus"
+          }
+        },
+        {
+          "id": "c1tqsvjfbe0nrdmztf7ae7p0",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v1x7m8f3kfer97dxahe197mz",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://www.tiktok.com/@pharmaonlineplus"
+          }
+        },
+        {
+          "id": "c21gomtbndhk6jgq8zjrd4kq",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v9lsvc7h1q2igfbxz35h6otb",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://www.youtube.com/@pharmaonlineplus"
+          }
+        },
+        {
+          "id": "c1ob7pbk9n9g7s4tfbtbj5t0",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vd7m7zygo1yauhez9kd5481h",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://TYPEBOT-VIEWER/pharma-formulario"
+          }
+        },
+        {
+          "id": "c0xyi64o8tg3xvavvvf06ivc",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v1m7fzt66kzfggr30t7ab85u",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "// ⚙️ MENU — edite aqui.\n// A ordem da lista define os números (1, 2, 3...). Para excluir um item, apague o bloco { ... } dele;\n// para reordenar, mova o bloco: a numeração se ajusta sozinha.\n// id: NÃO altere (liga o item à resposta dele). nome: texto do menu.\n// apelidos: frases que também abrem o item. ativo: false = \"disponível em breve\".\n// formulario: true = gera o link do formulário com o assunto igual ao nome.\n// Item novo: crie também um grupo de resposta e uma condição \"acao = id\" no bloco Condition.\nreturn JSON.stringify([\n  {\n    \"id\": \"app\",\n    \"nome\": \"Orçamento pelo app\",\n    \"apelidos\": [\n      \"orçamento em tempo real pelo app\",\n      \"orçamento em tempo real\",\n      \"orçamento pelo aplicativo\",\n      \"orçar pelo app\",\n      \"orçar pelo aplicativo\",\n      \"baixar o app\",\n      \"baixar o aplicativo\",\n      \"aplicativo\",\n      \"app\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"whatsapp\",\n    \"nome\": \"Orçamento pelo WhatsApp (ordem de pedido)\",\n    \"apelidos\": [\n      \"orçamento pelo whatsapp\",\n      \"orçamento pelo zap\",\n      \"orçar pelo whatsapp\",\n      \"ordem de pedido\",\n      \"enviar receita\",\n      \"mandar receita\",\n      \"foto da receita\"\n    ],\n    \"ativo\": false\n  },\n  {\n    \"id\": \"site\",\n    \"nome\": \"Acessar o site\",\n    \"apelidos\": [\n      \"site\",\n      \"acessar site\",\n      \"endereço do site\",\n      \"link do site\",\n      \"página\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"financeiro\",\n    \"nome\": \"Administrativo/Financeiro\",\n    \"apelidos\": [\n      \"administrativo\",\n      \"financeiro\",\n      \"administrativo financeiro\",\n      \"boleto\",\n      \"nota fiscal\",\n      \"pagamento\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  },\n  {\n    \"id\": \"redes\",\n    \"nome\": \"Redes sociais\",\n    \"apelidos\": [\n      \"redes\",\n      \"instagram\",\n      \"insta\",\n      \"facebook\",\n      \"tiktok\",\n      \"tik tok\",\n      \"youtube\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"contato\",\n    \"nome\": \"Fale conosco\",\n    \"apelidos\": [\n      \"fale conosco\",\n      \"falar conosco\",\n      \"contato\",\n      \"entrar em contato\",\n      \"falar com atendente\",\n      \"falar com uma pessoa\",\n      \"atendente\",\n      \"atendimento humano\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  }\n]);",
+            "expressionDescription": "Itens do menu"
+          },
+          "outgoingEdgeId": "c132cxqvwvzbxotk6fb01v35"
+        }
+      ]
+    },
+    {
+      "id": "c7g1e9pyrnxd7yjcaqgmvjfi",
+      "title": "👋 Boas-vindas / menu inicial (opção 0)",
+      "graphCoordinates": {
+        "x": 450,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "c19jttai5nhid19vj7saoorc",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vf5s6a48tb5c2puw3fnjoa2m",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "// Monta a lista numerada do menu\n// Lógica gerada a partir de bot-whatsapp/src/logica.js (não precisa editar).\n\nfunction corpoAtendente(dados, numeroAtendente, template, idioma, agora) {\n  const numero = String(numeroAtendente ?? '').replace(/\\D/g, '');\n  const nomeTemplate = String(template ?? '').trim();\n  if (!nomeTemplate) {\n    return JSON.stringify({ number: numero, text: montarResumo(dados, agora) });\n  }\n  // Parâmetros de modelo não aceitam quebras de linha nem 4+ espaços seguidos.\n  const limpar = (x) => (String(x ?? '').trim() || '(não informado)')\n    .replace(/\\s*\\n+\\s*/g, ' / ').replace(/\\s{4,}/g, '   ').slice(0, 1000);\n  const anexos = listaDeAnexos(dados.anexos);\n  const parametros = [\n    dados.assunto, dados.nome, dados.telefone, dados.email, dados.duvida,\n    anexos.length ? anexos.join(' ; ') : 'nenhum',\n  ].map((texto) => ({ type: 'text', text: limpar(texto) }));\n  return JSON.stringify({\n    number: numero,\n    name: nomeTemplate,\n    language: String(idioma ?? '').trim() || 'pt_BR',\n    components: [{ type: 'body', parameters: parametros }],\n  });\n}\n\nfunction corpoCliente(whatsapp, telefoneDigitado, texto) {\n  const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\\D/g, '');\n  return JSON.stringify({ number: numero, text: String(texto ?? '') });\n}\n\nfunction dataHoraBrasilia(agora) {\n  const d = new Date((agora instanceof Date ? agora : new Date()).getTime() - 3 * 3600 * 1000);\n  const dois = (n) => String(n).padStart(2, '0');\n  return dois(d.getUTCDate()) + '/' + dois(d.getUTCMonth() + 1) + '/' + d.getUTCFullYear() +\n    ' às ' + dois(d.getUTCHours()) + ':' + dois(d.getUTCMinutes());\n}\n\nfunction lerMenu(config) {\n  let dados = config;\n  if (typeof dados === 'string') {\n    try { dados = JSON.parse(dados); } catch (e) { dados = []; }\n  }\n  if (dados && !Array.isArray(dados)) dados = dados.itens;\n  if (!Array.isArray(dados)) return [];\n  return dados\n    .filter((item) => item && item.id && item.nome)\n    .map((item, i) => ({\n      id: String(item.id),\n      nome: String(item.nome),\n      apelidos: Array.isArray(item.apelidos) ? item.apelidos.map(String) : [],\n      ativo: item.ativo !== false,\n      formulario: item.formulario === true,\n      numero: i + 1,\n    }));\n}\n\nfunction linkFormulario(base, assunto, whatsapp) {\n  const url = String(base ?? '').trim();\n  if (!url) return '';\n  let link = url + (url.includes('?') ? '&' : '?') + 'assunto=' + encodeURIComponent(assunto || '');\n  const numero = numeroDoWhatsApp(whatsapp);\n  if (numero) link += '&whatsapp=' + numero;\n  return link;\n}\n\nfunction listaDeAnexos(anexos) {\n  if (Array.isArray(anexos)) return anexos.map((a) => String(a ?? '').trim()).filter(Boolean);\n  const texto = String(anexos ?? '').trim();\n  if (!texto) return [];\n  return texto.split(/\\s*,\\s*(?=https?:\\/\\/)|\\s+(?=https?:\\/\\/)/).map((a) => a.trim()).filter(Boolean);\n}\n\nfunction montarMenu(config) {\n  const linhas = ['**0** - Voltar ao menu inicial'];\n  for (const item of lerMenu(config)) linhas.push('**' + item.numero + '** - ' + item.nome);\n  return linhas.join('\\n');\n}\n\nfunction montarResumo(dados, agora) {\n  const v = (x) => String(x ?? '').trim() || '(não informado)';\n  const anexos = listaDeAnexos(dados.anexos);\n  const linhas = [\n    '📋 *Novo atendimento: ' + v(dados.assunto) + '*',\n    '',\n    '*Nome:* ' + v(dados.nome),\n    '*Telefone:* ' + v(dados.telefone),\n    '*E-mail:* ' + v(dados.email),\n  ];\n  const whatsapp = numeroDoWhatsApp(dados.whatsapp);\n  if (whatsapp) linhas.push('*WhatsApp de origem:* +' + whatsapp);\n  linhas.push('', '*Dúvida/mensagem:*', v(dados.duvida), '');\n  if (anexos.length) {\n    linhas.push('*Anexos (' + anexos.length + '):*');\n    anexos.forEach((a, i) => linhas.push((i + 1) + '. ' + a));\n  } else {\n    linhas.push('*Anexos:* nenhum');\n  }\n  linhas.push('', 'Enviado em ' + dataHoraBrasilia(agora));\n  return linhas.join('\\n');\n}\n\nfunction normalizar(texto) {\n  return String(texto ?? '')\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .toLowerCase()\n    // reserva, caso o ambiente não decomponha acentos com normalize()\n    .replace(/[áàâãä]/g, 'a').replace(/[éèêë]/g, 'e').replace(/[íìîï]/g, 'i')\n    .replace(/[óòôõö]/g, 'o').replace(/[úùûü]/g, 'u').replace(/ç/g, 'c').replace(/ñ/g, 'n')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\nfunction numeroDoWhatsApp(remoteJid) {\n  return String(remoteJid ?? '').split('@')[0].replace(/\\D/g, '');\n}\n\nfunction processarMensagem(entrada, config, remoteJid, baseFormulario) {\n  const r = reconhecer(entrada, config);\n  return JSON.stringify({\n    acao: r.acao,\n    item_nome: r.nome,\n    link_form: r.formulario ? linkFormulario(baseFormulario, r.nome, remoteJid) : '',\n  });\n}\n\nfunction reconhecer(entrada, config) {\n  const menu = lerMenu(config);\n  const t = normalizar(entrada);\n  const resultado = (acao, item) => ({\n    acao,\n    id: item ? item.id : '',\n    nome: item ? item.nome : '',\n    numero: item ? item.numero : null,\n    formulario: item ? item.formulario : false,\n  });\n  const doItem = (item) => resultado(item.ativo ? item.id : 'indisponivel', item);\n\n  if (!t) return resultado('desconhecido');\n\n  // 1. Voltar ao menu inicial\n  const voltar = [\n    '0', 'opcao 0', 'numero 0', 'zero', 'voltar', 'volta', 'menu', 'menu inicial', 'inicio',\n    'voltar ao menu', 'voltar ao menu inicial', 'voltar ao inicio', 'voltar para o menu',\n    'voltar pro menu', 'ver o menu', 'ver menu', 'opcoes', 'ver opcoes',\n  ];\n  if (voltar.includes(t)) return resultado('menu');\n\n  // 2. Número digitado (\"1\", \"1.\", \"opção 1\", \"nº 1\", \"1️⃣\")\n  const numero = t.match(/^(?:opcao|op|numero|n|item)?\\s*(\\d{1,2})$/);\n  if (numero) {\n    const n = Number(numero[1]);\n    if (n === 0) return resultado('menu');\n    const item = menu.find((i) => i.numero === n);\n    return item ? doItem(item) : resultado('desconhecido');\n  }\n\n  // 3. Nome ou apelido do item (frase inteira contida na mensagem, ou todas as palavras importantes dela)\n  const irrelevantes = [\n    'a', 'o', 'as', 'os', 'de', 'do', 'da', 'dos', 'das', 'e', 'em', 'no', 'na', 'nos', 'nas',\n    'pelo', 'pela', 'por', 'para', 'pra', 'pro', 'com', 'um', 'uma', 'ao', 'quero', 'gostaria',\n    'queria', 'preciso', 'fazer', 'ver', 'saber', 'sobre', 'meu', 'minha', 'qual', 'quais', 'o que',\n  ];\n  const palavras = t.split(' ');\n  let melhor = null;\n  for (const item of menu) {\n    for (const frase of [item.nome, ...item.apelidos]) {\n      const f = normalizar(frase);\n      if (!f) continue;\n      const importantes = f.split(' ').filter((p) => !irrelevantes.includes(p));\n      const contida = (' ' + t + ' ').includes(' ' + f + ' ');\n      const todas = importantes.length > 0 && importantes.every((p) => palavras.includes(p));\n      if ((contida || todas) && (!melhor || f.length > melhor.tamanho)) {\n        melhor = { item, tamanho: f.length };\n      }\n    }\n  }\n  if (melhor) return doItem(melhor.item);\n\n  // 4. Saudação: a mensagem só tem palavras de cumprimento (\"Oi, bom dia! Tudo bem?\")\n  const cumprimentos = [\n    'oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'e', 'ai', 'hey', 'hi', 'hello', 'alo',\n    'bom', 'boa', 'dia', 'tarde', 'noite', 'madrugada', 'tudo', 'bem', 'td', 'bm', 'como', 'vai',\n    'voce', 'vc', 'vcs', 'voces', 'esta', 'ta', 'tao', 'estao', 'pessoal', 'gente', 'equipe',\n    'pharma', 'pharmaonline', 'pharmaonlineplus', 'farmacia', 'salve', 'saudacoes', 'prezados',\n    'prezado', 'prezada', 'ok', 'sim', 'da', 'do', 'de', 'a', 'o', 'aqui', 'ai',\n  ];\n  const ehCumprimento = palavras.every((p) => cumprimentos.includes(p));\n  const temSaudacao = palavras.some((p) =>\n    ['oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'hey', 'hi', 'hello', 'alo', 'bom', 'boa',\n      'salve', 'saudacoes', 'prezados', 'prezado', 'prezada', 'tudo'].includes(p)) || t === 'e ai';\n  if (ehCumprimento && temSaudacao) return resultado('menu');\n\n  // 5. Agradecimento (\"obrigado\", \"muito obrigada\", \"valeu\")\n  const agradecimentos = ['obrigado', 'obrigada', 'obg', 'brigado', 'brigada', 'valeu', 'vlw', 'grato', 'grata', 'agradeco'];\n  if (palavras.some((p) => agradecimentos.includes(p)) && palavras.length <= 6) return resultado('agradecimento');\n\n  // 6. Não reconhecida\n  return resultado('desconhecido');\n}\n\nfunction saudacaoPorHorario(agora) {\n  const data = agora instanceof Date ? agora : new Date();\n  const hora = (data.getUTCHours() + 21) % 24;\n  if (hora >= 5 && hora < 12) return 'Bom dia';\n  if (hora >= 12 && hora < 18) return 'Boa tarde';\n  return 'Boa noite';\n}\n\nreturn montarMenu({{menu_config}});",
+            "expressionDescription": "Monta a lista numerada do menu"
+          }
+        },
+        {
+          "id": "ctccovl6cgkkb8xcmz3pyi0t",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v9k6yh49hk60jq2gmm90fadw",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "// Bom dia / Boa tarde / Boa noite\n// Lógica gerada a partir de bot-whatsapp/src/logica.js (não precisa editar).\n\nfunction corpoAtendente(dados, numeroAtendente, template, idioma, agora) {\n  const numero = String(numeroAtendente ?? '').replace(/\\D/g, '');\n  const nomeTemplate = String(template ?? '').trim();\n  if (!nomeTemplate) {\n    return JSON.stringify({ number: numero, text: montarResumo(dados, agora) });\n  }\n  // Parâmetros de modelo não aceitam quebras de linha nem 4+ espaços seguidos.\n  const limpar = (x) => (String(x ?? '').trim() || '(não informado)')\n    .replace(/\\s*\\n+\\s*/g, ' / ').replace(/\\s{4,}/g, '   ').slice(0, 1000);\n  const anexos = listaDeAnexos(dados.anexos);\n  const parametros = [\n    dados.assunto, dados.nome, dados.telefone, dados.email, dados.duvida,\n    anexos.length ? anexos.join(' ; ') : 'nenhum',\n  ].map((texto) => ({ type: 'text', text: limpar(texto) }));\n  return JSON.stringify({\n    number: numero,\n    name: nomeTemplate,\n    language: String(idioma ?? '').trim() || 'pt_BR',\n    components: [{ type: 'body', parameters: parametros }],\n  });\n}\n\nfunction corpoCliente(whatsapp, telefoneDigitado, texto) {\n  const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\\D/g, '');\n  return JSON.stringify({ number: numero, text: String(texto ?? '') });\n}\n\nfunction dataHoraBrasilia(agora) {\n  const d = new Date((agora instanceof Date ? agora : new Date()).getTime() - 3 * 3600 * 1000);\n  const dois = (n) => String(n).padStart(2, '0');\n  return dois(d.getUTCDate()) + '/' + dois(d.getUTCMonth() + 1) + '/' + d.getUTCFullYear() +\n    ' às ' + dois(d.getUTCHours()) + ':' + dois(d.getUTCMinutes());\n}\n\nfunction lerMenu(config) {\n  let dados = config;\n  if (typeof dados === 'string') {\n    try { dados = JSON.parse(dados); } catch (e) { dados = []; }\n  }\n  if (dados && !Array.isArray(dados)) dados = dados.itens;\n  if (!Array.isArray(dados)) return [];\n  return dados\n    .filter((item) => item && item.id && item.nome)\n    .map((item, i) => ({\n      id: String(item.id),\n      nome: String(item.nome),\n      apelidos: Array.isArray(item.apelidos) ? item.apelidos.map(String) : [],\n      ativo: item.ativo !== false,\n      formulario: item.formulario === true,\n      numero: i + 1,\n    }));\n}\n\nfunction linkFormulario(base, assunto, whatsapp) {\n  const url = String(base ?? '').trim();\n  if (!url) return '';\n  let link = url + (url.includes('?') ? '&' : '?') + 'assunto=' + encodeURIComponent(assunto || '');\n  const numero = numeroDoWhatsApp(whatsapp);\n  if (numero) link += '&whatsapp=' + numero;\n  return link;\n}\n\nfunction listaDeAnexos(anexos) {\n  if (Array.isArray(anexos)) return anexos.map((a) => String(a ?? '').trim()).filter(Boolean);\n  const texto = String(anexos ?? '').trim();\n  if (!texto) return [];\n  return texto.split(/\\s*,\\s*(?=https?:\\/\\/)|\\s+(?=https?:\\/\\/)/).map((a) => a.trim()).filter(Boolean);\n}\n\nfunction montarMenu(config) {\n  const linhas = ['**0** - Voltar ao menu inicial'];\n  for (const item of lerMenu(config)) linhas.push('**' + item.numero + '** - ' + item.nome);\n  return linhas.join('\\n');\n}\n\nfunction montarResumo(dados, agora) {\n  const v = (x) => String(x ?? '').trim() || '(não informado)';\n  const anexos = listaDeAnexos(dados.anexos);\n  const linhas = [\n    '📋 *Novo atendimento: ' + v(dados.assunto) + '*',\n    '',\n    '*Nome:* ' + v(dados.nome),\n    '*Telefone:* ' + v(dados.telefone),\n    '*E-mail:* ' + v(dados.email),\n  ];\n  const whatsapp = numeroDoWhatsApp(dados.whatsapp);\n  if (whatsapp) linhas.push('*WhatsApp de origem:* +' + whatsapp);\n  linhas.push('', '*Dúvida/mensagem:*', v(dados.duvida), '');\n  if (anexos.length) {\n    linhas.push('*Anexos (' + anexos.length + '):*');\n    anexos.forEach((a, i) => linhas.push((i + 1) + '. ' + a));\n  } else {\n    linhas.push('*Anexos:* nenhum');\n  }\n  linhas.push('', 'Enviado em ' + dataHoraBrasilia(agora));\n  return linhas.join('\\n');\n}\n\nfunction normalizar(texto) {\n  return String(texto ?? '')\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .toLowerCase()\n    // reserva, caso o ambiente não decomponha acentos com normalize()\n    .replace(/[áàâãä]/g, 'a').replace(/[éèêë]/g, 'e').replace(/[íìîï]/g, 'i')\n    .replace(/[óòôõö]/g, 'o').replace(/[úùûü]/g, 'u').replace(/ç/g, 'c').replace(/ñ/g, 'n')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\nfunction numeroDoWhatsApp(remoteJid) {\n  return String(remoteJid ?? '').split('@')[0].replace(/\\D/g, '');\n}\n\nfunction processarMensagem(entrada, config, remoteJid, baseFormulario) {\n  const r = reconhecer(entrada, config);\n  return JSON.stringify({\n    acao: r.acao,\n    item_nome: r.nome,\n    link_form: r.formulario ? linkFormulario(baseFormulario, r.nome, remoteJid) : '',\n  });\n}\n\nfunction reconhecer(entrada, config) {\n  const menu = lerMenu(config);\n  const t = normalizar(entrada);\n  const resultado = (acao, item) => ({\n    acao,\n    id: item ? item.id : '',\n    nome: item ? item.nome : '',\n    numero: item ? item.numero : null,\n    formulario: item ? item.formulario : false,\n  });\n  const doItem = (item) => resultado(item.ativo ? item.id : 'indisponivel', item);\n\n  if (!t) return resultado('desconhecido');\n\n  // 1. Voltar ao menu inicial\n  const voltar = [\n    '0', 'opcao 0', 'numero 0', 'zero', 'voltar', 'volta', 'menu', 'menu inicial', 'inicio',\n    'voltar ao menu', 'voltar ao menu inicial', 'voltar ao inicio', 'voltar para o menu',\n    'voltar pro menu', 'ver o menu', 'ver menu', 'opcoes', 'ver opcoes',\n  ];\n  if (voltar.includes(t)) return resultado('menu');\n\n  // 2. Número digitado (\"1\", \"1.\", \"opção 1\", \"nº 1\", \"1️⃣\")\n  const numero = t.match(/^(?:opcao|op|numero|n|item)?\\s*(\\d{1,2})$/);\n  if (numero) {\n    const n = Number(numero[1]);\n    if (n === 0) return resultado('menu');\n    const item = menu.find((i) => i.numero === n);\n    return item ? doItem(item) : resultado('desconhecido');\n  }\n\n  // 3. Nome ou apelido do item (frase inteira contida na mensagem, ou todas as palavras importantes dela)\n  const irrelevantes = [\n    'a', 'o', 'as', 'os', 'de', 'do', 'da', 'dos', 'das', 'e', 'em', 'no', 'na', 'nos', 'nas',\n    'pelo', 'pela', 'por', 'para', 'pra', 'pro', 'com', 'um', 'uma', 'ao', 'quero', 'gostaria',\n    'queria', 'preciso', 'fazer', 'ver', 'saber', 'sobre', 'meu', 'minha', 'qual', 'quais', 'o que',\n  ];\n  const palavras = t.split(' ');\n  let melhor = null;\n  for (const item of menu) {\n    for (const frase of [item.nome, ...item.apelidos]) {\n      const f = normalizar(frase);\n      if (!f) continue;\n      const importantes = f.split(' ').filter((p) => !irrelevantes.includes(p));\n      const contida = (' ' + t + ' ').includes(' ' + f + ' ');\n      const todas = importantes.length > 0 && importantes.every((p) => palavras.includes(p));\n      if ((contida || todas) && (!melhor || f.length > melhor.tamanho)) {\n        melhor = { item, tamanho: f.length };\n      }\n    }\n  }\n  if (melhor) return doItem(melhor.item);\n\n  // 4. Saudação: a mensagem só tem palavras de cumprimento (\"Oi, bom dia! Tudo bem?\")\n  const cumprimentos = [\n    'oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'e', 'ai', 'hey', 'hi', 'hello', 'alo',\n    'bom', 'boa', 'dia', 'tarde', 'noite', 'madrugada', 'tudo', 'bem', 'td', 'bm', 'como', 'vai',\n    'voce', 'vc', 'vcs', 'voces', 'esta', 'ta', 'tao', 'estao', 'pessoal', 'gente', 'equipe',\n    'pharma', 'pharmaonline', 'pharmaonlineplus', 'farmacia', 'salve', 'saudacoes', 'prezados',\n    'prezado', 'prezada', 'ok', 'sim', 'da', 'do', 'de', 'a', 'o', 'aqui', 'ai',\n  ];\n  const ehCumprimento = palavras.every((p) => cumprimentos.includes(p));\n  const temSaudacao = palavras.some((p) =>\n    ['oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'hey', 'hi', 'hello', 'alo', 'bom', 'boa',\n      'salve', 'saudacoes', 'prezados', 'prezado', 'prezada', 'tudo'].includes(p)) || t === 'e ai';\n  if (ehCumprimento && temSaudacao) return resultado('menu');\n\n  // 5. Agradecimento (\"obrigado\", \"muito obrigada\", \"valeu\")\n  const agradecimentos = ['obrigado', 'obrigada', 'obg', 'brigado', 'brigada', 'valeu', 'vlw', 'grato', 'grata', 'agradeco'];\n  if (palavras.some((p) => agradecimentos.includes(p)) && palavras.length <= 6) return resultado('agradecimento');\n\n  // 6. Não reconhecida\n  return resultado('desconhecido');\n}\n\nfunction saudacaoPorHorario(agora) {\n  const data = agora instanceof Date ? agora : new Date();\n  const hora = (data.getUTCHours() + 21) % 24;\n  if (hora >= 5 && hora < 12) return 'Bom dia';\n  if (hora >= 12 && hora < 18) return 'Boa tarde';\n  return 'Boa noite';\n}\n\nreturn saudacaoPorHorario(new Date());",
+            "expressionDescription": "Bom dia / Boa tarde / Boa noite"
+          }
+        },
+        {
+          "id": "cnan6sdtr2exhc72hd6ubtxk",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{saudacao}}! Seja bem-vindo(a) à "
+                  },
+                  {
+                    "text": "pHarmaOnline",
+                    "bold": true
+                  },
+                  {
+                    "text": " 😊"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para agilizar o seu atendimento, digite o "
+                  },
+                  {
+                    "text": "número",
+                    "bold": true
+                  },
+                  {
+                    "text": " da opção desejada:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{menu_texto}}"
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "cc9ok3b7vk03y71ght9a9ux1"
+        }
+      ]
+    },
+    {
+      "id": "c1qrvdkkokkavr1ovb678aed",
+      "title": "⌨️ Aguardar resposta",
+      "graphCoordinates": {
+        "x": 900,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "c1e6pdlqystntwmx1cxsjbvo",
+          "type": "text input",
+          "options": {
+            "variableId": "v20x541mkmyri2lmz1igmstg",
+            "labels": {
+              "placeholder": "Digite o número da opção...",
+              "button": "Enviar"
+            }
+          }
+        },
+        {
+          "id": "couwv20493wd4f3uz02j653d",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vexfxt1xip36tf15yxo7t5z7",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "// Reconhece a mensagem (número, frase, saudação ou 0)\n// Lógica gerada a partir de bot-whatsapp/src/logica.js (não precisa editar).\n\nfunction corpoAtendente(dados, numeroAtendente, template, idioma, agora) {\n  const numero = String(numeroAtendente ?? '').replace(/\\D/g, '');\n  const nomeTemplate = String(template ?? '').trim();\n  if (!nomeTemplate) {\n    return JSON.stringify({ number: numero, text: montarResumo(dados, agora) });\n  }\n  // Parâmetros de modelo não aceitam quebras de linha nem 4+ espaços seguidos.\n  const limpar = (x) => (String(x ?? '').trim() || '(não informado)')\n    .replace(/\\s*\\n+\\s*/g, ' / ').replace(/\\s{4,}/g, '   ').slice(0, 1000);\n  const anexos = listaDeAnexos(dados.anexos);\n  const parametros = [\n    dados.assunto, dados.nome, dados.telefone, dados.email, dados.duvida,\n    anexos.length ? anexos.join(' ; ') : 'nenhum',\n  ].map((texto) => ({ type: 'text', text: limpar(texto) }));\n  return JSON.stringify({\n    number: numero,\n    name: nomeTemplate,\n    language: String(idioma ?? '').trim() || 'pt_BR',\n    components: [{ type: 'body', parameters: parametros }],\n  });\n}\n\nfunction corpoCliente(whatsapp, telefoneDigitado, texto) {\n  const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\\D/g, '');\n  return JSON.stringify({ number: numero, text: String(texto ?? '') });\n}\n\nfunction dataHoraBrasilia(agora) {\n  const d = new Date((agora instanceof Date ? agora : new Date()).getTime() - 3 * 3600 * 1000);\n  const dois = (n) => String(n).padStart(2, '0');\n  return dois(d.getUTCDate()) + '/' + dois(d.getUTCMonth() + 1) + '/' + d.getUTCFullYear() +\n    ' às ' + dois(d.getUTCHours()) + ':' + dois(d.getUTCMinutes());\n}\n\nfunction lerMenu(config) {\n  let dados = config;\n  if (typeof dados === 'string') {\n    try { dados = JSON.parse(dados); } catch (e) { dados = []; }\n  }\n  if (dados && !Array.isArray(dados)) dados = dados.itens;\n  if (!Array.isArray(dados)) return [];\n  return dados\n    .filter((item) => item && item.id && item.nome)\n    .map((item, i) => ({\n      id: String(item.id),\n      nome: String(item.nome),\n      apelidos: Array.isArray(item.apelidos) ? item.apelidos.map(String) : [],\n      ativo: item.ativo !== false,\n      formulario: item.formulario === true,\n      numero: i + 1,\n    }));\n}\n\nfunction linkFormulario(base, assunto, whatsapp) {\n  const url = String(base ?? '').trim();\n  if (!url) return '';\n  let link = url + (url.includes('?') ? '&' : '?') + 'assunto=' + encodeURIComponent(assunto || '');\n  const numero = numeroDoWhatsApp(whatsapp);\n  if (numero) link += '&whatsapp=' + numero;\n  return link;\n}\n\nfunction listaDeAnexos(anexos) {\n  if (Array.isArray(anexos)) return anexos.map((a) => String(a ?? '').trim()).filter(Boolean);\n  const texto = String(anexos ?? '').trim();\n  if (!texto) return [];\n  return texto.split(/\\s*,\\s*(?=https?:\\/\\/)|\\s+(?=https?:\\/\\/)/).map((a) => a.trim()).filter(Boolean);\n}\n\nfunction montarMenu(config) {\n  const linhas = ['**0** - Voltar ao menu inicial'];\n  for (const item of lerMenu(config)) linhas.push('**' + item.numero + '** - ' + item.nome);\n  return linhas.join('\\n');\n}\n\nfunction montarResumo(dados, agora) {\n  const v = (x) => String(x ?? '').trim() || '(não informado)';\n  const anexos = listaDeAnexos(dados.anexos);\n  const linhas = [\n    '📋 *Novo atendimento: ' + v(dados.assunto) + '*',\n    '',\n    '*Nome:* ' + v(dados.nome),\n    '*Telefone:* ' + v(dados.telefone),\n    '*E-mail:* ' + v(dados.email),\n  ];\n  const whatsapp = numeroDoWhatsApp(dados.whatsapp);\n  if (whatsapp) linhas.push('*WhatsApp de origem:* +' + whatsapp);\n  linhas.push('', '*Dúvida/mensagem:*', v(dados.duvida), '');\n  if (anexos.length) {\n    linhas.push('*Anexos (' + anexos.length + '):*');\n    anexos.forEach((a, i) => linhas.push((i + 1) + '. ' + a));\n  } else {\n    linhas.push('*Anexos:* nenhum');\n  }\n  linhas.push('', 'Enviado em ' + dataHoraBrasilia(agora));\n  return linhas.join('\\n');\n}\n\nfunction normalizar(texto) {\n  return String(texto ?? '')\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .toLowerCase()\n    // reserva, caso o ambiente não decomponha acentos com normalize()\n    .replace(/[áàâãä]/g, 'a').replace(/[éèêë]/g, 'e').replace(/[íìîï]/g, 'i')\n    .replace(/[óòôõö]/g, 'o').replace(/[úùûü]/g, 'u').replace(/ç/g, 'c').replace(/ñ/g, 'n')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\nfunction numeroDoWhatsApp(remoteJid) {\n  return String(remoteJid ?? '').split('@')[0].replace(/\\D/g, '');\n}\n\nfunction processarMensagem(entrada, config, remoteJid, baseFormulario) {\n  const r = reconhecer(entrada, config);\n  return JSON.stringify({\n    acao: r.acao,\n    item_nome: r.nome,\n    link_form: r.formulario ? linkFormulario(baseFormulario, r.nome, remoteJid) : '',\n  });\n}\n\nfunction reconhecer(entrada, config) {\n  const menu = lerMenu(config);\n  const t = normalizar(entrada);\n  const resultado = (acao, item) => ({\n    acao,\n    id: item ? item.id : '',\n    nome: item ? item.nome : '',\n    numero: item ? item.numero : null,\n    formulario: item ? item.formulario : false,\n  });\n  const doItem = (item) => resultado(item.ativo ? item.id : 'indisponivel', item);\n\n  if (!t) return resultado('desconhecido');\n\n  // 1. Voltar ao menu inicial\n  const voltar = [\n    '0', 'opcao 0', 'numero 0', 'zero', 'voltar', 'volta', 'menu', 'menu inicial', 'inicio',\n    'voltar ao menu', 'voltar ao menu inicial', 'voltar ao inicio', 'voltar para o menu',\n    'voltar pro menu', 'ver o menu', 'ver menu', 'opcoes', 'ver opcoes',\n  ];\n  if (voltar.includes(t)) return resultado('menu');\n\n  // 2. Número digitado (\"1\", \"1.\", \"opção 1\", \"nº 1\", \"1️⃣\")\n  const numero = t.match(/^(?:opcao|op|numero|n|item)?\\s*(\\d{1,2})$/);\n  if (numero) {\n    const n = Number(numero[1]);\n    if (n === 0) return resultado('menu');\n    const item = menu.find((i) => i.numero === n);\n    return item ? doItem(item) : resultado('desconhecido');\n  }\n\n  // 3. Nome ou apelido do item (frase inteira contida na mensagem, ou todas as palavras importantes dela)\n  const irrelevantes = [\n    'a', 'o', 'as', 'os', 'de', 'do', 'da', 'dos', 'das', 'e', 'em', 'no', 'na', 'nos', 'nas',\n    'pelo', 'pela', 'por', 'para', 'pra', 'pro', 'com', 'um', 'uma', 'ao', 'quero', 'gostaria',\n    'queria', 'preciso', 'fazer', 'ver', 'saber', 'sobre', 'meu', 'minha', 'qual', 'quais', 'o que',\n  ];\n  const palavras = t.split(' ');\n  let melhor = null;\n  for (const item of menu) {\n    for (const frase of [item.nome, ...item.apelidos]) {\n      const f = normalizar(frase);\n      if (!f) continue;\n      const importantes = f.split(' ').filter((p) => !irrelevantes.includes(p));\n      const contida = (' ' + t + ' ').includes(' ' + f + ' ');\n      const todas = importantes.length > 0 && importantes.every((p) => palavras.includes(p));\n      if ((contida || todas) && (!melhor || f.length > melhor.tamanho)) {\n        melhor = { item, tamanho: f.length };\n      }\n    }\n  }\n  if (melhor) return doItem(melhor.item);\n\n  // 4. Saudação: a mensagem só tem palavras de cumprimento (\"Oi, bom dia! Tudo bem?\")\n  const cumprimentos = [\n    'oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'e', 'ai', 'hey', 'hi', 'hello', 'alo',\n    'bom', 'boa', 'dia', 'tarde', 'noite', 'madrugada', 'tudo', 'bem', 'td', 'bm', 'como', 'vai',\n    'voce', 'vc', 'vcs', 'voces', 'esta', 'ta', 'tao', 'estao', 'pessoal', 'gente', 'equipe',\n    'pharma', 'pharmaonline', 'pharmaonlineplus', 'farmacia', 'salve', 'saudacoes', 'prezados',\n    'prezado', 'prezada', 'ok', 'sim', 'da', 'do', 'de', 'a', 'o', 'aqui', 'ai',\n  ];\n  const ehCumprimento = palavras.every((p) => cumprimentos.includes(p));\n  const temSaudacao = palavras.some((p) =>\n    ['oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'hey', 'hi', 'hello', 'alo', 'bom', 'boa',\n      'salve', 'saudacoes', 'prezados', 'prezado', 'prezada', 'tudo'].includes(p)) || t === 'e ai';\n  if (ehCumprimento && temSaudacao) return resultado('menu');\n\n  // 5. Agradecimento (\"obrigado\", \"muito obrigada\", \"valeu\")\n  const agradecimentos = ['obrigado', 'obrigada', 'obg', 'brigado', 'brigada', 'valeu', 'vlw', 'grato', 'grata', 'agradeco'];\n  if (palavras.some((p) => agradecimentos.includes(p)) && palavras.length <= 6) return resultado('agradecimento');\n\n  // 6. Não reconhecida\n  return resultado('desconhecido');\n}\n\nfunction saudacaoPorHorario(agora) {\n  const data = agora instanceof Date ? agora : new Date();\n  const hora = (data.getUTCHours() + 21) % 24;\n  if (hora >= 5 && hora < 12) return 'Bom dia';\n  if (hora >= 12 && hora < 18) return 'Boa tarde';\n  return 'Boa noite';\n}\n\nreturn processarMensagem({{entrada}}, {{menu_config}}, {{remoteJid}}, {{link_formulario}});",
+            "expressionDescription": "Reconhece a mensagem (número, frase, saudação ou 0)"
+          }
+        },
+        {
+          "id": "cg8evs3l3t3ct4jgls4mk6us",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "return JSON.parse({{resultado}}).acao;",
+            "expressionDescription": "Ação escolhida"
+          }
+        },
+        {
+          "id": "c1jy5b5nsxq2tta1ewzppivd",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v186620g58kcc0r0a8ndwg4j",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "return JSON.parse({{resultado}}).item_nome;",
+            "expressionDescription": "Nome do item escolhido"
+          }
+        },
+        {
+          "id": "c1nciamqdobb0oeyvas32k7q",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v4fptozx1t4tghl3w5vg96qp",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "return JSON.parse({{resultado}}).link_form;",
+            "expressionDescription": "Link do formulário (opções com formulário)"
+          }
+        },
+        {
+          "id": "c1i47h3vbyzhxex3zdblg06v",
+          "type": "Condition",
+          "items": [
+            {
+              "id": "c1ji8i313spjqhg9oudkankf",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "cv7xcry26udgp7m3vyzswwj7",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "menu"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c234hvq37bnwmf75hhbzeygw"
+            },
+            {
+              "id": "c1vkweyxr73yp2uqk8d95f2q",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "c1iubfxk0yk46dj3jzuwnxzf",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "app"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c1hcd7mbl9nta61n5101acti"
+            },
+            {
+              "id": "c12z0tvn8cry3kk6pcnhk6e0",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "cuhe2tnh1dwo553v9chcs7up",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "whatsapp"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "cf5evbdvtns69ifzgedm2sj5"
+            },
+            {
+              "id": "c1g25g9m3uhqdd5xy2cf0o2u",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "cglj7kl8e2x9x7lo7qg5z85x",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "site"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c1zxrlerxua0i2sgbz3lsh7w"
+            },
+            {
+              "id": "c1adzjknx2p5tglc4fs8unoe",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "c222u7za8jg8khdwdgxr7b7d",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "financeiro"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "cm0oymkjgfntq3761arpcas2"
+            },
+            {
+              "id": "cfgotwp1nsqz1zxak2ku9ej2",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "compxsaxy2v0q7mfh7wiaaql",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "redes"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c2rwqc8eft0f2ezzm4rutvtx"
+            },
+            {
+              "id": "c109anskar9kfbebaapcgae4",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "c1k6walc8u0cdyn5nz9cnhal",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "contato"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c1v51djpgio1zkopetg26v62"
+            },
+            {
+              "id": "c7j0dfvv9zgcyu79o6sfx4f3",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "cbdfu529kkzjqldpqvb4qxgt",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "indisponivel"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c15yedop7uslqmipy0g5k1pb"
+            },
+            {
+              "id": "c80fa0zhmb5fsaj7keq8ml8c",
+              "blockId": "c1i47h3vbyzhxex3zdblg06v",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "co24cytco33echod8t0d2tlc",
+                    "variableId": "v1hvt0iu7hjwpzmyz9joiu1r",
+                    "comparisonOperator": "Equal to",
+                    "value": "agradecimento"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c6cdcw2yen1y7vawnt1ndzet"
+            }
+          ],
+          "outgoingEdgeId": "cls1oa17kauju2m58rb9q5el"
+        }
+      ]
+    },
+    {
+      "id": "ccd2qo5fag1fsfrg4it4hxo4",
+      "title": "💬 Orçamento pelo app (id: app)",
+      "graphCoordinates": {
+        "x": 1400,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "c1k3x6tw9wo3cet9i3xvb2lg",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Orçamento pelo app",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Pelo nosso aplicativo, você faz o orçamento em tempo real, de forma rápida e segura."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "📲 Baixe o app:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{link_app_download}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Se você já tem o app instalado, é só abrir por este link:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{link_app_abrir}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para voltar ao menu inicial, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": "."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "co0yxcid3q98ku3h4cohas5y"
+        }
+      ]
+    },
+    {
+      "id": "cfc84jnzxaoblandykrbxtrp",
+      "title": "💬 Orçamento pelo WhatsApp (ordem de pedido) (id: whatsapp)",
+      "graphCoordinates": {
+        "x": 1400,
+        "y": 260
+      },
+      "blocks": [
+        {
+          "id": "c07ym7po7j3fjz8x3kcumxwt",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Orçamento pelo WhatsApp (ordem de pedido)",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Esta opção será configurada na próxima etapa."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para voltar ao menu inicial, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": "."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "c1b2crzm6566ali5a3qb647i"
+        }
+      ]
+    },
+    {
+      "id": "c9wvw5yuxe66e5kl4yfnm9nb",
+      "title": "💬 Acessar o site (id: site)",
+      "graphCoordinates": {
+        "x": 1400,
+        "y": 520
+      },
+      "blocks": [
+        {
+          "id": "ckx667kolwbm6qdd7gdk6tg2",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Acessar o site",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Em nosso site você encontra todas as informações sobre a pHarmaOnline."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "🌐 Acesse:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{link_site}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para voltar ao menu inicial, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": "."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "c1f5vm7anl6e8x9fi1lpel3i"
+        }
+      ]
+    },
+    {
+      "id": "ck2z8u08cg26vo4f6qhuoz8q",
+      "title": "💬 Administrativo/Financeiro (id: financeiro)",
+      "graphCoordinates": {
+        "x": 1400,
+        "y": 780
+      },
+      "blocks": [
+        {
+          "id": "c1jc6r982xcmk7il3gvmqv04",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Administrativo/Financeiro",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para que a nossa equipe possa atender você da melhor forma, preencha o formulário abaixo com os seus dados e a sua dúvida. Se quiser, você também pode anexar imagens."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "📝 Formulário:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{link_form}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para voltar ao menu inicial, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": "."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "c1t3iluhebcrwal4xe3vgcdq"
+        }
+      ]
+    },
+    {
+      "id": "c184j4emf53tbzee6qpeaqoj",
+      "title": "💬 Redes sociais (id: redes)",
+      "graphCoordinates": {
+        "x": 1400,
+        "y": 1040
+      },
+      "blocks": [
+        {
+          "id": "czk3z4laqyi3zl9f5jvvy9id",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Redes sociais",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Acompanhe a pHarmaOnline nas redes sociais (@pharmaonlineplus):"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Instagram: {{link_instagram}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Facebook: {{link_facebook}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "TikTok: {{link_tiktok}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "YouTube: {{link_youtube}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para voltar ao menu inicial, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": "."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "cjd9mynoq8k3kkwq3k18545h"
+        }
+      ]
+    },
+    {
+      "id": "cx4rpd45isbeta7a6t7ozj2a",
+      "title": "💬 Fale conosco (id: contato)",
+      "graphCoordinates": {
+        "x": 1400,
+        "y": 1300
+      },
+      "blocks": [
+        {
+          "id": "cpkweju1xw8d5qu6oobtnf70",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Fale conosco",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Ficamos felizes com o seu contato! Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "📝 Formulário:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{link_form}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para voltar ao menu inicial, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": "."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "c5ruhfuz6up70wqo8v51um6h"
+        }
+      ]
+    },
+    {
+      "id": "c5k609hy2hvhill1fiqhrp24",
+      "title": "⏳ Opção disponível em breve",
+      "graphCoordinates": {
+        "x": 1900,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "c8z5268vrwf9stak99xst8wg",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "A opção "
+                  },
+                  {
+                    "text": "{{item_nome}}",
+                    "bold": true
+                  },
+                  {
+                    "text": " estará disponível em breve."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Enquanto isso, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": " para voltar ao menu inicial e escolher outra opção."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "c1gvum1jv9s9jatrj0mvmr75"
+        }
+      ]
+    },
+    {
+      "id": "cast75oow1r4vxch8ayc8o2z",
+      "title": "🙏 Agradecimento",
+      "graphCoordinates": {
+        "x": 1900,
+        "y": 260
+      },
+      "blocks": [
+        {
+          "id": "c1jhzeieay86la7qws0qumxw",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Nós que agradecemos o seu contato!"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Se precisar de algo mais, digite "
+                  },
+                  {
+                    "text": "0",
+                    "bold": true
+                  },
+                  {
+                    "text": " para voltar ao menu inicial."
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "cvttepwh2bdw67qxzo4hunur"
+        }
+      ]
+    },
+    {
+      "id": "c21on20u8si6yclxyuouk3m1",
+      "title": "❓ Mensagem não reconhecida",
+      "graphCoordinates": {
+        "x": 1900,
+        "y": 520
+      },
+      "blocks": [
+        {
+          "id": "c1jwyy3nexxu7ebkle8b059j",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Desculpe, não consegui identificar a sua solicitação."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para que possamos ajudar, digite apenas o "
+                  },
+                  {
+                    "text": "número",
+                    "bold": true
+                  },
+                  {
+                    "text": " da opção desejada:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{menu_texto}}"
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoingEdgeId": "cphj31mx5xoi1ane1r7q2vkd"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "c132cxqvwvzbxotk6fb01v35",
+      "from": {
+        "blockId": "c0xyi64o8tg3xvavvvf06ivc"
+      },
+      "to": {
+        "groupId": "c7g1e9pyrnxd7yjcaqgmvjfi"
+      }
+    },
+    {
+      "id": "cc9ok3b7vk03y71ght9a9ux1",
+      "from": {
+        "blockId": "cnan6sdtr2exhc72hd6ubtxk"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "c234hvq37bnwmf75hhbzeygw",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c1ji8i313spjqhg9oudkankf"
+      },
+      "to": {
+        "groupId": "c7g1e9pyrnxd7yjcaqgmvjfi"
+      }
+    },
+    {
+      "id": "co0yxcid3q98ku3h4cohas5y",
+      "from": {
+        "blockId": "c1k3x6tw9wo3cet9i3xvb2lg"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "c1hcd7mbl9nta61n5101acti",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c1vkweyxr73yp2uqk8d95f2q"
+      },
+      "to": {
+        "groupId": "ccd2qo5fag1fsfrg4it4hxo4"
+      }
+    },
+    {
+      "id": "c1b2crzm6566ali5a3qb647i",
+      "from": {
+        "blockId": "c07ym7po7j3fjz8x3kcumxwt"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "cf5evbdvtns69ifzgedm2sj5",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c12z0tvn8cry3kk6pcnhk6e0"
+      },
+      "to": {
+        "groupId": "cfc84jnzxaoblandykrbxtrp"
+      }
+    },
+    {
+      "id": "c1f5vm7anl6e8x9fi1lpel3i",
+      "from": {
+        "blockId": "ckx667kolwbm6qdd7gdk6tg2"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "c1zxrlerxua0i2sgbz3lsh7w",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c1g25g9m3uhqdd5xy2cf0o2u"
+      },
+      "to": {
+        "groupId": "c9wvw5yuxe66e5kl4yfnm9nb"
+      }
+    },
+    {
+      "id": "c1t3iluhebcrwal4xe3vgcdq",
+      "from": {
+        "blockId": "c1jc6r982xcmk7il3gvmqv04"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "cm0oymkjgfntq3761arpcas2",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c1adzjknx2p5tglc4fs8unoe"
+      },
+      "to": {
+        "groupId": "ck2z8u08cg26vo4f6qhuoz8q"
+      }
+    },
+    {
+      "id": "cjd9mynoq8k3kkwq3k18545h",
+      "from": {
+        "blockId": "czk3z4laqyi3zl9f5jvvy9id"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "c2rwqc8eft0f2ezzm4rutvtx",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "cfgotwp1nsqz1zxak2ku9ej2"
+      },
+      "to": {
+        "groupId": "c184j4emf53tbzee6qpeaqoj"
+      }
+    },
+    {
+      "id": "c5ruhfuz6up70wqo8v51um6h",
+      "from": {
+        "blockId": "cpkweju1xw8d5qu6oobtnf70"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "c1v51djpgio1zkopetg26v62",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c109anskar9kfbebaapcgae4"
+      },
+      "to": {
+        "groupId": "cx4rpd45isbeta7a6t7ozj2a"
+      }
+    },
+    {
+      "id": "c1gvum1jv9s9jatrj0mvmr75",
+      "from": {
+        "blockId": "c8z5268vrwf9stak99xst8wg"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "c15yedop7uslqmipy0g5k1pb",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c7j0dfvv9zgcyu79o6sfx4f3"
+      },
+      "to": {
+        "groupId": "c5k609hy2hvhill1fiqhrp24"
+      }
+    },
+    {
+      "id": "cvttepwh2bdw67qxzo4hunur",
+      "from": {
+        "blockId": "c1jhzeieay86la7qws0qumxw"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "c6cdcw2yen1y7vawnt1ndzet",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v",
+        "itemId": "c80fa0zhmb5fsaj7keq8ml8c"
+      },
+      "to": {
+        "groupId": "cast75oow1r4vxch8ayc8o2z"
+      }
+    },
+    {
+      "id": "cphj31mx5xoi1ane1r7q2vkd",
+      "from": {
+        "blockId": "c1jwyy3nexxu7ebkle8b059j"
+      },
+      "to": {
+        "groupId": "c1qrvdkkokkavr1ovb678aed"
+      }
+    },
+    {
+      "id": "cls1oa17kauju2m58rb9q5el",
+      "from": {
+        "blockId": "c1i47h3vbyzhxex3zdblg06v"
+      },
+      "to": {
+        "groupId": "c21on20u8si6yclxyuouk3m1"
+      }
+    },
+    {
+      "id": "c227z54h6y01tasddsa3hnx3",
+      "from": {
+        "eventId": "c1bf2p21opjhbuujfvpfw1ux"
+      },
+      "to": {
+        "groupId": "c1cnf166rq75flwa464sitta"
+      }
+    }
+  ],
+  "variables": [
+    {
+      "id": "v1bkczecw6p0mkc4hjdosnyb",
+      "name": "remoteJid",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v183pruxfhyz90u3z4kyqpme",
+      "name": "pushName",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v1sto7fc4cbcvekw8pp5v453",
+      "name": "link_app_download",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v1aon26imfkhogw1tqt2f0xc",
+      "name": "link_app_abrir",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vlug36w68iu3bx5zf9w93avl",
+      "name": "link_site",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vh4ezlmp0xevved1xdaut3wd",
+      "name": "link_instagram",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v1wbl6xqplpexwtt2a57eh7a",
+      "name": "link_facebook",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v1x7m8f3kfer97dxahe197mz",
+      "name": "link_tiktok",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v9lsvc7h1q2igfbxz35h6otb",
+      "name": "link_youtube",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vd7m7zygo1yauhez9kd5481h",
+      "name": "link_formulario",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v1m7fzt66kzfggr30t7ab85u",
+      "name": "menu_config",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vf5s6a48tb5c2puw3fnjoa2m",
+      "name": "menu_texto",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v9k6yh49hk60jq2gmm90fadw",
+      "name": "saudacao",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v20x541mkmyri2lmz1igmstg",
+      "name": "entrada",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vexfxt1xip36tf15yxo7t5z7",
+      "name": "resultado",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v1hvt0iu7hjwpzmyz9joiu1r",
+      "name": "acao",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v186620g58kcc0r0a8ndwg4j",
+      "name": "item_nome",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v4fptozx1t4tghl3w5vg96qp",
+      "name": "link_form",
+      "isSessionVariable": true
+    }
+  ],
+  "theme": {
+    "general": {
+      "font": {
+        "type": "Google",
+        "family": "Montserrat"
+      },
+      "background": {
+        "type": "Color",
+        "content": "#2D4589"
+      }
+    },
+    "chat": {
+      "hostAvatar": {
+        "isEnabled": false
+      },
+      "hostBubbles": {
+        "backgroundColor": "#FFFFFF",
+        "color": "#1F2A44"
+      },
+      "guestBubbles": {
+        "backgroundColor": "#F49AC1",
+        "color": "#1F2A44"
+      },
+      "buttons": {
+        "backgroundColor": "#F49AC1",
+        "color": "#1F2A44"
+      },
+      "inputs": {
+        "backgroundColor": "#FFFFFF",
+        "color": "#1F2A44",
+        "placeholderColor": "#6B7280"
+      }
+    }
+  },
+  "selectedThemeTemplateId": null,
+  "settings": {
+    "general": {
+      "isBrandingEnabled": false
+    },
+    "metadata": {
+      "title": "pHarmaOnline · Atendimento"
+    }
+  },
+  "createdAt": "2026-11-17T12:00:00.000Z",
+  "updatedAt": "2026-11-17T12:00:00.000Z",
+  "icon": "💬",
+  "folderId": null,
+  "publicId": null,
+  "customDomain": null,
+  "workspaceId": "proWorkspace",
+  "resultsTablePreferences": null,
+  "isArchived": false,
+  "isClosed": false,
+  "whatsAppCredentialsId": null,
+  "riskLevel": null,
+  "spaceId": null
+}

@@ -1,0 +1,132 @@
+# Servidor do bot pHarmaOnline: Evolution API v2 + Typebot (builder e viewer) + Postgres + Redis + MinIO + Caddy (HTTPS).
+# Uso: copie .env.example para .env, preencha e rode `docker compose up -d` numa VPS com os domínios apontados para ela.
+name: pharmaonline-bot
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      DOMINIO_TYPEBOT: ${DOMINIO_TYPEBOT}
+      DOMINIO_VIEWER: ${DOMINIO_VIEWER}
+      DOMINIO_EVOLUTION: ${DOMINIO_EVOLUTION}
+      DOMINIO_ARQUIVOS: ${DOMINIO_ARQUIVOS}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on: [typebot-builder, typebot-viewer, evolution-api, minio]
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: typebot
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redis_data:/data]
+
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_USUARIO}
+      MINIO_ROOT_PASSWORD: ${MINIO_SENHA}
+    volumes: [minio_data:/data]
+
+  # Cria o bucket "typebot" (anexos do formulário) com leitura pública dos arquivos enviados.
+  minio-bucket:
+    image: minio/mc:latest
+    depends_on: [minio]
+    restart: "no"
+    entrypoint: >
+      /bin/sh -c "sleep 5;
+      mc alias set local http://minio:9000 $${MINIO_USUARIO} $${MINIO_SENHA};
+      mc mb --ignore-existing local/typebot;
+      mc anonymous set download local/typebot/public;
+      exit 0;"
+    environment:
+      MINIO_USUARIO: ${MINIO_USUARIO}
+      MINIO_SENHA: ${MINIO_SENHA}
+
+  typebot-builder:
+    image: baptistearno/typebot-builder:latest
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_started }
+    environment: &typebot_env
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/typebot
+      REDIS_URL: redis://redis:6379
+      ENCRYPTION_SECRET: ${TYPEBOT_ENCRYPTION_SECRET}
+      NEXTAUTH_URL: https://${DOMINIO_TYPEBOT}
+      NEXT_PUBLIC_VIEWER_URL: https://${DOMINIO_VIEWER}
+      ADMIN_EMAIL: ${TYPEBOT_ADMIN_EMAIL}
+      DISABLE_SIGNUP: "true"
+      DEFAULT_WORKSPACE_PLAN: UNLIMITED
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USUARIO}
+      SMTP_PASSWORD: ${SMTP_SENHA}
+      SMTP_SECURE: ${SMTP_SECURE}
+      NEXT_PUBLIC_SMTP_FROM: ${SMTP_REMETENTE}
+      S3_ACCESS_KEY: ${MINIO_USUARIO}
+      S3_SECRET_KEY: ${MINIO_SENHA}
+      S3_BUCKET: typebot
+      S3_ENDPOINT: ${DOMINIO_ARQUIVOS}
+      S3_SSL: "true"
+      S3_PUBLIC_CUSTOM_DOMAIN: https://${DOMINIO_ARQUIVOS}
+      # Deixa o Typebot chamar a Evolution pela rede interna (http://evolution-api:8080).
+      SSRF_ALLOWED_HOSTS: evolution-api
+
+  typebot-viewer:
+    image: baptistearno/typebot-viewer:latest
+    restart: unless-stopped
+    depends_on: [typebot-builder]
+    environment: *typebot_env
+
+  evolution-api:
+    image: evoapicloud/evolution-api:v2.3.7
+    restart: unless-stopped
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_started }
+    environment:
+      SERVER_URL: https://${DOMINIO_EVOLUTION}
+      AUTHENTICATION_API_KEY: ${EVOLUTION_API_KEY}
+      DEL_INSTANCE: "false"
+      DATABASE_PROVIDER: postgresql
+      DATABASE_CONNECTION_URI: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/evolution?schema=public
+      DATABASE_CONNECTION_CLIENT_NAME: evolution
+      CACHE_REDIS_ENABLED: "true"
+      CACHE_REDIS_URI: redis://redis:6379/6
+      CACHE_REDIS_PREFIX_KEY: evolution
+      CACHE_LOCAL_ENABLED: "false"
+      TYPEBOT_ENABLED: "true"
+      TYPEBOT_API_VERSION: latest
+      # WhatsApp Cloud API (oficial da Meta)
+      WA_BUSINESS_TOKEN_WEBHOOK: ${META_TOKEN_VERIFICACAO_WEBHOOK}
+      WA_BUSINESS_URL: https://graph.facebook.com
+      WA_BUSINESS_VERSION: v21.0
+      WA_BUSINESS_LANGUAGE: pt_BR
+    volumes: [evolution_instances:/evolution/instances]
+
+volumes:
+  caddy_data:
+  postgres_data:
+  redis_data:
+  minio_data:
+  evolution_instances:

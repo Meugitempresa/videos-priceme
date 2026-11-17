@@ -1,0 +1,24 @@
+{
+  "_ajuda": [
+    "Dados provisórios. Copie para config/variaveis.json, preencha com os dados reais e rode `npm run gerar`.",
+    "Também dá para editar direto no Typebot, no grupo '⚙️ Configuração (edite aqui)' de cada fluxo."
+  ],
+  "atendimento": {
+    "link_app_download": "https://LINK-DOWNLOAD-DO-APP",
+    "link_app_abrir": "https://LINK-PARA-ABRIR-O-APP",
+    "link_site": "https://LINK-DO-SITE",
+    "link_instagram": "https://www.instagram.com/pharmaonlineplus",
+    "link_facebook": "https://www.facebook.com/pharmaonlineplus",
+    "link_tiktok": "https://www.tiktok.com/@pharmaonlineplus",
+    "link_youtube": "https://www.youtube.com/@pharmaonlineplus",
+    "link_formulario": "https://TYPEBOT-VIEWER/pharma-formulario"
+  },
+  "formulario": {
+    "evolution_url": "http://evolution-api:8080",
+    "evolution_instancia": "pharmaonline",
+    "evolution_apikey": "CHAVE-DA-INSTANCIA",
+    "numero_atendente": "55DDDNUMERO",
+    "template_atendente": "",
+    "template_idioma": "pt_BR"
+  }
+}

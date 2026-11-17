@@ -1,0 +1,97 @@
+{
+  "_ajuda": [
+    "Itens do menu, na ordem em que aparecem. O número de cada um vem da posição na lista (1, 2, 3...).",
+    "Para reordenar, mova o item; para excluir, apague o item: a numeração se ajusta sozinha.",
+    "id: não altere (liga o item à resposta dele no Typebot).",
+    "nome: texto mostrado no menu. apelidos: frases que também abrem o item (além do número e do nome).",
+    "ativo: false mostra 'disponível em breve'. formulario: true gera o link do formulário com o assunto = nome."
+  ],
+  "itens": [
+    {
+      "id": "app",
+      "nome": "Orçamento pelo app",
+      "apelidos": [
+        "orçamento em tempo real pelo app",
+        "orçamento em tempo real",
+        "orçamento pelo aplicativo",
+        "orçar pelo app",
+        "orçar pelo aplicativo",
+        "baixar o app",
+        "baixar o aplicativo",
+        "aplicativo",
+        "app"
+      ],
+      "ativo": true
+    },
+    {
+      "id": "whatsapp",
+      "nome": "Orçamento pelo WhatsApp (ordem de pedido)",
+      "apelidos": [
+        "orçamento pelo whatsapp",
+        "orçamento pelo zap",
+        "orçar pelo whatsapp",
+        "ordem de pedido",
+        "enviar receita",
+        "mandar receita",
+        "foto da receita"
+      ],
+      "ativo": false
+    },
+    {
+      "id": "site",
+      "nome": "Acessar o site",
+      "apelidos": [
+        "site",
+        "acessar site",
+        "endereço do site",
+        "link do site",
+        "página"
+      ],
+      "ativo": true
+    },
+    {
+      "id": "financeiro",
+      "nome": "Administrativo/Financeiro",
+      "apelidos": [
+        "administrativo",
+        "financeiro",
+        "administrativo financeiro",
+        "boleto",
+        "nota fiscal",
+        "pagamento"
+      ],
+      "ativo": true,
+      "formulario": true
+    },
+    {
+      "id": "redes",
+      "nome": "Redes sociais",
+      "apelidos": [
+        "redes",
+        "instagram",
+        "insta",
+        "facebook",
+        "tiktok",
+        "tik tok",
+        "youtube"
+      ],
+      "ativo": true
+    },
+    {
+      "id": "contato",
+      "nome": "Fale conosco",
+      "apelidos": [
+        "fale conosco",
+        "falar conosco",
+        "contato",
+        "entrar em contato",
+        "falar com atendente",
+        "falar com uma pessoa",
+        "atendente",
+        "atendimento humano"
+      ],
+      "ativo": true,
+      "formulario": true
+    }
+  ]
+}

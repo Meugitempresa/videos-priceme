@@ -1,0 +1,16 @@
+# HTTPS automático (Let's Encrypt) para os quatro domínios do .env.
+{$DOMINIO_TYPEBOT} {
+	reverse_proxy typebot-builder:3000
+}
+
+{$DOMINIO_VIEWER} {
+	reverse_proxy typebot-viewer:3000
+}
+
+{$DOMINIO_EVOLUTION} {
+	reverse_proxy evolution-api:8080
+}
+
+{$DOMINIO_ARQUIVOS} {
+	reverse_proxy minio:9000
+}

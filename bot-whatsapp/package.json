@@ -1,0 +1,12 @@
+{
+  "name": "bot-whatsapp-pharmaonline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bot de atendimento pHarmaOnline (Typebot + Evolution API + WhatsApp Cloud API)",
+  "type": "module",
+  "scripts": {
+    "gerar": "node scripts/gerar-typebot.mjs",
+    "simular": "node scripts/simular.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}
