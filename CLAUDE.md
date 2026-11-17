@@ -69,6 +69,13 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
 - Layout: tela 78 % no alto; faixa inferior com a Julia (janela) e a legenda; nome "JULIA" só no início.
 - Final: `npx remotion render src/index.ts TutorialPharmaOnline out/tutorial-pharmaonline.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=256k`
 
+## Bot de atendimento WhatsApp pHarmaOnline — `bot-whatsapp/`
+
+- Projeto separado dos vídeos: Typebot + Evolution API v2 + WhatsApp Cloud API (oficial da Meta). Bot simples, sem IA.
+- Situação, pendências da cliente e passos da Meta em `bot-whatsapp/PROXIMOS-PASSOS.md`; instalação em `bot-whatsapp/README.md`.
+- Editar `config/` e rodar `npm run gerar` (em `bot-whatsapp/`) para recriar `typebot/*.json`; `npm test` e `npm run simular` para conferir.
+- Resumo do formulário vai ao atendente por e-mail (conta Meta sem cartão, moeda em dólar). Nunca pedir tokens ou senhas no chat.
+
 ## Tutorial pHarmaOnline — Parte 2 — `src/tutorial2`
 
 - Mesmo layout da Parte 1 (`TutorialLayout` em `src/tutorial/Tutorial.tsx`, parametrizado por `ConfigTutorial`).
