@@ -40,7 +40,8 @@ async function conversa(mensagens, contato = { telefone: '5511988887777', nome: 
 
 test('WhatsApp: primeira mensagem recebe boas-vindas com o menu (site oculto, números em sequência)', async () => {
   const { respostas, s } = await conversa([]);
-  assert.match(respostas[0], /^(Bom dia|Boa tarde|Boa noite)! Seja bem-vindo\(a\) à \*pHarmaOnline\*/);
+  assert.match(respostas[0], /^Olá! Seja muito bem-vindo\(a\) à \*pHarmaOnline\* 😊/);
+  assert.doesNotMatch(respostas[0], /Bom dia|Boa tarde|Boa noite/);
   assert.match(respostas[0], /\*0\* - Voltar ao menu inicial\n\*1\* - Orçamento pelo app\n\*2\* - Orçamento pelo WhatsApp \(ordem de pedido\)\n\*3\* - Administrativo\/Financeiro\n\*4\* - Redes sociais\n\*5\* - Fale conosco$/);
   assert.doesNotMatch(respostas[0], /site/i);
   assert.equal(s.aguardando, 'text input');
@@ -52,7 +53,13 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(r1, /^\*Orçamento pelo app\*/);
   assert.match(r1, /https:\/\/orcpharm\.app\/pharmaonline\//);
   assert.equal(r1f, r1);
-  assert.match(r2, /estará disponível em breve/);
+  assert.match(r2, /^\*Orçamento pelo WhatsApp \(ordem de pedido\)\*/);
+  assert.match(r2, /atendido\(a\) por uma pessoa da nossa equipe/);
+  assert.match(r2, /\(31\) 9921-1377/);
+  assert.match(r2, /https:\/\/wa\.me\/553199211377/);
+  assert.match(r3, /resposta da nossa equipe será enviada para o \*e-mail\*/);
+  assert.match(r5, /resposta da nossa equipe será enviada para o \*e-mail\*/);
+  assert.doesNotMatch(r5, /Ficamos felizes/);
   assert.match(r3, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
   assert.match(r4, /instagram\.com\/pharmaonlineplus[\s\S]*facebook\.com\/pharmaonlineplus[\s\S]*tiktok[\s\S]*youtube/);
   assert.match(r5, /pharma-formulario\?assunto=Fale%20conosco&whatsapp=5511988887777/);
@@ -62,8 +69,9 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(rx, /^Desculpe, não consegui identificar[\s\S]*\*5\* - Fale conosco/);
   assert.equal(roi, respostas[0]);
   assert.match(robg, /agradecemos/);
+  assert.match(robg, /\*pHarmaOnline\*, conectando confiança à sua conveniência 💜$/);
   assert.match(rredes, /^\*Redes sociais\*/);
-  for (const r of [r1, r3, r4, r5]) assert.match(r, /digite \*0\*/);
+  for (const r of [r1, r2, r3, r4, r5]) assert.match(r, /digite \*0\*/);
   assert.equal(s.terminou, false);
   assert.equal(s.aguardando, 'text input');
 });
@@ -112,6 +120,7 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
     await s.responder('Preciso da segunda via do boleto.\nVenceu ontem "hoje".');
     const final = (await s.responder('https://s3.exemplo/a.png https://s3.exemplo/b.png')).join('\n');
     assert.match(final, /Pronto, Maria da Silva! Recebemos as suas informações/);
+    assert.match(final, /entrará em contato com você pelo e-mail \*maria@exemplo\.com\*/);
     assert.equal(s.terminou, true);
 
     assert.equal(s.emails.length, 1);
@@ -143,7 +152,7 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
     assert.equal(cliente.headers.authorization, 'Bearer token-teste');
     assert.equal(cliente.corpo.to, '5511988887777');
     assert.match(cliente.corpo.text.body, /^Olá, Maria da Silva! Recebemos o seu formulário de \*Administrativo\/Financeiro\*/);
-    assert.match(cliente.corpo.text.body, /Em breve, uma pessoa da nossa equipe entrará em contato/);
+    assert.match(cliente.corpo.text.body, /Em breve, a nossa equipe entrará em contato com você pelo e-mail \*maria@exemplo\.com\*/);
   } finally {
     srv.close();
   }

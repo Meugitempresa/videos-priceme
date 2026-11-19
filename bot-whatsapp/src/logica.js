@@ -49,15 +49,6 @@ export function montarMenu(config) {
   return linhas.join('\n');
 }
 
-/** "Bom dia" / "Boa tarde" / "Boa noite" no horário de Brasília (UTC-3, sem horário de verão). */
-export function saudacaoPorHorario(agora) {
-  const data = agora instanceof Date ? agora : new Date();
-  const hora = (data.getUTCHours() + 21) % 24;
-  if (hora >= 5 && hora < 12) return 'Bom dia';
-  if (hora >= 12 && hora < 18) return 'Boa tarde';
-  return 'Boa noite';
-}
-
 /** Só os dígitos do número do WhatsApp ("+55 11 99999-9999" ou "5511999999999@s.whatsapp.net" -> "5511999999999"). */
 export function numeroDoWhatsApp(remoteJid) {
   return String(remoteJid ?? '').split('@')[0].replace(/\D/g, '');
@@ -78,7 +69,7 @@ export function linkFormulario(base, assunto, whatsapp) {
  *  1. "0" / "voltar" / "menu"  -> acao "menu" (volta à primeira mensagem)
  *  2. número de 1 a N          -> o item
  *  3. nome ou apelido do item  -> o item (vence a frase mais longa encontrada)
- *  4. saudação                 -> acao "menu" (cumprimento + menu)
+ *  4. saudação                 -> acao "menu" (boas-vindas + menu)
  *  5. agradecimento            -> acao "agradecimento"
  *  6. qualquer outra coisa     -> acao "desconhecido" (explica e mostra o menu)
  * Item ativo -> acao = id do item; item inativo -> acao "indisponivel".

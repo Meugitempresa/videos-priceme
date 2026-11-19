@@ -36,7 +36,7 @@
         "mandar receita",
         "foto da receita"
       ],
-      "ativo": false
+      "ativo": true
     },
     {
       "id": "site",

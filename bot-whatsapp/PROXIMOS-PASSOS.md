@@ -38,9 +38,14 @@ A SendPulse foi avaliada e descartada.
 - [ ] **Link do site:** a loja está na Nuvemshop e ainda não foi publicada. O item `site` está **oculto** (não aparece
       no menu; os outros itens ficam numerados de 1 a 5). Quando publicar, a cliente ativa: trocar `link_site` e pôr
       `"oculto": false` (no Typebot, bloco `menu_config`; ou em `config/menu.json`). O site volta como opção 3.
-- [ ] **Aprovação dos textos das mensagens** (`config/textos.json`).
+- [ ] **Aprovação dos textos** (`config/textos.json`). Ajustes de 19/11 feitos:
+      - saudação fixa, sem horário;
+      - opções 3 e 5 avisam que a resposta vem por e-mail;
+      - "Fale conosco" sem "Ficamos felizes…";
+      - slogan com 💜 no agradecimento;
+      - tela final e aviso no WhatsApp citam o e-mail.
 - [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM) e 3 domínios: painel do Typebot, bot e arquivos.
-- [ ] **Opção 2** (Orçamento pelo WhatsApp / ordem de pedido): falta definir quais documentos pedir e para onde vai o pedido.
+- [x] **Opção 2** (19/11): encaminha para atendimento humano no (31) 9921-1377 (link wa.me/553199211377), pedindo a foto da receita.
 
 ## Situação na Meta (WhatsApp Cloud API)
 - O número **+55 31 9788-2066 (Pharma Online)** já está na conta do WhatsApp na Meta, com status **"Offline"**:
@@ -66,4 +71,3 @@ A SendPulse foi avaliada e descartada.
 2. Subir o servidor (`servidor/`), importar os dois fluxos no Typebot e publicar.
 3. Registrar o número na Meta, ligar o WhatsApp no Typebot (Compartilhar → WhatsApp) e configurar o webhook.
 4. Testar com um celular de verdade: opções 0 a 6, formulário e e-mail ao atendente.
-5. Fazer a opção 2.

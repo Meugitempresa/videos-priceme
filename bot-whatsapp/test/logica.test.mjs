@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import fs from 'node:fs';
 import {
-  normalizar, lerMenu, montarMenu, reconhecer, saudacaoPorHorario, linkFormulario,
+  normalizar, lerMenu, montarMenu, reconhecer, linkFormulario,
   montarResumo, montarResumoHtml, assuntoEmail, corpoAtendente, urlMensagensMeta, corpoCliente, listaDeAnexos, dataHoraBrasilia,
 } from '../src/logica.js';
 
@@ -32,14 +32,14 @@ test('0 e palavras de voltar levam ao menu inicial', () => {
   }
 });
 
-test('números de 1 a 6 abrem os itens (2 está desativado)', () => {
+test('números de 1 a 6 abrem os itens', () => {
   assert.equal(acao('1'), 'app');
   assert.equal(acao(1), 'app');
   assert.equal(acao('opção 1'), 'app');
   assert.equal(acao('1.'), 'app');
   assert.equal(acao('1️⃣'), 'app');
   assert.equal(acao('nº 3'), 'site');
-  assert.equal(acao('2'), 'indisponivel');
+  assert.equal(acao('2'), 'whatsapp');
   assert.equal(reconhecer('2', menu).nome, 'Orçamento pelo WhatsApp (ordem de pedido)');
   assert.equal(acao('3'), 'site');
   assert.equal(acao('4'), 'financeiro');
@@ -60,6 +60,13 @@ test('configuração atual: site oculto até a loja ser publicada, sem buraco na
   assert.equal(acao('4', publicado), 'financeiro');
 });
 
+test('item com ativo: false responde "disponível em breve" (pelo número e pela frase)', () => {
+  const comItemInativo = { itens: menu.itens.map((i) => (i.id === 'whatsapp' ? { ...i, ativo: false } : i)) };
+  assert.equal(acao('2', comItemInativo), 'indisponivel');
+  assert.equal(acao('ordem de pedido', comItemInativo), 'indisponivel');
+  assert.equal(reconhecer('2', comItemInativo).nome, 'Orçamento pelo WhatsApp (ordem de pedido)');
+});
+
 test('número fora do menu não é aceito', () => {
   for (const t of ['7', '10', '99', '1,5', '12345']) assert.equal(acao(t), 'desconhecido', t);
 });
@@ -78,7 +85,7 @@ test('frases e nomes das opções funcionam sem o número', () => {
     'vocês tem instagram?': 'redes',
     'Fale conosco': 'contato',
     'quero falar com atendente': 'contato',
-    'orçamento pelo whatsapp': 'indisponivel',
+    'orçamento pelo whatsapp': 'whatsapp',
     'Oi, quero ver o site': 'site',
   };
   for (const [texto, esperado] of Object.entries(casos)) assert.equal(acao(texto), esperado, texto);
@@ -121,13 +128,6 @@ test('aceita a configuração como texto JSON (como vem do Typebot) e ignora con
   assert.equal(acao('5', JSON.stringify(menu.itens)), 'redes');
   assert.equal(acao('1', '{quebrado'), 'desconhecido');
   assert.equal(acao('0', '{quebrado'), 'menu');
-});
-
-test('saudação conforme o horário de Brasília', () => {
-  assert.equal(saudacaoPorHorario(new Date('2026-11-17T11:00:00Z')), 'Bom dia'); // 08h
-  assert.equal(saudacaoPorHorario(new Date('2026-11-17T16:00:00Z')), 'Boa tarde'); // 13h
-  assert.equal(saudacaoPorHorario(new Date('2026-11-17T23:30:00Z')), 'Boa noite'); // 20h30
-  assert.equal(saudacaoPorHorario(new Date('2026-11-17T05:00:00Z')), 'Boa noite'); // 02h
 });
 
 test('link do formulário leva o assunto e o WhatsApp', () => {

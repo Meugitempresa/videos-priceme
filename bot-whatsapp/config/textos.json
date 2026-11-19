@@ -5,7 +5,7 @@
     "Depois de importar no Typebot, os textos também podem ser editados direto nos balões de cada grupo."
   ],
   "boas_vindas": [
-    "{{saudacao}}! Seja bem-vindo(a) à *pHarmaOnline* 😊",
+    "Olá! Seja muito bem-vindo(a) à *pHarmaOnline* 😊",
     "",
     "Para agilizar o seu atendimento, digite o *número* da opção desejada:",
     "",
@@ -26,7 +26,9 @@
   "agradecimento": [
     "Nós que agradecemos o seu contato!",
     "",
-    "Se precisar de algo mais, digite *0* para voltar ao menu inicial."
+    "Se precisar de algo mais, digite *0* para voltar ao menu inicial.",
+    "",
+    "*pHarmaOnline*, conectando confiança à sua conveniência 💜"
   ],
   "respostas": {
     "app": [
@@ -42,7 +44,12 @@
     "whatsapp": [
       "*Orçamento pelo WhatsApp (ordem de pedido)*",
       "",
-      "Esta opção será configurada na próxima etapa.",
+      "Para fazer o seu orçamento pelo WhatsApp, você será atendido(a) por uma pessoa da nossa equipe.",
+      "",
+      "💬 Fale com a gente pelo número {{telefone_atendimento}} ou toque no link:",
+      "{{link_atendimento}}",
+      "",
+      "Se tiver a receita, envie uma foto dela logo no início da conversa para agilizar o seu orçamento.",
       "",
       "Para voltar ao menu inicial, digite *0*."
     ],
@@ -64,7 +71,7 @@
       "📝 Formulário:",
       "{{link_form}}",
       "",
-      "Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato.",
+      "📧 A resposta da nossa equipe será enviada para o *e-mail* que você informar no formulário.",
       "",
       "Para voltar ao menu inicial, digite *0*."
     ],
@@ -83,12 +90,12 @@
     "contato": [
       "*Fale conosco*",
       "",
-      "Ficamos felizes com o seu contato! Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens.",
+      "Quer falar com a nossa equipe? Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens.",
       "",
       "📝 Formulário:",
       "{{link_form}}",
       "",
-      "Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato.",
+      "📧 A resposta da nossa equipe será enviada para o *e-mail* que você informar no formulário.",
       "",
       "Para voltar ao menu inicial, digite *0*."
     ]
@@ -118,13 +125,13 @@
     "final": [
       "Pronto, {{nome}}! Recebemos as suas informações. ✅",
       "",
-      "Em breve, uma pessoa da nossa equipe entrará em contato com você.",
+      "Em breve, a nossa equipe entrará em contato com você pelo e-mail *{{email}}*.",
       "Você já pode fechar esta página."
     ],
     "aviso_whatsapp": [
       "Olá, {{nome}}! Recebemos o seu formulário de *{{assunto}}*. ✅",
       "",
-      "Em breve, uma pessoa da nossa equipe entrará em contato com você.",
+      "Em breve, a nossa equipe entrará em contato com você pelo e-mail *{{email}}*.",
       "",
       "Para voltar ao menu inicial, digite *0*."
     ]

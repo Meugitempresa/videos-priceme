@@ -181,7 +181,6 @@ export function gerarAtendimento({ menu, textos, vars }) {
 
   const gBoas = grupo(b, 'boas', '👋 Boas-vindas / menu inicial (opção 0)', 450, 0, [
     blocoCodigo(b, 'menu_texto', 'return montarMenu({{menu_config}});', 'Monta a lista numerada do menu'),
-    blocoCodigo(b, 'saudacao', 'return saudacaoPorHorario(new Date());', 'Bom dia / Boa tarde / Boa noite'),
     blocoTexto(b, 'boas', textos.boas_vindas),
   ]);
   ligar(b, gCfg.blocks.at(-1), 'cfg>boas', gBoas);

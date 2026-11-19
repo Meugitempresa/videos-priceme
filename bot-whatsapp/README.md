@@ -9,13 +9,16 @@ Se a mensagem não tiver relação com o menu, ele explica em uma frase como esc
 
 | Nº | Opção | Status |
 |----|-------|--------|
-| 0 | Voltar ao menu inicial | ✅ pronto (funciona em qualquer ponto da conversa) |
-| 1 | Orçamento pelo app | ✅ pronto (links provisórios) |
-| 2 | Orçamento pelo WhatsApp (ordem de pedido) | ⏳ próxima parte (responde "disponível em breve") |
-| 3 | Acessar o site | ✅ pronto (link provisório) |
-| 4 | Administrativo/Financeiro | ✅ pronto (formulário web; resumo ao atendente por e-mail) |
-| 5 | Redes sociais | ✅ pronto (links provisórios @pharmaonlineplus) |
-| 6 | Fale conosco | ✅ pronto (formulário web; resumo ao atendente por e-mail) |
+| 0 | Voltar ao menu inicial | ✅ funciona em qualquer ponto da conversa |
+| 1 | Orçamento pelo app | ✅ link https://orcpharm.app/pharmaonline/ |
+| 2 | Orçamento pelo WhatsApp (ordem de pedido) | ✅ encaminha para atendimento humano: (31) 9921-1377 (wa.me/553199211377) |
+| 3 | Administrativo/Financeiro | ✅ formulário web; resposta por e-mail |
+| 4 | Redes sociais | ✅ Instagram, Facebook, TikTok e YouTube (@pharmaonlineplus) |
+| 5 | Fale conosco | ✅ formulário web; resposta por e-mail |
+| – | Acessar o site | 🙈 oculto até a loja da Nuvemshop ser publicada (`"oculto": true`; ao mostrar, vira a opção 3) |
+
+A saudação é fixa ("Olá! Seja muito bem-vindo(a)…"), sem variar por horário. O agradecimento termina com o slogan:
+"pHarmaOnline, conectando confiança à sua conveniência 💜".
 
 **Como chega o formulário preenchido:** o atendente recebe **um e-mail organizado** com todos os dados
 (`docs/previa-email-atendente.png`). O botão "Responder" do e-mail já vai para o cliente. O cliente recebe no WhatsApp o aviso
@@ -23,8 +26,8 @@ de que em breve entrarão em contato. O envio do resumo também por WhatsApp est
 conta da Meta (veja o passo 5 da instalação).
 
 **Dados pendentes (a cliente envia):**
-- links do app, do site e das redes sociais;
-- e-mail que recebe os formulários (`email_atendente`);
+- link do site (quando a loja for publicada);
+- e-mail que envia os avisos (SMTP);
 - domínios e servidor;
 - textos finais das mensagens.
 
@@ -35,7 +38,7 @@ A lógica fica em `src/logica.js` e segue esta ordem:
 2. **Número da opção** → resposta da opção. Também aceita "1.", "opção 1", "nº 1" e "1️⃣".
 3. **Nome ou frase da opção** → mesma resposta do número. Ex.: "orçamento em tempo real pelo app", "quero falar com atendente",
    "vocês têm instagram?". As frases aceitas ficam em `apelidos`, em `config/menu.json`.
-4. **Saudação** ("oi", "olá", "bom dia, tudo bem?"…) → "Bom dia/Boa tarde/Boa noite" (horário de Brasília) e o menu.
+4. **Saudação** ("oi", "olá", "bom dia, tudo bem?"…) → boas-vindas e o menu.
 5. **Agradecimento** ("obrigado", "valeu") → resposta curta e educada.
 6. **Qualquer outra coisa** → "Desculpe, não consegui identificar…" e o menu.
 
