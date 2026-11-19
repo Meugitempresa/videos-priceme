@@ -27,7 +27,8 @@ export function lerMenu(config) {
   if (dados && !Array.isArray(dados)) dados = dados.itens;
   if (!Array.isArray(dados)) return [];
   return dados
-    .filter((item) => item && item.id && item.nome)
+    // oculto: true tira o item do menu (não aparece, não ganha número e não é reconhecido)
+    .filter((item) => item && item.id && item.nome && item.oculto !== true)
     .map((item, i) => ({
       id: String(item.id),
       nome: String(item.nome),

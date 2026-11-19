@@ -161,12 +161,13 @@ export function gerarAtendimento({ menu, textos, vars }) {
     '// para reordenar, mova o bloco: a numeração se ajusta sozinha.',
     '// id: NÃO altere (liga o item à resposta dele). nome: texto do menu.',
     '// apelidos: frases que também abrem o item. ativo: false = "disponível em breve".',
+    '// oculto: true = o item some do menu (não aparece nem ganha número); false = volta a aparecer.',
     '// formulario: true = gera o link do formulário com o assunto igual ao nome.',
     '// Item novo: crie também um grupo de resposta e uma condição "acao = id" no bloco Condition.',
   ].join('\n');
   const itensCodigo = itens.map((i) => {
-    const { id, nome, apelidos, ativo, formulario } = i;
-    return { id, nome, apelidos, ativo, ...(formulario ? { formulario } : {}) };
+    const { id, nome, apelidos, ativo, formulario, oculto } = i;
+    return { id, nome, apelidos, ativo, ...(formulario ? { formulario } : {}), ...(oculto !== undefined ? { oculto } : {}) };
   });
 
   const gCfg = grupo(b, 'cfg', '⚙️ Configuração (edite aqui)', 0, 0, [

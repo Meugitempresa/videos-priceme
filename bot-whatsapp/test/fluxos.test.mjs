@@ -38,38 +38,38 @@ async function conversa(mensagens, contato = { telefone: '5511988887777', nome: 
   return { s, respostas };
 }
 
-test('WhatsApp: primeira mensagem recebe boas-vindas com o menu completo', async () => {
+test('WhatsApp: primeira mensagem recebe boas-vindas com o menu (site oculto, números em sequência)', async () => {
   const { respostas, s } = await conversa([]);
   assert.match(respostas[0], /^(Bom dia|Boa tarde|Boa noite)! Seja bem-vindo\(a\) à \*pHarmaOnline\*/);
-  for (const linha of ['*0* - Voltar ao menu inicial', '*1* - Orçamento pelo app', '*2* - Orçamento pelo WhatsApp (ordem de pedido)', '*3* - Acessar o site', '*4* - Administrativo/Financeiro', '*5* - Redes sociais', '*6* - Fale conosco']) {
-    assert.ok(respostas[0].includes(linha), linha);
-  }
+  assert.match(respostas[0], /\*0\* - Voltar ao menu inicial\n\*1\* - Orçamento pelo app\n\*2\* - Orçamento pelo WhatsApp \(ordem de pedido\)\n\*3\* - Administrativo\/Financeiro\n\*4\* - Redes sociais\n\*5\* - Fale conosco$/);
+  assert.doesNotMatch(respostas[0], /site/i);
   assert.equal(s.aguardando, 'text input');
 });
 
 test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', async () => {
-  const { respostas, s } = await conversa(['1', 'Orçamento pelo app', '2', '3', '4', '5', '6', '0', 'xyz', 'oi', 'obrigado', 'redes sociais']);
-  const [, r1, r1f, r2, r3, r4, r5, r6, r0, rx, roi, robg, rredes] = respostas;
+  const { respostas, s } = await conversa(['1', 'Orçamento pelo app', '2', '3', '4', '5', '6', 'acessar o site', '0', 'xyz', 'oi', 'obrigado', 'redes sociais']);
+  const [, r1, r1f, r2, r3, r4, r5, r6, rsite, r0, rx, roi, robg, rredes] = respostas;
   assert.match(r1, /^\*Orçamento pelo app\*/);
   assert.match(r1, /https:\/\/orcpharm\.app\/pharmaonline\//);
   assert.equal(r1f, r1);
   assert.match(r2, /estará disponível em breve/);
-  assert.match(r3, /A opção \*Acessar o site\* estará disponível em breve/); // loja ainda não publicada
-  assert.match(r4, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
-  assert.match(r5, /instagram\.com\/pharmaonlineplus[\s\S]*facebook[\s\S]*tiktok[\s\S]*youtube/);
-  assert.match(r6, /pharma-formulario\?assunto=Fale%20conosco&whatsapp=5511988887777/);
+  assert.match(r3, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
+  assert.match(r4, /instagram\.com\/pharmaonlineplus[\s\S]*facebook\.com\/pharmaonlineplus[\s\S]*tiktok[\s\S]*youtube/);
+  assert.match(r5, /pharma-formulario\?assunto=Fale%20conosco&whatsapp=5511988887777/);
+  assert.match(r6, /^Desculpe, não consegui identificar/); // não existe opção 6 com o site oculto
+  assert.match(rsite, /^Desculpe, não consegui identificar/); // site oculto não é reconhecido
   assert.equal(r0, respostas[0]);
-  assert.match(rx, /^Desculpe, não consegui identificar[\s\S]*\*6\* - Fale conosco/);
+  assert.match(rx, /^Desculpe, não consegui identificar[\s\S]*\*5\* - Fale conosco/);
   assert.equal(roi, respostas[0]);
   assert.match(robg, /agradecemos/);
   assert.match(rredes, /^\*Redes sociais\*/);
-  for (const r of [r1, r3, r4, r5, r6]) assert.match(r, /digite \*0\*/);
+  for (const r of [r1, r3, r4, r5]) assert.match(r, /digite \*0\*/);
   assert.equal(s.terminou, false);
   assert.equal(s.aguardando, 'text input');
 });
 
 test('WhatsApp: sem número do contato (teste no painel do Typebot) o link do formulário sai sem o número', async () => {
-  const { respostas } = await conversa(['4'], null);
+  const { respostas } = await conversa(['3'], null);
   assert.match(respostas[1], /pharma-formulario\?assunto=Administrativo%2FFinanceiro\n/);
 });
 

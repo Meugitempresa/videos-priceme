@@ -7,8 +7,9 @@ import {
 } from '../src/logica.js';
 
 const menuConfig = JSON.parse(fs.readFileSync(new URL('../config/menu.json', import.meta.url), 'utf8'));
-// Os testes de reconhecimento usam o menu real, mas com o site ativo (ele está desativado até a loja ser publicada).
-const menu = { itens: menuConfig.itens.map((i) => (i.id === 'site' ? { ...i, ativo: true } : i)) };
+// Os testes de reconhecimento usam o menu real com o site visível (na configuração atual ele está oculto até a
+// loja ser publicada); assim os números de 1 a 6 continuam valendo nestes testes.
+const menu = { itens: menuConfig.itens.map((i) => (i.id === 'site' ? { ...i, ativo: true, oculto: false } : i)) };
 const acao = (texto, cfg = menu) => reconhecer(texto, cfg).acao;
 
 test('normaliza acentos, pontuação, emojis e números com tecla', () => {
@@ -46,10 +47,17 @@ test('números de 1 a 6 abrem os itens (2 está desativado)', () => {
   assert.equal(acao('6'), 'contato');
 });
 
-test('configuração atual: site desativado até a loja ser publicada (responde "em breve")', () => {
-  assert.equal(acao('3', menuConfig), 'indisponivel');
-  assert.equal(acao('acessar o site', menuConfig), 'indisponivel');
-  assert.equal(reconhecer('3', menuConfig).nome, 'Acessar o site');
+test('configuração atual: site oculto até a loja ser publicada, sem buraco na numeração', () => {
+  assert.deepEqual(lerMenu(menuConfig).map((i) => i.numero + ':' + i.id), ['1:app', '2:whatsapp', '3:financeiro', '4:redes', '5:contato']);
+  assert.equal(acao('3', menuConfig), 'financeiro');
+  assert.equal(acao('5', menuConfig), 'contato');
+  assert.equal(acao('6', menuConfig), 'desconhecido');
+  assert.equal(acao('acessar o site', menuConfig), 'desconhecido');
+  assert.doesNotMatch(montarMenu(menuConfig), /site/i);
+  // ao publicar a loja, basta oculto: false
+  const publicado = { itens: menuConfig.itens.map((i) => (i.id === 'site' ? { ...i, oculto: false } : i)) };
+  assert.equal(acao('3', publicado), 'site');
+  assert.equal(acao('4', publicado), 'financeiro');
 });
 
 test('número fora do menu não é aceito', () => {

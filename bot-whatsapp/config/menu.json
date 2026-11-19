@@ -4,7 +4,8 @@
     "Para reordenar, mova o item; para excluir, apague o item: a numeração se ajusta sozinha.",
     "id: não altere (liga o item à resposta dele no Typebot).",
     "nome: texto mostrado no menu. apelidos: frases que também abrem o item (além do número e do nome).",
-    "ativo: false mostra 'disponível em breve'. formulario: true gera o link do formulário com o assunto = nome."
+    "ativo: false mostra 'disponível em breve'. formulario: true gera o link do formulário com o assunto = nome.",
+    "oculto: true esconde o item do menu (não aparece nem ganha número); para mostrar, troque para false."
   ],
   "itens": [
     {
@@ -47,7 +48,8 @@
         "link do site",
         "página"
       ],
-      "ativo": false
+      "ativo": true,
+      "oculto": true
     },
     {
       "id": "financeiro",

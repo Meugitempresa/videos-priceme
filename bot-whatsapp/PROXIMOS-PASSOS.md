@@ -35,8 +35,9 @@ A SendPulse foi avaliada e descartada.
 - [x] **Redes sociais** (enviadas em 19/11; já no bot, sem "https://www." para ficarem curtas).
       Facebook com nome de usuário criado em 19/11: facebook.com/pharmaonlineplus.
 - [x] **Link do app:** https://orcpharm.app/pharmaonline/ (um link só, que serve para acessar o app; opção 1 ajustada).
-- [ ] **Link do site:** a loja está na Nuvemshop e ainda não foi publicada. A opção 3 está desativada e responde
-      "disponível em breve". Quando publicar, basta trocar `link_site` e pôr `"ativo": true` no item `site` de `config/menu.json`.
+- [ ] **Link do site:** a loja está na Nuvemshop e ainda não foi publicada. O item `site` está **oculto** (não aparece
+      no menu; os outros itens ficam numerados de 1 a 5). Quando publicar, a cliente ativa: trocar `link_site` e pôr
+      `"oculto": false` (no Typebot, bloco `menu_config`; ou em `config/menu.json`). O site volta como opção 3.
 - [ ] **Aprovação dos textos das mensagens** (`config/textos.json`).
 - [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM) e 3 domínios: painel do Typebot, bot e arquivos.
 - [ ] **Opção 2** (Orçamento pelo WhatsApp / ordem de pedido): falta definir quais documentos pedir e para onde vai o pedido.
