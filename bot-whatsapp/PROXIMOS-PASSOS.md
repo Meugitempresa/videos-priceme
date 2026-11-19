@@ -32,8 +32,9 @@ A SendPulse foi avaliada e descartada.
 - [ ] **E-mail que envia (SMTP):** basta dizer o provedor (Gmail, Outlook, Hostinger, Locaweb…) e o endereço.
       A senha **não** vai no chat; ela entra direto no `.env` do servidor. No Gmail, use uma "senha de app"
       (verificação em duas etapas → Senhas de app).
-- [ ] **Links:** download do app, abrir o app, site, Instagram, Facebook, TikTok e YouTube. Os das redes foram
-      deduzidos de @pharmaonlineplus e precisam de confirmação.
+- [x] **Redes sociais** (enviadas em 19/11; já no bot, sem "https://www." para ficarem curtas).
+      Facebook ainda é `profile.php?id=…`: dá para encurtar criando o nome de usuário da página no Facebook.
+- [ ] **Links do app** (baixar e abrir) e **do site**.
 - [ ] **Aprovação dos textos das mensagens** (`config/textos.json`).
 - [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM) e 3 domínios: painel do Typebot, bot e arquivos.
 - [ ] **Opção 2** (Orçamento pelo WhatsApp / ordem de pedido): falta definir quais documentos pedir e para onde vai o pedido.
