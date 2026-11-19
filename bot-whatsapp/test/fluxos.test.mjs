@@ -67,7 +67,8 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(r5, /pharma-formulario\?assunto=Fale%20conosco&whatsapp=5511988887777/);
   assert.match(r6, /^Desculpe, não entendi\./); // não existe opção 6 com o site oculto
   assert.match(rsite, /^Desculpe, não entendi\./); // site oculto não é reconhecido
-  assert.equal(r0, respostas[0]);
+  assert.match(r0, /^Digite o \*número\* da opção desejada:[\s\S]*\*5\* - Fale conosco$/); // 0: só o menu
+  assert.doesNotMatch(r0, /Seja bem-vindo|\[imagem/);
   assert.match(rx, /^Desculpe, não entendi\.[\s\S]*\*5\* - Fale conosco/);
   assert.equal(roi, respostas[0]);
   assert.match(robg, /agradecemos/);
@@ -78,7 +79,7 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.equal(s.aguardando, 'text input');
 });
 
-test('WhatsApp: com link_banner configurado, a primeira mensagem (e o 0) começa pelo banner', async () => {
+test('WhatsApp: com link_banner configurado, o banner vai só na saudação (não no 0)', async () => {
   const tb = ler('atendimento.json');
   const idBanner = tb.variables.find((v) => v.name === 'link_banner').id;
   for (const g of tb.groups) for (const b of g.blocks) {
@@ -90,7 +91,8 @@ test('WhatsApp: com link_banner configurado, a primeira mensagem (e o 0) começa
   assert.equal(inicio[0], '[imagem: https://arquivos.exemplo/banner-pharmaonline.jpg]');
   assert.match(inicio[1], /^Olá! Seja bem-vindo\(a\) à \*pHarmaOnline\*! 💊💜$/);
   assert.match(inicio[2], /^Digite o \*número\*/);
-  assert.deepEqual(await s.responder('0'), inicio);
+  assert.deepEqual(await s.responder('oi'), inicio); // saudação repete banner + boas-vindas + menu
+  assert.deepEqual(await s.responder('0'), [inicio[2]]); // 0: só o menu, sem banner
 });
 
 test('WhatsApp: sem número do contato (teste no painel do Typebot) o link do formulário sai sem o número', async () => {

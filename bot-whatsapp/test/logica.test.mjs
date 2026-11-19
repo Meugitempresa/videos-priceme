@@ -91,9 +91,9 @@ test('frases e nomes das opções funcionam sem o número', () => {
   for (const [texto, esperado] of Object.entries(casos)) assert.equal(acao(texto), esperado, texto);
 });
 
-test('saudações mostram o menu', () => {
+test('saudações recebem as boas-vindas (com banner) e o menu', () => {
   for (const t of ['oi', 'Olá', 'olá!', 'Oi, bom dia!', 'boa tarde', 'Boa noite, tudo bem?', 'e aí', 'opa', 'oie', 'tudo bem?', 'Olá pessoal da pHarmaOnline']) {
-    assert.equal(acao(t), 'menu', t);
+    assert.equal(acao(t), 'saudacao', t);
   }
 });
 

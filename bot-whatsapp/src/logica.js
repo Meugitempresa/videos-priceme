@@ -66,10 +66,10 @@ export function linkFormulario(base, assunto, whatsapp) {
 
 /**
  * Decide o que fazer com a mensagem recebida. Ordem:
- *  1. "0" / "voltar" / "menu"  -> acao "menu" (volta à primeira mensagem)
+ *  1. "0" / "voltar" / "menu"  -> acao "menu" (só o menu, sem banner)
  *  2. número de 1 a N          -> o item
  *  3. nome ou apelido do item  -> o item (vence a frase mais longa encontrada)
- *  4. saudação                 -> acao "menu" (boas-vindas + menu)
+ *  4. saudação                 -> acao "saudacao" (banner + boas-vindas + menu)
  *  5. agradecimento            -> acao "agradecimento"
  *  6. qualquer outra coisa     -> acao "desconhecido" (explica e mostra o menu)
  * Item ativo -> acao = id do item; item inativo -> acao "indisponivel".
@@ -139,7 +139,7 @@ export function reconhecer(entrada, config) {
   const temSaudacao = palavras.some((p) =>
     ['oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'hey', 'hi', 'hello', 'alo', 'bom', 'boa',
       'salve', 'saudacoes', 'prezados', 'prezado', 'prezada', 'tudo'].includes(p)) || t === 'e ai';
-  if (ehCumprimento && temSaudacao) return resultado('menu');
+  if (ehCumprimento && temSaudacao) return resultado('saudacao');
 
   // 5. Agradecimento ("obrigado", "muito obrigada", "valeu")
   const agradecimentos = ['obrigado', 'obrigada', 'obg', 'brigado', 'brigada', 'valeu', 'vlw', 'grato', 'grata', 'agradeco'];

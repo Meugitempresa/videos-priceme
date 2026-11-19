@@ -15,7 +15,7 @@ const lerJson = (rel) => JSON.parse(fs.readFileSync(path.join(RAIZ, rel), 'utf8'
 export const CORES = { azul: '#2D4589', rosa: '#F49AC1', branco: '#FFFFFF', texto: '#1F2A44', cinza: '#6B7280' };
 
 /** Acoes reservadas da lógica (não podem ser usadas como id de item). */
-const ACOES_RESERVADAS = ['menu', 'indisponivel', 'agradecimento', 'desconhecido'];
+const ACOES_RESERVADAS = ['menu', 'saudacao', 'indisponivel', 'agradecimento', 'desconhecido'];
 
 /** Código-fonte de todas as funções de src/logica.js, para colar nos blocos de código. */
 const FONTE_LOGICA = Object.values(logica)
@@ -191,7 +191,7 @@ export function gerarAtendimento({ menu, textos, vars }) {
       'Itens do menu', false),
   ]);
 
-  // Primeira mensagem (e opção 0): banner (se link_banner tiver endereço) -> saudação -> menu.
+  // Primeira mensagem e saudações: banner (se link_banner tiver endereço) -> saudação -> menu.
   const gBoasTexto = grupo(b, 'boas-texto', '👋 Saudação e menu', 450, 300, [
     blocoTexto(b, 'saudacao', textos.saudacao),
     blocoTexto(b, 'boas', textos.boas_vindas),
@@ -201,7 +201,7 @@ export function gerarAtendimento({ menu, textos, vars }) {
   ligar(b, banner, 'banner>texto', gBoasTexto);
   const seBanner = condicaoSeDefinida(b, 'banner', 'link_banner', gBanner);
   seBanner.outgoingEdgeId = b.aresta('senao:banner', { blockId: seBanner.id }, gBoasTexto.id);
-  const gBoas = grupo(b, 'boas', '👋 Boas-vindas / menu inicial (opção 0)', 450, 0, [
+  const gBoas = grupo(b, 'boas', '👋 Boas-vindas (primeiro contato e saudações)', 450, 0, [
     blocoCodigo(b, 'menu_texto', 'return montarMenu({{menu_config}});', 'Monta a lista numerada do menu'),
     seBanner,
   ]);
@@ -228,7 +228,11 @@ export function gerarAtendimento({ menu, textos, vars }) {
       outgoingEdgeId: b.aresta('rota:' + valor, { blockId: condicao.id, itemId }, destino.id),
     });
   };
-  rota('menu', gBoas);
+  // Saudação (e o primeiro contato): banner + boas-vindas + menu. Opção 0: só o menu, sem banner.
+  rota('saudacao', gBoas);
+  const gMenu = grupo(b, 'menu', '📋 Menu (opção 0)', 1400, -300, [blocoTexto(b, 'menu', textos.boas_vindas)]);
+  ligar(b, gMenu.blocks[0], 'menu>espera', gEspera);
+  rota('menu', gMenu);
 
   const resposta = (chave, titulo, x, y, linhas) => {
     const g = grupo(b, chave, titulo, x, y, [blocoTexto(b, chave, linhas)]);
