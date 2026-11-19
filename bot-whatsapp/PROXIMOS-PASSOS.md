@@ -47,6 +47,10 @@ A SendPulse foi avaliada e descartada.
 - [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM) e 3 domínios: painel do Typebot, bot e arquivos.
 - [x] **Opção 2** (19/11): encaminha para atendimento humano no (31) 9921-1377 (link wa.me/553199211377), pedindo a foto da receita.
 
+- [ ] **Banner da primeira mensagem:** arquivo em `midia/banner-pharmaonline.jpg`. Na instalação, enviar para o
+      servidor (ou fazer upload no balão de imagem do Typebot) e preencher `link_banner`. Vazio = bot começa pela saudação.
+- Textos encurtados em 19/11 (saudação com 💊💜, opção 2 sem receita, número com 9: (31) 99921-1377), aguardando "aprovado".
+
 ## Situação na Meta (WhatsApp Cloud API)
 - O número **+55 31 9788-2066 (Pharma Online)** já está na conta do WhatsApp na Meta, com status **"Offline"**:
   foi adicionado, mas ainda não foi registrado na API.

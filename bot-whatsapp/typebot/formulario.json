@@ -133,7 +133,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Olá! Este é o formulário de atendimento da "
+                    "text": "Olá! Este é o atendimento da "
                   },
                   {
                     "text": "pHarmaOnline",
@@ -153,22 +153,6 @@
                   {
                     "text": "{{assunto}}",
                     "bold": true
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Leva menos de um minuto. Os campos de nome, telefone e e-mail são obrigatórios."
                   }
                 ]
               }
@@ -218,7 +202,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Obrigado, {{nome}}! Qual é o seu "
+                    "text": "Qual é o seu "
                   },
                   {
                     "text": "telefone",
@@ -289,14 +273,14 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Agora, escreva a sua "
+                    "text": "Escreva a sua "
                   },
                   {
                     "text": "dúvida ou mensagem",
                     "bold": true
                   },
                   {
-                    "text": ", com todos os detalhes que achar importantes."
+                    "text": ":"
                   }
                 ]
               }
@@ -331,7 +315,7 @@
                     "bold": true
                   },
                   {
-                    "text": " que ajudem a entender a sua solicitação (opcional)."
+                    "text": " (opcional):"
                   }
                 ]
               }
@@ -416,7 +400,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Pronto, {{nome}}! Recebemos as suas informações. ✅"
+                    "text": "Pronto, {{nome}}! ✅"
                   }
                 ]
               },
@@ -424,15 +408,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Em breve, a nossa equipe entrará em contato com você pelo e-mail "
+                    "text": "Responderemos em breve pelo e-mail "
                   },
                   {
                     "text": "{{email}}",
@@ -571,7 +547,7 @@
             "variableId": "v1mi5g1p7is4nxet75s0qxgd",
             "type": "Custom",
             "isCode": false,
-            "expressionToEvaluate": "Olá, {{nome}}! Recebemos o seu formulário de *{{assunto}}*. ✅\n\nEm breve, a nossa equipe entrará em contato com você pelo e-mail *{{email}}*.\n\nPara voltar ao menu inicial, digite *0*."
+            "expressionToEvaluate": "Olá, {{nome}}! Recebemos seu formulário de *{{assunto}}*. ✅\nResponderemos em breve pelo e-mail *{{email}}*.\n\nPara voltar ao menu, digite *0*."
           }
         },
         {

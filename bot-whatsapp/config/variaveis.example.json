@@ -2,12 +2,14 @@
   "_ajuda": [
     "Dados provisórios. Copie para config/variaveis.json, preencha com os dados reais e rode `npm run gerar`.",
     "Também dá para editar direto no Typebot, no grupo '⚙️ Configuração (edite aqui)' de cada fluxo.",
-    "meta_token: token permanente do usuário do sistema (Meta). Preencha só no Typebot do servidor, nunca no git."
+    "meta_token: token permanente do usuário do sistema (Meta). Preencha só no Typebot do servidor, nunca no git.",
+    "link_banner: endereço público do banner (midia/banner-pharmaonline.jpg) depois de enviado ao servidor; vazio = sem imagem."
   ],
   "atendimento": {
+    "link_banner": "",
     "link_app": "https://orcpharm.app/pharmaonline/",
-    "telefone_atendimento": "(31) 9921-1377",
-    "link_atendimento": "https://wa.me/553199211377",
+    "telefone_atendimento": "(31) 99921-1377",
+    "link_atendimento": "https://wa.me/5531999211377",
     "link_site": "https://LINK-DO-SITE",
     "link_instagram": "instagram.com/pharmaonlineplus",
     "link_facebook": "facebook.com/pharmaonlineplus",

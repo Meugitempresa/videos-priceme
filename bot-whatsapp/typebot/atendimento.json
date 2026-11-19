@@ -31,6 +31,16 @@
           }
         },
         {
+          "id": "cmdhgduxia9c2p8ukmbv8cfe",
+          "type": "Set variable",
+          "options": {
+            "variableId": "v3cnwe652c5qwxsiq1tmgrio",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": ""
+          }
+        },
+        {
           "id": "cv85t934cvnpwn2k5apyjz18",
           "type": "Set variable",
           "options": {
@@ -47,7 +57,7 @@
             "variableId": "v1dor7g86p3pirhkth8fl9ka",
             "type": "Custom",
             "isCode": false,
-            "expressionToEvaluate": "(31) 9921-1377"
+            "expressionToEvaluate": "(31) 99921-1377"
           }
         },
         {
@@ -57,7 +67,7 @@
             "variableId": "v7bgmnnfgjb90dw37tc1cqyb",
             "type": "Custom",
             "isCode": false,
-            "expressionToEvaluate": "https://wa.me/553199211377"
+            "expressionToEvaluate": "https://wa.me/5531999211377"
           }
         },
         {
@@ -135,22 +145,34 @@
       ]
     },
     {
-      "id": "c7g1e9pyrnxd7yjcaqgmvjfi",
-      "title": "👋 Boas-vindas / menu inicial (opção 0)",
+      "id": "c199xsngac1rfqlejirvwq3f",
+      "title": "👋 Saudação e menu",
       "graphCoordinates": {
         "x": 450,
-        "y": 0
+        "y": 300
       },
       "blocks": [
         {
-          "id": "c19jttai5nhid19vj7saoorc",
-          "type": "Set variable",
-          "options": {
-            "variableId": "vf5s6a48tb5c2puw3fnjoa2m",
-            "type": "Custom",
-            "isCode": true,
-            "expressionToEvaluate": "// Monta a lista numerada do menu\n// Lógica gerada a partir de bot-whatsapp/src/logica.js (não precisa editar).\n\nfunction assuntoEmail(dados) {\n  const nome = String(dados.nome ?? '').trim();\n  return 'Novo atendimento: ' + (String(dados.assunto ?? '').trim() || 'Fale conosco') + (nome ? ' – ' + nome : '');\n}\n\nfunction corpoAtendente(dados, numeroAtendente, template, idioma, agora) {\n  const numero = String(numeroAtendente ?? '').replace(/\\D/g, '');\n  const nomeTemplate = String(template ?? '').trim();\n  if (!nomeTemplate) {\n    return JSON.stringify({\n      messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',\n      text: { preview_url: false, body: montarResumo(dados, agora) },\n    });\n  }\n  // Parâmetros de modelo não aceitam quebras de linha nem 4+ espaços seguidos.\n  const limpar = (x) => (String(x ?? '').trim() || '(não informado)')\n    .replace(/\\s*\\n+\\s*/g, ' / ').replace(/\\s{4,}/g, '   ').slice(0, 1000);\n  const anexos = listaDeAnexos(dados.anexos);\n  const parametros = [\n    dados.assunto, dados.nome, dados.telefone, dados.email, dados.duvida,\n    anexos.length ? anexos.join(' ; ') : 'nenhum',\n  ].map((texto) => ({ type: 'text', text: limpar(texto) }));\n  return JSON.stringify({\n    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'template',\n    template: {\n      name: nomeTemplate,\n      language: { code: String(idioma ?? '').trim() || 'pt_BR' },\n      components: [{ type: 'body', parameters: parametros }],\n    },\n  });\n}\n\nfunction corpoCliente(whatsapp, telefoneDigitado, texto) {\n  const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\\D/g, '');\n  return JSON.stringify({\n    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',\n    text: { preview_url: false, body: String(texto ?? '') },\n  });\n}\n\nfunction dataHoraBrasilia(agora) {\n  const d = new Date((agora instanceof Date ? agora : new Date()).getTime() - 3 * 3600 * 1000);\n  const dois = (n) => String(n).padStart(2, '0');\n  return dois(d.getUTCDate()) + '/' + dois(d.getUTCMonth() + 1) + '/' + d.getUTCFullYear() +\n    ' às ' + dois(d.getUTCHours()) + ':' + dois(d.getUTCMinutes());\n}\n\nfunction lerMenu(config) {\n  let dados = config;\n  if (typeof dados === 'string') {\n    try { dados = JSON.parse(dados); } catch (e) { dados = []; }\n  }\n  if (dados && !Array.isArray(dados)) dados = dados.itens;\n  if (!Array.isArray(dados)) return [];\n  return dados\n    // oculto: true tira o item do menu (não aparece, não ganha número e não é reconhecido)\n    .filter((item) => item && item.id && item.nome && item.oculto !== true)\n    .map((item, i) => ({\n      id: String(item.id),\n      nome: String(item.nome),\n      apelidos: Array.isArray(item.apelidos) ? item.apelidos.map(String) : [],\n      ativo: item.ativo !== false,\n      formulario: item.formulario === true,\n      numero: i + 1,\n    }));\n}\n\nfunction linkFormulario(base, assunto, whatsapp) {\n  const url = String(base ?? '').trim();\n  if (!url) return '';\n  let link = url + (url.includes('?') ? '&' : '?') + 'assunto=' + encodeURIComponent(assunto || '');\n  const numero = numeroDoWhatsApp(whatsapp);\n  if (numero) link += '&whatsapp=' + numero;\n  return link;\n}\n\nfunction listaDeAnexos(anexos) {\n  if (Array.isArray(anexos)) return anexos.map((a) => String(a ?? '').trim()).filter(Boolean);\n  const texto = String(anexos ?? '').trim();\n  if (!texto) return [];\n  return texto.split(/\\s*,\\s*(?=https?:\\/\\/)|\\s+(?=https?:\\/\\/)/).map((a) => a.trim()).filter(Boolean);\n}\n\nfunction montarMenu(config) {\n  const linhas = ['**0** - Voltar ao menu inicial'];\n  for (const item of lerMenu(config)) linhas.push('**' + item.numero + '** - ' + item.nome);\n  return linhas.join('\\n');\n}\n\nfunction montarResumo(dados, agora) {\n  const v = (x) => String(x ?? '').trim() || '(não informado)';\n  const anexos = listaDeAnexos(dados.anexos);\n  const linhas = [\n    '📋 *Novo atendimento: ' + v(dados.assunto) + '*',\n    '',\n    '*Nome:* ' + v(dados.nome),\n    '*Telefone:* ' + v(dados.telefone),\n    '*E-mail:* ' + v(dados.email),\n  ];\n  const whatsapp = numeroDoWhatsApp(dados.whatsapp);\n  if (whatsapp) linhas.push('*WhatsApp de origem:* +' + whatsapp);\n  linhas.push('', '*Dúvida/mensagem:*', v(dados.duvida), '');\n  if (anexos.length) {\n    linhas.push('*Anexos (' + anexos.length + '):*');\n    anexos.forEach((a, i) => linhas.push((i + 1) + '. ' + a));\n  } else {\n    linhas.push('*Anexos:* nenhum');\n  }\n  linhas.push('', 'Enviado em ' + dataHoraBrasilia(agora));\n  return linhas.join('\\n');\n}\n\nfunction montarResumoHtml(dados, agora) {\n  const esc = (x) => String(x ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')\n    .replace(/\"/g, '&quot;').replace(/'/g, '&#39;');\n  const v = (x) => esc(String(x ?? '').trim() || '(não informado)');\n  const anexos = listaDeAnexos(dados.anexos);\n  const whatsapp = numeroDoWhatsApp(dados.whatsapp);\n  const linha = (rotulo, valor) =>\n    '<tr><td style=\"padding:6px 12px 6px 0;color:#2D4589;font-weight:bold;white-space:nowrap;vertical-align:top\">' +\n    rotulo + '</td><td style=\"padding:6px 0;color:#1F2A44\">' + valor + '</td></tr>';\n  const email = String(dados.email ?? '').trim();\n  const linhas = [\n    linha('Nome', v(dados.nome)),\n    linha('Telefone', v(dados.telefone)),\n    linha('E-mail', email ? '<a href=\"mailto:' + esc(email) + '\" style=\"color:#2D4589\">' + esc(email) + '</a>' : v('')),\n  ];\n  if (whatsapp) linhas.push(linha('WhatsApp de origem', '<a href=\"https://wa.me/' + whatsapp + '\" style=\"color:#2D4589\">+' + whatsapp + '</a>'));\n  const listaAnexos = anexos.length\n    ? '<ol style=\"margin:0;padding-left:20px\">' + anexos.map((a) =>\n      '<li><a href=\"' + esc(a) + '\" style=\"color:#2D4589\">' + esc(a) + '</a></li>').join('') + '</ol>'\n    : 'nenhum';\n  return '<div style=\"font-family:Montserrat,Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #E3E7F2;border-radius:10px;overflow:hidden\">' +\n    '<div style=\"background:#2D4589;color:#FFFFFF;padding:18px 22px;font-size:18px;font-weight:bold\">' +\n    'Novo atendimento: ' + v(dados.assunto) + '</div>' +\n    '<div style=\"height:4px;background:#F49AC1\"></div>' +\n    '<div style=\"padding:18px 22px;font-size:15px;line-height:1.5\">' +\n    '<table style=\"border-collapse:collapse\">' + linhas.join('') + '</table>' +\n    '<p style=\"margin:18px 0 6px;color:#2D4589;font-weight:bold\">Dúvida/mensagem</p>' +\n    '<div style=\"background:#F6F7FB;border-left:4px solid #F49AC1;padding:12px 14px;color:#1F2A44\">' +\n    v(dados.duvida).replace(/\\r?\\n/g, '<br>') + '</div>' +\n    '<p style=\"margin:18px 0 6px;color:#2D4589;font-weight:bold\">Anexos (' + anexos.length + ')</p>' + listaAnexos +\n    '<p style=\"margin:22px 0 0;color:#6B7280;font-size:13px\">Enviado em ' + dataHoraBrasilia(agora) +\n    ' pelo formulário de atendimento. Para falar com o cliente, basta responder este e-mail.</p>' +\n    '</div></div>';\n}\n\nfunction normalizar(texto) {\n  return String(texto ?? '')\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .toLowerCase()\n    // reserva, caso o ambiente não decomponha acentos com normalize()\n    .replace(/[áàâãä]/g, 'a').replace(/[éèêë]/g, 'e').replace(/[íìîï]/g, 'i')\n    .replace(/[óòôõö]/g, 'o').replace(/[úùûü]/g, 'u').replace(/ç/g, 'c').replace(/ñ/g, 'n')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\nfunction numeroDoWhatsApp(remoteJid) {\n  return String(remoteJid ?? '').split('@')[0].replace(/\\D/g, '');\n}\n\nfunction processarMensagem(entrada, config, telefoneWhatsApp, baseFormulario) {\n  const r = reconhecer(entrada, config);\n  return JSON.stringify({\n    acao: r.acao,\n    item_nome: r.nome,\n    link_form: r.formulario ? linkFormulario(baseFormulario, r.nome, telefoneWhatsApp) : '',\n  });\n}\n\nfunction reconhecer(entrada, config) {\n  const menu = lerMenu(config);\n  const t = normalizar(entrada);\n  const resultado = (acao, item) => ({\n    acao,\n    id: item ? item.id : '',\n    nome: item ? item.nome : '',\n    numero: item ? item.numero : null,\n    formulario: item ? item.formulario : false,\n  });\n  const doItem = (item) => resultado(item.ativo ? item.id : 'indisponivel', item);\n\n  if (!t) return resultado('desconhecido');\n\n  // 1. Voltar ao menu inicial\n  const voltar = [\n    '0', 'opcao 0', 'numero 0', 'zero', 'voltar', 'volta', 'menu', 'menu inicial', 'inicio',\n    'voltar ao menu', 'voltar ao menu inicial', 'voltar ao inicio', 'voltar para o menu',\n    'voltar pro menu', 'ver o menu', 'ver menu', 'opcoes', 'ver opcoes',\n  ];\n  if (voltar.includes(t)) return resultado('menu');\n\n  // 2. Número digitado (\"1\", \"1.\", \"opção 1\", \"nº 1\", \"1️⃣\")\n  const numero = t.match(/^(?:opcao|op|numero|n|item)?\\s*(\\d{1,2})$/);\n  if (numero) {\n    const n = Number(numero[1]);\n    if (n === 0) return resultado('menu');\n    const item = menu.find((i) => i.numero === n);\n    return item ? doItem(item) : resultado('desconhecido');\n  }\n\n  // 3. Nome ou apelido do item (frase inteira contida na mensagem, ou todas as palavras importantes dela)\n  const irrelevantes = [\n    'a', 'o', 'as', 'os', 'de', 'do', 'da', 'dos', 'das', 'e', 'em', 'no', 'na', 'nos', 'nas',\n    'pelo', 'pela', 'por', 'para', 'pra', 'pro', 'com', 'um', 'uma', 'ao', 'quero', 'gostaria',\n    'queria', 'preciso', 'fazer', 'ver', 'saber', 'sobre', 'meu', 'minha', 'qual', 'quais', 'o que',\n  ];\n  const palavras = t.split(' ');\n  let melhor = null;\n  for (const item of menu) {\n    for (const frase of [item.nome, ...item.apelidos]) {\n      const f = normalizar(frase);\n      if (!f) continue;\n      const importantes = f.split(' ').filter((p) => !irrelevantes.includes(p));\n      const contida = (' ' + t + ' ').includes(' ' + f + ' ');\n      const todas = importantes.length > 0 && importantes.every((p) => palavras.includes(p));\n      if ((contida || todas) && (!melhor || f.length > melhor.tamanho)) {\n        melhor = { item, tamanho: f.length };\n      }\n    }\n  }\n  if (melhor) return doItem(melhor.item);\n\n  // 4. Saudação: a mensagem só tem palavras de cumprimento (\"Oi, bom dia! Tudo bem?\")\n  const cumprimentos = [\n    'oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'e', 'ai', 'hey', 'hi', 'hello', 'alo',\n    'bom', 'boa', 'dia', 'tarde', 'noite', 'madrugada', 'tudo', 'bem', 'td', 'bm', 'como', 'vai',\n    'voce', 'vc', 'vcs', 'voces', 'esta', 'ta', 'tao', 'estao', 'pessoal', 'gente', 'equipe',\n    'pharma', 'pharmaonline', 'pharmaonlineplus', 'farmacia', 'salve', 'saudacoes', 'prezados',\n    'prezado', 'prezada', 'ok', 'sim', 'da', 'do', 'de', 'a', 'o', 'aqui', 'ai',\n  ];\n  const ehCumprimento = palavras.every((p) => cumprimentos.includes(p));\n  const temSaudacao = palavras.some((p) =>\n    ['oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'hey', 'hi', 'hello', 'alo', 'bom', 'boa',\n      'salve', 'saudacoes', 'prezados', 'prezado', 'prezada', 'tudo'].includes(p)) || t === 'e ai';\n  if (ehCumprimento && temSaudacao) return resultado('menu');\n\n  // 5. Agradecimento (\"obrigado\", \"muito obrigada\", \"valeu\")\n  const agradecimentos = ['obrigado', 'obrigada', 'obg', 'brigado', 'brigada', 'valeu', 'vlw', 'grato', 'grata', 'agradeco'];\n  if (palavras.some((p) => agradecimentos.includes(p)) && palavras.length <= 6) return resultado('agradecimento');\n\n  // 6. Não reconhecida\n  return resultado('desconhecido');\n}\n\nfunction urlMensagensMeta(base, versao, idNumero) {\n  return String(base ?? '').trim().replace(/\\/+$/, '') + '/' + (String(versao ?? '').trim() || 'v21.0') + '/' +\n    String(idNumero ?? '').trim() + '/messages';\n}\n\nreturn montarMenu({{menu_config}});",
-            "expressionDescription": "Monta a lista numerada do menu"
+          "id": "cf82ypn5f8yl7d5nbl1nreuu",
+          "type": "text",
+          "content": {
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Olá! Seja bem-vindo(a) à "
+                  },
+                  {
+                    "text": "pHarmaOnline",
+                    "bold": true
+                  },
+                  {
+                    "text": "! 💊💜"
+                  }
+                ]
+              }
+            ]
           }
         },
         {
@@ -162,30 +184,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Olá! Seja muito bem-vindo(a) à "
-                  },
-                  {
-                    "text": "pHarmaOnline",
-                    "bold": true
-                  },
-                  {
-                    "text": " 😊"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Para agilizar o seu atendimento, digite o "
+                    "text": "Digite o "
                   },
                   {
                     "text": "número",
@@ -215,6 +214,66 @@
             ]
           },
           "outgoingEdgeId": "cc9ok3b7vk03y71ght9a9ux1"
+        }
+      ]
+    },
+    {
+      "id": "c1d1rqud9lsqixc8rrb3lilt",
+      "title": "🖼️ Banner da pHarmaOnline",
+      "graphCoordinates": {
+        "x": 450,
+        "y": -250
+      },
+      "blocks": [
+        {
+          "id": "c1asjdmluayiuuc76e5g6lgz",
+          "type": "image",
+          "content": {
+            "url": "{{link_banner}}"
+          },
+          "outgoingEdgeId": "cj9zuzx19ewcx9zu2ehkhmec"
+        }
+      ]
+    },
+    {
+      "id": "c7g1e9pyrnxd7yjcaqgmvjfi",
+      "title": "👋 Boas-vindas / menu inicial (opção 0)",
+      "graphCoordinates": {
+        "x": 450,
+        "y": 0
+      },
+      "blocks": [
+        {
+          "id": "c19jttai5nhid19vj7saoorc",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vf5s6a48tb5c2puw3fnjoa2m",
+            "type": "Custom",
+            "isCode": true,
+            "expressionToEvaluate": "// Monta a lista numerada do menu\n// Lógica gerada a partir de bot-whatsapp/src/logica.js (não precisa editar).\n\nfunction assuntoEmail(dados) {\n  const nome = String(dados.nome ?? '').trim();\n  return 'Novo atendimento: ' + (String(dados.assunto ?? '').trim() || 'Fale conosco') + (nome ? ' – ' + nome : '');\n}\n\nfunction corpoAtendente(dados, numeroAtendente, template, idioma, agora) {\n  const numero = String(numeroAtendente ?? '').replace(/\\D/g, '');\n  const nomeTemplate = String(template ?? '').trim();\n  if (!nomeTemplate) {\n    return JSON.stringify({\n      messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',\n      text: { preview_url: false, body: montarResumo(dados, agora) },\n    });\n  }\n  // Parâmetros de modelo não aceitam quebras de linha nem 4+ espaços seguidos.\n  const limpar = (x) => (String(x ?? '').trim() || '(não informado)')\n    .replace(/\\s*\\n+\\s*/g, ' / ').replace(/\\s{4,}/g, '   ').slice(0, 1000);\n  const anexos = listaDeAnexos(dados.anexos);\n  const parametros = [\n    dados.assunto, dados.nome, dados.telefone, dados.email, dados.duvida,\n    anexos.length ? anexos.join(' ; ') : 'nenhum',\n  ].map((texto) => ({ type: 'text', text: limpar(texto) }));\n  return JSON.stringify({\n    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'template',\n    template: {\n      name: nomeTemplate,\n      language: { code: String(idioma ?? '').trim() || 'pt_BR' },\n      components: [{ type: 'body', parameters: parametros }],\n    },\n  });\n}\n\nfunction corpoCliente(whatsapp, telefoneDigitado, texto) {\n  const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\\D/g, '');\n  return JSON.stringify({\n    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',\n    text: { preview_url: false, body: String(texto ?? '') },\n  });\n}\n\nfunction dataHoraBrasilia(agora) {\n  const d = new Date((agora instanceof Date ? agora : new Date()).getTime() - 3 * 3600 * 1000);\n  const dois = (n) => String(n).padStart(2, '0');\n  return dois(d.getUTCDate()) + '/' + dois(d.getUTCMonth() + 1) + '/' + d.getUTCFullYear() +\n    ' às ' + dois(d.getUTCHours()) + ':' + dois(d.getUTCMinutes());\n}\n\nfunction lerMenu(config) {\n  let dados = config;\n  if (typeof dados === 'string') {\n    try { dados = JSON.parse(dados); } catch (e) { dados = []; }\n  }\n  if (dados && !Array.isArray(dados)) dados = dados.itens;\n  if (!Array.isArray(dados)) return [];\n  return dados\n    // oculto: true tira o item do menu (não aparece, não ganha número e não é reconhecido)\n    .filter((item) => item && item.id && item.nome && item.oculto !== true)\n    .map((item, i) => ({\n      id: String(item.id),\n      nome: String(item.nome),\n      apelidos: Array.isArray(item.apelidos) ? item.apelidos.map(String) : [],\n      ativo: item.ativo !== false,\n      formulario: item.formulario === true,\n      numero: i + 1,\n    }));\n}\n\nfunction linkFormulario(base, assunto, whatsapp) {\n  const url = String(base ?? '').trim();\n  if (!url) return '';\n  let link = url + (url.includes('?') ? '&' : '?') + 'assunto=' + encodeURIComponent(assunto || '');\n  const numero = numeroDoWhatsApp(whatsapp);\n  if (numero) link += '&whatsapp=' + numero;\n  return link;\n}\n\nfunction listaDeAnexos(anexos) {\n  if (Array.isArray(anexos)) return anexos.map((a) => String(a ?? '').trim()).filter(Boolean);\n  const texto = String(anexos ?? '').trim();\n  if (!texto) return [];\n  return texto.split(/\\s*,\\s*(?=https?:\\/\\/)|\\s+(?=https?:\\/\\/)/).map((a) => a.trim()).filter(Boolean);\n}\n\nfunction montarMenu(config) {\n  const linhas = ['**0** - Voltar ao menu inicial'];\n  for (const item of lerMenu(config)) linhas.push('**' + item.numero + '** - ' + item.nome);\n  return linhas.join('\\n');\n}\n\nfunction montarResumo(dados, agora) {\n  const v = (x) => String(x ?? '').trim() || '(não informado)';\n  const anexos = listaDeAnexos(dados.anexos);\n  const linhas = [\n    '📋 *Novo atendimento: ' + v(dados.assunto) + '*',\n    '',\n    '*Nome:* ' + v(dados.nome),\n    '*Telefone:* ' + v(dados.telefone),\n    '*E-mail:* ' + v(dados.email),\n  ];\n  const whatsapp = numeroDoWhatsApp(dados.whatsapp);\n  if (whatsapp) linhas.push('*WhatsApp de origem:* +' + whatsapp);\n  linhas.push('', '*Dúvida/mensagem:*', v(dados.duvida), '');\n  if (anexos.length) {\n    linhas.push('*Anexos (' + anexos.length + '):*');\n    anexos.forEach((a, i) => linhas.push((i + 1) + '. ' + a));\n  } else {\n    linhas.push('*Anexos:* nenhum');\n  }\n  linhas.push('', 'Enviado em ' + dataHoraBrasilia(agora));\n  return linhas.join('\\n');\n}\n\nfunction montarResumoHtml(dados, agora) {\n  const esc = (x) => String(x ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')\n    .replace(/\"/g, '&quot;').replace(/'/g, '&#39;');\n  const v = (x) => esc(String(x ?? '').trim() || '(não informado)');\n  const anexos = listaDeAnexos(dados.anexos);\n  const whatsapp = numeroDoWhatsApp(dados.whatsapp);\n  const linha = (rotulo, valor) =>\n    '<tr><td style=\"padding:6px 12px 6px 0;color:#2D4589;font-weight:bold;white-space:nowrap;vertical-align:top\">' +\n    rotulo + '</td><td style=\"padding:6px 0;color:#1F2A44\">' + valor + '</td></tr>';\n  const email = String(dados.email ?? '').trim();\n  const linhas = [\n    linha('Nome', v(dados.nome)),\n    linha('Telefone', v(dados.telefone)),\n    linha('E-mail', email ? '<a href=\"mailto:' + esc(email) + '\" style=\"color:#2D4589\">' + esc(email) + '</a>' : v('')),\n  ];\n  if (whatsapp) linhas.push(linha('WhatsApp de origem', '<a href=\"https://wa.me/' + whatsapp + '\" style=\"color:#2D4589\">+' + whatsapp + '</a>'));\n  const listaAnexos = anexos.length\n    ? '<ol style=\"margin:0;padding-left:20px\">' + anexos.map((a) =>\n      '<li><a href=\"' + esc(a) + '\" style=\"color:#2D4589\">' + esc(a) + '</a></li>').join('') + '</ol>'\n    : 'nenhum';\n  return '<div style=\"font-family:Montserrat,Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #E3E7F2;border-radius:10px;overflow:hidden\">' +\n    '<div style=\"background:#2D4589;color:#FFFFFF;padding:18px 22px;font-size:18px;font-weight:bold\">' +\n    'Novo atendimento: ' + v(dados.assunto) + '</div>' +\n    '<div style=\"height:4px;background:#F49AC1\"></div>' +\n    '<div style=\"padding:18px 22px;font-size:15px;line-height:1.5\">' +\n    '<table style=\"border-collapse:collapse\">' + linhas.join('') + '</table>' +\n    '<p style=\"margin:18px 0 6px;color:#2D4589;font-weight:bold\">Dúvida/mensagem</p>' +\n    '<div style=\"background:#F6F7FB;border-left:4px solid #F49AC1;padding:12px 14px;color:#1F2A44\">' +\n    v(dados.duvida).replace(/\\r?\\n/g, '<br>') + '</div>' +\n    '<p style=\"margin:18px 0 6px;color:#2D4589;font-weight:bold\">Anexos (' + anexos.length + ')</p>' + listaAnexos +\n    '<p style=\"margin:22px 0 0;color:#6B7280;font-size:13px\">Enviado em ' + dataHoraBrasilia(agora) +\n    ' pelo formulário de atendimento. Para falar com o cliente, basta responder este e-mail.</p>' +\n    '</div></div>';\n}\n\nfunction normalizar(texto) {\n  return String(texto ?? '')\n    .normalize('NFD')\n    .replace(/[̀-ͯ]/g, '')\n    .toLowerCase()\n    // reserva, caso o ambiente não decomponha acentos com normalize()\n    .replace(/[áàâãä]/g, 'a').replace(/[éèêë]/g, 'e').replace(/[íìîï]/g, 'i')\n    .replace(/[óòôõö]/g, 'o').replace(/[úùûü]/g, 'u').replace(/ç/g, 'c').replace(/ñ/g, 'n')\n    .replace(/[^a-z0-9]+/g, ' ')\n    .trim();\n}\n\nfunction numeroDoWhatsApp(remoteJid) {\n  return String(remoteJid ?? '').split('@')[0].replace(/\\D/g, '');\n}\n\nfunction processarMensagem(entrada, config, telefoneWhatsApp, baseFormulario) {\n  const r = reconhecer(entrada, config);\n  return JSON.stringify({\n    acao: r.acao,\n    item_nome: r.nome,\n    link_form: r.formulario ? linkFormulario(baseFormulario, r.nome, telefoneWhatsApp) : '',\n  });\n}\n\nfunction reconhecer(entrada, config) {\n  const menu = lerMenu(config);\n  const t = normalizar(entrada);\n  const resultado = (acao, item) => ({\n    acao,\n    id: item ? item.id : '',\n    nome: item ? item.nome : '',\n    numero: item ? item.numero : null,\n    formulario: item ? item.formulario : false,\n  });\n  const doItem = (item) => resultado(item.ativo ? item.id : 'indisponivel', item);\n\n  if (!t) return resultado('desconhecido');\n\n  // 1. Voltar ao menu inicial\n  const voltar = [\n    '0', 'opcao 0', 'numero 0', 'zero', 'voltar', 'volta', 'menu', 'menu inicial', 'inicio',\n    'voltar ao menu', 'voltar ao menu inicial', 'voltar ao inicio', 'voltar para o menu',\n    'voltar pro menu', 'ver o menu', 'ver menu', 'opcoes', 'ver opcoes',\n  ];\n  if (voltar.includes(t)) return resultado('menu');\n\n  // 2. Número digitado (\"1\", \"1.\", \"opção 1\", \"nº 1\", \"1️⃣\")\n  const numero = t.match(/^(?:opcao|op|numero|n|item)?\\s*(\\d{1,2})$/);\n  if (numero) {\n    const n = Number(numero[1]);\n    if (n === 0) return resultado('menu');\n    const item = menu.find((i) => i.numero === n);\n    return item ? doItem(item) : resultado('desconhecido');\n  }\n\n  // 3. Nome ou apelido do item (frase inteira contida na mensagem, ou todas as palavras importantes dela)\n  const irrelevantes = [\n    'a', 'o', 'as', 'os', 'de', 'do', 'da', 'dos', 'das', 'e', 'em', 'no', 'na', 'nos', 'nas',\n    'pelo', 'pela', 'por', 'para', 'pra', 'pro', 'com', 'um', 'uma', 'ao', 'quero', 'gostaria',\n    'queria', 'preciso', 'fazer', 'ver', 'saber', 'sobre', 'meu', 'minha', 'qual', 'quais', 'o que',\n  ];\n  const palavras = t.split(' ');\n  let melhor = null;\n  for (const item of menu) {\n    for (const frase of [item.nome, ...item.apelidos]) {\n      const f = normalizar(frase);\n      if (!f) continue;\n      const importantes = f.split(' ').filter((p) => !irrelevantes.includes(p));\n      const contida = (' ' + t + ' ').includes(' ' + f + ' ');\n      const todas = importantes.length > 0 && importantes.every((p) => palavras.includes(p));\n      if ((contida || todas) && (!melhor || f.length > melhor.tamanho)) {\n        melhor = { item, tamanho: f.length };\n      }\n    }\n  }\n  if (melhor) return doItem(melhor.item);\n\n  // 4. Saudação: a mensagem só tem palavras de cumprimento (\"Oi, bom dia! Tudo bem?\")\n  const cumprimentos = [\n    'oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'e', 'ai', 'hey', 'hi', 'hello', 'alo',\n    'bom', 'boa', 'dia', 'tarde', 'noite', 'madrugada', 'tudo', 'bem', 'td', 'bm', 'como', 'vai',\n    'voce', 'vc', 'vcs', 'voces', 'esta', 'ta', 'tao', 'estao', 'pessoal', 'gente', 'equipe',\n    'pharma', 'pharmaonline', 'pharmaonlineplus', 'farmacia', 'salve', 'saudacoes', 'prezados',\n    'prezado', 'prezada', 'ok', 'sim', 'da', 'do', 'de', 'a', 'o', 'aqui', 'ai',\n  ];\n  const ehCumprimento = palavras.every((p) => cumprimentos.includes(p));\n  const temSaudacao = palavras.some((p) =>\n    ['oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'hey', 'hi', 'hello', 'alo', 'bom', 'boa',\n      'salve', 'saudacoes', 'prezados', 'prezado', 'prezada', 'tudo'].includes(p)) || t === 'e ai';\n  if (ehCumprimento && temSaudacao) return resultado('menu');\n\n  // 5. Agradecimento (\"obrigado\", \"muito obrigada\", \"valeu\")\n  const agradecimentos = ['obrigado', 'obrigada', 'obg', 'brigado', 'brigada', 'valeu', 'vlw', 'grato', 'grata', 'agradeco'];\n  if (palavras.some((p) => agradecimentos.includes(p)) && palavras.length <= 6) return resultado('agradecimento');\n\n  // 6. Não reconhecida\n  return resultado('desconhecido');\n}\n\nfunction urlMensagensMeta(base, versao, idNumero) {\n  return String(base ?? '').trim().replace(/\\/+$/, '') + '/' + (String(versao ?? '').trim() || 'v21.0') + '/' +\n    String(idNumero ?? '').trim() + '/messages';\n}\n\nreturn montarMenu({{menu_config}});",
+            "expressionDescription": "Monta a lista numerada do menu"
+          }
+        },
+        {
+          "id": "c54ufnl4723wd6qodfb3c1sa",
+          "type": "Condition",
+          "items": [
+            {
+              "id": "cfo1c7g965zk45ir6jn1nr3b",
+              "content": {
+                "logicalOperator": "AND",
+                "comparisons": [
+                  {
+                    "id": "c1h3vpvgr8inizoax8zuvj0t",
+                    "variableId": "v3cnwe652c5qwxsiq1tmgrio",
+                    "comparisonOperator": "Is set"
+                  }
+                ]
+              },
+              "outgoingEdgeId": "c1jm81nbxr8hwm3uyudw6oz4"
+            }
+          ],
+          "outgoingEdgeId": "c1ocrmekqxpk1zl2r9i19b05"
         }
       ]
     },
@@ -453,6 +512,9 @@
                   {
                     "text": "Orçamento pelo app",
                     "bold": true
+                  },
+                  {
+                    "text": " 📲"
                   }
                 ]
               },
@@ -468,23 +530,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Pelo nosso aplicativo, você faz o orçamento em tempo real, de forma rápida e segura."
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "📲 Acesse o app pelo link:"
+                    "text": "Faça seu orçamento em tempo real pelo nosso app:"
                   }
                 ]
               },
@@ -508,7 +554,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu inicial, digite "
+                    "text": "Para voltar ao menu, digite "
                   },
                   {
                     "text": "0",
@@ -542,8 +588,11 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Orçamento pelo WhatsApp (ordem de pedido)",
+                    "text": "Orçamento pelo WhatsApp",
                     "bold": true
+                  },
+                  {
+                    "text": " 💬"
                   }
                 ]
               },
@@ -559,23 +608,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para fazer o seu orçamento pelo WhatsApp, você será atendido(a) por uma pessoa da nossa equipe."
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "💬 Fale com a gente pelo número {{telefone_atendimento}} ou toque no link:"
+                    "text": "Uma pessoa da nossa equipe vai atender você pelo número {{telefone_atendimento}}:"
                   }
                 ]
               },
@@ -599,23 +632,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Se tiver a receita, envie uma foto dela logo no início da conversa para agilizar o seu orçamento."
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Para voltar ao menu inicial, digite "
+                    "text": "Para voltar ao menu, digite "
                   },
                   {
                     "text": "0",
@@ -651,6 +668,9 @@
                   {
                     "text": "Acessar o site",
                     "bold": true
+                  },
+                  {
+                    "text": " 🌐"
                   }
                 ]
               },
@@ -659,30 +679,6 @@
                 "children": [
                   {
                     "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Em nosso site você encontra todas as informações sobre a pHarmaOnline."
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "🌐 Acesse:"
                   }
                 ]
               },
@@ -706,7 +702,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu inicial, digite "
+                    "text": "Para voltar ao menu, digite "
                   },
                   {
                     "text": "0",
@@ -757,23 +753,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para que a nossa equipe possa atender você da melhor forma, preencha o formulário abaixo com os seus dados e a sua dúvida. Se quiser, você também pode anexar imagens."
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "📝 Formulário:"
+                    "text": "Preencha o formulário com seus dados e sua dúvida (você pode anexar imagens):"
                   }
                 ]
               },
@@ -797,14 +777,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "📧 A resposta da nossa equipe será enviada para o "
-                  },
-                  {
-                    "text": "e-mail",
-                    "bold": true
-                  },
-                  {
-                    "text": " que você informar no formulário."
+                    "text": "📧 A resposta chegará pelo e-mail informado no formulário."
                   }
                 ]
               },
@@ -820,7 +793,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu inicial, digite "
+                    "text": "Para voltar ao menu, digite "
                   },
                   {
                     "text": "0",
@@ -871,7 +844,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Acompanhe a pHarmaOnline nas redes sociais (@pharmaonlineplus):"
+                    "text": "Siga a pHarmaOnline (@pharmaonlineplus):"
                   }
                 ]
               },
@@ -927,7 +900,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu inicial, digite "
+                    "text": "Para voltar ao menu, digite "
                   },
                   {
                     "text": "0",
@@ -978,23 +951,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Quer falar com a nossa equipe? Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens."
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "📝 Formulário:"
+                    "text": "Envie sua mensagem pelo formulário (você pode anexar imagens):"
                   }
                 ]
               },
@@ -1018,14 +975,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "📧 A resposta da nossa equipe será enviada para o "
-                  },
-                  {
-                    "text": "e-mail",
-                    "bold": true
-                  },
-                  {
-                    "text": " que você informar no formulário."
+                    "text": "📧 A resposta chegará pelo e-mail informado no formulário."
                   }
                 ]
               },
@@ -1041,7 +991,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu inicial, digite "
+                    "text": "Para voltar ao menu, digite "
                   },
                   {
                     "text": "0",
@@ -1098,14 +1048,14 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Enquanto isso, digite "
+                    "text": "Para voltar ao menu, digite "
                   },
                   {
                     "text": "0",
                     "bold": true
                   },
                   {
-                    "text": " para voltar ao menu inicial e escolher outra opção."
+                    "text": "."
                   }
                 ]
               }
@@ -1132,30 +1082,14 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Nós que agradecemos o seu contato!"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Se precisar de algo mais, digite "
+                    "text": "Nós que agradecemos! Se precisar, digite "
                   },
                   {
                     "text": "0",
                     "bold": true
                   },
                   {
-                    "text": " para voltar ao menu inicial."
+                    "text": " para voltar ao menu."
                   }
                 ]
               },
@@ -1175,7 +1109,7 @@
                     "bold": true
                   },
                   {
-                    "text": ", conectando confiança à sua conveniência 💜"
+                    "text": ", conectando confiança à sua conveniência! 💜"
                   }
                 ]
               }
@@ -1202,7 +1136,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Desculpe, não consegui identificar a sua solicitação."
+                    "text": "Desculpe, não entendi. 😊"
                   }
                 ]
               },
@@ -1210,15 +1144,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Para que possamos ajudar, digite apenas o "
+                    "text": "Digite apenas o "
                   },
                   {
                     "text": "número",
@@ -1253,6 +1179,34 @@
     }
   ],
   "edges": [
+    {
+      "id": "cj9zuzx19ewcx9zu2ehkhmec",
+      "from": {
+        "blockId": "c1asjdmluayiuuc76e5g6lgz"
+      },
+      "to": {
+        "groupId": "c199xsngac1rfqlejirvwq3f"
+      }
+    },
+    {
+      "id": "c1jm81nbxr8hwm3uyudw6oz4",
+      "from": {
+        "blockId": "c54ufnl4723wd6qodfb3c1sa",
+        "itemId": "cfo1c7g965zk45ir6jn1nr3b"
+      },
+      "to": {
+        "groupId": "c1d1rqud9lsqixc8rrb3lilt"
+      }
+    },
+    {
+      "id": "c1ocrmekqxpk1zl2r9i19b05",
+      "from": {
+        "blockId": "c54ufnl4723wd6qodfb3c1sa"
+      },
+      "to": {
+        "groupId": "c199xsngac1rfqlejirvwq3f"
+      }
+    },
     {
       "id": "c132cxqvwvzbxotk6fb01v35",
       "from": {
@@ -1465,6 +1419,11 @@
     {
       "id": "v6vh8ccrjlgdi5g20efzfngb",
       "name": "telefone_whatsapp",
+      "isSessionVariable": true
+    },
+    {
+      "id": "v3cnwe652c5qwxsiq1tmgrio",
+      "name": "link_banner",
       "isSessionVariable": true
     },
     {

@@ -1,139 +1,121 @@
 {
   "_ajuda": [
-    "Textos-modelo das mensagens (a cliente aprova os finais). Cada linha da lista vira uma linha da mensagem; \"\" = linha em branco.",
+    "Textos das mensagens. Cada linha da lista vira uma linha da mensagem; \"\" = linha em branco.",
     "*texto* = negrito no WhatsApp. {{variavel}} = valor preenchido pelo bot (links ficam em config/variaveis.json).",
+    "A primeira mensagem tem 3 partes: banner (link_banner), saudacao e boas_vindas (menu).",
     "Depois de importar no Typebot, os textos também podem ser editados direto nos balões de cada grupo."
   ],
+  "saudacao": [
+    "Olá! Seja bem-vindo(a) à *pHarmaOnline*! 💊💜"
+  ],
   "boas_vindas": [
-    "Olá! Seja muito bem-vindo(a) à *pHarmaOnline* 😊",
-    "",
-    "Para agilizar o seu atendimento, digite o *número* da opção desejada:",
+    "Digite o *número* da opção desejada:",
     "",
     "{{menu_texto}}"
   ],
   "nao_entendi": [
-    "Desculpe, não consegui identificar a sua solicitação.",
-    "",
-    "Para que possamos ajudar, digite apenas o *número* da opção desejada:",
+    "Desculpe, não entendi. 😊",
+    "Digite apenas o *número* da opção desejada:",
     "",
     "{{menu_texto}}"
   ],
   "indisponivel": [
     "A opção *{{item_nome}}* estará disponível em breve.",
     "",
-    "Enquanto isso, digite *0* para voltar ao menu inicial e escolher outra opção."
+    "Para voltar ao menu, digite *0*."
   ],
   "agradecimento": [
-    "Nós que agradecemos o seu contato!",
+    "Nós que agradecemos! Se precisar, digite *0* para voltar ao menu.",
     "",
-    "Se precisar de algo mais, digite *0* para voltar ao menu inicial.",
-    "",
-    "*pHarmaOnline*, conectando confiança à sua conveniência 💜"
+    "*pHarmaOnline*, conectando confiança à sua conveniência! 💜"
   ],
   "respostas": {
     "app": [
-      "*Orçamento pelo app*",
+      "*Orçamento pelo app* 📲",
       "",
-      "Pelo nosso aplicativo, você faz o orçamento em tempo real, de forma rápida e segura.",
-      "",
-      "📲 Acesse o app pelo link:",
+      "Faça seu orçamento em tempo real pelo nosso app:",
       "{{link_app}}",
       "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Para voltar ao menu, digite *0*."
     ],
     "whatsapp": [
-      "*Orçamento pelo WhatsApp (ordem de pedido)*",
+      "*Orçamento pelo WhatsApp* 💬",
       "",
-      "Para fazer o seu orçamento pelo WhatsApp, você será atendido(a) por uma pessoa da nossa equipe.",
-      "",
-      "💬 Fale com a gente pelo número {{telefone_atendimento}} ou toque no link:",
+      "Uma pessoa da nossa equipe vai atender você pelo número {{telefone_atendimento}}:",
       "{{link_atendimento}}",
       "",
-      "Se tiver a receita, envie uma foto dela logo no início da conversa para agilizar o seu orçamento.",
-      "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Para voltar ao menu, digite *0*."
     ],
     "site": [
-      "*Acessar o site*",
+      "*Acessar o site* 🌐",
       "",
-      "Em nosso site você encontra todas as informações sobre a pHarmaOnline.",
-      "",
-      "🌐 Acesse:",
       "{{link_site}}",
       "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Para voltar ao menu, digite *0*."
     ],
     "financeiro": [
       "*Administrativo/Financeiro*",
       "",
-      "Para que a nossa equipe possa atender você da melhor forma, preencha o formulário abaixo com os seus dados e a sua dúvida. Se quiser, você também pode anexar imagens.",
-      "",
-      "📝 Formulário:",
+      "Preencha o formulário com seus dados e sua dúvida (você pode anexar imagens):",
       "{{link_form}}",
       "",
-      "📧 A resposta da nossa equipe será enviada para o *e-mail* que você informar no formulário.",
+      "📧 A resposta chegará pelo e-mail informado no formulário.",
       "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Para voltar ao menu, digite *0*."
     ],
     "redes": [
       "*Redes sociais*",
       "",
-      "Acompanhe a pHarmaOnline nas redes sociais (@pharmaonlineplus):",
+      "Siga a pHarmaOnline (@pharmaonlineplus):",
       "",
       "Instagram: {{link_instagram}}",
       "Facebook: {{link_facebook}}",
       "TikTok: {{link_tiktok}}",
       "YouTube: {{link_youtube}}",
       "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Para voltar ao menu, digite *0*."
     ],
     "contato": [
       "*Fale conosco*",
       "",
-      "Quer falar com a nossa equipe? Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens.",
-      "",
-      "📝 Formulário:",
+      "Envie sua mensagem pelo formulário (você pode anexar imagens):",
       "{{link_form}}",
       "",
-      "📧 A resposta da nossa equipe será enviada para o *e-mail* que você informar no formulário.",
+      "📧 A resposta chegará pelo e-mail informado no formulário.",
       "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Para voltar ao menu, digite *0*."
     ]
   },
   "formulario": {
     "abertura": [
-      "Olá! Este é o formulário de atendimento da *pHarmaOnline*.",
-      "Assunto: *{{assunto}}*",
-      "",
-      "Leva menos de um minuto. Os campos de nome, telefone e e-mail são obrigatórios."
+      "Olá! Este é o atendimento da *pHarmaOnline*.",
+      "Assunto: *{{assunto}}*"
     ],
     "pergunta_nome": [
       "Qual é o seu *nome completo*?"
     ],
     "pergunta_telefone": [
-      "Obrigado, {{nome}}! Qual é o seu *telefone* com DDD?"
+      "Qual é o seu *telefone* com DDD?"
     ],
     "pergunta_email": [
       "Qual é o seu *e-mail*?"
     ],
     "pergunta_duvida": [
-      "Agora, escreva a sua *dúvida ou mensagem*, com todos os detalhes que achar importantes."
+      "Escreva a sua *dúvida ou mensagem*:"
     ],
     "pergunta_anexos": [
-      "Se quiser, anexe *imagens* que ajudem a entender a sua solicitação (opcional)."
+      "Se quiser, anexe *imagens* (opcional):"
     ],
     "final": [
-      "Pronto, {{nome}}! Recebemos as suas informações. ✅",
-      "",
-      "Em breve, a nossa equipe entrará em contato com você pelo e-mail *{{email}}*.",
+      "Pronto, {{nome}}! ✅",
+      "Responderemos em breve pelo e-mail *{{email}}*.",
       "Você já pode fechar esta página."
     ],
     "aviso_whatsapp": [
-      "Olá, {{nome}}! Recebemos o seu formulário de *{{assunto}}*. ✅",
+      "Olá, {{nome}}! Recebemos seu formulário de *{{assunto}}*. ✅",
+      "Responderemos em breve pelo e-mail *{{email}}*.",
       "",
-      "Em breve, a nossa equipe entrará em contato com você pelo e-mail *{{email}}*.",
-      "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Para voltar ao menu, digite *0*."
     ]
   }
 }

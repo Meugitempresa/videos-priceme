@@ -90,6 +90,18 @@ const blocoCodigo = (b, nome, codigo, descricao, comLogica = true) => ({
   },
 });
 
+/** Condition "se a variável tiver valor, vai para destino" (o caminho "senão" é ligado depois). */
+function condicaoSeDefinida(b, chave, variavel, destino) {
+  const bloco = { id: b.id('blk:se:' + chave), type: 'Condition', items: [] };
+  const itemId = b.id('cond:' + chave);
+  bloco.items.push({
+    id: itemId,
+    content: { logicalOperator: 'AND', comparisons: [{ id: b.id('cmp:' + chave), variableId: b.v(variavel), comparisonOperator: 'Is set' }] },
+    outgoingEdgeId: b.aresta('se:' + chave, { blockId: bloco.id, itemId }, destino.id),
+  });
+  return bloco;
+}
+
 function grupo(b, chave, titulo, x, y, blocos) {
   const g = { id: b.id('grp:' + chave), title: titulo, graphCoordinates: { x, y }, blocks: blocos };
   b.grupos.push(g);
@@ -179,9 +191,19 @@ export function gerarAtendimento({ menu, textos, vars }) {
       'Itens do menu', false),
   ]);
 
+  // Primeira mensagem (e opção 0): banner (se link_banner tiver endereço) -> saudação -> menu.
+  const gBoasTexto = grupo(b, 'boas-texto', '👋 Saudação e menu', 450, 300, [
+    blocoTexto(b, 'saudacao', textos.saudacao),
+    blocoTexto(b, 'boas', textos.boas_vindas),
+  ]);
+  const banner = { id: b.id('blk:banner'), type: 'image', content: { url: '{{link_banner}}' } };
+  const gBanner = grupo(b, 'banner', '🖼️ Banner da pHarmaOnline', 450, -250, [banner]);
+  ligar(b, banner, 'banner>texto', gBoasTexto);
+  const seBanner = condicaoSeDefinida(b, 'banner', 'link_banner', gBanner);
+  seBanner.outgoingEdgeId = b.aresta('senao:banner', { blockId: seBanner.id }, gBoasTexto.id);
   const gBoas = grupo(b, 'boas', '👋 Boas-vindas / menu inicial (opção 0)', 450, 0, [
     blocoCodigo(b, 'menu_texto', 'return montarMenu({{menu_config}});', 'Monta a lista numerada do menu'),
-    blocoTexto(b, 'boas', textos.boas_vindas),
+    seBanner,
   ]);
   ligar(b, gCfg.blocks.at(-1), 'cfg>boas', gBoas);
 
@@ -195,7 +217,7 @@ export function gerarAtendimento({ menu, textos, vars }) {
     blocoCodigo(b, 'link_form', 'return JSON.parse({{resultado}}).link_form;', 'Link do formulário (opções com formulário)', false),
     condicao,
   ]);
-  ligar(b, gBoas.blocks.at(-1), 'boas>espera', gEspera);
+  ligar(b, gBoasTexto.blocks.at(-1), 'boas>espera', gEspera);
 
   const rota = (valor, destino) => {
     const itemId = b.id('cond:' + valor);
@@ -288,16 +310,7 @@ export function gerarFormulario({ textos, vars }) {
       responseVariableMapping: [{ id: b.id('map:' + chave), variableId: b.v('status_' + chave), bodyPath: 'statusCode' }],
     },
   });
-  const condicaoSe = (chave, variavel, destino) => {
-    const bloco = { id: b.id('blk:se:' + chave), type: 'Condition', items: [] };
-    const itemId = b.id('cond:' + chave);
-    bloco.items.push({
-      id: itemId,
-      content: { logicalOperator: 'AND', comparisons: [{ id: b.id('cmp:' + chave), variableId: b.v(variavel), comparisonOperator: 'Is set' }] },
-      outgoingEdgeId: b.aresta('se:' + chave, { blockId: bloco.id, itemId }, destino.id),
-    });
-    return bloco;
-  };
+  const condicaoSe = (chave, variavel, destino) => condicaoSeDefinida(b, chave, variavel, destino);
 
   // Ordem: prepara tudo -> e-mail ao atendente (se houver e-mail) -> WhatsApp ao atendente (se houver número)
   // -> aviso ao cliente no WhatsApp -> mensagem final na tela.

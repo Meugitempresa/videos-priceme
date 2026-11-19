@@ -128,6 +128,10 @@ export function criarSessao(typebot, { preenchidas = {}, contato = null, fetch: 
           mensagens.push(renderizar(bloco));
           atual = proximo();
           break;
+        case 'image':
+          mensagens.push('[imagem: ' + trocarTexto(bloco.content?.url) + ']');
+          atual = proximo();
+          break;
         case 'Set variable': {
           const tipo = bloco.options.type;
           let valor;
