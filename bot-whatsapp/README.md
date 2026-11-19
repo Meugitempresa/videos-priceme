@@ -166,4 +166,5 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 | `docs/previa-formulario-*.png` | capturas do formulário rodando no Typebot, nas cores da marca |
 | `docs/previa-email-atendente.png` | e-mail que o atendente recebe (capturado do Typebot real) |
 | `docs/mensagens-do-bot.pdf` | guia com todas as mensagens, para aprovação (gerado por `scripts/gerar-pdf.mjs`) |
+| `docs/formulario-de-atendimento.pdf` | guia do formulário: passo a passo, regras, e-mail à equipe e perguntas frequentes (`scripts/gerar-pdf-formulario.mjs`) |
 | `midia/banner-pharmaonline.jpg` | banner enviado na saudação (preencher `link_banner` depois de enviar ao servidor) |
