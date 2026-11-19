@@ -28,13 +28,15 @@ A SendPulse foi avaliada e descartada.
 ## Falta (a cliente envia)
 - [ ] **ID do número de telefone** e **ID da conta do WhatsApp Business**. Ficam em developers.facebook.com → app →
       WhatsApp → Configuração da API. Há um lembrete agendado para 18/11 às 10h.
-- [ ] **E-mail que recebe os formulários** (`email_atendente`).
+- [x] **E-mail que recebe os formulários:** suporte.pharmaonline@gmail.com (no bot desde 19/11).
 - [ ] **E-mail que envia (SMTP):** basta dizer o provedor (Gmail, Outlook, Hostinger, Locaweb…) e o endereço.
       A senha **não** vai no chat; ela entra direto no `.env` do servidor. No Gmail, use uma "senha de app"
       (verificação em duas etapas → Senhas de app).
 - [x] **Redes sociais** (enviadas em 19/11; já no bot, sem "https://www." para ficarem curtas).
       Facebook com nome de usuário criado em 19/11: facebook.com/pharmaonlineplus.
-- [ ] **Links do app** (baixar e abrir) e **do site**.
+- [x] **Link do app:** https://orcpharm.app/pharmaonline/ (um link só, que serve para acessar o app; opção 1 ajustada).
+- [ ] **Link do site:** a loja está na Nuvemshop e ainda não foi publicada. A opção 3 está desativada e responde
+      "disponível em breve". Quando publicar, basta trocar `link_site` e pôr `"ativo": true` no item `site` de `config/menu.json`.
 - [ ] **Aprovação dos textos das mensagens** (`config/textos.json`).
 - [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM) e 3 domínios: painel do Typebot, bot e arquivos.
 - [ ] **Opção 2** (Orçamento pelo WhatsApp / ordem de pedido): falta definir quais documentos pedir e para onde vai o pedido.

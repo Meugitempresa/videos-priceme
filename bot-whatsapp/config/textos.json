@@ -34,11 +34,8 @@
       "",
       "Pelo nosso aplicativo, você faz o orçamento em tempo real, de forma rápida e segura.",
       "",
-      "📲 Baixe o app:",
-      "{{link_app_download}}",
-      "",
-      "Se você já tem o app instalado, é só abrir por este link:",
-      "{{link_app_abrir}}",
+      "📲 Acesse o app pelo link:",
+      "{{link_app}}",
       "",
       "Para voltar ao menu inicial, digite *0*."
     ],
@@ -103,11 +100,21 @@
       "",
       "Leva menos de um minuto. Os campos de nome, telefone e e-mail são obrigatórios."
     ],
-    "pergunta_nome": ["Qual é o seu *nome completo*?"],
-    "pergunta_telefone": ["Obrigado, {{nome}}! Qual é o seu *telefone* com DDD?"],
-    "pergunta_email": ["Qual é o seu *e-mail*?"],
-    "pergunta_duvida": ["Agora, escreva a sua *dúvida ou mensagem*, com todos os detalhes que achar importantes."],
-    "pergunta_anexos": ["Se quiser, anexe *imagens* que ajudem a entender a sua solicitação (opcional)."],
+    "pergunta_nome": [
+      "Qual é o seu *nome completo*?"
+    ],
+    "pergunta_telefone": [
+      "Obrigado, {{nome}}! Qual é o seu *telefone* com DDD?"
+    ],
+    "pergunta_email": [
+      "Qual é o seu *e-mail*?"
+    ],
+    "pergunta_duvida": [
+      "Agora, escreva a sua *dúvida ou mensagem*, com todos os detalhes que achar importantes."
+    ],
+    "pergunta_anexos": [
+      "Se quiser, anexe *imagens* que ajudem a entender a sua solicitação (opcional)."
+    ],
     "final": [
       "Pronto, {{nome}}! Recebemos as suas informações. ✅",
       "",

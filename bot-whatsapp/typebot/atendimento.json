@@ -31,23 +31,13 @@
           }
         },
         {
-          "id": "c1tpoar3zmea7hgzvlb0f9wb",
+          "id": "cv85t934cvnpwn2k5apyjz18",
           "type": "Set variable",
           "options": {
-            "variableId": "v1sto7fc4cbcvekw8pp5v453",
+            "variableId": "v1ktaacnvr0tpfy7y55sn0zt",
             "type": "Custom",
             "isCode": false,
-            "expressionToEvaluate": "https://LINK-DOWNLOAD-DO-APP"
-          }
-        },
-        {
-          "id": "c78hq7l3ie9s4lsuow9p3tcc",
-          "type": "Set variable",
-          "options": {
-            "variableId": "v1aon26imfkhogw1tqt2f0xc",
-            "type": "Custom",
-            "isCode": false,
-            "expressionToEvaluate": "https://LINK-PARA-ABRIR-O-APP"
+            "expressionToEvaluate": "https://orcpharm.app/pharmaonline/"
           }
         },
         {
@@ -117,7 +107,7 @@
             "variableId": "v1m7fzt66kzfggr30t7ab85u",
             "type": "Custom",
             "isCode": true,
-            "expressionToEvaluate": "// ⚙️ MENU — edite aqui.\n// A ordem da lista define os números (1, 2, 3...). Para excluir um item, apague o bloco { ... } dele;\n// para reordenar, mova o bloco: a numeração se ajusta sozinha.\n// id: NÃO altere (liga o item à resposta dele). nome: texto do menu.\n// apelidos: frases que também abrem o item. ativo: false = \"disponível em breve\".\n// formulario: true = gera o link do formulário com o assunto igual ao nome.\n// Item novo: crie também um grupo de resposta e uma condição \"acao = id\" no bloco Condition.\nreturn JSON.stringify([\n  {\n    \"id\": \"app\",\n    \"nome\": \"Orçamento pelo app\",\n    \"apelidos\": [\n      \"orçamento em tempo real pelo app\",\n      \"orçamento em tempo real\",\n      \"orçamento pelo aplicativo\",\n      \"orçar pelo app\",\n      \"orçar pelo aplicativo\",\n      \"baixar o app\",\n      \"baixar o aplicativo\",\n      \"aplicativo\",\n      \"app\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"whatsapp\",\n    \"nome\": \"Orçamento pelo WhatsApp (ordem de pedido)\",\n    \"apelidos\": [\n      \"orçamento pelo whatsapp\",\n      \"orçamento pelo zap\",\n      \"orçar pelo whatsapp\",\n      \"ordem de pedido\",\n      \"enviar receita\",\n      \"mandar receita\",\n      \"foto da receita\"\n    ],\n    \"ativo\": false\n  },\n  {\n    \"id\": \"site\",\n    \"nome\": \"Acessar o site\",\n    \"apelidos\": [\n      \"site\",\n      \"acessar site\",\n      \"endereço do site\",\n      \"link do site\",\n      \"página\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"financeiro\",\n    \"nome\": \"Administrativo/Financeiro\",\n    \"apelidos\": [\n      \"administrativo\",\n      \"financeiro\",\n      \"administrativo financeiro\",\n      \"boleto\",\n      \"nota fiscal\",\n      \"pagamento\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  },\n  {\n    \"id\": \"redes\",\n    \"nome\": \"Redes sociais\",\n    \"apelidos\": [\n      \"redes\",\n      \"instagram\",\n      \"insta\",\n      \"facebook\",\n      \"tiktok\",\n      \"tik tok\",\n      \"youtube\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"contato\",\n    \"nome\": \"Fale conosco\",\n    \"apelidos\": [\n      \"fale conosco\",\n      \"falar conosco\",\n      \"contato\",\n      \"entrar em contato\",\n      \"falar com atendente\",\n      \"falar com uma pessoa\",\n      \"atendente\",\n      \"atendimento humano\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  }\n]);",
+            "expressionToEvaluate": "// ⚙️ MENU — edite aqui.\n// A ordem da lista define os números (1, 2, 3...). Para excluir um item, apague o bloco { ... } dele;\n// para reordenar, mova o bloco: a numeração se ajusta sozinha.\n// id: NÃO altere (liga o item à resposta dele). nome: texto do menu.\n// apelidos: frases que também abrem o item. ativo: false = \"disponível em breve\".\n// formulario: true = gera o link do formulário com o assunto igual ao nome.\n// Item novo: crie também um grupo de resposta e uma condição \"acao = id\" no bloco Condition.\nreturn JSON.stringify([\n  {\n    \"id\": \"app\",\n    \"nome\": \"Orçamento pelo app\",\n    \"apelidos\": [\n      \"orçamento em tempo real pelo app\",\n      \"orçamento em tempo real\",\n      \"orçamento pelo aplicativo\",\n      \"orçar pelo app\",\n      \"orçar pelo aplicativo\",\n      \"baixar o app\",\n      \"baixar o aplicativo\",\n      \"aplicativo\",\n      \"app\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"whatsapp\",\n    \"nome\": \"Orçamento pelo WhatsApp (ordem de pedido)\",\n    \"apelidos\": [\n      \"orçamento pelo whatsapp\",\n      \"orçamento pelo zap\",\n      \"orçar pelo whatsapp\",\n      \"ordem de pedido\",\n      \"enviar receita\",\n      \"mandar receita\",\n      \"foto da receita\"\n    ],\n    \"ativo\": false\n  },\n  {\n    \"id\": \"site\",\n    \"nome\": \"Acessar o site\",\n    \"apelidos\": [\n      \"site\",\n      \"acessar site\",\n      \"endereço do site\",\n      \"link do site\",\n      \"página\"\n    ],\n    \"ativo\": false\n  },\n  {\n    \"id\": \"financeiro\",\n    \"nome\": \"Administrativo/Financeiro\",\n    \"apelidos\": [\n      \"administrativo\",\n      \"financeiro\",\n      \"administrativo financeiro\",\n      \"boleto\",\n      \"nota fiscal\",\n      \"pagamento\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  },\n  {\n    \"id\": \"redes\",\n    \"nome\": \"Redes sociais\",\n    \"apelidos\": [\n      \"redes\",\n      \"instagram\",\n      \"insta\",\n      \"facebook\",\n      \"tiktok\",\n      \"tik tok\",\n      \"youtube\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"contato\",\n    \"nome\": \"Fale conosco\",\n    \"apelidos\": [\n      \"fale conosco\",\n      \"falar conosco\",\n      \"contato\",\n      \"entrar em contato\",\n      \"falar com atendente\",\n      \"falar com uma pessoa\",\n      \"atendente\",\n      \"atendimento humano\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  }\n]);",
             "expressionDescription": "Itens do menu"
           },
           "outgoingEdgeId": "c132cxqvwvzbxotk6fb01v35"
@@ -485,7 +475,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "📲 Baixe o app:"
+                    "text": "📲 Acesse o app pelo link:"
                   }
                 ]
               },
@@ -493,31 +483,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "{{link_app_download}}"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "Se você já tem o app instalado, é só abrir por este link:"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "{{link_app_abrir}}"
+                    "text": "{{link_app}}"
                   }
                 ]
               },
@@ -1419,13 +1385,8 @@
       "isSessionVariable": true
     },
     {
-      "id": "v1sto7fc4cbcvekw8pp5v453",
-      "name": "link_app_download",
-      "isSessionVariable": true
-    },
-    {
-      "id": "v1aon26imfkhogw1tqt2f0xc",
-      "name": "link_app_abrir",
+      "id": "v1ktaacnvr0tpfy7y55sn0zt",
+      "name": "link_app",
       "isSessionVariable": true
     },
     {

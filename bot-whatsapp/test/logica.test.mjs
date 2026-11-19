@@ -6,7 +6,9 @@ import {
   montarResumo, montarResumoHtml, assuntoEmail, corpoAtendente, urlMensagensMeta, corpoCliente, listaDeAnexos, dataHoraBrasilia,
 } from '../src/logica.js';
 
-const menu = JSON.parse(fs.readFileSync(new URL('../config/menu.json', import.meta.url), 'utf8'));
+const menuConfig = JSON.parse(fs.readFileSync(new URL('../config/menu.json', import.meta.url), 'utf8'));
+// Os testes de reconhecimento usam o menu real, mas com o site ativo (ele está desativado até a loja ser publicada).
+const menu = { itens: menuConfig.itens.map((i) => (i.id === 'site' ? { ...i, ativo: true } : i)) };
 const acao = (texto, cfg = menu) => reconhecer(texto, cfg).acao;
 
 test('normaliza acentos, pontuação, emojis e números com tecla', () => {
@@ -42,6 +44,12 @@ test('números de 1 a 6 abrem os itens (2 está desativado)', () => {
   assert.equal(acao('4'), 'financeiro');
   assert.equal(acao('5'), 'redes');
   assert.equal(acao('6'), 'contato');
+});
+
+test('configuração atual: site desativado até a loja ser publicada (responde "em breve")', () => {
+  assert.equal(acao('3', menuConfig), 'indisponivel');
+  assert.equal(acao('acessar o site', menuConfig), 'indisponivel');
+  assert.equal(reconhecer('3', menuConfig).nome, 'Acessar o site');
 });
 
 test('número fora do menu não é aceito', () => {

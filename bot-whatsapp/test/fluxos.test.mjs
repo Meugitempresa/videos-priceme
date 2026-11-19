@@ -51,11 +51,10 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   const { respostas, s } = await conversa(['1', 'Orçamento pelo app', '2', '3', '4', '5', '6', '0', 'xyz', 'oi', 'obrigado', 'redes sociais']);
   const [, r1, r1f, r2, r3, r4, r5, r6, r0, rx, roi, robg, rredes] = respostas;
   assert.match(r1, /^\*Orçamento pelo app\*/);
-  assert.match(r1, /https:\/\/LINK-DOWNLOAD-DO-APP/);
-  assert.match(r1, /https:\/\/LINK-PARA-ABRIR-O-APP/);
+  assert.match(r1, /https:\/\/orcpharm\.app\/pharmaonline\//);
   assert.equal(r1f, r1);
   assert.match(r2, /estará disponível em breve/);
-  assert.match(r3, /https:\/\/LINK-DO-SITE/);
+  assert.match(r3, /A opção \*Acessar o site\* estará disponível em breve/); // loja ainda não publicada
   assert.match(r4, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
   assert.match(r5, /instagram\.com\/pharmaonlineplus[\s\S]*facebook[\s\S]*tiktok[\s\S]*youtube/);
   assert.match(r6, /pharma-formulario\?assunto=Fale%20conosco&whatsapp=5511988887777/);
@@ -117,7 +116,7 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
 
     assert.equal(s.emails.length, 1);
     const [email] = s.emails;
-    assert.deepEqual(email.para, ['atendimento@SEU-DOMINIO.com.br']);
+    assert.deepEqual(email.para, ['suporte.pharmaonline@gmail.com']);
     assert.equal(email.responderPara, 'maria@exemplo.com');
     assert.equal(email.assunto, 'Novo atendimento: Administrativo/Financeiro – Maria da Silva');
     assert.match(email.html, /Maria da Silva/);
