@@ -2,8 +2,8 @@
 //   npm run simular                                  -> conversa interativa (WhatsApp)
 //   npm run simular -- --roteiro "oi|1|asdf|0|5"      -> roteiro pronto, mensagens separadas por |
 //   npm run simular -- --formulario --roteiro "Maria Silva|11912345678|maria@exemplo.com|Minha dúvida|pular"
-// Como na Evolution API, a primeira mensagem abre a conversa e recebe as boas-vindas com o menu.
-// No formulário, os envios à Evolution são mostrados na tela (nada é enviado de verdade).
+// Como no WhatsApp, a primeira mensagem abre a conversa e recebe as boas-vindas com o menu.
+// No formulário, os envios à API da Meta e o e-mail são mostrados na tela (nada é enviado de verdade).
 import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline/promises';
@@ -20,17 +20,18 @@ const arquivo = path.join(RAIZ, 'typebot', ehFormulario ? 'formulario.json' : 'a
 const typebot = JSON.parse(fs.readFileSync(arquivo, 'utf8'));
 
 const fetchFalso = async (url, init) => {
-  console.log('\n   ↪ [envio para a Evolution] POST ' + url);
+  console.log('\n   ↪ [envio pela API da Meta] POST ' + url);
   const corpo = JSON.parse(init.body);
-  console.log('     para: ' + corpo.number);
-  console.log((corpo.text ?? JSON.stringify(corpo.components, null, 2)).split('\n').map((l) => '     │ ' + l).join('\n'));
+  console.log('     para: ' + corpo.to);
+  console.log((corpo.text?.body ?? JSON.stringify(corpo.template, null, 2)).split('\n').map((l) => '     │ ' + l).join('\n'));
   return { status: 201 };
 };
 
 const sessao = criarSessao(typebot, {
   preenchidas: ehFormulario
     ? { assunto: 'Fale conosco', whatsapp: '5511988887777' }
-    : { remoteJid: '5511988887777@s.whatsapp.net', pushName: 'Cliente Teste' },
+    : {},
+  contato: ehFormulario ? null : { telefone: '5511988887777', nome: 'Cliente Teste' },
   fetch: fetchFalso,
   log: (tipo, dados) => {
     if (tipo !== 'email') return;

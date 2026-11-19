@@ -31,8 +31,8 @@ test('estrutura: arestas e variáveis apontam para coisas que existem', () => {
   }
 });
 
-async function conversa(mensagens, preenchidas = { remoteJid: '5511988887777@s.whatsapp.net' }) {
-  const s = criarSessao(ler('atendimento.json'), { preenchidas });
+async function conversa(mensagens, contato = { telefone: '5511988887777', nome: 'Cliente' }) {
+  const s = criarSessao(ler('atendimento.json'), { contato });
   const respostas = [(await s.iniciar()).join('\n---\n')];
   for (const m of mensagens) respostas.push((await s.responder(m)).join('\n---\n'));
   return { s, respostas };
@@ -69,8 +69,8 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.equal(s.aguardando, 'text input');
 });
 
-test('WhatsApp: sem remoteJid (teste no painel do Typebot) o link do formulário sai sem o número', async () => {
-  const { respostas } = await conversa(['4'], {});
+test('WhatsApp: sem número do contato (teste no painel do Typebot) o link do formulário sai sem o número', async () => {
+  const { respostas } = await conversa(['4'], null);
   assert.match(respostas[1], /pharma-formulario\?assunto=Administrativo%2FFinanceiro\n/);
 });
 
@@ -90,7 +90,7 @@ function servidorFalso() {
 
 function formularioCom(url, extras = {}) {
   const tb = ler('formulario.json');
-  const trocar = { evolution_url: url + '/', evolution_apikey: 'chave-teste', numero_atendente: '55 11 97777-6666', ...extras };
+  const trocar = { meta_api_url: url + '/', meta_id_numero: '123456789', meta_token: 'token-teste', numero_atendente: '55 11 97777-6666', ...extras };
   for (const g of tb.groups) for (const b of g.blocks) {
     const nome = tb.variables.find((v) => v.id === b.options?.variableId)?.name;
     if (b.type === 'Set variable' && nome in trocar) b.options.expressionToEvaluate = trocar[nome];
@@ -126,10 +126,12 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
 
     assert.equal(recebidas.length, 2);
     const [atendente, cliente] = recebidas;
-    assert.equal(atendente.url, '/message/sendText/pharmaonline');
-    assert.equal(atendente.headers.apikey, 'chave-teste');
-    assert.equal(atendente.corpo.number, '5511977776666');
-    const texto = atendente.corpo.text;
+    assert.equal(atendente.url, '/v21.0/123456789/messages');
+    assert.equal(atendente.headers.authorization, 'Bearer token-teste');
+    assert.equal(atendente.corpo.messaging_product, 'whatsapp');
+    assert.equal(atendente.corpo.to, '5511977776666');
+    assert.equal(atendente.corpo.type, 'text');
+    const texto = atendente.corpo.text.body;
     assert.match(texto, /^📋 \*Novo atendimento: Administrativo\/Financeiro\*/);
     assert.match(texto, /\*Nome:\* Maria da Silva/);
     assert.match(texto, /\*Telefone:\* \+5511912345678/);
@@ -138,10 +140,11 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
     assert.match(texto, /Preciso da segunda via do boleto\.\nVenceu ontem "hoje"\./);
     assert.match(texto, /\*Anexos \(2\):\*\n1\. https:\/\/s3\.exemplo\/a\.png\n2\. https:\/\/s3\.exemplo\/b\.png/);
 
-    assert.equal(cliente.url, '/message/sendText/pharmaonline');
-    assert.equal(cliente.corpo.number, '5511988887777');
-    assert.match(cliente.corpo.text, /^Olá, Maria da Silva! Recebemos o seu formulário de \*Administrativo\/Financeiro\*/);
-    assert.match(cliente.corpo.text, /Em breve, uma pessoa da nossa equipe entrará em contato/);
+    assert.equal(cliente.url, '/v21.0/123456789/messages');
+    assert.equal(cliente.headers.authorization, 'Bearer token-teste');
+    assert.equal(cliente.corpo.to, '5511988887777');
+    assert.match(cliente.corpo.text.body, /^Olá, Maria da Silva! Recebemos o seu formulário de \*Administrativo\/Financeiro\*/);
+    assert.match(cliente.corpo.text.body, /Em breve, uma pessoa da nossa equipe entrará em contato/);
   } finally {
     srv.close();
   }
@@ -156,11 +159,13 @@ test('formulário: sem anexos, sem assunto no link e com modelo da Meta para o a
     await s.responder('pular');
     assert.equal(recebidas.length, 2);
     const [atendente, cliente] = recebidas;
-    assert.equal(atendente.url, '/message/sendTemplate/pharmaonline');
-    assert.equal(atendente.corpo.name, 'novo_atendimento');
-    assert.deepEqual(atendente.corpo.components[0].parameters.map((p) => p.text),
+    assert.equal(atendente.url, '/v21.0/123456789/messages');
+    assert.equal(atendente.corpo.type, 'template');
+    assert.equal(atendente.corpo.template.name, 'novo_atendimento');
+    assert.deepEqual(atendente.corpo.template.language, { code: 'pt_BR' });
+    assert.deepEqual(atendente.corpo.template.components[0].parameters.map((p) => p.text),
       ['Fale conosco', 'João', '+5521998765432', 'joao@exemplo.com.br', 'Quero falar com vocês.', 'nenhum']);
-    assert.equal(cliente.corpo.number, '5521998765432'); // sem WhatsApp no link: usa o telefone digitado
+    assert.equal(cliente.corpo.to, '5521998765432'); // sem WhatsApp no link: usa o telefone digitado
   } finally {
     srv.close();
   }
@@ -176,8 +181,8 @@ test('formulário (configuração atual): resumo só por e-mail, sem número de 
     assert.equal(s.emails.length, 1);
     assert.doesNotMatch(s.emails[0].html, /<script>/);
     assert.match(s.emails[0].html, /&lt;script&gt;/);
-    assert.equal(recebidas.length, 1, 'só o aviso ao cliente vai pela Evolution');
-    assert.equal(recebidas[0].corpo.number, '5511988887777');
+    assert.equal(recebidas.length, 1, 'só o aviso ao cliente vai pela API da Meta');
+    assert.equal(recebidas[0].corpo.to, '5511988887777');
     assert.equal(s.terminou, true);
   } finally {
     srv.close();

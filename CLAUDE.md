@@ -71,10 +71,11 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
 
 ## Bot de atendimento WhatsApp pHarmaOnline — `bot-whatsapp/`
 
-- Projeto separado dos vídeos: Typebot + Evolution API v2 + WhatsApp Cloud API (oficial da Meta). Bot simples, sem IA.
+- Projeto separado dos vídeos: Typebot com WhatsApp nativo na Cloud API oficial da Meta (sem Evolution, decisão da cliente). Bot simples, sem IA.
 - Situação, pendências da cliente e passos da Meta em `bot-whatsapp/PROXIMOS-PASSOS.md`; instalação em `bot-whatsapp/README.md`.
 - Editar `config/` e rodar `npm run gerar` (em `bot-whatsapp/`) para recriar `typebot/*.json`; `npm test` e `npm run simular` para conferir.
-- Resumo do formulário vai ao atendente por e-mail (conta Meta sem cartão, moeda em dólar). Nunca pedir tokens ou senhas no chat.
+- Resumo do formulário vai ao atendente por e-mail (conta Meta sem cartão, moeda em dólar); aviso ao cliente sai pela API da Meta.
+  Desde 01/10/2026 a Meta cobra também as respostas (franquia ~1.000/mês, conferir). Nunca pedir tokens ou senhas no chat.
 
 ## Tutorial pHarmaOnline — Parte 2 — `src/tutorial2`
 

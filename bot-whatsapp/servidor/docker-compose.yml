@@ -1,4 +1,5 @@
-# Servidor do bot pHarmaOnline: Evolution API v2 + Typebot (builder e viewer) + Postgres + Redis + MinIO + Caddy (HTTPS).
+# Servidor do bot pHarmaOnline: Typebot (builder e viewer, com WhatsApp nativo pela API oficial da Meta)
+# + Postgres + Redis + MinIO + Caddy (HTTPS).
 # Uso: copie .env.example para .env, preencha e rode `docker compose up -d` numa VPS com os domínios apontados para ela.
 name: pharmaonline-bot
 
@@ -10,12 +11,11 @@ services:
     environment:
       DOMINIO_TYPEBOT: ${DOMINIO_TYPEBOT}
       DOMINIO_VIEWER: ${DOMINIO_VIEWER}
-      DOMINIO_EVOLUTION: ${DOMINIO_EVOLUTION}
       DOMINIO_ARQUIVOS: ${DOMINIO_ARQUIVOS}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
-    depends_on: [typebot-builder, typebot-viewer, evolution-api, minio]
+    depends_on: [typebot-builder, typebot-viewer, minio]
 
   postgres:
     image: postgres:16-alpine
@@ -26,7 +26,6 @@ services:
       POSTGRES_DB: typebot
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -89,8 +88,6 @@ services:
       S3_ENDPOINT: ${DOMINIO_ARQUIVOS}
       S3_SSL: "true"
       S3_PUBLIC_CUSTOM_DOMAIN: https://${DOMINIO_ARQUIVOS}
-      # Deixa o Typebot chamar a Evolution pela rede interna (http://evolution-api:8080).
-      SSRF_ALLOWED_HOSTS: evolution-api
 
   typebot-viewer:
     image: baptistearno/typebot-viewer:latest
@@ -98,35 +95,8 @@ services:
     depends_on: [typebot-builder]
     environment: *typebot_env
 
-  evolution-api:
-    image: evoapicloud/evolution-api:v2.3.7
-    restart: unless-stopped
-    depends_on:
-      postgres: { condition: service_healthy }
-      redis: { condition: service_started }
-    environment:
-      SERVER_URL: https://${DOMINIO_EVOLUTION}
-      AUTHENTICATION_API_KEY: ${EVOLUTION_API_KEY}
-      DEL_INSTANCE: "false"
-      DATABASE_PROVIDER: postgresql
-      DATABASE_CONNECTION_URI: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/evolution?schema=public
-      DATABASE_CONNECTION_CLIENT_NAME: evolution
-      CACHE_REDIS_ENABLED: "true"
-      CACHE_REDIS_URI: redis://redis:6379/6
-      CACHE_REDIS_PREFIX_KEY: evolution
-      CACHE_LOCAL_ENABLED: "false"
-      TYPEBOT_ENABLED: "true"
-      TYPEBOT_API_VERSION: latest
-      # WhatsApp Cloud API (oficial da Meta)
-      WA_BUSINESS_TOKEN_WEBHOOK: ${META_TOKEN_VERIFICACAO_WEBHOOK}
-      WA_BUSINESS_URL: https://graph.facebook.com
-      WA_BUSINESS_VERSION: v21.0
-      WA_BUSINESS_LANGUAGE: pt_BR
-    volumes: [evolution_instances:/evolution/instances]
-
 volumes:
   caddy_data:
   postgres_data:
   redis_data:
   minio_data:
-  evolution_instances:

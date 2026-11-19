@@ -2,7 +2,8 @@
 // Uso:
 //   TYPEBOT_VIEWER_URL=https://seu-viewer node scripts/testar-typebot-real.mjs pharma-atendimento
 // (pharma-atendimento = "ID público" com que o fluxo de atendimento foi publicado no Typebot.)
-// As mensagens são convertidas como a Evolution faz para o WhatsApp: negrito -> *x*, itálico -> _x_.
+// As mensagens são convertidas como o WhatsApp mostra: negrito -> *x*, itálico -> _x_.
+// Pela API de chat não há número de WhatsApp, então o link do formulário sai sem ele (igual no simulador).
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,7 +16,6 @@ const roteiro = (process.argv[3] ?? [
   '1', 'Orçamento em tempo real pelo app', '2', '3', '4', '5', '6', '0', 'asdf', 'Oi, bom dia!',
   'obrigado', 'quero falar com atendente', '1️⃣', 'Opção 3', '7', '😀',
 ].join('|')).split('|');
-const remoteJid = '5511988887777@s.whatsapp.net';
 
 const paraWhatsApp = (richText) => richText.map((p) => (p.children ?? []).map((c) => {
   let t = c.text ?? '';
@@ -33,9 +33,9 @@ const post = async (url, corpo) => {
 const textos = (resp) => (resp.messages ?? []).filter((m) => m.type === 'text').map((m) => paraWhatsApp(m.content.richText));
 
 const typebot = JSON.parse(fs.readFileSync(path.join(RAIZ, 'typebot/atendimento.json'), 'utf8'));
-const local = criarSessao(typebot, { preenchidas: { remoteJid } });
+const local = criarSessao(typebot);
 
-const inicio = await post('/api/v1/typebots/' + publicId + '/startChat', { prefilledVariables: { remoteJid, pushName: 'Teste' } });
+const inicio = await post('/api/v1/typebots/' + publicId + '/startChat', {});
 const sessionId = inicio.sessionId;
 let diferencas = 0;
 const comparar = (rotulo, real, simulado) => {

@@ -154,9 +154,6 @@ export function gerarAtendimento({ menu, textos, vars }) {
     if (!textos.respostas[item.id]) throw new Error('falta texto em respostas para o item: ' + item.id);
   }
   const b = criarConstrutor('pharma-atendimento');
-  // Variáveis que a Evolution API preenche ao iniciar a conversa
-  b.v('remoteJid');
-  b.v('pushName');
 
   const comentarioMenu = [
     '// ⚙️ MENU — edite aqui.',
@@ -173,6 +170,8 @@ export function gerarAtendimento({ menu, textos, vars }) {
   });
 
   const gCfg = grupo(b, 'cfg', '⚙️ Configuração (edite aqui)', 0, 0, [
+    // Número de quem está conversando (recurso nativo do Typebot no WhatsApp)
+    { id: b.id('blk:set:telefone_whatsapp'), type: 'Set variable', options: { variableId: b.v('telefone_whatsapp'), type: 'Phone number' } },
     ...Object.entries(vars.atendimento).map(([nome, valor]) => blocoValor(b, nome, valor)),
     blocoCodigo(b, 'menu_config',
       comentarioMenu + '\nreturn JSON.stringify(' + JSON.stringify(itensCodigo, null, 2) + ');',
@@ -190,7 +189,7 @@ export function gerarAtendimento({ menu, textos, vars }) {
   const condicao = { id: b.id('blk:rotas'), type: 'Condition', items: [] };
   const gEspera = grupo(b, 'espera', '⌨️ Aguardar resposta', 900, 0, [
     entrada,
-    blocoCodigo(b, 'resultado', 'return processarMensagem({{entrada}}, {{menu_config}}, {{remoteJid}}, {{link_formulario}});', 'Reconhece a mensagem (número, frase, saudação ou 0)'),
+    blocoCodigo(b, 'resultado', 'return processarMensagem({{entrada}}, {{menu_config}}, {{telefone_whatsapp}}, {{link_formulario}});', 'Reconhece a mensagem (número, frase, saudação ou 0)'),
     blocoCodigo(b, 'acao', 'return JSON.parse({{resultado}}).acao;', 'Ação escolhida', false),
     blocoCodigo(b, 'item_nome', 'return JSON.parse({{resultado}}).item_nome;', 'Nome do item escolhido', false),
     blocoCodigo(b, 'link_form', 'return JSON.parse({{resultado}}).link_form;', 'Link do formulário (opções com formulário)', false),
@@ -228,7 +227,12 @@ export function gerarAtendimento({ menu, textos, vars }) {
     nome: 'pHarmaOnline · Atendimento WhatsApp',
     icone: '💬',
     theme: tema,
-    settings: { general: { isBrandingEnabled: false }, metadata: { title: 'pHarmaOnline · Atendimento' } },
+    settings: {
+      general: { isBrandingEnabled: false },
+      metadata: { title: 'pHarmaOnline · Atendimento' },
+      // Depois de 12 h sem mensagens a conversa recomeça pelas boas-vindas.
+      whatsApp: { sessionExpiryTimeout: 12 },
+    },
   });
 }
 
@@ -277,7 +281,7 @@ export function gerarFormulario({ textos, vars }) {
         url,
         headers: [
           { id: b.id('hdr:ct:' + chave), key: 'Content-Type', value: 'application/json' },
-          { id: b.id('hdr:key:' + chave), key: 'apikey', value: '{{evolution_apikey}}' },
+          { id: b.id('hdr:key:' + chave), key: 'Authorization', value: 'Bearer {{meta_token}}' },
         ],
         body: corpo,
       },
@@ -298,11 +302,11 @@ export function gerarFormulario({ textos, vars }) {
   // Ordem: prepara tudo -> e-mail ao atendente (se houver e-mail) -> WhatsApp ao atendente (se houver número)
   // -> aviso ao cliente no WhatsApp -> mensagem final na tela.
   const gCliente = grupo(b, 'cliente', '📲 Avisar o cliente no WhatsApp e encerrar', 1800, 0, [
-    http('cliente', '{{url_cliente}}', '{{corpo_cliente}}'),
+    http('cliente', '{{url_meta}}', '{{corpo_cliente}}'),
     blocoTexto(b, 'final', t.final),
   ]);
   const gZap = grupo(b, 'zap', '💬 Resumo ao atendente por WhatsApp (só com numero_atendente preenchido)', 1350, 300, [
-    http('atendente', '{{url_atendente}}', '{{corpo_atendente}}'),
+    http('atendente', '{{url_meta}}', '{{corpo_atendente}}'),
   ]);
   ligar(b, gZap.blocks[0], 'zap>cliente', gCliente);
   const seZap = condicaoSe('zap', 'numero_atendente', gZap);
@@ -331,8 +335,7 @@ export function gerarFormulario({ textos, vars }) {
     blocoValor(b, 'aviso_whatsapp', t.aviso_whatsapp.join('\n')),
     blocoCodigo(b, 'email_assunto', 'return assuntoEmail(' + dadosJs + ');', 'Assunto do e-mail ao atendente'),
     blocoCodigo(b, 'email_html', 'return montarResumoHtml(' + dadosJs + ', new Date());', 'E-mail organizado para o atendente'),
-    blocoCodigo(b, 'url_atendente', "return String({{evolution_url}}).replace(/\\/+$/, '') + (String({{template_atendente}} ?? '').trim() ? '/message/sendTemplate/' : '/message/sendText/') + encodeURIComponent(String({{evolution_instancia}}));", 'Endereço da Evolution para o atendente', false),
-    blocoCodigo(b, 'url_cliente', "return String({{evolution_url}}).replace(/\\/+$/, '') + '/message/sendText/' + encodeURIComponent(String({{evolution_instancia}}));", 'Endereço da Evolution para o cliente', false),
+    blocoCodigo(b, 'url_meta', 'return urlMensagensMeta({{meta_api_url}}, {{meta_api_versao}}, {{meta_id_numero}});', 'Endereço da API da Meta para enviar mensagens'),
     blocoCodigo(b, 'corpo_atendente', 'return corpoAtendente(' + dadosJs + ', {{numero_atendente}}, {{template_atendente}}, {{template_idioma}}, new Date());', 'Mensagem única e organizada para o atendente (WhatsApp)'),
     blocoCodigo(b, 'corpo_cliente', 'return corpoCliente({{whatsapp}}, {{telefone}}, {{aviso_whatsapp}});', 'Aviso para o cliente no WhatsApp'),
     seEmail,

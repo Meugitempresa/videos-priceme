@@ -1,6 +1,7 @@
 # Bot de atendimento pHarmaOnline (WhatsApp)
 
-O bot usa Typebot, conectado à Evolution API v2 e à **API oficial do WhatsApp (Cloud API da Meta)**.
+O bot usa o **Typebot** conectado direto à **API oficial do WhatsApp (Cloud API da Meta)**, pela integração nativa do
+Typebot, sem nenhum intermediário.
 É um bot **simples e engessado**: não tem IA e não conversa. Ele mostra um menu numerado e responde a cada opção.
 Se a mensagem não tiver relação com o menu, ele explica em uma frase como escolher a opção e mostra o menu de novo.
 
@@ -38,7 +39,7 @@ A lógica fica em `src/logica.js` e segue esta ordem:
 5. **Agradecimento** ("obrigado", "valeu") → resposta curta e educada.
 6. **Qualquer outra coisa** → "Desculpe, não consegui identificar…" e o menu.
 
-Áudio, figurinha e foto não têm texto. Para esses casos, use a "mensagem desconhecida" da Evolution (passo 4 da instalação).
+Áudio, figurinha e foto não têm texto: caem no item 6 ("não consegui identificar" e o menu). Isso foi testado no Typebot real.
 
 ## Editar o menu (sem quebrar a ordem)
 
@@ -73,7 +74,7 @@ npm run simular -- --roteiro "oi|1|asdf|0|5"
 npm run simular -- --formulario
 ```
 
-- `npm test` roda 26 testes: reconhecimento, renumeração e o fluxo completo, inclusive o envio à Evolution.
+- `npm test` roda 26 testes: reconhecimento, renumeração e o fluxo completo, inclusive o e-mail e o envio pela API da Meta.
 - O simulador executa o mesmo JSON que vai para o Typebot.
 - `npm run gerar` recria `typebot/*.json` depois de editar os arquivos em `config/`.
 
@@ -85,45 +86,47 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 
 ## Instalação no servidor
 
-1. **VPS** com Docker, pelo menos 4 GB de RAM e 4 domínios apontados para ela (painel do Typebot, bot, Evolution e
-   arquivos). Em `servidor/`, copie `.env.example` para `.env`, preencha os dados e rode:
+1. **VPS** com Docker, pelo menos 2 a 4 GB de RAM e 3 domínios apontados para ela (painel do Typebot, bot e arquivos).
+   Em `servidor/`, copie `.env.example` para `.env`, preencha os dados (inclusive o SMTP do e-mail que envia) e rode:
 
    ```bash
    docker compose up -d
    ```
 
-2. **Typebot** (`https://DOMINIO_TYPEBOT`): entre com o e-mail do administrador e use **Criar → Importar arquivo** para
-   importar os dois fluxos:
-   - `typebot/formulario.json`: em "⚙️ Configuração (edite aqui)", preencha a chave da instância (`evolution_apikey`) e o
-     e-mail do atendente (`email_atendente`). Deixe `numero_atendente` vazio. Publique com o ID público `pharma-formulario`.
-     O e-mail sai pelo SMTP configurado no `.env` do servidor (o mesmo usado no login do Typebot).
+2. **Importar os fluxos** em `https://DOMINIO_TYPEBOT`: entre com o e-mail do administrador e use **Criar → Importar
+   arquivo** para os dois fluxos.
+   - `typebot/formulario.json`: em "⚙️ Configuração (edite aqui)", preencha:
+     - `email_atendente`: quem recebe os formulários;
+     - `meta_id_numero` e `meta_token`: os mesmos do passo 3.
+
+     Deixe `numero_atendente` vazio. Publique com o ID público `pharma-formulario`. O e-mail sai pelo SMTP do `.env`.
    - `typebot/atendimento.json`: preencha os links (`link_formulario` = `https://DOMINIO_VIEWER/pharma-formulario`).
      Publique com o ID público `pharma-atendimento`.
-3. **Cloud API da Meta**:
-   1. Crie a instância na Evolution:
+3. **Ligar o número da Meta ao Typebot** (integração nativa):
+   1. No fluxo `pharma-atendimento`, abra **Compartilhar → WhatsApp** e siga o assistente. Ele pede:
+      - o **token permanente** do usuário do sistema da Meta;
+      - o **ID do número de telefone**;
+      - a chave secreta do app (opcional, recomendada).
+   2. O assistente mostra uma **URL de callback** e um **token de verificação**. No app da Meta (developers.facebook.com →
+      WhatsApp → Configuração → Webhook), cole os dois, clique em verificar e assine o campo **messages**.
+   3. Ative o WhatsApp no fluxo e **publique**. A conversa recomeça pelas boas-vindas depois de 12 h sem mensagens
+      (configurável no mesmo painel).
+   4. Se o número estiver "Offline" no Gerenciador do WhatsApp, registre-o uma vez na API, com um PIN de 6 dígitos
+      escolhido por vocês. Pode ser pelo Explorador da Graph API da Meta, sem programar:
 
       ```bash
-      curl -X POST https://DOMINIO_EVOLUTION/instance/create \
-        -H "apikey: EVOLUTION_API_KEY" -H "Content-Type: application/json" \
-        -d '{"instanceName":"pharmaonline","integration":"WHATSAPP-BUSINESS","token":"TOKEN_PERMANENTE_META","number":"ID_DO_NUMERO","businessId":"ID_DA_CONTA_WHATSAPP_BUSINESS","qrcode":false}'
+      curl -X POST "https://graph.facebook.com/v21.0/ID_DO_NUMERO/register" \
+        -H "Authorization: Bearer TOKEN_PERMANENTE" -H "Content-Type: application/json" \
+        -d '{"messaging_product":"whatsapp","pin":"123456"}'
       ```
 
-   2. No app da Meta (developers.facebook.com → WhatsApp → Configuração), configure o webhook:
-      - URL de callback: `https://DOMINIO_EVOLUTION/webhook/meta`;
-      - token de verificação: o mesmo de `META_TOKEN_VERIFICACAO_WEBHOOK`;
-      - campo assinado: `messages`.
-4. **Ligar o Typebot ao número**:
-
-   ```bash
-   curl -X POST https://DOMINIO_EVOLUTION/typebot/create/pharmaonline \
-     -H "apikey: EVOLUTION_API_KEY" -H "Content-Type: application/json" \
-     -d '{"enabled":true,"url":"https://DOMINIO_VIEWER","typebot":"pharma-atendimento","triggerType":"all","expire":0,"keywordFinish":"","delayMessage":1000,"unknownMessage":"Desculpe, não consigo ler áudios, imagens ou figurinhas. Por favor, digite o número da opção desejada ou 0 para ver o menu.","listeningFromMe":false,"stopBotFromMe":false,"keepOpen":false,"debounceTime":3}'
-   ```
-
-5. **(Opcional, exige cartão na conta da Meta) Resumo também por WhatsApp para o atendente.** Hoje ele vai só por e-mail.
-   Mensagens iniciadas pela empresa precisam de forma de pagamento e de modelo aprovado. Para ligar, preencha
-   `numero_atendente` no fluxo do formulário e crie no Gerenciador do WhatsApp um modelo **Utilidade**, em pt_BR, chamado
-   `novo_atendimento`, com o corpo:
+      Ao registrar, o número deixa de funcionar no app WhatsApp Business do celular.
+4. **Custos da Meta:** desde 01/10/2026, segundo parceiros da Meta, as respostas aos clientes também são cobradas por
+   mensagem. Há uma franquia mensal citada de cerca de 1.000 mensagens por número. Confirme no Gerenciador do WhatsApp:
+   pode ser necessário cadastrar uma forma de pagamento para as mensagens continuarem sendo entregues.
+5. **(Opcional, exige cartão) Resumo também por WhatsApp para o atendente.** Hoje ele vai só por e-mail. Mensagens
+   iniciadas pela empresa precisam de modelo aprovado. Para ligar, preencha `numero_atendente` no fluxo do formulário e
+   crie no Gerenciador do WhatsApp um modelo **Utilidade**, em pt_BR, chamado `novo_atendimento`, com o corpo:
 
    ```
    Novo atendimento recebido pelo formulário.
@@ -135,11 +138,14 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
    Anexos: {{6}}
    ```
 
-   Depois que o modelo for aprovado, preencha `template_atendente = novo_atendimento` no fluxo do formulário. Enquanto
-   o campo estiver vazio, o resumo segue como texto livre. Esse texto só é entregue se o número do atendente tiver
-   falado com o número do bot nas últimas 24 h.
-   - O aviso ao cliente não precisa de modelo nem de cartão, porque ele acabou de falar com o bot.
-   - Todos os formulários também ficam salvos no painel do Typebot, em **Resultados**.
+   Depois que o modelo for aprovado, preencha `template_atendente = novo_atendimento`. Enquanto o campo estiver vazio, o
+   resumo segue como texto livre. Esse texto só é entregue se o atendente tiver falado com o número do bot nas últimas
+   24 h. Todos os formulários também ficam salvos no painel do Typebot, em **Resultados**.
+
+**Validação feita:** o Typebot oficial rodou com uma "Meta falsa" no lugar da API real.
+- Mensagens no formato da Meta, enviadas ao webhook nativo, foram respondidas: menu, opções, frases, 0, figurinha e
+  agradecimento.
+- O formulário enviou o e-mail ao atendente e o aviso ao cliente pela API da Meta.
 
 ## Arquivos
 
@@ -147,12 +153,12 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 |---------|---------|
 | `config/menu.json` | itens do menu (ordem, nomes, frases aceitas, ativo/inativo) |
 | `config/textos.json` | textos-modelo de todas as mensagens |
-| `config/variaveis.example.json` | links, número do atendente e dados da Evolution (copie para `variaveis.json`) |
+| `config/variaveis.example.json` | links, e-mail do atendente e dados da Meta (copie para `variaveis.json`) |
 | `src/logica.js` | reconhecimento das mensagens, menu, resumo do formulário (copiado para dentro do Typebot) |
 | `src/motor.js` | executor local dos fluxos (simulador e testes) |
 | `scripts/gerar-typebot.mjs` | gera `typebot/atendimento.json` e `typebot/formulario.json` |
 | `scripts/simular.mjs` | conversa no terminal |
 | `scripts/testar-typebot-real.mjs` | compara um Typebot publicado com o simulador |
-| `servidor/` | docker-compose (Evolution + Typebot + Postgres + Redis + MinIO + HTTPS) |
+| `servidor/` | docker-compose (Typebot + Postgres + Redis + MinIO + HTTPS) |
 | `docs/previa-formulario-*.png` | capturas do formulário rodando no Typebot, nas cores da marca |
 | `docs/previa-email-atendente.png` | e-mail que o atendente recebe (capturado do Typebot real) |

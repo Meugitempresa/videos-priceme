@@ -57,7 +57,7 @@ export function saudacaoPorHorario(agora) {
   return 'Boa noite';
 }
 
-/** Só os dígitos do número do WhatsApp ("5511999999999@s.whatsapp.net" -> "5511999999999"). */
+/** Só os dígitos do número do WhatsApp ("+55 11 99999-9999" ou "5511999999999@s.whatsapp.net" -> "5511999999999"). */
 export function numeroDoWhatsApp(remoteJid) {
   return String(remoteJid ?? '').split('@')[0].replace(/\D/g, '');
 }
@@ -158,12 +158,12 @@ export function reconhecer(entrada, config) {
 }
 
 /** Tudo que o fluxo do Typebot precisa depois de receber uma mensagem, num JSON só. */
-export function processarMensagem(entrada, config, remoteJid, baseFormulario) {
+export function processarMensagem(entrada, config, telefoneWhatsApp, baseFormulario) {
   const r = reconhecer(entrada, config);
   return JSON.stringify({
     acao: r.acao,
     item_nome: r.nome,
-    link_form: r.formulario ? linkFormulario(baseFormulario, r.nome, remoteJid) : '',
+    link_form: r.formulario ? linkFormulario(baseFormulario, r.nome, telefoneWhatsApp) : '',
   });
 }
 
@@ -207,12 +207,15 @@ export function montarResumo(dados, agora) {
   return linhas.join('\n');
 }
 
-/** Corpo do POST à Evolution para o atendente: texto livre ou modelo aprovado pela Meta. */
+/** Corpo do POST à API da Meta para o atendente: texto livre ou modelo aprovado (exige cartão na conta da Meta). */
 export function corpoAtendente(dados, numeroAtendente, template, idioma, agora) {
   const numero = String(numeroAtendente ?? '').replace(/\D/g, '');
   const nomeTemplate = String(template ?? '').trim();
   if (!nomeTemplate) {
-    return JSON.stringify({ number: numero, text: montarResumo(dados, agora) });
+    return JSON.stringify({
+      messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',
+      text: { preview_url: false, body: montarResumo(dados, agora) },
+    });
   }
   // Parâmetros de modelo não aceitam quebras de linha nem 4+ espaços seguidos.
   const limpar = (x) => (String(x ?? '').trim() || '(não informado)')
@@ -223,10 +226,12 @@ export function corpoAtendente(dados, numeroAtendente, template, idioma, agora) 
     anexos.length ? anexos.join(' ; ') : 'nenhum',
   ].map((texto) => ({ type: 'text', text: limpar(texto) }));
   return JSON.stringify({
-    number: numero,
-    name: nomeTemplate,
-    language: String(idioma ?? '').trim() || 'pt_BR',
-    components: [{ type: 'body', parameters: parametros }],
+    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'template',
+    template: {
+      name: nomeTemplate,
+      language: { code: String(idioma ?? '').trim() || 'pt_BR' },
+      components: [{ type: 'body', parameters: parametros }],
+    },
   });
 }
 
@@ -272,8 +277,17 @@ export function montarResumoHtml(dados, agora) {
     '</div></div>';
 }
 
-/** Corpo do POST à Evolution com o aviso para o cliente (vai para o WhatsApp de origem). */
+/** Corpo do POST à API da Meta com o aviso para o cliente (vai para o WhatsApp de origem). */
 export function corpoCliente(whatsapp, telefoneDigitado, texto) {
   const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\D/g, '');
-  return JSON.stringify({ number: numero, text: String(texto ?? '') });
+  return JSON.stringify({
+    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',
+    text: { preview_url: false, body: String(texto ?? '') },
+  });
+}
+
+/** Endereço da API da Meta para enviar mensagens pelo número do bot. */
+export function urlMensagensMeta(base, versao, idNumero) {
+  return String(base ?? '').trim().replace(/\/+$/, '') + '/' + (String(versao ?? '').trim() || 'v21.0') + '/' +
+    String(idNumero ?? '').trim() + '/messages';
 }

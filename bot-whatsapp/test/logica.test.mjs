@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import fs from 'node:fs';
 import {
   normalizar, lerMenu, montarMenu, reconhecer, saudacaoPorHorario, linkFormulario,
-  montarResumo, montarResumoHtml, assuntoEmail, corpoAtendente, corpoCliente, listaDeAnexos, dataHoraBrasilia,
+  montarResumo, montarResumoHtml, assuntoEmail, corpoAtendente, urlMensagensMeta, corpoCliente, listaDeAnexos, dataHoraBrasilia,
 } from '../src/logica.js';
 
 const menu = JSON.parse(fs.readFileSync(new URL('../config/menu.json', import.meta.url), 'utf8'));
@@ -159,22 +159,32 @@ test('anexos como lista ou texto', () => {
   assert.equal(dataHoraBrasilia(new Date('2026-01-01T02:59:00Z')), '31/12/2025 às 23:59');
 });
 
-test('corpo para a Evolution: texto livre ou modelo da Meta', () => {
+test('corpo para a API da Meta: texto livre, modelo aprovado e aviso ao cliente', () => {
   const texto = JSON.parse(corpoAtendente(dados, '+55 (11) 97777-6666', '', 'pt_BR', quando));
-  assert.equal(texto.number, '5511977776666');
-  assert.equal(texto.text, montarResumo(dados, quando));
+  assert.deepEqual(texto, {
+    messaging_product: 'whatsapp', recipient_type: 'individual', to: '5511977776666', type: 'text',
+    text: { preview_url: false, body: montarResumo(dados, quando) },
+  });
 
   const modelo = JSON.parse(corpoAtendente(dados, '5511977776666', 'novo_atendimento', '', quando));
-  assert.equal(modelo.name, 'novo_atendimento');
-  assert.equal(modelo.language, 'pt_BR');
-  const params = modelo.components[0].parameters.map((p) => p.text);
+  assert.equal(modelo.type, 'template');
+  assert.equal(modelo.template.name, 'novo_atendimento');
+  assert.deepEqual(modelo.template.language, { code: 'pt_BR' });
+  const params = modelo.template.components[0].parameters.map((p) => p.text);
   assert.equal(params.length, 6);
   assert.equal(params[4], 'Linha 1 / Linha 2');
   assert.ok(params.every((p) => !p.includes('\n')));
 
   const cliente = JSON.parse(corpoCliente(5511988887777, '+5511912345678', 'Olá!'));
-  assert.deepEqual(cliente, { number: '5511988887777', text: 'Olá!' });
-  assert.equal(JSON.parse(corpoCliente(undefined, '+5511912345678', 'x')).number, '5511912345678');
+  assert.deepEqual(cliente, {
+    messaging_product: 'whatsapp', recipient_type: 'individual', to: '5511988887777', type: 'text',
+    text: { preview_url: false, body: 'Olá!' },
+  });
+  assert.equal(JSON.parse(corpoCliente(undefined, '+5511912345678', 'x')).to, '5511912345678');
+  assert.equal(JSON.parse(corpoCliente('+55 31 99999-0000', '', 'x')).to, '5531999990000');
+
+  assert.equal(urlMensagensMeta('https://graph.facebook.com/', 'v21.0', ' 123 '), 'https://graph.facebook.com/v21.0/123/messages');
+  assert.equal(urlMensagensMeta('https://graph.facebook.com', '', '9'), 'https://graph.facebook.com/v21.0/9/messages');
 });
 
 test('e-mail para o atendente: assunto, dados escapados e anexos como links', () => {

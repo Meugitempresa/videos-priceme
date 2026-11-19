@@ -32,7 +32,8 @@ const comoTexto = (valor) => {
   return typeof valor === 'string' ? valor : JSON.stringify(valor);
 };
 
-export function criarSessao(typebot, { preenchidas = {}, fetch: fetchFn = globalThis.fetch, log = () => {} } = {}) {
+// contato: { telefone, nome } de quem conversa pelo WhatsApp (o Typebot preenche nos blocos "Phone number" e "Contact name").
+export function criarSessao(typebot, { preenchidas = {}, contato = null, fetch: fetchFn = globalThis.fetch, log = () => {} } = {}) {
   const porNome = new Map(typebot.variables.map((v) => [v.name, v]));
   const porId = new Map(typebot.variables.map((v) => [v.id, v]));
   const valores = new Map();
@@ -78,7 +79,7 @@ export function criarSessao(typebot, { preenchidas = {}, fetch: fetchFn = global
   }
 
   // Nos balões, o Typebot lê o valor das variáveis como Markdown (**x** = negrito, *x* ou _x_ = itálico);
-  // a Evolution manda negrito como *x* e itálico como _x_ para o WhatsApp.
+  // no WhatsApp, negrito chega como *x* e itálico como _x_.
   const markdownParaWhatsApp = (texto) => texto
     .replace(/\*\*([^*\n]+)\*\*/g, '\u0000$1\u0000')
     .replace(/(^|[^\w*])\*([^*\n]+)\*(?![\w*])/g, '$1_$2_')
@@ -128,7 +129,12 @@ export function criarSessao(typebot, { preenchidas = {}, fetch: fetchFn = global
           atual = proximo();
           break;
         case 'Set variable': {
-          const valor = await avaliar(bloco.options.expressionToEvaluate ?? '');
+          const tipo = bloco.options.type;
+          let valor;
+          if (tipo === 'Phone number') valor = contato?.telefone || undefined;
+          else if (tipo === 'Contact name') valor = contato?.nome || undefined;
+          else if (tipo && tipo !== 'Custom') throw new Error('tipo de Set variable não suportado no motor: ' + tipo);
+          else valor = await avaliar(bloco.options.expressionToEvaluate ?? '');
           valores.set(bloco.options.variableId, valor);
           log('set', porId.get(bloco.options.variableId).name, valor);
           atual = proximo();
