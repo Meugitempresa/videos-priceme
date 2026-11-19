@@ -54,22 +54,22 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(r1, /^\*Orçamento pelo app\*/);
   assert.match(r1, /https:\/\/orcpharm\.app\/pharmaonline\//);
   assert.equal(r1f, r1);
-  assert.match(r2, /^\*Orçamento pelo WhatsApp\* 💬/);
-  assert.match(r2, /Uma pessoa da nossa equipe vai atender você/);
+  assert.match(r2, /^\*Orçamento pelo WhatsApp \(ordem de pedido\)\*/);
+  assert.match(r2, /👉 \*Toque no link abaixo\* para abrir a conversa com a nossa equipe e ser atendido\(a\):\nhttps:\/\/wa\.me\/5531999211377\n/);
   assert.doesNotMatch(r2, /receita/i);
   assert.match(r2, /\(31\) 99921-1377/);
   assert.match(r2, /https:\/\/wa\.me\/5531999211377\n/);
-  assert.match(r3, /📧 A resposta chegará pelo e-mail informado no formulário\./);
-  assert.match(r5, /📧 A resposta chegará pelo e-mail informado no formulário\./);
+  assert.match(r3, /entrará em contato com você pelo \*e-mail\* informado no formulário\./);
+  assert.match(r5, /entrará em contato com você pelo \*e-mail\* informado no formulário\./);
   assert.doesNotMatch(r5, /Ficamos felizes/);
   assert.match(r3, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
   assert.match(r4, /instagram\.com\/pharmaonlineplus[\s\S]*facebook\.com\/pharmaonlineplus[\s\S]*tiktok[\s\S]*youtube/);
   assert.match(r5, /pharma-formulario\?assunto=Fale%20conosco&whatsapp=5511988887777/);
-  assert.match(r6, /^Desculpe, não entendi\./); // não existe opção 6 com o site oculto
-  assert.match(rsite, /^Desculpe, não entendi\./); // site oculto não é reconhecido
+  assert.match(r6, /^Desculpe, não consegui identificar/); // não existe opção 6 com o site oculto
+  assert.match(rsite, /^Desculpe, não consegui identificar/); // site oculto não é reconhecido
   assert.match(r0, /^Digite o \*número\* da opção desejada:[\s\S]*\*5\* - Fale conosco$/); // 0: só o menu
   assert.doesNotMatch(r0, /Seja bem-vindo|\[imagem/);
-  assert.match(rx, /^Desculpe, não entendi\.[\s\S]*\*5\* - Fale conosco/);
+  assert.match(rx, /^Desculpe, não consegui identificar[\s\S]*\*5\* - Fale conosco/);
   assert.equal(roi, respostas[0]);
   assert.match(robg, /agradecemos/);
   assert.match(robg, /\*pHarmaOnline\*, conectando confiança à sua conveniência! 💜$/);
@@ -138,8 +138,8 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
     await s.responder('maria@exemplo.com');
     await s.responder('Preciso da segunda via do boleto.\nVenceu ontem "hoje".');
     const final = (await s.responder('https://s3.exemplo/a.png https://s3.exemplo/b.png')).join('\n');
-    assert.match(final, /Pronto, Maria da Silva! ✅/);
-    assert.match(final, /Responderemos em breve pelo e-mail \*maria@exemplo\.com\*/);
+    assert.match(final, /Pronto, Maria da Silva! Recebemos as suas informações\. ✅/);
+    assert.match(final, /entrará em contato com você pelo e-mail \*maria@exemplo\.com\*/);
     assert.equal(s.terminou, true);
 
     assert.equal(s.emails.length, 1);
@@ -170,8 +170,8 @@ test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso
     assert.equal(cliente.url, '/v21.0/123456789/messages');
     assert.equal(cliente.headers.authorization, 'Bearer token-teste');
     assert.equal(cliente.corpo.to, '5511988887777');
-    assert.match(cliente.corpo.text.body, /^Olá, Maria da Silva! Recebemos seu formulário de \*Administrativo\/Financeiro\*/);
-    assert.match(cliente.corpo.text.body, /Responderemos em breve pelo e-mail \*maria@exemplo\.com\*/);
+    assert.match(cliente.corpo.text.body, /^Olá, Maria da Silva! Recebemos o seu formulário de \*Administrativo\/Financeiro\*/);
+    assert.match(cliente.corpo.text.body, /entrará em contato com você pelo e-mail \*maria@exemplo\.com\*/);
   } finally {
     srv.close();
   }

@@ -578,9 +578,6 @@
                   {
                     "text": "Orçamento pelo app",
                     "bold": true
-                  },
-                  {
-                    "text": " 📲"
                   }
                 ]
               },
@@ -596,7 +593,23 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Faça seu orçamento em tempo real pelo nosso app:"
+                    "text": "Pelo nosso aplicativo, você faz o orçamento em tempo real, de forma rápida e segura."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "📲 Acesse o app pelo link:"
                   }
                 ]
               },
@@ -620,7 +633,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu, digite "
+                    "text": "Para voltar ao menu inicial, digite "
                   },
                   {
                     "text": "0",
@@ -654,11 +667,8 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Orçamento pelo WhatsApp",
+                    "text": "Orçamento pelo WhatsApp (ordem de pedido)",
                     "bold": true
-                  },
-                  {
-                    "text": " 💬"
                   }
                 ]
               },
@@ -674,7 +684,30 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Uma pessoa da nossa equipe vai atender você pelo número {{telefone_atendimento}}:"
+                    "text": "O orçamento pelo WhatsApp é feito por uma pessoa da nossa equipe, em outro número de atendimento."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "👉 "
+                  },
+                  {
+                    "text": "Toque no link abaixo",
+                    "bold": true
+                  },
+                  {
+                    "text": " para abrir a conversa com a nossa equipe e ser atendido(a):"
                   }
                 ]
               },
@@ -698,7 +731,23 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu, digite "
+                    "text": "Se preferir, salve e chame o número {{telefone_atendimento}}."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para voltar ao menu inicial, digite "
                   },
                   {
                     "text": "0",
@@ -734,9 +783,6 @@
                   {
                     "text": "Acessar o site",
                     "bold": true
-                  },
-                  {
-                    "text": " 🌐"
                   }
                 ]
               },
@@ -745,6 +791,30 @@
                 "children": [
                   {
                     "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Em nosso site você encontra todas as informações sobre a pHarmaOnline."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "🌐 Acesse:"
                   }
                 ]
               },
@@ -768,7 +838,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu, digite "
+                    "text": "Para voltar ao menu inicial, digite "
                   },
                   {
                     "text": "0",
@@ -819,7 +889,23 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Preencha o formulário com seus dados e sua dúvida (você pode anexar imagens):"
+                    "text": "Para que a nossa equipe possa atender você da melhor forma, preencha o formulário abaixo com os seus dados e a sua dúvida. Se quiser, você também pode anexar imagens."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "📝 Formulário:"
                   }
                 ]
               },
@@ -843,7 +929,14 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "📧 A resposta chegará pelo e-mail informado no formulário."
+                    "text": "📧 Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato com você pelo "
+                  },
+                  {
+                    "text": "e-mail",
+                    "bold": true
+                  },
+                  {
+                    "text": " informado no formulário."
                   }
                 ]
               },
@@ -859,7 +952,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu, digite "
+                    "text": "Para voltar ao menu inicial, digite "
                   },
                   {
                     "text": "0",
@@ -910,7 +1003,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Siga a pHarmaOnline (@pharmaonlineplus):"
+                    "text": "Acompanhe a pHarmaOnline nas redes sociais (@pharmaonlineplus):"
                   }
                 ]
               },
@@ -966,7 +1059,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu, digite "
+                    "text": "Para voltar ao menu inicial, digite "
                   },
                   {
                     "text": "0",
@@ -1017,7 +1110,23 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Envie sua mensagem pelo formulário (você pode anexar imagens):"
+                    "text": "Quer falar com a nossa equipe? Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens."
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "📝 Formulário:"
                   }
                 ]
               },
@@ -1041,7 +1150,14 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "📧 A resposta chegará pelo e-mail informado no formulário."
+                    "text": "📧 Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato com você pelo "
+                  },
+                  {
+                    "text": "e-mail",
+                    "bold": true
+                  },
+                  {
+                    "text": " informado no formulário."
                   }
                 ]
               },
@@ -1057,7 +1173,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu, digite "
+                    "text": "Para voltar ao menu inicial, digite "
                   },
                   {
                     "text": "0",
@@ -1114,14 +1230,14 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para voltar ao menu, digite "
+                    "text": "Enquanto isso, digite "
                   },
                   {
                     "text": "0",
                     "bold": true
                   },
                   {
-                    "text": "."
+                    "text": " para voltar ao menu inicial e escolher outra opção."
                   }
                 ]
               }
@@ -1148,14 +1264,30 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Nós que agradecemos! Se precisar, digite "
+                    "text": "Nós que agradecemos o seu contato!"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Se precisar de algo mais, digite "
                   },
                   {
                     "text": "0",
                     "bold": true
                   },
                   {
-                    "text": " para voltar ao menu."
+                    "text": " para voltar ao menu inicial."
                   }
                 ]
               },
@@ -1202,7 +1334,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Desculpe, não entendi. 😊"
+                    "text": "Desculpe, não consegui identificar a sua solicitação."
                   }
                 ]
               },
@@ -1210,7 +1342,15 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Digite apenas o "
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para que possamos ajudar, digite apenas o "
                   },
                   {
                     "text": "número",

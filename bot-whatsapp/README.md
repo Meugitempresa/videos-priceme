@@ -165,3 +165,5 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 | `servidor/` | docker-compose (Typebot + Postgres + Redis + MinIO + HTTPS) |
 | `docs/previa-formulario-*.png` | capturas do formulário rodando no Typebot, nas cores da marca |
 | `docs/previa-email-atendente.png` | e-mail que o atendente recebe (capturado do Typebot real) |
+| `docs/mensagens-do-bot.pdf` | guia com todas as mensagens, para aprovação (gerado por `scripts/gerar-pdf.mjs`) |
+| `midia/banner-pharmaonline.jpg` | banner enviado na saudação (preencher `link_banner` depois de enviar ao servidor) |
