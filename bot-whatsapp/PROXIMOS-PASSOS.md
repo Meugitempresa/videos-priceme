@@ -33,7 +33,7 @@ A SendPulse foi avaliada e descartada.
       A senha **não** vai no chat; ela entra direto no `.env` do servidor. No Gmail, use uma "senha de app"
       (verificação em duas etapas → Senhas de app).
 - [x] **Redes sociais** (enviadas em 19/11; já no bot, sem "https://www." para ficarem curtas).
-      Facebook ainda é `profile.php?id=…`: dá para encurtar criando o nome de usuário da página no Facebook.
+      Facebook com nome de usuário criado em 19/11: facebook.com/pharmaonlineplus.
 - [ ] **Links do app** (baixar e abrir) e **do site**.
 - [ ] **Aprovação dos textos das mensagens** (`config/textos.json`).
 - [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM) e 3 domínios: painel do Typebot, bot e arquivos.
