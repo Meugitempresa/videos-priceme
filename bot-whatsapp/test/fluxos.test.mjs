@@ -40,7 +40,7 @@ async function conversa(mensagens, contato = { telefone: '5511988887777', nome: 
 
 test('WhatsApp: primeira mensagem recebe boas-vindas com o menu (site oculto, números em sequência)', async () => {
   const { respostas, s } = await conversa([]);
-  assert.match(respostas[0], /^Olá! Seja bem-vindo\(a\) à \*pHarmaOnline\*! 💊💜\n---\nDigite o \*número\* da opção desejada:/);
+  assert.match(respostas[0], /^Olá! Seja bem-vindo\(a\) à \*pHarma Online\*! 💊💜\n---\nDigite o \*número\* da opção desejada:/);
   assert.doesNotMatch(respostas[0], /\[imagem/); // sem link_banner configurado, a imagem é pulada
   assert.doesNotMatch(respostas[0], /Bom dia|Boa tarde|Boa noite/);
   assert.match(respostas[0], /\*0\* - Voltar ao menu inicial\n\*1\* - Orçamento pelo app\n\*2\* - Orçamento pelo WhatsApp \(ordem de pedido\)\n\*3\* - Administrativo\/Financeiro\n\*4\* - Redes sociais\n\*5\* - Fale conosco$/);
@@ -72,7 +72,7 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(rx, /^Desculpe, não consegui identificar[\s\S]*\*5\* - Fale conosco/);
   assert.equal(roi, respostas[0]);
   assert.match(robg, /agradecemos/);
-  assert.match(robg, /\*pHarmaOnline\*, conectando confiança à sua conveniência! 💜$/);
+  assert.match(robg, /\*pHarma Online\*, conectando confiança à sua conveniência! 💜$/);
   assert.match(rredes, /^\*Redes sociais\*/);
   for (const r of [r1, r2, r3, r4, r5]) assert.match(r, /digite \*0\*/);
   assert.equal(s.terminou, false);
@@ -89,7 +89,7 @@ test('WhatsApp: com link_banner configurado, o banner vai só na saudação (nã
   const inicio = await s.iniciar();
   assert.equal(inicio.length, 3);
   assert.equal(inicio[0], '[imagem: https://arquivos.exemplo/banner-pharmaonline.jpg]');
-  assert.match(inicio[1], /^Olá! Seja bem-vindo\(a\) à \*pHarmaOnline\*! 💊💜$/);
+  assert.match(inicio[1], /^Olá! Seja bem-vindo\(a\) à \*pHarma Online\*! 💊💜$/);
   assert.match(inicio[2], /^Digite o \*número\*/);
   assert.deepEqual(await s.responder('oi'), inicio); // saudação repete banner + boas-vindas + menu
   assert.deepEqual(await s.responder('0'), [inicio[2]]); // 0: só o menu, sem banner

@@ -6,7 +6,7 @@
     "Depois de importar no Typebot, os textos também podem ser editados direto nos balões de cada grupo."
   ],
   "saudacao": [
-    "Olá! Seja bem-vindo(a) à *pHarmaOnline*! 💊💜"
+    "Olá! Seja bem-vindo(a) à *pHarma Online*! 💊💜"
   ],
   "boas_vindas": [
     "Digite o *número* da opção desejada:",
@@ -30,7 +30,7 @@
     "",
     "Se precisar de algo mais, digite *0* para voltar ao menu inicial.",
     "",
-    "*pHarmaOnline*, conectando confiança à sua conveniência! 💜"
+    "*pHarma Online*, conectando confiança à sua conveniência! 💜"
   ],
   "respostas": {
     "app": [
@@ -58,7 +58,7 @@
     "site": [
       "*Acessar o site*",
       "",
-      "Em nosso site você encontra todas as informações sobre a pHarmaOnline.",
+      "Em nosso site você encontra todas as informações sobre a pHarma Online.",
       "",
       "🌐 Acesse:",
       "{{link_site}}",
@@ -80,7 +80,7 @@
     "redes": [
       "*Redes sociais*",
       "",
-      "Acompanhe a pHarmaOnline nas redes sociais (@pharmaonlineplus):",
+      "Acompanhe a pHarma Online nas redes sociais (@pharmaonlineplus):",
       "",
       "Instagram: {{link_instagram}}",
       "Facebook: {{link_facebook}}",
@@ -104,7 +104,7 @@
   },
   "formulario": {
     "abertura": [
-      "Olá! Este é o formulário de atendimento da *pHarmaOnline*.",
+      "Olá! Este é o formulário de atendimento da *pHarma Online*.",
       "Assunto: *{{assunto}}*",
       "",
       "Leva menos de um minuto. Os campos de nome, telefone e e-mail são obrigatórios."

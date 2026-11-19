@@ -132,7 +132,7 @@ export function reconhecer(entrada, config) {
     'oi', 'oii', 'oiii', 'oie', 'ola', 'olaa', 'opa', 'eai', 'e', 'ai', 'hey', 'hi', 'hello', 'alo',
     'bom', 'boa', 'dia', 'tarde', 'noite', 'madrugada', 'tudo', 'bem', 'td', 'bm', 'como', 'vai',
     'voce', 'vc', 'vcs', 'voces', 'esta', 'ta', 'tao', 'estao', 'pessoal', 'gente', 'equipe',
-    'pharma', 'pharmaonline', 'pharmaonlineplus', 'farmacia', 'salve', 'saudacoes', 'prezados',
+    'pharma', 'online', 'pharmaonline', 'pharmaonlineplus', 'farmacia', 'salve', 'saudacoes', 'prezados',
     'prezado', 'prezada', 'ok', 'sim', 'da', 'do', 'de', 'a', 'o', 'aqui', 'ai',
   ];
   const ehCumprimento = palavras.every((p) => cumprimentos.includes(p));

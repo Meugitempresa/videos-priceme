@@ -44,7 +44,7 @@ const zap = (t) => esc(t)
 // No guia, o endereço provisório do formulário aparece como "(link do formulário)".
 const semLinkProvisorio = (m) => m.replace(/https?:\/\/TYPEBOT-VIEWER\/\S+/g, '(link do formulário)');
 const balao = (m) => (m === '[imagem: BANNER]'
-  ? '<div class="balao img"><img src="' + banner + '" alt="Banner pHarmaOnline"></div>'
+  ? '<div class="balao img"><img src="' + banner + '" alt="Banner pHarma Online"></div>'
   : '<div class="balao">' + zap(semLinkProvisorio(m)) + '</div>');
 const cliente = (t) => '<div class="linha-cliente"><div class="balao cli">' + esc(t) + '</div></div>';
 const chat = (entrada, mensagens) =>
@@ -115,11 +115,11 @@ td.n { font-weight: 800; color: var(--azul); width: 12mm; text-align: center; }
 </style></head><body>
 
 <div class="capa">
-  <img src="${banner}" alt="pHarmaOnline">
+  <img src="${banner}" alt="pHarma Online">
   <h1>Bot de atendimento no WhatsApp</h1>
   <div class="faixa"></div>
   <div class="sub">Guia de todas as mensagens: o que o bot responde, quando e o que acontece em seguida.</div>
-  <div class="meta">pHarmaOnline · versão para aprovação · ${hoje}</div>
+  <div class="meta">pHarma Online · versão para aprovação · ${hoje}</div>
 </div>
 
 <div class="secao">
@@ -170,7 +170,7 @@ ${card(11, 'Opção "em breve"', 'só se alguma opção for marcada como indispo
 
 <div class="secao">
 <h2>Formulário (opções 3 e 5)</h2>
-<p>O formulário é uma página na internet, nas cores da pHarmaOnline (azul e rosa), que abre pelo link enviado no WhatsApp. Ele faz uma pergunta de cada vez. <b>Nome, telefone e e-mail são obrigatórios</b>; a mensagem tem um campo grande; as imagens são opcionais.</p>
+<p>O formulário é uma página na internet, nas cores da pHarma Online (azul e rosa), que abre pelo link enviado no WhatsApp. Ele faz uma pergunta de cada vez. <b>Nome, telefone e e-mail são obrigatórios</b>; a mensagem tem um campo grande; as imagens são opcionais.</p>
 ${card(12, 'Abertura e perguntas', 'assim que o cliente abre o link. O assunto aparece sozinho: "Administrativo/Financeiro" ou "Fale conosco".', formChat([textos.formulario.abertura, textos.formulario.pergunta_nome, textos.formulario.pergunta_telefone, textos.formulario.pergunta_email, textos.formulario.pergunta_duvida, textos.formulario.pergunta_anexos]), 'se não tiver imagem, o cliente toca no botão "Não tenho imagens para enviar".')}
 ${card(13, 'Avisos de erro', 'quando o telefone ou o e-mail são digitados de forma errada. O formulário só avança com os dados corretos.', formChat([['Esse telefone não parece válido. Confira o DDD e o número, por favor.'], ['Esse e-mail não parece válido. Confira e digite novamente, por favor.']]), '')}
 ${card(14, 'Tela final do formulário', 'logo depois de o cliente enviar o formulário.', formChat([textos.formulario.final]), 'ao mesmo tempo, o bot envia a mensagem 15 no WhatsApp do cliente e o e-mail 16 para a equipe.')}

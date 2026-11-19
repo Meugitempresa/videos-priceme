@@ -92,7 +92,7 @@ test('frases e nomes das opções funcionam sem o número', () => {
 });
 
 test('saudações recebem as boas-vindas (com banner) e o menu', () => {
-  for (const t of ['oi', 'Olá', 'olá!', 'Oi, bom dia!', 'boa tarde', 'Boa noite, tudo bem?', 'e aí', 'opa', 'oie', 'tudo bem?', 'Olá pessoal da pHarmaOnline']) {
+  for (const t of ['oi', 'Olá', 'olá!', 'Oi, bom dia!', 'boa tarde', 'Boa noite, tudo bem?', 'e aí', 'opa', 'oie', 'tudo bem?', 'Olá pessoal da pHarmaOnline', 'Oi, pHarma Online!']) {
     assert.equal(acao(t), 'saudacao', t);
   }
 });

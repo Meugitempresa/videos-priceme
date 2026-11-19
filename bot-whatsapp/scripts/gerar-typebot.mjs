@@ -197,7 +197,7 @@ export function gerarAtendimento({ menu, textos, vars }) {
     blocoTexto(b, 'boas', textos.boas_vindas),
   ]);
   const banner = { id: b.id('blk:banner'), type: 'image', content: { url: '{{link_banner}}' } };
-  const gBanner = grupo(b, 'banner', '🖼️ Banner da pHarmaOnline', 450, -250, [banner]);
+  const gBanner = grupo(b, 'banner', '🖼️ Banner da pHarma Online', 450, -250, [banner]);
   ligar(b, banner, 'banner>texto', gBoasTexto);
   const seBanner = condicaoSeDefinida(b, 'banner', 'link_banner', gBanner);
   seBanner.outgoingEdgeId = b.aresta('senao:banner', { blockId: seBanner.id }, gBoasTexto.id);
@@ -250,12 +250,12 @@ export function gerarAtendimento({ menu, textos, vars }) {
 
   return montarTypebot(b, {
     id: b.id('typebot'),
-    nome: 'pHarmaOnline · Atendimento WhatsApp',
+    nome: 'pHarma Online · Atendimento WhatsApp',
     icone: '💬',
     theme: tema,
     settings: {
       general: { isBrandingEnabled: false },
-      metadata: { title: 'pHarmaOnline · Atendimento' },
+      metadata: { title: 'pHarma Online · Atendimento' },
       // Depois de 12 h sem mensagens a conversa recomeça pelas boas-vindas.
       whatsApp: { sessionExpiryTimeout: 12 },
     },
@@ -361,10 +361,10 @@ export function gerarFormulario({ textos, vars }) {
 
   return montarTypebot(b, {
     id: b.id('typebot'),
-    nome: 'pHarmaOnline · Formulário de atendimento',
+    nome: 'pHarma Online · Formulário de atendimento',
     icone: '📝',
     theme: tema,
-    settings: { general: { isBrandingEnabled: false }, metadata: { title: 'pHarmaOnline · Formulário de atendimento', description: 'Envie a sua dúvida para a equipe pHarmaOnline.' } },
+    settings: { general: { isBrandingEnabled: false }, metadata: { title: 'pHarma Online · Formulário de atendimento', description: 'Envie a sua dúvida para a equipe pHarma Online.' } },
   });
 }
 
