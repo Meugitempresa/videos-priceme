@@ -109,8 +109,8 @@
             "variableId": "v1cvp5g0l4gyanljxou5g18s",
             "type": "Custom",
             "isCode": true,
-            "expressionToEvaluate": "return ({{assunto}} === undefined || {{assunto}} === null || String({{assunto}}).trim() === '') ? 'Fale conosco' : String({{assunto}});",
-            "expressionDescription": "Assunto vindo do link (padrão: Fale conosco)"
+            "expressionToEvaluate": "return ({{assunto}} === undefined || {{assunto}} === null || String({{assunto}}).trim() === '') ? 'Administrativo/Financeiro' : String({{assunto}});",
+            "expressionDescription": "Assunto vindo do link (padrão: Administrativo/Financeiro)"
           },
           "outgoingEdgeId": "c1i9vw4zzlhnz5rs4xxi221v"
         }

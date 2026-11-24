@@ -121,6 +121,16 @@
           }
         },
         {
+          "id": "c93dsxqi9bi31kyfhpvgyadd",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vfnqsfmrmexwi07zpls8b4mw",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "suporte.pharmaonline@gmail.com"
+          }
+        },
+        {
           "id": "c1ob7pbk9n9g7s4tfbtbj5t0",
           "type": "Set variable",
           "options": {
@@ -137,7 +147,7 @@
             "variableId": "v1m7fzt66kzfggr30t7ab85u",
             "type": "Custom",
             "isCode": true,
-            "expressionToEvaluate": "// ⚙️ MENU — edite aqui.\n// A ordem da lista define os números (1, 2, 3...). Para excluir um item, apague o bloco { ... } dele;\n// para reordenar, mova o bloco: a numeração se ajusta sozinha.\n// id: NÃO altere (liga o item à resposta dele). nome: texto do menu.\n// apelidos: frases que também abrem o item. ativo: false = \"disponível em breve\".\n// oculto: true = o item some do menu (não aparece nem ganha número); false = volta a aparecer.\n// formulario: true = gera o link do formulário com o assunto igual ao nome.\n// Item novo: crie também um grupo de resposta e uma condição \"acao = id\" no bloco Condition.\nreturn JSON.stringify([\n  {\n    \"id\": \"app\",\n    \"nome\": \"Orçamento pelo app\",\n    \"apelidos\": [\n      \"orçamento em tempo real pelo app\",\n      \"orçamento em tempo real\",\n      \"orçamento pelo aplicativo\",\n      \"orçar pelo app\",\n      \"orçar pelo aplicativo\",\n      \"baixar o app\",\n      \"baixar o aplicativo\",\n      \"aplicativo\",\n      \"app\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"whatsapp\",\n    \"nome\": \"Orçamento pelo WhatsApp (ordem de pedido)\",\n    \"apelidos\": [\n      \"orçamento pelo whatsapp\",\n      \"orçamento pelo zap\",\n      \"orçar pelo whatsapp\",\n      \"ordem de pedido\",\n      \"enviar receita\",\n      \"mandar receita\",\n      \"foto da receita\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"site\",\n    \"nome\": \"Acessar o site\",\n    \"apelidos\": [\n      \"site\",\n      \"acessar site\",\n      \"endereço do site\",\n      \"link do site\",\n      \"página\"\n    ],\n    \"ativo\": true,\n    \"oculto\": true\n  },\n  {\n    \"id\": \"financeiro\",\n    \"nome\": \"Administrativo/Financeiro\",\n    \"apelidos\": [\n      \"administrativo\",\n      \"financeiro\",\n      \"administrativo financeiro\",\n      \"boleto\",\n      \"nota fiscal\",\n      \"pagamento\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  },\n  {\n    \"id\": \"redes\",\n    \"nome\": \"Redes sociais\",\n    \"apelidos\": [\n      \"redes\",\n      \"instagram\",\n      \"insta\",\n      \"facebook\",\n      \"tiktok\",\n      \"tik tok\",\n      \"youtube\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"contato\",\n    \"nome\": \"Fale conosco\",\n    \"apelidos\": [\n      \"fale conosco\",\n      \"falar conosco\",\n      \"contato\",\n      \"entrar em contato\",\n      \"falar com atendente\",\n      \"falar com uma pessoa\",\n      \"atendente\",\n      \"atendimento humano\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  }\n]);",
+            "expressionToEvaluate": "// ⚙️ MENU — edite aqui.\n// A ordem da lista define os números (1, 2, 3...). Para excluir um item, apague o bloco { ... } dele;\n// para reordenar, mova o bloco: a numeração se ajusta sozinha.\n// id: NÃO altere (liga o item à resposta dele). nome: texto do menu.\n// apelidos: frases que também abrem o item. ativo: false = \"disponível em breve\".\n// oculto: true = o item some do menu (não aparece nem ganha número); false = volta a aparecer.\n// formulario: true = gera o link do formulário com o assunto igual ao nome.\n// Item novo: crie também um grupo de resposta e uma condição \"acao = id\" no bloco Condition.\nreturn JSON.stringify([\n  {\n    \"id\": \"app\",\n    \"nome\": \"Orçamento pelo app\",\n    \"apelidos\": [\n      \"orçamento em tempo real pelo app\",\n      \"orçamento em tempo real\",\n      \"orçamento pelo aplicativo\",\n      \"orçar pelo app\",\n      \"orçar pelo aplicativo\",\n      \"baixar o app\",\n      \"baixar o aplicativo\",\n      \"aplicativo\",\n      \"app\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"whatsapp\",\n    \"nome\": \"Orçamento pelo WhatsApp (ordem de pedido)\",\n    \"apelidos\": [\n      \"orçamento pelo whatsapp\",\n      \"orçamento pelo zap\",\n      \"orçar pelo whatsapp\",\n      \"ordem de pedido\",\n      \"enviar receita\",\n      \"mandar receita\",\n      \"foto da receita\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"site\",\n    \"nome\": \"Acessar o site\",\n    \"apelidos\": [\n      \"site\",\n      \"acessar site\",\n      \"endereço do site\",\n      \"link do site\",\n      \"página\"\n    ],\n    \"ativo\": true,\n    \"oculto\": true\n  },\n  {\n    \"id\": \"financeiro\",\n    \"nome\": \"Administrativo/Financeiro\",\n    \"apelidos\": [\n      \"administrativo\",\n      \"financeiro\",\n      \"administrativo financeiro\",\n      \"boleto\",\n      \"nota fiscal\",\n      \"pagamento\"\n    ],\n    \"ativo\": true,\n    \"formulario\": true\n  },\n  {\n    \"id\": \"redes\",\n    \"nome\": \"Redes sociais\",\n    \"apelidos\": [\n      \"redes\",\n      \"instagram\",\n      \"insta\",\n      \"facebook\",\n      \"tiktok\",\n      \"tik tok\",\n      \"youtube\"\n    ],\n    \"ativo\": true\n  },\n  {\n    \"id\": \"contato\",\n    \"nome\": \"Fale conosco\",\n    \"apelidos\": [\n      \"fale conosco\",\n      \"falar conosco\",\n      \"contato\",\n      \"entrar em contato\",\n      \"falar com atendente\",\n      \"falar com uma pessoa\",\n      \"atendente\",\n      \"atendimento humano\"\n    ],\n    \"ativo\": true\n  }\n]);",
             "expressionDescription": "Itens do menu"
           },
           "outgoingEdgeId": "c132cxqvwvzbxotk6fb01v35"
@@ -1110,7 +1120,15 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Quer falar com a nossa equipe? Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens."
+                    "text": "Para falar com a nossa equipe, envie a sua mensagem para o e-mail:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "📧 {{email_contato}}"
                   }
                 ]
               },
@@ -1126,38 +1144,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "📝 Formulário:"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "{{link_form}}"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": ""
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "📧 Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato com você pelo "
-                  },
-                  {
-                    "text": "e-mail",
-                    "bold": true
-                  },
-                  {
-                    "text": " informado no formulário."
+                    "text": "Assim que recebermos, uma pessoa da nossa equipe responderá você por e-mail."
                   }
                 ]
               },
@@ -1689,6 +1676,11 @@
     {
       "id": "v9lsvc7h1q2igfbxz35h6otb",
       "name": "link_youtube",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vfnqsfmrmexwi07zpls8b4mw",
+      "name": "email_contato",
       "isSessionVariable": true
     },
     {

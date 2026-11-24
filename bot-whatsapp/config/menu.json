@@ -92,8 +92,7 @@
         "atendente",
         "atendimento humano"
       ],
-      "ativo": true,
-      "formulario": true
+      "ativo": true
     }
   ]
 }

@@ -14,7 +14,7 @@ Se a mensagem não tiver relação com o menu, ele explica em uma frase como esc
 | 2 | Orçamento pelo WhatsApp (ordem de pedido) | ✅ encaminha para atendimento humano: (31) 9921-1377 (wa.me/553199211377) |
 | 3 | Administrativo/Financeiro | ✅ formulário web; resposta por e-mail |
 | 4 | Redes sociais | ✅ Instagram, Facebook, TikTok e YouTube (@pharmaonlineplus) |
-| 5 | Fale conosco | ✅ formulário web; resposta por e-mail |
+| 5 | Fale conosco | ✅ pede para escrever para suporte.pharmaonline@gmail.com (sem formulário) |
 | – | Acessar o site | 🙈 oculto até a loja da Nuvemshop ser publicada (`"oculto": true`; ao mostrar, vira a opção 3) |
 
 A saudação é fixa ("Olá! Seja muito bem-vindo(a)…"), sem variar por horário. O agradecimento termina com o slogan:

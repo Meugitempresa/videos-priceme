@@ -60,11 +60,11 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(r2, /\(31\) 99921-1377/);
   assert.match(r2, /https:\/\/wa\.me\/5531999211377\n/);
   assert.match(r3, /entrará em contato com você pelo \*e-mail\* informado no formulário\./);
-  assert.match(r5, /entrará em contato com você pelo \*e-mail\* informado no formulário\./);
-  assert.doesNotMatch(r5, /Ficamos felizes/);
+  assert.match(r5, /^\*Fale conosco\*[\s\S]*envie a sua mensagem para o e-mail:\n📧 suporte\.pharmaonline@gmail\.com\n/);
+  assert.match(r5, /responderá você por e-mail/);
+  assert.doesNotMatch(r5, /formulário|pharma-formulario/); // Fale conosco não usa mais formulário
   assert.match(r3, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
   assert.match(r4, /instagram\.com\/pharmaonlineplus[\s\S]*facebook\.com\/pharmaonlineplus[\s\S]*tiktok[\s\S]*youtube/);
-  assert.match(r5, /pharma-formulario\?assunto=Fale%20conosco&whatsapp=5511988887777/);
   assert.match(r6, /^Desculpe, não consegui identificar/); // não existe opção 6 com o site oculto
   assert.match(rsite, /^Desculpe, não consegui identificar/); // site oculto não é reconhecido
   assert.match(r0, /^Digite o \*número\* da opção desejada:[\s\S]*\*5\* - Fale conosco$/); // 0: só o menu
@@ -181,7 +181,7 @@ test('formulário: sem anexos, sem assunto no link e com modelo da Meta para o a
   const { srv, recebidas, url } = await servidorFalso();
   try {
     const s = criarSessao(formularioCom(url, { template_atendente: 'novo_atendimento' }), { preenchidas: {} });
-    assert.match((await s.iniciar()).join(), /Assunto: \*Fale conosco\*/);
+    assert.match((await s.iniciar()).join(), /Assunto: \*Administrativo\/Financeiro\*/); // padrão sem assunto no link
     for (const r of ['João', '+55 21 99876-5432', 'joao@exemplo.com.br', 'Quero falar com vocês.']) await s.responder(r);
     await s.responder('pular');
     assert.equal(recebidas.length, 2);
@@ -191,7 +191,7 @@ test('formulário: sem anexos, sem assunto no link e com modelo da Meta para o a
     assert.equal(atendente.corpo.template.name, 'novo_atendimento');
     assert.deepEqual(atendente.corpo.template.language, { code: 'pt_BR' });
     assert.deepEqual(atendente.corpo.template.components[0].parameters.map((p) => p.text),
-      ['Fale conosco', 'João', '+5521998765432', 'joao@exemplo.com.br', 'Quero falar com vocês.', 'nenhum']);
+      ['Administrativo/Financeiro', 'João', '+5521998765432', 'joao@exemplo.com.br', 'Quero falar com vocês.', 'nenhum']);
     assert.equal(cliente.corpo.to, '5521998765432'); // sem WhatsApp no link: usa o telefone digitado
   } finally {
     srv.close();

@@ -272,7 +272,7 @@ export function gerarFormulario({ textos, vars }) {
 
   const gCfg = grupo(b, 'cfg', '⚙️ Configuração (edite aqui)', 0, 0, [
     ...Object.entries(vars.formulario).map(([nome, valor]) => blocoValor(b, nome, valor)),
-    blocoCodigo(b, 'assunto', "return ({{assunto}} === undefined || {{assunto}} === null || String({{assunto}}).trim() === '') ? 'Fale conosco' : String({{assunto}});", 'Assunto vindo do link (padrão: Fale conosco)', false),
+    blocoCodigo(b, 'assunto', "return ({{assunto}} === undefined || {{assunto}} === null || String({{assunto}}).trim() === '') ? 'Administrativo/Financeiro' : String({{assunto}});", 'Assunto vindo do link (padrão: Administrativo/Financeiro)', false),
   ]);
 
   const entradaTexto = (nome, extra = {}) => ({ id: b.id('blk:in:' + nome), type: 'text input', options: { variableId: b.v(nome), ...extra } });

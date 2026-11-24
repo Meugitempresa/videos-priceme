@@ -1,5 +1,5 @@
-// Gera docs/formulario-de-atendimento.pdf: guia explicativo do formulário das opções Administrativo/Financeiro
-// e Fale conosco (passo a passo, regras, o que acontece depois e perguntas frequentes).
+// Gera docs/formulario-de-atendimento.pdf: guia explicativo do formulário da opção Administrativo/Financeiro
+// (passo a passo, regras, o que acontece depois e perguntas frequentes).
 // Os textos vêm de config/textos.json; as telas são ilustrações no estilo do formulário (cores da marca).
 // Uso: node scripts/gerar-pdf-formulario.mjs [--fontes PASTA_COM_MONTSERRAT_WOFF2]
 import fs from 'node:fs';
@@ -23,7 +23,7 @@ const fonte = (peso) => pastaFontes
   ? `@font-face{font-family:Montserrat;font-weight:${peso};src:url(${dataUri(path.join(pastaFontes, 'montserrat-latin-' + peso + '-normal.woff2'), 'font/woff2')}) format('woff2');}`
   : '';
 
-const ex = { nome: 'Maria da Silva', email: 'maria@exemplo.com', assunto: 'Fale conosco' };
+const ex = { nome: 'Maria da Silva', email: 'maria@exemplo.com', assunto: 'Administrativo/Financeiro' };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const fmt = (s) => esc(s).replace(/\*([^*\n]+)\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
 const txt = (lista) => fmt(lista.join('\n').replace(/\{\{(\w+)\}\}/g, (_, n) => ex[n] ?? n));
@@ -48,8 +48,8 @@ const passo = (n, titulo, explicacao, telaHtml) => `
 
 const hoje = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 const emailHtml = montarResumoHtml({
-  assunto: 'Fale conosco', nome: ex.nome, telefone: '+5531988887777', email: ex.email, whatsapp: '5531988887777',
-  duvida: 'Gostaria de saber se vocês entregam no meu bairro.\nObrigada!', anexos: ['https://arquivos.pharmaonline/exemplo-foto.jpg'],
+  assunto: 'Administrativo/Financeiro', nome: ex.nome, telefone: '+5531988887777', email: ex.email, whatsapp: '5531988887777',
+  duvida: 'Gostaria da segunda via do boleto do meu último pedido.\nObrigada!', anexos: ['https://arquivos.pharmaonline/exemplo-foto.jpg'],
 }, new Date('2026-11-19T17:30:00Z'));
 
 const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>
@@ -108,7 +108,7 @@ td { border-bottom: 1px solid #E3E7F2; padding: 2.2mm 3mm; vertical-align: top; 
   <img src="${banner}" alt="pHarma Online">
   <h1>Formulário de atendimento</h1>
   <div class="faixa"></div>
-  <div class="sub">Como funciona o formulário das opções <b>Administrativo/Financeiro</b> e <b>Fale conosco</b> do WhatsApp: o que o cliente vê, o que ele precisa preencher e como a resposta chega até a equipe.</div>
+  <div class="sub">Como funciona o formulário da opção <b>Administrativo/Financeiro</b> do WhatsApp: o que o cliente vê, o que ele precisa preencher e como a resposta chega até a equipe.</div>
   <div class="meta">pHarma Online · versão para aprovação · ${hoje}</div>
 </div>
 
@@ -116,17 +116,17 @@ td { border-bottom: 1px solid #E3E7F2; padding: 2.2mm 3mm; vertical-align: top; 
 <h2>Para que serve</h2>
 <p>O formulário reúne, de uma vez só e de forma organizada, tudo o que a equipe precisa para atender o cliente: quem ele é, como falar com ele e qual é a dúvida. Assim ninguém precisa ficar trocando várias mensagens para pedir dados.</p>
 <div class="caixa"><ul>
-  <li><b>Quando o cliente recebe:</b> ao escolher, no WhatsApp, a opção <b>3 – Administrativo/Financeiro</b> ou a opção <b>5 – Fale conosco</b>. O bot responde com o link do formulário.</li>
+  <li><b>Quando o cliente recebe:</b> ao escolher, no WhatsApp, a opção <b>3 – Administrativo/Financeiro</b>. O bot responde com o link do formulário. (A opção 5 – Fale conosco não usa formulário: ela pede para o cliente escrever para o e-mail da equipe.)</li>
   <li><b>Onde abre:</b> no navegador do próprio celular (ou do computador). Não é preciso instalar nada nem criar conta.</li>
   <li><b>Visual:</b> página nas cores da pHarma Online (azul e rosa), em formato de conversa: uma pergunta de cada vez.</li>
   <li><b>Duração:</b> menos de um minuto.</li>
-  <li><b>Assunto automático:</b> o formulário já sabe de qual opção o cliente veio e mostra "Administrativo/Financeiro" ou "Fale conosco". O cliente não precisa escolher.</li>
+  <li><b>Assunto automático:</b> o formulário já mostra o assunto "Administrativo/Financeiro". O cliente não precisa escolher.</li>
   <li><b>Resposta:</b> a equipe responde ao cliente <b>por e-mail</b>, no endereço que ele informar.</li>
 </ul></div>
 
 <h2>O caminho completo</h2>
 <div class="fluxo">
-  <div class="etapa"><b>1.</b> No WhatsApp, o cliente escolhe a opção 3 ou 5</div><div class="seta">›</div>
+  <div class="etapa"><b>1.</b> No WhatsApp, o cliente escolhe a opção 3</div><div class="seta">›</div>
   <div class="etapa"><b>2.</b> Toca no link e abre o formulário</div><div class="seta">›</div>
   <div class="etapa"><b>3.</b> Responde às perguntas e envia</div><div class="seta">›</div>
   <div class="etapa"><b>4.</b> A equipe recebe tudo em um e-mail</div><div class="seta">›</div>
@@ -206,7 +206,7 @@ ${passo(6, 'Pronto!', `<p>Ao terminar, o cliente vê a confirmação na tela, co
 
 <h2 style="margin-top:6mm">Resumo</h2>
 <div class="caixa"><ul>
-  <li>O cliente escolhe a opção <b>3</b> ou <b>5</b> no WhatsApp e recebe o link.</li>
+  <li>O cliente escolhe a opção <b>3</b> no WhatsApp e recebe o link.</li>
   <li>Preenche <b>nome, telefone, e-mail e a dúvida</b> (imagens são opcionais), em menos de um minuto.</li>
   <li>A equipe recebe <b>um e-mail organizado</b> em ${esc(emailEquipe)} e <b>responde por e-mail</b>.</li>
   <li>O cliente é avisado na tela e no WhatsApp de que a resposta virá pelo e-mail informado.</li>

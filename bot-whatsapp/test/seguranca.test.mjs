@@ -19,9 +19,11 @@ const LINKS_FORNECIDOS = {
   link_facebook: 'https://www.facebook.com/pharmaonlineplus/',
   link_tiktok: 'https://www.tiktok.com/@pharmaonlineplus',
   link_youtube: 'https://www.youtube.com/@pharmaonlineplus',
+  link_atendimento: 'https://wa.me/5531999211377', // montado do número (31) 99921-1377 e aprovado pela cliente em 24/11
 };
+const EMAIL_FORNECIDO = 'suporte.pharmaonline@gmail.com';
 // Links que ainda dependem da cliente (provisórios ou aguardando aprovação).
-const LINKS_PENDENTES = ['link_banner', 'link_site', 'link_formulario', 'link_atendimento'];
+const LINKS_PENDENTES = ['link_banner', 'link_site', 'link_formulario'];
 
 const URL_RE = /\b(?:https?:\/\/|www\.)[^\s*]+|\b[a-z0-9-]+\.(?:com|app|br|net|org)(?:\.br)?\/[^\s*]*/gi;
 
@@ -31,6 +33,12 @@ test('os links fornecidos pela cliente estão na configuração exatamente como 
     if (!nome.startsWith('link_')) continue;
     assert.ok(nome in LINKS_FORNECIDOS || LINKS_PENDENTES.includes(nome), 'link sem origem conhecida: ' + nome);
   }
+});
+
+test('o e-mail de contato e o de destino dos formulários são os fornecidos pela cliente', () => {
+  assert.equal(vars.atendimento.email_contato, EMAIL_FORNECIDO);
+  assert.equal(vars.formulario.email_atendente, EMAIL_FORNECIDO);
+  assert.doesNotMatch(JSON.stringify(textos), /[\w.+-]+@[\w-]+\.[\w.]+/); // e-mail nunca escrito à mão nos textos
 });
 
 test('nenhum texto tem link escrito à mão: todo link vem de uma variável da configuração', () => {

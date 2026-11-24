@@ -92,12 +92,10 @@
     "contato": [
       "*Fale conosco*",
       "",
-      "Quer falar com a nossa equipe? Preencha o formulário abaixo com os seus dados e a sua mensagem. Se quiser, você também pode anexar imagens.",
+      "Para falar com a nossa equipe, envie a sua mensagem para o e-mail:",
+      "📧 {{email_contato}}",
       "",
-      "📝 Formulário:",
-      "{{link_form}}",
-      "",
-      "📧 Assim que recebermos as suas informações, uma pessoa da nossa equipe entrará em contato com você pelo *e-mail* informado no formulário.",
+      "Assim que recebermos, uma pessoa da nossa equipe responderá você por e-mail.",
       "",
       "Para voltar ao menu inicial, digite *0*."
     ]

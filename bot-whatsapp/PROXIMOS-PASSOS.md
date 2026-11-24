@@ -55,8 +55,10 @@ A SendPulse foi avaliada e descartada.
 
 - **Regra anti-alucinação (24/11):** o bot não usa IA (não há temperatura); só envia textos fixos e links fornecidos.
   `test/seguranca.test.mjs` falha se surgir link fora da configuração, link escrito à mão nos textos ou bloco de IA.
-- [ ] **Confirmar com a cliente:** o link `https://wa.me/5531999211377` (criado a partir do número) e os parâmetros que o bot
-      acrescenta ao link do formulário (`?assunto=…&whatsapp=…`).
+- [x] **24/11:** link `https://wa.me/5531999211377` aprovado pela cliente. Opção 5 (Fale conosco) **sem formulário**: pede
+      para escrever para suporte.pharmaonline@gmail.com. Só a opção 3 (Administrativo/Financeiro) usa o formulário.
+- [ ] Link do formulário (só opção 3): o bot acrescenta `?assunto=…&whatsapp=…` ao link (nosso, criado na instalação),
+      para mostrar o assunto e avisar o cliente no WhatsApp. Confirmar com a cliente se quiser o link sem esses dados.
 
 ## Situação na Meta (WhatsApp Cloud API)
 - O número **+55 31 9788-2066 (Pharma Online)** já está na conta do WhatsApp na Meta, com status **"Offline"**:
