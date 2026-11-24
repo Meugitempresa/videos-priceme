@@ -296,39 +296,16 @@ export function gerarFormulario({ textos, vars }) {
   ligar(b, gCfg.blocks.at(-1), 'cfg>form', gForm);
 
   const dadosJs = "{ assunto: {{assunto}}, nome: {{nome}}, telefone: {{telefone}}, email: {{email}}, duvida: {{duvida}}, anexos: {{anexos}}, whatsapp: {{whatsapp}} }";
-  const http = (chave, url, corpo) => ({
-    id: b.id('blk:http:' + chave),
-    type: 'Webhook',
-    options: {
-      isCustomBody: true,
-      isAdvancedConfig: true,
-      webhook: {
-        method: 'POST',
-        url,
-        headers: [
-          { id: b.id('hdr:ct:' + chave), key: 'Content-Type', value: 'application/json' },
-          { id: b.id('hdr:key:' + chave), key: 'Authorization', value: 'Bearer {{meta_token}}' },
-        ],
-        body: corpo,
-      },
-      responseVariableMapping: [{ id: b.id('map:' + chave), variableId: b.v('status_' + chave), bodyPath: 'statusCode' }],
-    },
-  });
-  const condicaoSe = (chave, variavel, destino) => condicaoSeDefinida(b, chave, variavel, destino);
 
-  // Ordem: prepara tudo -> e-mail ao atendente (se houver e-mail) -> WhatsApp ao atendente (se houver número)
-  // -> aviso ao cliente no WhatsApp -> mensagem final na tela.
-  const gCliente = grupo(b, 'cliente', '📲 Avisar o cliente no WhatsApp e encerrar', 1800, 0, [
-    http('cliente', '{{url_meta}}', '{{corpo_cliente}}'),
-    blocoTexto(b, 'final', t.final),
-  ]);
-  const gZap = grupo(b, 'zap', '💬 Resumo ao atendente por WhatsApp (só com numero_atendente preenchido)', 1350, 300, [
-    http('atendente', '{{url_meta}}', '{{corpo_atendente}}'),
-  ]);
-  ligar(b, gZap.blocks[0], 'zap>cliente', gCliente);
-  const seZap = condicaoSe('zap', 'numero_atendente', gZap);
-  seZap.outgoingEdgeId = b.aresta('senao:zap', { blockId: seZap.id }, gCliente.id);
-  const gChecaZap = grupo(b, 'checa-zap', '❔ Enviar também por WhatsApp?', 1350, 0, [seZap]);
+  // Botão rosa "Enviar respostas": só depois do toque as respostas seguem por e-mail.
+  // Nada é enviado pelo WhatsApp (a confirmação aparece apenas na tela, no fim do formulário).
+  const botaoEnviar = {
+    id: b.id('blk:botao-enviar'),
+    type: 'choice input',
+    items: [{ id: b.id('item:enviar'), content: t.botao_enviar }],
+    options: { variableId: b.v('confirmacao') },
+  };
+  gForm.blocks.push(blocoTexto(b, 'p-enviar', t.pergunta_enviar), botaoEnviar);
 
   const email = {
     id: b.id('blk:email'),
@@ -343,21 +320,13 @@ export function gerarFormulario({ textos, vars }) {
       replyTo: '{{email}}',
     },
   };
-  const gEmail = grupo(b, 'email', '📧 Resumo ao atendente por e-mail', 1350, -300, [email]);
-  ligar(b, email, 'email>checa-zap', gChecaZap);
-  const seEmail = condicaoSe('email', 'email_atendente', gEmail);
-  seEmail.outgoingEdgeId = b.aresta('senao:email', { blockId: seEmail.id }, gChecaZap.id);
-
-  const gEnvio = grupo(b, 'envio', '📤 Preparar o resumo e o aviso', 900, 0, [
-    blocoValor(b, 'aviso_whatsapp', t.aviso_whatsapp.join('\n')),
-    blocoCodigo(b, 'email_assunto', 'return assuntoEmail(' + dadosJs + ');', 'Assunto do e-mail ao atendente'),
-    blocoCodigo(b, 'email_html', 'return montarResumoHtml(' + dadosJs + ', new Date());', 'E-mail organizado para o atendente'),
-    blocoCodigo(b, 'url_meta', 'return urlMensagensMeta({{meta_api_url}}, {{meta_api_versao}}, {{meta_id_numero}});', 'Endereço da API da Meta para enviar mensagens'),
-    blocoCodigo(b, 'corpo_atendente', 'return corpoAtendente(' + dadosJs + ', {{numero_atendente}}, {{template_atendente}}, {{template_idioma}}, new Date());', 'Mensagem única e organizada para o atendente (WhatsApp)'),
-    blocoCodigo(b, 'corpo_cliente', 'return corpoCliente({{whatsapp}}, {{telefone}}, {{aviso_whatsapp}});', 'Aviso para o cliente no WhatsApp'),
-    seEmail,
+  const gEnvio = grupo(b, 'envio', '📤 Enviar as respostas por e-mail e confirmar na tela', 900, 0, [
+    blocoCodigo(b, 'email_assunto', 'return assuntoEmail(' + dadosJs + ');', 'Assunto do e-mail para a equipe'),
+    blocoCodigo(b, 'email_html', 'return montarResumoHtml(' + dadosJs + ', new Date());', 'E-mail organizado para a equipe'),
+    email,
+    blocoTexto(b, 'final', t.final),
   ]);
-  ligar(b, gForm.blocks.at(-1), 'form>envio', gEnvio);
+  ligar(b, botaoEnviar, 'form>envio', gEnvio);
 
   return montarTypebot(b, {
     id: b.id('typebot'),

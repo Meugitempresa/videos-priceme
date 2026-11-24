@@ -2,7 +2,6 @@
   "_ajuda": [
     "Dados provisórios. Copie para config/variaveis.json, preencha com os dados reais e rode `npm run gerar`.",
     "Também dá para editar direto no Typebot, no grupo '⚙️ Configuração (edite aqui)' de cada fluxo.",
-    "meta_token: token permanente do usuário do sistema (Meta). Preencha só no Typebot do servidor, nunca no git.",
     "link_banner: endereço público do banner (midia/banner-pharmaonline.jpg) depois de enviado ao servidor; vazio = sem imagem."
   ],
   "atendimento": {
@@ -19,13 +18,6 @@
     "link_formulario": "https://TYPEBOT-VIEWER/pharma-formulario"
   },
   "formulario": {
-    "email_atendente": "suporte.pharmaonline@gmail.com",
-    "meta_api_url": "https://graph.facebook.com",
-    "meta_api_versao": "v21.0",
-    "meta_id_numero": "ID-DO-NUMERO-NA-META",
-    "meta_token": "TOKEN-PERMANENTE-DA-META",
-    "numero_atendente": "",
-    "template_atendente": "",
-    "template_idioma": "pt_BR"
+    "email_atendente": "suporte.pharmaonline@gmail.com"
   }
 }

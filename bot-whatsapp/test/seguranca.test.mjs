@@ -47,7 +47,7 @@ test('nenhum texto tem link escrito à mão: todo link vem de uma variável da c
 });
 
 test('o fluxo não tem nenhum bloco de IA nem blocos fora da lista permitida', () => {
-  const permitidos = ['text', 'image', 'text input', 'email input', 'phone number input', 'file input',
+  const permitidos = ['text', 'image', 'text input', 'email input', 'phone number input', 'file input', 'choice input',
     'Set variable', 'Condition', 'Jump', 'Webhook', 'Email'];
   for (const tb of [atendimento, formulario]) {
     for (const g of tb.groups) for (const b of g.blocks) assert.ok(permitidos.includes(b.type), 'bloco não permitido: ' + b.type);

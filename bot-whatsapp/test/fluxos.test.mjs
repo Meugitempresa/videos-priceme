@@ -2,7 +2,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import fs from 'node:fs';
-import http from 'node:http';
 import { carregarConfig, gerarAtendimento, gerarFormulario } from '../scripts/gerar-typebot.mjs';
 import { criarSessao } from '../src/motor.js';
 
@@ -100,132 +99,73 @@ test('WhatsApp: sem número do contato (teste no painel do Typebot) o link do fo
   assert.match(respostas[1], /pharma-formulario\?assunto=Administrativo%2FFinanceiro\n/);
 });
 
-function servidorFalso() {
-  const recebidas = [];
-  const srv = http.createServer((req, res) => {
-    let corpo = '';
-    req.on('data', (c) => { corpo += c; });
-    req.on('end', () => {
-      recebidas.push({ url: req.url, method: req.method, headers: req.headers, corpo: JSON.parse(corpo) });
-      res.writeHead(201, { 'content-type': 'application/json' });
-      res.end('{"key":{"id":"ok"}}');
-    });
-  });
-  return new Promise((ok) => srv.listen(0, '127.0.0.1', () => ok({ srv, recebidas, url: 'http://127.0.0.1:' + srv.address().port })));
-}
-
-function formularioCom(url, extras = {}) {
+// Formulário com um fetch que registra qualquer tentativa de chamada HTTP (não deve haver nenhuma).
+function formulario() {
+  const chamadas = [];
   const tb = ler('formulario.json');
-  const trocar = { meta_api_url: url + '/', meta_id_numero: '123456789', meta_token: 'token-teste', numero_atendente: '55 11 97777-6666', ...extras };
-  for (const g of tb.groups) for (const b of g.blocks) {
-    const nome = tb.variables.find((v) => v.id === b.options?.variableId)?.name;
-    if (b.type === 'Set variable' && nome in trocar) b.options.expressionToEvaluate = trocar[nome];
-  }
-  return tb;
+  const fetch = async (url, init) => { chamadas.push({ url, init }); return { status: 200 }; };
+  return { tb, chamadas, fetch };
 }
 
-test('formulário: campos obrigatórios, uma mensagem para o atendente e o aviso para o cliente', async () => {
-  const { srv, recebidas, url } = await servidorFalso();
-  try {
-    const s = criarSessao(formularioCom(url), { preenchidas: { assunto: 'Administrativo/Financeiro', whatsapp: '5511988887777' } });
-    const abertura = (await s.iniciar()).join('\n');
-    assert.match(abertura, /Assunto: \*Administrativo\/Financeiro\*/);
-    assert.deepEqual(await s.responder('   '), []); // nome vazio não passa
-    await s.responder('Maria da Silva');
-    assert.match((await s.responder('12')).join(), /telefone não parece válido/);
-    await s.responder('(11) 91234-5678');
-    assert.match((await s.responder('maria@')).join(), /e-mail não parece válido/);
-    await s.responder('maria@exemplo.com');
-    await s.responder('Preciso da segunda via do boleto.\nVenceu ontem "hoje".');
-    const final = (await s.responder('https://s3.exemplo/a.png https://s3.exemplo/b.png')).join('\n');
-    assert.match(final, /Pronto, Maria da Silva! Recebemos as suas informações\. ✅/);
-    assert.match(final, /entrará em contato com você pelo e-mail \*maria@exemplo\.com\*/);
-    assert.equal(s.terminou, true);
+async function preencher(s, respostas) {
+  const saidas = [];
+  for (const r of respostas) saidas.push((await s.responder(r)).join('\n'));
+  return saidas;
+}
 
-    assert.equal(s.emails.length, 1);
-    const [email] = s.emails;
-    assert.deepEqual(email.para, ['suporte.pharmaonline@gmail.com']);
-    assert.equal(email.responderPara, 'maria@exemplo.com');
-    assert.equal(email.assunto, 'Novo atendimento: Administrativo/Financeiro – Maria da Silva');
-    assert.match(email.html, /Maria da Silva/);
-    assert.match(email.html, /Preciso da segunda via do boleto\.<br>Venceu ontem &quot;hoje&quot;\./);
-    assert.match(email.html, /href="https:\/\/s3\.exemplo\/b\.png"/);
+test('formulário: campos obrigatórios, botão "Enviar respostas", e-mail para a equipe e nada pelo WhatsApp', async () => {
+  const { tb, chamadas, fetch } = formulario();
+  const s = criarSessao(tb, { preenchidas: { assunto: 'Administrativo/Financeiro', whatsapp: '5511988887777' }, fetch });
+  const abertura = (await s.iniciar()).join('\n');
+  assert.match(abertura, /Assunto: \*Administrativo\/Financeiro\*/);
+  assert.deepEqual(await s.responder('   '), []); // nome vazio não passa
+  await s.responder('Maria da Silva');
+  assert.match((await s.responder('12')).join(), /telefone não parece válido/);
+  await s.responder('(11) 91234-5678');
+  assert.match((await s.responder('maria@')).join(), /e-mail não parece válido/);
+  await s.responder('maria@exemplo.com');
+  await s.responder('Preciso da segunda via do boleto.\nVenceu ontem "hoje".');
+  const antesDoBotao = (await s.responder('https://s3.exemplo/a.png https://s3.exemplo/b.png')).join('\n');
+  assert.match(antesDoBotao, /toque no botão abaixo/);
+  assert.equal(s.aguardando, 'choice input');
+  assert.equal(s.emails.length, 0, 'nada é enviado antes de tocar em "Enviar respostas"');
 
-    assert.equal(recebidas.length, 2);
-    const [atendente, cliente] = recebidas;
-    assert.equal(atendente.url, '/v21.0/123456789/messages');
-    assert.equal(atendente.headers.authorization, 'Bearer token-teste');
-    assert.equal(atendente.corpo.messaging_product, 'whatsapp');
-    assert.equal(atendente.corpo.to, '5511977776666');
-    assert.equal(atendente.corpo.type, 'text');
-    const texto = atendente.corpo.text.body;
-    assert.match(texto, /^📋 \*Novo atendimento: Administrativo\/Financeiro\*/);
-    assert.match(texto, /\*Nome:\* Maria da Silva/);
-    assert.match(texto, /\*Telefone:\* \+5511912345678/);
-    assert.match(texto, /\*E-mail:\* maria@exemplo\.com/);
-    assert.match(texto, /\*WhatsApp de origem:\* \+5511988887777/);
-    assert.match(texto, /Preciso da segunda via do boleto\.\nVenceu ontem "hoje"\./);
-    assert.match(texto, /\*Anexos \(2\):\*\n1\. https:\/\/s3\.exemplo\/a\.png\n2\. https:\/\/s3\.exemplo\/b\.png/);
+  assert.deepEqual(await s.responder('qualquer coisa'), []); // só o botão avança
+  const final = await s.responder('Enviar respostas');
+  assert.equal(final.length, 1, 'depois do botão, só a mensagem final aparece');
+  assert.match(final[0], /^Suas respostas foram enviadas com sucesso! ✅/);
+  assert.match(final[0], /Obrigado pelo contato, Maria da Silva! Em breve, uma pessoa da nossa equipe responderá você pelo e-mail \*maria@exemplo\.com\*\./);
+  assert.equal(s.terminou, true);
 
-    assert.equal(cliente.url, '/v21.0/123456789/messages');
-    assert.equal(cliente.headers.authorization, 'Bearer token-teste');
-    assert.equal(cliente.corpo.to, '5511988887777');
-    assert.match(cliente.corpo.text.body, /^Olá, Maria da Silva! Recebemos o seu formulário de \*Administrativo\/Financeiro\*/);
-    assert.match(cliente.corpo.text.body, /entrará em contato com você pelo e-mail \*maria@exemplo\.com\*/);
-  } finally {
-    srv.close();
-  }
+  assert.equal(s.emails.length, 1);
+  const [email] = s.emails;
+  assert.deepEqual(email.para, ['suporte.pharmaonline@gmail.com']);
+  assert.equal(email.responderPara, 'maria@exemplo.com');
+  assert.equal(email.assunto, 'Novo atendimento: Administrativo/Financeiro – Maria da Silva');
+  assert.match(email.html, /Maria da Silva/);
+  assert.match(email.html, /Preciso da segunda via do boleto\.<br>Venceu ontem &quot;hoje&quot;\./);
+  assert.match(email.html, /href="https:\/\/s3\.exemplo\/b\.png"/);
+  assert.equal(chamadas.length, 0, 'o formulário não chama a API do WhatsApp');
 });
 
-test('formulário: sem anexos, sem assunto no link e com modelo da Meta para o atendente', async () => {
-  const { srv, recebidas, url } = await servidorFalso();
-  try {
-    const s = criarSessao(formularioCom(url, { template_atendente: 'novo_atendimento' }), { preenchidas: {} });
-    assert.match((await s.iniciar()).join(), /Assunto: \*Administrativo\/Financeiro\*/); // padrão sem assunto no link
-    for (const r of ['João', '+55 21 99876-5432', 'joao@exemplo.com.br', 'Quero falar com vocês.']) await s.responder(r);
-    await s.responder('pular');
-    assert.equal(recebidas.length, 2);
-    const [atendente, cliente] = recebidas;
-    assert.equal(atendente.url, '/v21.0/123456789/messages');
-    assert.equal(atendente.corpo.type, 'template');
-    assert.equal(atendente.corpo.template.name, 'novo_atendimento');
-    assert.deepEqual(atendente.corpo.template.language, { code: 'pt_BR' });
-    assert.deepEqual(atendente.corpo.template.components[0].parameters.map((p) => p.text),
-      ['Administrativo/Financeiro', 'João', '+5521998765432', 'joao@exemplo.com.br', 'Quero falar com vocês.', 'nenhum']);
-    assert.equal(cliente.corpo.to, '5521998765432'); // sem WhatsApp no link: usa o telefone digitado
-  } finally {
-    srv.close();
-  }
+test('formulário: sem imagens e sem assunto no link, usa Administrativo/Financeiro e não escapa código no e-mail', async () => {
+  const { tb, chamadas, fetch } = formulario();
+  const s = criarSessao(tb, { preenchidas: {}, fetch });
+  assert.match((await s.iniciar()).join(), /Assunto: \*Administrativo\/Financeiro\*/);
+  await preencher(s, ['Ana', '31 99999-0000', 'ana@exemplo.com', 'Dúvida <script>alert(1)</script>', 'pular']);
+  await s.responder('Enviar respostas');
+  assert.equal(s.emails.length, 1);
+  assert.doesNotMatch(s.emails[0].html, /<script>/);
+  assert.match(s.emails[0].html, /&lt;script&gt;/);
+  assert.match(s.emails[0].html, /Anexos \(0\)/);
+  assert.equal(chamadas.length, 0);
+  assert.equal(s.terminou, true);
 });
 
-test('formulário (configuração atual): resumo só por e-mail, sem número de atendente no WhatsApp', async () => {
-  const { srv, recebidas, url } = await servidorFalso();
-  try {
-    const s = criarSessao(formularioCom(url, { numero_atendente: '' }), { preenchidas: { assunto: 'Fale conosco', whatsapp: '5511988887777' } });
-    await s.iniciar();
-    for (const r of ['Ana', '31 99999-0000', 'ana@exemplo.com', 'Dúvida <script>alert(1)</script>']) await s.responder(r);
-    await s.responder('pular');
-    assert.equal(s.emails.length, 1);
-    assert.doesNotMatch(s.emails[0].html, /<script>/);
-    assert.match(s.emails[0].html, /&lt;script&gt;/);
-    assert.equal(recebidas.length, 1, 'só o aviso ao cliente vai pela API da Meta');
-    assert.equal(recebidas[0].corpo.to, '5511988887777');
-    assert.equal(s.terminou, true);
-  } finally {
-    srv.close();
-  }
-});
-
-test('formulário: sem e-mail e sem número de atendente, ainda avisa o cliente e encerra', async () => {
-  const { srv, recebidas, url } = await servidorFalso();
-  try {
-    const s = criarSessao(formularioCom(url, { numero_atendente: '', email_atendente: '' }), { preenchidas: {} });
-    await s.iniciar();
-    for (const r of ['Ana', '31 99999-0000', 'ana@exemplo.com', 'Oi', 'pular']) await s.responder(r);
-    assert.equal(s.emails.length, 0);
-    assert.equal(recebidas.length, 1);
-    assert.equal(s.terminou, true);
-  } finally {
-    srv.close();
-  }
+test('formulário: não tem nenhum bloco que envie mensagem pelo WhatsApp', () => {
+  const tb = ler('formulario.json');
+  const tipos = tb.groups.flatMap((g) => g.blocks.map((b) => b.type));
+  assert.ok(!tipos.includes('Webhook'), 'sem chamadas HTTP');
+  assert.ok(tipos.includes('choice input') && tipos.includes('Email'));
+  assert.doesNotMatch(JSON.stringify(tb), /graph\.facebook|meta_token|aviso_whatsapp/);
 });

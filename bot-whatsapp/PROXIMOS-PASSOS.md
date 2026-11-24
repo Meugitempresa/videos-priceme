@@ -60,6 +60,12 @@ A SendPulse foi avaliada e descartada.
 - [ ] Link do formulário (só opção 3): o bot acrescenta `?assunto=…&whatsapp=…` ao link (nosso, criado na instalação),
       para mostrar o assunto e avisar o cliente no WhatsApp. Confirmar com a cliente se quiser o link sem esses dados.
 
+- [x] **24/11:** formulário sem nenhuma mensagem pelo WhatsApp (custo da Meta). No fim há o botão rosa "Enviar respostas";
+      ao tocar, as respostas vão por e-mail e aparece só a confirmação com o agradecimento.
+- [ ] **Opção 5 (Fale conosco):** nova mensagem com dois links (não clientes: https://orcpharm.app/pharmaonline/pergunta;
+      clientes: https://orcpharm.app/pharmaonline/fale-conosco). Texto proposto à cliente, aguardando aprovação.
+- [ ] Regenerar os dois PDFs depois da aprovação da opção 5.
+
 ## Situação na Meta (WhatsApp Cloud API)
 - O número **+55 31 9788-2066 (Pharma Online)** já está na conta do WhatsApp na Meta, com status **"Offline"**:
   foi adicionado, mas ainda não foi registrado na API.

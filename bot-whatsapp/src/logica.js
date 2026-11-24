@@ -199,34 +199,6 @@ export function montarResumo(dados, agora) {
   return linhas.join('\n');
 }
 
-/** Corpo do POST à API da Meta para o atendente: texto livre ou modelo aprovado (exige cartão na conta da Meta). */
-export function corpoAtendente(dados, numeroAtendente, template, idioma, agora) {
-  const numero = String(numeroAtendente ?? '').replace(/\D/g, '');
-  const nomeTemplate = String(template ?? '').trim();
-  if (!nomeTemplate) {
-    return JSON.stringify({
-      messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',
-      text: { preview_url: false, body: montarResumo(dados, agora) },
-    });
-  }
-  // Parâmetros de modelo não aceitam quebras de linha nem 4+ espaços seguidos.
-  const limpar = (x) => (String(x ?? '').trim() || '(não informado)')
-    .replace(/\s*\n+\s*/g, ' / ').replace(/\s{4,}/g, '   ').slice(0, 1000);
-  const anexos = listaDeAnexos(dados.anexos);
-  const parametros = [
-    dados.assunto, dados.nome, dados.telefone, dados.email, dados.duvida,
-    anexos.length ? anexos.join(' ; ') : 'nenhum',
-  ].map((texto) => ({ type: 'text', text: limpar(texto) }));
-  return JSON.stringify({
-    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'template',
-    template: {
-      name: nomeTemplate,
-      language: { code: String(idioma ?? '').trim() || 'pt_BR' },
-      components: [{ type: 'body', parameters: parametros }],
-    },
-  });
-}
-
 /** Assunto do e-mail para o atendente. */
 export function assuntoEmail(dados) {
   const nome = String(dados.nome ?? '').trim();
@@ -267,19 +239,4 @@ export function montarResumoHtml(dados, agora) {
     '<p style="margin:22px 0 0;color:#6B7280;font-size:13px">Enviado em ' + dataHoraBrasilia(agora) +
     ' pelo formulário de atendimento. Para falar com o cliente, basta responder este e-mail.</p>' +
     '</div></div>';
-}
-
-/** Corpo do POST à API da Meta com o aviso para o cliente (vai para o WhatsApp de origem). */
-export function corpoCliente(whatsapp, telefoneDigitado, texto) {
-  const numero = numeroDoWhatsApp(whatsapp) || String(telefoneDigitado ?? '').replace(/\D/g, '');
-  return JSON.stringify({
-    messaging_product: 'whatsapp', recipient_type: 'individual', to: numero, type: 'text',
-    text: { preview_url: false, body: String(texto ?? '') },
-  });
-}
-
-/** Endereço da API da Meta para enviar mensagens pelo número do bot. */
-export function urlMensagensMeta(base, versao, idNumero) {
-  return String(base ?? '').trim().replace(/\/+$/, '') + '/' + (String(versao ?? '').trim() || 'v21.0') + '/' +
-    String(idNumero ?? '').trim() + '/messages';
 }

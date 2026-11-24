@@ -20,10 +20,9 @@ Se a mensagem não tiver relação com o menu, ele explica em uma frase como esc
 A saudação é fixa ("Olá! Seja muito bem-vindo(a)…"), sem variar por horário. O agradecimento termina com o slogan:
 "pHarmaOnline, conectando confiança à sua conveniência 💜".
 
-**Como chega o formulário preenchido:** o atendente recebe **um e-mail organizado** com todos os dados
-(`docs/previa-email-atendente.png`). O botão "Responder" do e-mail já vai para o cliente. O cliente recebe no WhatsApp o aviso
-de que em breve entrarão em contato. O envio do resumo também por WhatsApp está pronto, mas desligado: ele exige cartão na
-conta da Meta (veja o passo 5 da instalação).
+**Como chega o formulário preenchido (opção 3):** o cliente toca em **"Enviar respostas"** no fim do formulário e vê a
+confirmação na tela. A equipe recebe **um e-mail organizado** com todos os dados (`docs/previa-email-atendente.png`); o botão
+"Responder" do e-mail já vai para o cliente. Nada é enviado pelo WhatsApp.
 
 **Dados pendentes (a cliente envia):**
 - link do site (quando a loja for publicada);
@@ -99,10 +98,10 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 2. **Importar os fluxos** em `https://DOMINIO_TYPEBOT`: entre com o e-mail do administrador e use **Criar → Importar
    arquivo** para os dois fluxos.
    - `typebot/formulario.json`: em "⚙️ Configuração (edite aqui)", preencha:
-     - `email_atendente`: quem recebe os formulários;
-     - `meta_id_numero` e `meta_token`: os mesmos do passo 3.
+     - `email_atendente`: quem recebe os formulários (suporte.pharmaonline@gmail.com).
 
-     Deixe `numero_atendente` vazio. Publique com o ID público `pharma-formulario`. O e-mail sai pelo SMTP do `.env`.
+     Publique com o ID público `pharma-formulario`. O e-mail sai pelo SMTP do `.env`. O formulário não envia nada pelo
+     WhatsApp: no fim, o cliente toca em **"Enviar respostas"** e vê a confirmação só na tela.
    - `typebot/atendimento.json`: preencha os links (`link_formulario` = `https://DOMINIO_VIEWER/pharma-formulario`).
      Publique com o ID público `pharma-atendimento`.
 3. **Ligar o número da Meta ao Typebot** (integração nativa):
@@ -127,28 +126,14 @@ TYPEBOT_VIEWER_URL=https://bot.seudominio.com.br node scripts/testar-typebot-rea
 4. **Custos da Meta:** desde 01/10/2026, segundo parceiros da Meta, as respostas aos clientes também são cobradas por
    mensagem. Há uma franquia mensal citada de cerca de 1.000 mensagens por número. Confirme no Gerenciador do WhatsApp:
    pode ser necessário cadastrar uma forma de pagamento para as mensagens continuarem sendo entregues.
-5. **(Opcional, exige cartão) Resumo também por WhatsApp para o atendente.** Hoje ele vai só por e-mail. Mensagens
-   iniciadas pela empresa precisam de modelo aprovado. Para ligar, preencha `numero_atendente` no fluxo do formulário e
-   crie no Gerenciador do WhatsApp um modelo **Utilidade**, em pt_BR, chamado `novo_atendimento`, com o corpo:
-
-   ```
-   Novo atendimento recebido pelo formulário.
-   Assunto: {{1}}
-   Nome: {{2}}
-   Telefone: {{3}}
-   E-mail: {{4}}
-   Mensagem: {{5}}
-   Anexos: {{6}}
-   ```
-
-   Depois que o modelo for aprovado, preencha `template_atendente = novo_atendimento`. Enquanto o campo estiver vazio, o
-   resumo segue como texto livre. Esse texto só é entregue se o atendente tiver falado com o número do bot nas últimas
-   24 h. Todos os formulários também ficam salvos no painel do Typebot, em **Resultados**.
+5. **Sem mensagens pelo WhatsApp no formulário (decisão de 24/11):** para evitar custos com a Meta, nem o cliente nem a
+   equipe recebem avisos pelo WhatsApp. A equipe recebe por e-mail, e o cliente vê a confirmação na tela. Todos os
+   formulários também ficam no painel do Typebot, em **Resultados**.
 
 **Validação feita:** o Typebot oficial rodou com uma "Meta falsa" no lugar da API real.
 - Mensagens no formato da Meta, enviadas ao webhook nativo, foram respondidas: menu, opções, frases, 0, figurinha e
   agradecimento.
-- O formulário enviou o e-mail ao atendente e o aviso ao cliente pela API da Meta.
+- O formulário enviou o e-mail à equipe (na versão anterior, que ainda avisava o cliente pelo WhatsApp).
 
 ## Arquivos
 

@@ -122,18 +122,16 @@
     "pergunta_anexos": [
       "Se quiser, anexe *imagens* que ajudem a entender a sua solicitação (opcional)."
     ],
-    "final": [
-      "Pronto, {{nome}}! Recebemos as suas informações. ✅",
-      "",
-      "Em breve, uma pessoa da nossa equipe entrará em contato com você pelo e-mail *{{email}}*.",
-      "Você já pode fechar esta página."
+    "pergunta_enviar": [
+      "Tudo pronto! Para enviar as suas respostas à nossa equipe, toque no botão abaixo."
     ],
-    "aviso_whatsapp": [
-      "Olá, {{nome}}! Recebemos o seu formulário de *{{assunto}}*. ✅",
+    "botao_enviar": "Enviar respostas",
+    "final": [
+      "Suas respostas foram enviadas com sucesso! ✅",
       "",
-      "Em breve, uma pessoa da nossa equipe entrará em contato com você pelo e-mail *{{email}}*.",
+      "Obrigado pelo contato, {{nome}}! Em breve, uma pessoa da nossa equipe responderá você pelo e-mail *{{email}}*.",
       "",
-      "Para voltar ao menu inicial, digite *0*."
+      "Você já pode fechar esta página."
     ]
   }
 }

@@ -190,6 +190,7 @@ export function criarSessao(typebot, { preenchidas = {}, contato = null, fetch: 
         case 'email input':
         case 'phone number input':
         case 'file input':
+        case 'choice input':
           pendente = { grupo, indice, bloco };
           return mensagens;
         default:
@@ -221,6 +222,10 @@ export function criarSessao(typebot, { preenchidas = {}, contato = null, fetch: 
         const urls = t.split(/\s+/).filter((u) => /^https?:\/\//.test(u));
         if (!urls.length) return { ok: false };
         return { ok: true, valor: bloco.options.isMultipleAllowed ? urls : urls[0] };
+      }
+      case 'choice input': {
+        const item = bloco.items.find((i) => String(i.content ?? '').trim().toLowerCase() === t.toLowerCase());
+        return item ? { ok: true, valor: item.content } : { ok: false };
       }
       default:
         return { ok: false };

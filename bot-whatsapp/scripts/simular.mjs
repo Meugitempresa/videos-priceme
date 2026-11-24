@@ -29,7 +29,7 @@ const fetchFalso = async (url, init) => {
 
 const sessao = criarSessao(typebot, {
   preenchidas: ehFormulario
-    ? { assunto: 'Fale conosco', whatsapp: '5511988887777' }
+    ? { assunto: 'Administrativo/Financeiro', whatsapp: '5511988887777' }
     : {},
   contato: ehFormulario ? null : { telefone: '5511988887777', nome: 'Cliente Teste' },
   fetch: fetchFalso,
