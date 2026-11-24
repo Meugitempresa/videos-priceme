@@ -5,6 +5,7 @@ import { ReelPriceMe2 } from "./reel2/ReelPriceMe2";
 import { DURACAO as DURACAO_PHARMA, PharmaOnline } from "./pharma/PharmaOnline";
 import { DURACAO_TUTORIAL, Tutorial } from "./tutorial/Tutorial";
 import { DURACAO_TUTORIAL2, Tutorial2 } from "./tutorial2/Tutorial2";
+import { DURACAO_INSTALACAO, Instalacao } from "./instalacao/Instalacao";
 import { TestePriceMe } from "./TestePriceMe";
 
 export const RemotionRoot: React.FC = () => {
@@ -46,6 +47,14 @@ export const RemotionRoot: React.FC = () => {
         id="TutorialPharmaOnlineParte2"
         component={Tutorial2}
         durationInFrames={DURACAO_TUTORIAL2}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="InstalacaoPriceMe"
+        component={Instalacao}
+        durationInFrames={DURACAO_INSTALACAO}
         fps={30}
         width={1080}
         height={1920}

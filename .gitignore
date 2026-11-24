@@ -15,3 +15,6 @@ public/tutorial/*.mp4
 public/tutorial/*.wav
 public/tutorial2/*.mp4
 public/tutorial2/*.wav
+# Tutorial de instalação (fora do git)
+public/instalacao/*.mp4
+public/instalacao/*.mp3

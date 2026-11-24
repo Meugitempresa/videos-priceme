@@ -78,3 +78,13 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
 - A Parte 1 final enviada pela cliente tem uma abertura com a Julia em tela cheia (0–8 s, feita por ela);
   a Parte 2 não tem saudação, então usa o layout do início ao fim.
 - Final: `npx remotion render src/index.ts TutorialPharmaOnlineParte2 out/tutorial-pharmaonline-parte2.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=256k`
+
+## Tutorial de instalação da PriceMe pelo celular — `src/instalacao`
+
+- Em `public/instalacao/` (fora do git): `gravacao-chrome.mp4` (WhatsApp 14.39.01, instalação no Chrome) e
+  `gravacao-app.mp4` (WhatsApp 14.52.09, ícone e abertura), ambas convertidas para 30 fps constantes
+  (`ffmpeg -i X -vf fps=30 -c:v libx264 -crf 14 -an`); `narracao.mp3` (ElevenLabs, intocada; volume √2 só compensa a mono em estéreo).
+- A narração manda no tempo; o mapa fala → trecho de tela, os destaques (contorno, toque, seta, zoom) e os desfoques
+  (histórico de buscas, relógio/data/clima) ficam em `src/instalacao/roteiro.ts`. A barra de status é recortada.
+- Legendas em `src/instalacao/legendas.ts` (fiéis à locução: "Abra o seu navegador e acesse", sem "agora"; [termo] = destaque ciano).
+- Final: `npx remotion render src/index.ts InstalacaoPriceMe out/instalacao-priceme.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=256k`
