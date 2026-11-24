@@ -61,7 +61,7 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(r3, /entrará em contato com você pelo \*e-mail\* informado no formulário\./);
   assert.match(r5, /^\*Fale conosco\*\n\nPara falar com a nossa equipe, escolha o link certo para você:/);
   assert.match(r5, /💙 \*AINDA NÃO É CLIENTE da pHarma Online\?\*\nEnvie a sua pergunta por este link:\nhttps:\/\/orcpharm\.app\/pharmaonline\/pergunta\n/);
-  assert.match(r5, /🩷 \*JÁ É CLIENTE da pHarma Online\?\*\nPara dúvidas sobre um orçamento, um pedido ou outros assuntos, fale com a nossa equipe por este link:\nhttps:\/\/orcpharm\.app\/pharmaonline\/fale-conosco\n/);
+  assert.match(r5, /🩷 \*JÁ É CLIENTE da pHarma Online\?\*\nFale com a nossa equipe por este link:\nhttps:\/\/orcpharm\.app\/pharmaonline\/fale-conosco\n/);
   assert.doesNotMatch(r5, /formulário|pharma-formulario|@gmail/); // Fale conosco: só os dois links
   assert.match(r3, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
   assert.match(r4, /instagram\.com\/pharmaonlineplus[\s\S]*facebook\.com\/pharmaonlineplus[\s\S]*tiktok[\s\S]*youtube/);

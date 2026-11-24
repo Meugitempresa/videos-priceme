@@ -63,7 +63,7 @@ A SendPulse foi avaliada e descartada.
 - [x] **24/11:** formulário sem nenhuma mensagem pelo WhatsApp (custo da Meta). No fim há o botão rosa "Enviar respostas";
       ao tocar, as respostas vão por e-mail e aparece só a confirmação com o agradecimento.
 - [x] **Opção 5 (Fale conosco), aprovada em 24/11:** uma mensagem com dois links (💙 ainda não é cliente:
-      https://orcpharm.app/pharmaonline/pergunta; 🩷 já é cliente, dúvidas sobre orçamento, pedido ou outros assuntos:
+      https://orcpharm.app/pharmaonline/pergunta; 🩷 já é cliente:
       https://orcpharm.app/pharmaonline/fale-conosco). Os dois PDFs foram regenerados.
 
 ## Situação na Meta (WhatsApp Cloud API)
