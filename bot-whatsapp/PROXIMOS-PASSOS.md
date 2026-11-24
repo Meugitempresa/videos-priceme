@@ -32,7 +32,7 @@ A SendPulse foi avaliada e descartada.
 - [ ] **E-mail que envia (SMTP):** basta dizer o provedor (Gmail, Outlook, Hostinger, Locaweb…) e o endereço.
       A senha **não** vai no chat; ela entra direto no `.env` do servidor. No Gmail, use uma "senha de app"
       (verificação em duas etapas → Senhas de app).
-- [x] **Redes sociais** (enviadas em 19/11; já no bot, sem "https://www." para ficarem curtas).
+- [x] **Redes sociais:** no bot exatamente como a cliente enviou (regra de 24/11: usar só os links fornecidos, sem alterar).
       Facebook com nome de usuário criado em 19/11: facebook.com/pharmaonlineplus.
 - [x] **Link do app:** https://orcpharm.app/pharmaonline/ (um link só, que serve para acessar o app; opção 1 ajustada).
 - [ ] **Link do site:** a loja está na Nuvemshop e ainda não foi publicada. O item `site` está **oculto** (não aparece
@@ -52,6 +52,11 @@ A SendPulse foi avaliada e descartada.
 - Textos (19/11): saudação curta com 💊💜 e banner só na saudação; opção 2 com "Toque no link abaixo" para o (31) 99921-1377;
   demais mensagens na versão completa, citando o e-mail. Guia em `docs/mensagens-do-bot.pdf` (`node scripts/gerar-pdf.mjs`).
   Aguardando "aprovado".
+
+- **Regra anti-alucinação (24/11):** o bot não usa IA (não há temperatura); só envia textos fixos e links fornecidos.
+  `test/seguranca.test.mjs` falha se surgir link fora da configuração, link escrito à mão nos textos ou bloco de IA.
+- [ ] **Confirmar com a cliente:** o link `https://wa.me/5531999211377` (criado a partir do número) e os parâmetros que o bot
+      acrescenta ao link do formulário (`?assunto=…&whatsapp=…`).
 
 ## Situação na Meta (WhatsApp Cloud API)
 - O número **+55 31 9788-2066 (Pharma Online)** já está na conta do WhatsApp na Meta, com status **"Offline"**:
