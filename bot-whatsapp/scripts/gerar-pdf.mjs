@@ -146,7 +146,7 @@ td.n { font-weight: 800; color: var(--azul); width: 12mm; text-align: center; }
     whatsapp: 'Encaminha para atendimento com uma pessoa da equipe, pelo WhatsApp.',
     financeiro: 'Envia o link do formulário; a resposta vai por e-mail.',
     redes: 'Envia os links do Instagram, Facebook, TikTok e YouTube.',
-    contato: 'Informa o e-mail suporte.pharmaonline@gmail.com para o cliente escrever; a resposta vai por e-mail.',
+    contato: 'Envia dois links: um para quem ainda não é cliente e outro para quem já é cliente.',
     site: 'Envia o link do site.',
   })[i.id] ?? ''}</td></tr>`).join('')}
   ${site && site.oculto ? `<tr><td class="n">–</td><td>${esc(site.nome)} <span class="etq">oculta</span></td><td>Fica fora do menu até a loja da Nuvemshop ser publicada. Ao ativar, ela vira a opção 3 e as seguintes descem um número.</td></tr>` : ''}
@@ -161,7 +161,7 @@ ${card(3, 'Opção 1: Orçamento pelo app', 'quando o cliente digita 1 ou escrev
 ${card(4, 'Opção 2: Orçamento pelo WhatsApp (ordem de pedido)', 'quando o cliente digita 2 ou escreve, por exemplo, "orçamento pelo WhatsApp" ou "ordem de pedido".', chat('2', resp.whatsapp), 'ao tocar no link, o WhatsApp do cliente abre uma conversa nova com o número de atendimento (31) 99921-1377, onde uma pessoa da equipe faz o orçamento.')}
 ${card(5, 'Opção 3: Administrativo/Financeiro', 'quando o cliente digita 3 ou escreve, por exemplo, "financeiro", "boleto", "nota fiscal" ou "pagamento".', chat('3', resp.financeiro), 'o cliente preenche o formulário (veja a seção "Formulário"). A equipe recebe tudo por e-mail e responde ao cliente por e-mail.')}
 ${card(6, 'Opção 4: Redes sociais', 'quando o cliente digita 4 ou escreve, por exemplo, "redes sociais", "instagram" ou "facebook".', chat('4', resp.redes), '')}
-${card(7, 'Opção 5: Fale conosco', 'quando o cliente digita 5 ou escreve, por exemplo, "fale conosco", "contato" ou "falar com atendente".', chat('5', resp.contato), 'o cliente escreve para o e-mail suporte.pharmaonline@gmail.com e a equipe responde por e-mail. Não há formulário nesta opção.')}
+${card(7, 'Opção 5: Fale conosco', 'quando o cliente digita 5 ou escreve, por exemplo, "fale conosco", "contato" ou "falar com atendente".', chat('5', resp.contato), 'quem ainda não é cliente toca no primeiro link (para enviar uma pergunta); quem já é cliente toca no segundo (dúvidas sobre orçamento, pedido ou outros assuntos). Os dois links abrem o app da pHarma Online.')}
 ${card(8, 'Mensagem não reconhecida', 'quando o cliente escreve algo fora do menu, digita um número que não existe, ou manda áudio, figurinha ou foto.', chat('qual o horário de vocês?', resp.nao), 'o bot aguarda o cliente escolher uma opção.')}
 ${card(9, 'Agradecimento', 'quando o cliente agradece ("obrigado", "obrigada", "valeu").', chat('obrigada!', resp.obrigado), '')}
 ${card(10, 'Acessar o site <span class="etq">oculta</span>', 'só depois de a opção ser ativada, quando a loja da Nuvemshop for publicada.', chat('', [linhas(textos.respostas.site, { link_site: '(link do site)' })]), '')}
@@ -171,15 +171,14 @@ ${card(11, 'Opção "em breve"', 'só se alguma opção for marcada como indispo
 <div class="secao">
 <h2>Formulário (opção 3)</h2>
 <p>O formulário é uma página na internet, nas cores da pHarma Online (azul e rosa), que abre pelo link enviado no WhatsApp. Ele faz uma pergunta de cada vez. <b>Nome, telefone e e-mail são obrigatórios</b>; a mensagem tem um campo grande; as imagens são opcionais.</p>
-${card(12, 'Abertura e perguntas', 'assim que o cliente abre o link enviado na opção 3. O assunto "Administrativo/Financeiro" aparece sozinho.', formChat([textos.formulario.abertura, textos.formulario.pergunta_nome, textos.formulario.pergunta_telefone, textos.formulario.pergunta_email, textos.formulario.pergunta_duvida, textos.formulario.pergunta_anexos]), 'se não tiver imagem, o cliente toca no botão "Não tenho imagens para enviar".')}
+${card(12, 'Abertura e perguntas', 'assim que o cliente abre o link enviado na opção 3. O assunto "Administrativo/Financeiro" aparece sozinho.', formChat([textos.formulario.abertura, textos.formulario.pergunta_nome, textos.formulario.pergunta_telefone, textos.formulario.pergunta_email, textos.formulario.pergunta_duvida, textos.formulario.pergunta_anexos, textos.formulario.pergunta_enviar]) + '<div style="text-align:right;margin:-1mm 0 3mm"><span style="display:inline-block;background:#F49AC1;color:#1F2A44;font-weight:700;border-radius:6px;padding:1.6mm 4mm;font-size:9.5pt">' + esc(textos.formulario.botao_enviar) + '</span></div>', 'se não tiver imagem, o cliente toca em "Não tenho imagens para enviar". No fim, só ao tocar no botão rosa "' + esc(textos.formulario.botao_enviar) + '" as respostas são enviadas.')}
 ${card(13, 'Avisos de erro', 'quando o telefone ou o e-mail são digitados de forma errada. O formulário só avança com os dados corretos.', formChat([['Esse telefone não parece válido. Confira o DDD e o número, por favor.'], ['Esse e-mail não parece válido. Confira e digite novamente, por favor.']]), '')}
-${card(14, 'Tela final do formulário', 'logo depois de o cliente enviar o formulário.', formChat([textos.formulario.final]), 'ao mesmo tempo, o bot envia a mensagem 15 no WhatsApp do cliente e o e-mail 16 para a equipe.')}
-${card(15, 'Aviso no WhatsApp do cliente', 'logo depois de o cliente enviar o formulário (chega no mesmo WhatsApp em que ele conversou com o bot).', chat('', [linhas(textos.formulario.aviso_whatsapp, exForm)]), '')}
+${card(14, 'Tela final do formulário', 'logo depois de o cliente tocar em "' + esc(textos.formulario.botao_enviar) + '". É a única coisa nova que aparece na tela.', formChat([textos.formulario.final]), 'as respostas seguem por e-mail para a equipe (mensagem 15). Nada é enviado pelo WhatsApp do cliente.')}
 </div>
 
 <div class="secao">
 <h2>E-mail para a equipe</h2>
-${card(16, 'Formulário preenchido', 'a cada formulário enviado. Chega em <b>suporte.pharmaonline@gmail.com</b>, com assunto "Novo atendimento: (assunto) – (nome)".', '<div class="email">' + montarResumoHtml({
+${card(15, 'Formulário preenchido', 'a cada formulário enviado. Chega em <b>suporte.pharmaonline@gmail.com</b>, com assunto "Novo atendimento: (assunto) – (nome)".', '<div class="email">' + montarResumoHtml({
   assunto: 'Administrativo/Financeiro', nome: 'Maria da Silva', telefone: '+5531988887777', email: 'maria@exemplo.com',
   whatsapp: '5531988887777', duvida: 'Gostaria da segunda via do boleto do meu último pedido.\nObrigada!',
   anexos: ['https://arquivos.pharmaonline/exemplo-foto.jpg'],

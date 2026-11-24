@@ -59,9 +59,10 @@ test('WhatsApp: cada opção, o 0 e as frases, sem nunca encerrar a conversa', a
   assert.match(r2, /\(31\) 99921-1377/);
   assert.match(r2, /https:\/\/wa\.me\/5531999211377\n/);
   assert.match(r3, /entrará em contato com você pelo \*e-mail\* informado no formulário\./);
-  assert.match(r5, /^\*Fale conosco\*[\s\S]*envie a sua mensagem para o e-mail:\n📧 suporte\.pharmaonline@gmail\.com\n/);
-  assert.match(r5, /responderá você por e-mail/);
-  assert.doesNotMatch(r5, /formulário|pharma-formulario/); // Fale conosco não usa mais formulário
+  assert.match(r5, /^\*Fale conosco\*\n\nPara falar com a nossa equipe, escolha o link certo para você:/);
+  assert.match(r5, /💙 \*AINDA NÃO É CLIENTE da pHarma Online\?\*\nEnvie a sua pergunta por este link:\nhttps:\/\/orcpharm\.app\/pharmaonline\/pergunta\n/);
+  assert.match(r5, /🩷 \*JÁ É CLIENTE da pHarma Online\?\*\nPara dúvidas sobre um orçamento, um pedido ou outros assuntos, fale com a nossa equipe por este link:\nhttps:\/\/orcpharm\.app\/pharmaonline\/fale-conosco\n/);
+  assert.doesNotMatch(r5, /formulário|pharma-formulario|@gmail/); // Fale conosco: só os dois links
   assert.match(r3, /pharma-formulario\?assunto=Administrativo%2FFinanceiro&whatsapp=5511988887777/);
   assert.match(r4, /instagram\.com\/pharmaonlineplus[\s\S]*facebook\.com\/pharmaonlineplus[\s\S]*tiktok[\s\S]*youtube/);
   assert.match(r6, /^Desculpe, não consegui identificar/); // não existe opção 6 com o site oculto

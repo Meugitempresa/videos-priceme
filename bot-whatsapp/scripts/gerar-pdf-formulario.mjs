@@ -34,6 +34,7 @@ const eu = (s) => '<div class="lado"><div class="b-eu">' + esc(s) + '</div></div
 const campo = (ph, { grande = false, tel = false } = {}) =>
   '<div class="campo-linha"><div class="campo' + (grande ? ' grande' : '') + '">' + (tel ? '<span class="ddi">🇧🇷 ▾</span>' : '') +
   '<span class="ph">' + esc(ph) + '</span></div><div class="enviar">Enviar</div></div>';
+const botao = () => '<div class="lado"><div class="enviar" style="padding:2.2mm 5mm">' + esc(t.botao_enviar) + '</div></div>';
 const upload = () => '<div class="upload">☁️<br>Clique ou arraste as imagens aqui</div><div class="lado"><div class="pular">Não tenho imagens para enviar</div></div>';
 const tela = (titulo, conteudo) => '<div class="tela"><div class="tela-topo">' + esc(titulo) + '</div><div class="tela-corpo">' + conteudo + '</div></div>';
 
@@ -116,7 +117,7 @@ td { border-bottom: 1px solid #E3E7F2; padding: 2.2mm 3mm; vertical-align: top; 
 <h2>Para que serve</h2>
 <p>O formulário reúne, de uma vez só e de forma organizada, tudo o que a equipe precisa para atender o cliente: quem ele é, como falar com ele e qual é a dúvida. Assim ninguém precisa ficar trocando várias mensagens para pedir dados.</p>
 <div class="caixa"><ul>
-  <li><b>Quando o cliente recebe:</b> ao escolher, no WhatsApp, a opção <b>3 – Administrativo/Financeiro</b>. O bot responde com o link do formulário. (A opção 5 – Fale conosco não usa formulário: ela pede para o cliente escrever para o e-mail da equipe.)</li>
+  <li><b>Quando o cliente recebe:</b> ao escolher, no WhatsApp, a opção <b>3 – Administrativo/Financeiro</b>. O bot responde com o link do formulário. (A opção 5 – Fale conosco não usa este formulário: ela envia os links do app da pHarma Online, um para quem ainda não é cliente e outro para quem já é cliente.)</li>
   <li><b>Onde abre:</b> no navegador do próprio celular (ou do computador). Não é preciso instalar nada nem criar conta.</li>
   <li><b>Visual:</b> página nas cores da pHarma Online (azul e rosa), em formato de conversa: uma pergunta de cada vez.</li>
   <li><b>Duração:</b> menos de um minuto.</li>
@@ -158,8 +159,10 @@ ${passo(4, 'Dúvida ou mensagem', `<p>Um campo grande para o cliente explicar o 
   tela('Formulário de atendimento', eu(ex.email) + bot(t.pergunta_duvida) + campo('Escreva aqui a sua dúvida ou mensagem...', { grande: true })))}
 ${passo(5, 'Imagens (opcional)', `<p>Se quiser, o cliente anexa imagens que ajudem a entender o pedido: por exemplo, a foto de um boleto, de uma embalagem ou um print.</p><p>Se não tiver nada para enviar, basta tocar em <b>"Não tenho imagens para enviar"</b>.</p>`,
   tela('Formulário de atendimento', bot(t.pergunta_anexos) + upload()))}
-${passo(6, 'Pronto!', `<p>Ao terminar, o cliente vê a confirmação na tela, com o e-mail que ele informou, e pode fechar a página.</p><p>Nesse mesmo momento, o formulário avisa o cliente no WhatsApp e envia tudo para a equipe por e-mail (próxima página).</p>`,
-  tela('Formulário de atendimento', eu('Não tenho imagens para enviar') + bot(t.final)))}
+${passo(6, 'Enviar respostas', `<p>Depois das imagens, o formulário avisa que está tudo pronto e mostra o <b>botão rosa "${esc(t.botao_enviar)}"</b>.</p><p><b>Só quando o cliente toca nesse botão</b> as respostas são enviadas para a equipe. Antes disso, nada é enviado.</p>`,
+  tela('Formulário de atendimento', eu('Não tenho imagens para enviar') + bot(t.pergunta_enviar) + botao()))}
+${passo(7, 'Confirmação na tela', `<p>Assim que o cliente toca em "${esc(t.botao_enviar)}", aparece a confirmação de que as respostas foram enviadas, com o agradecimento e o e-mail em que ele será respondido.</p><p>É a única coisa nova que aparece na tela. <b>Nada é enviado pelo WhatsApp</b>.</p>`,
+  tela('Formulário de atendimento', eu(t.botao_enviar) + bot(t.final)))}
 
 <h2>Se algo for digitado errado</h2>
 <p>O formulário só avança com os dados corretos. Nesses casos, ele mostra um aviso e deixa o cliente digitar de novo:</p>
@@ -171,16 +174,12 @@ ${passo(6, 'Pronto!', `<p>Ao terminar, o cliente vê a confirmação na tela, co
 
 <div class="secao">
 <h2>Depois que o cliente envia</h2>
-<p>Três coisas acontecem ao mesmo tempo, automaticamente:</p>
+<p>Assim que o cliente toca em <b>"${esc(t.botao_enviar)}"</b>, duas coisas acontecem ao mesmo tempo, automaticamente:</p>
 
 <p class="pergunta">1. O cliente vê a confirmação na tela</p>
-<p>A mensagem "Pronto, (nome)! Recebemos as suas informações", com o e-mail em que será atendido (passo 6).</p>
+<p>A mensagem "Suas respostas foram enviadas com sucesso!", com o agradecimento e o e-mail em que será respondido (passo 7). <b>Não chega nenhuma mensagem pelo WhatsApp</b>: assim a pHarma Online não tem custo de mensagens da Meta com o formulário.</p>
 
-<p class="pergunta">2. O cliente recebe um aviso no WhatsApp</p>
-<p>No mesmo WhatsApp em que ele falou com o bot, chega a confirmação de que o formulário foi recebido:</p>
-<div class="zap"><div class="msg">${txt(t.aviso_whatsapp)}</div></div>
-
-<p class="pergunta">3. A equipe recebe um e-mail organizado</p>
+<p class="pergunta">2. A equipe recebe um e-mail organizado</p>
 <p>Cada formulário chega em <b>${esc(emailEquipe)}</b>, com o assunto <b>"Novo atendimento: (assunto) – (nome)"</b> e todas as informações em uma única mensagem:</p>
 <div class="email">${emailHtml}</div>
 <div class="caixa"><ul>
@@ -190,9 +189,9 @@ ${passo(6, 'Pronto!', `<p>Ao terminar, o cliente vê a confirmação na tela, co
   <li><b>Cópia de segurança:</b> todos os formulários também ficam guardados no painel do Typebot, em <b>Resultados</b>, caso algum e-mail se perca.</li>
 </ul></div>
 
-<h2 style="margin-top:7mm">Perguntas frequentes</h2>
+<h2 style="page-break-before:always">Perguntas frequentes</h2>
 <p class="pergunta">E se o cliente fechar a página no meio?</p>
-<p>O formulário não é enviado e a equipe não recebe e-mail. O cliente pode voltar ao WhatsApp, escolher a opção de novo e recomeçar.</p>
+<p>As respostas só são enviadas quando o cliente toca em "${esc(t.botao_enviar)}". Se ele fechar antes, nada é enviado e a equipe não recebe e-mail. O cliente pode voltar ao WhatsApp, escolher a opção de novo e recomeçar.</p>
 <p class="pergunta">E se o cliente digitar o e-mail errado (mas num formato válido)?</p>
 <p>O formulário não tem como saber. Por isso o e-mail para a equipe traz também o <b>telefone</b> e o <b>WhatsApp de origem</b>: se a resposta por e-mail voltar, a equipe ainda consegue falar com o cliente.</p>
 <p class="pergunta">O cliente pode enviar PDF ou documentos?</p>
@@ -209,7 +208,7 @@ ${passo(6, 'Pronto!', `<p>Ao terminar, o cliente vê a confirmação na tela, co
   <li>O cliente escolhe a opção <b>3</b> no WhatsApp e recebe o link.</li>
   <li>Preenche <b>nome, telefone, e-mail e a dúvida</b> (imagens são opcionais), em menos de um minuto.</li>
   <li>A equipe recebe <b>um e-mail organizado</b> em ${esc(emailEquipe)} e <b>responde por e-mail</b>.</li>
-  <li>O cliente é avisado na tela e no WhatsApp de que a resposta virá pelo e-mail informado.</li>
+  <li>No fim, o cliente toca no botão rosa <b>"${esc(t.botao_enviar)}"</b> e vê, só na tela, a confirmação com o agradecimento. Nada é enviado pelo WhatsApp.</li>
 </ul></div>
 </div>
 </body></html>`;

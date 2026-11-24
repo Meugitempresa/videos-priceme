@@ -92,10 +92,15 @@
     "contato": [
       "*Fale conosco*",
       "",
-      "Para falar com a nossa equipe, envie a sua mensagem para o e-mail:",
-      "📧 {{email_contato}}",
+      "Para falar com a nossa equipe, escolha o link certo para você:",
       "",
-      "Assim que recebermos, uma pessoa da nossa equipe responderá você por e-mail.",
+      "💙 *AINDA NÃO É CLIENTE da pHarma Online?*",
+      "Envie a sua pergunta por este link:",
+      "{{link_pergunta}}",
+      "",
+      "🩷 *JÁ É CLIENTE da pHarma Online?*",
+      "Para dúvidas sobre um orçamento, um pedido ou outros assuntos, fale com a nossa equipe por este link:",
+      "{{link_fale_conosco}}",
       "",
       "Para voltar ao menu inicial, digite *0*."
     ]

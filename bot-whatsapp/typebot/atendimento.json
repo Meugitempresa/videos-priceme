@@ -121,13 +121,23 @@
           }
         },
         {
-          "id": "c93dsxqi9bi31kyfhpvgyadd",
+          "id": "c1s8m80yg37nte521r5bylpz",
           "type": "Set variable",
           "options": {
-            "variableId": "vfnqsfmrmexwi07zpls8b4mw",
+            "variableId": "v0wscurz47prf07yi598byqm",
             "type": "Custom",
             "isCode": false,
-            "expressionToEvaluate": "suporte.pharmaonline@gmail.com"
+            "expressionToEvaluate": "https://orcpharm.app/pharmaonline/pergunta"
+          }
+        },
+        {
+          "id": "c12fl56tnd0jss7qhszizt0z",
+          "type": "Set variable",
+          "options": {
+            "variableId": "vwt500edlkc78vzqkcfumekj",
+            "type": "Custom",
+            "isCode": false,
+            "expressionToEvaluate": "https://orcpharm.app/pharmaonline/fale-conosco"
           }
         },
         {
@@ -1120,15 +1130,7 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Para falar com a nossa equipe, envie a sua mensagem para o e-mail:"
-                  }
-                ]
-              },
-              {
-                "type": "p",
-                "children": [
-                  {
-                    "text": "📧 {{email_contato}}"
+                    "text": "Para falar com a nossa equipe, escolha o link certo para você:"
                   }
                 ]
               },
@@ -1144,7 +1146,63 @@
                 "type": "p",
                 "children": [
                   {
-                    "text": "Assim que recebermos, uma pessoa da nossa equipe responderá você por e-mail."
+                    "text": "💙 "
+                  },
+                  {
+                    "text": "AINDA NÃO É CLIENTE da pHarma Online?",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Envie a sua pergunta por este link:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{link_pergunta}}"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "🩷 "
+                  },
+                  {
+                    "text": "JÁ É CLIENTE da pHarma Online?",
+                    "bold": true
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "Para dúvidas sobre um orçamento, um pedido ou outros assuntos, fale com a nossa equipe por este link:"
+                  }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "text": "{{link_fale_conosco}}"
                   }
                 ]
               },
@@ -1679,8 +1737,13 @@
       "isSessionVariable": true
     },
     {
-      "id": "vfnqsfmrmexwi07zpls8b4mw",
-      "name": "email_contato",
+      "id": "v0wscurz47prf07yi598byqm",
+      "name": "link_pergunta",
+      "isSessionVariable": true
+    },
+    {
+      "id": "vwt500edlkc78vzqkcfumekj",
+      "name": "link_fale_conosco",
       "isSessionVariable": true
     },
     {

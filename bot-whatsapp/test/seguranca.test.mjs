@@ -20,6 +20,8 @@ const LINKS_FORNECIDOS = {
   link_tiktok: 'https://www.tiktok.com/@pharmaonlineplus',
   link_youtube: 'https://www.youtube.com/@pharmaonlineplus',
   link_atendimento: 'https://wa.me/5531999211377', // montado do número (31) 99921-1377 e aprovado pela cliente em 24/11
+  link_pergunta: 'https://orcpharm.app/pharmaonline/pergunta', // Fale conosco: quem ainda não é cliente
+  link_fale_conosco: 'https://orcpharm.app/pharmaonline/fale-conosco', // Fale conosco: quem já é cliente
 };
 const EMAIL_FORNECIDO = 'suporte.pharmaonline@gmail.com';
 // Links que ainda dependem da cliente (provisórios ou aguardando aprovação).
@@ -35,8 +37,7 @@ test('os links fornecidos pela cliente estão na configuração exatamente como 
   }
 });
 
-test('o e-mail de contato e o de destino dos formulários são os fornecidos pela cliente', () => {
-  assert.equal(vars.atendimento.email_contato, EMAIL_FORNECIDO);
+test('o e-mail de destino do formulário é o fornecido pela cliente', () => {
   assert.equal(vars.formulario.email_atendente, EMAIL_FORNECIDO);
   assert.doesNotMatch(JSON.stringify(textos), /[\w.+-]+@[\w-]+\.[\w.]+/); // e-mail nunca escrito à mão nos textos
 });
