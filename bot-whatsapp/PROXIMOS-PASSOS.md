@@ -44,7 +44,10 @@ A SendPulse foi avaliada e descartada.
       - "Fale conosco" sem "Ficamos felizes…";
       - slogan com 💜 no agradecimento;
       - tela final e aviso no WhatsApp citam o e-mail.
-- [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM) e 3 domínios: painel do Typebot, bot e arquivos.
+- [ ] **Servidor:** VPS com Docker (2 a 4 GB de RAM).
+- [x] **Domínio (25/11):** pharmaonlinedigital.com. Subdomínios: typebot. (painel), bot. (bot e formulário: link do formulário
+      https://bot.pharmaonlinedigital.com/pharma-formulario) e arquivos. (banner e anexos). Falta saber onde está registrado
+      e criar os 3 registros A apontando para o IP do servidor, depois de alugá-lo.
 - [x] **Opção 2** (19/11): encaminha para atendimento humano no (31) 9921-1377 (link wa.me/553199211377), pedindo a foto da receita.
 
 - [ ] **Banner da primeira mensagem:** arquivo em `midia/banner-pharmaonline.jpg`. Na instalação, enviar para o
