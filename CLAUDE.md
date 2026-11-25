@@ -88,3 +88,14 @@ Transcrição: neste ambiente de nuvem `huggingface.co` é bloqueado; os modelos
   (histórico de buscas, relógio/data/clima) ficam em `src/instalacao/roteiro.ts`. A barra de status é recortada.
 - Legendas em `src/instalacao/legendas.ts` (fiéis à locução: "Abra o seu navegador e acesse", sem "agora"; [termo] = destaque ciano).
 - Final: `npx remotion render src/index.ts InstalacaoPriceMe out/instalacao-priceme.mp4 --codec=h264 --crf=17 --x264-preset=medium --audio-codec=aac --audio-bitrate=256k`
+
+## Estádio pHarma Online (narrador + gravação da plataforma no celular) — `src/estadio`
+
+- Em `public/estadio/` (fora do git): `original.mp4` (vídeo 1, 1080×1920, 30 fps, 1019 quadros) e `gravacao-tela.mp4` (vídeo 2, 424×650, 200 quadros).
+- Cortes do original: 4,83 / 9,37 / 13,70 / **18,53** / **24,97** / 29,80 s. A gravação entra só na 2ª cena da câmera (quadros 556–748).
+- 1) `python scripts/estadio-rastrear-tela.py <quadros 0556.png…0748.png>` → `src/estadio/celular-cantos.json` (contorno do aparelho por varreduras nas bordas visíveis)
+  2) `python scripts/estadio-tempo.py public/estadio/gravacao-tela.mp4` → `src/estadio/tela-tempo.json` (ordem original; só trechos parados mudam de duração)
+  3) `python scripts/estadio-tela.py public/estadio/original.mp4 public/estadio/gravacao-tela.mp4 public/estadio/base.mp4` (homografia, cantos arredondados, polegar por cima via `src/estadio/dedos.json`)
+  4) `npx remotion render src/index.ts EstadioPharmaOnline out/estadio-legendado.mp4 --codec=h264 --crf=16 --x264-preset=slow --muted`
+  5) `ffmpeg -i out/estadio-legendado.mp4 -i public/estadio/original.mp4 -map 0:v -map 1:a -c copy -movflags +faststart out/estadio-pharmaonline-final.mp4` (áudio original intacto)
+- Legendas em `src/estadio/blocos.json` (Parakeet +0,1 s; palavra a palavra; "Farma Online" falado → "pHarma Online").
