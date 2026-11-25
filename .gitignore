@@ -18,3 +18,5 @@ public/tutorial2/*.wav
 # Tutorial de instalação (fora do git)
 public/instalacao/*.mp4
 public/instalacao/*.mp3
+saida/*.mp4
+saida/trabalho/
